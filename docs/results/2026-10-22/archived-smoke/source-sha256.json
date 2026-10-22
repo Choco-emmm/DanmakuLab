@@ -1,0 +1,86 @@
+[
+  {
+    "path": "pom.xml",
+    "sha256": "065C49B7C6F5D53D82E77DC1ED59CD752F2DF839BC9F7B0BEECF94725D0935FB"
+  },
+  {
+    "path": "scripts/load/smoke.js",
+    "sha256": "1D2277FFDB1D8F6BFF6B7ACC1A6E5F3DE8BDD6B220849615FED5A87973AB6E39"
+  },
+  {
+    "path": "scripts/run/smoke.ps1",
+    "sha256": "57F56D6EA4BD96EEFC1DB433263ABCFA76901C0AF52F661E7F634033ABD0B515"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/config/LabProperties.java",
+    "sha256": "DE44D416D5522C12B0E320533C6310CCE1D39235A5D522EA26FFF34033AF8CE9"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/config/WebSocketConfiguration.java",
+    "sha256": "B6CC2071D8ED134126C2474499893EDA90205D66602417285E0B454C7A00DB84"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/core/ClientConnection.java",
+    "sha256": "FB8CF7D6D89050F98286176F4F5E1AB11A7974FC24ED8167958C6059E419D150"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/core/ConnectionRegistry.java",
+    "sha256": "8B1D0DB4BA6302B4475F226CC5735041C07BC07FDE3A36160CD44DF1417A510C"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/core/DirectBroadcaster.java",
+    "sha256": "2E56EC122CDE8300ECD1DBECCEC89E400D781C9F0FF37905BCB8FE7D0A791E92"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/core/Room.java",
+    "sha256": "F5B1335636874EB3471B938D1294D2C173955B3C4AB10E2C7AE3CCBF4CC4B9CE"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/core/TokenBucket.java",
+    "sha256": "AD13525A5CBAA172B91A2B61FCFFE13352DD1DDF5C75AFB7E4E9271C17754EF4"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/DanmakuLabApplication.java",
+    "sha256": "744A221A9300CAB97C0032F71CA5AAB3B1CF2910A75CE467594D182E3C45E73F"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/protocol/DanmakuHandler.java",
+    "sha256": "BD62AF3E1E40EE32B47C2F5CBC225B190CBC472A3C4AB31D070F3386B97FA937"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/protocol/ProtocolException.java",
+    "sha256": "F21C958484BB72E853675176A8FEA3F3E09573EE07BDC21C82E1CB951E126A6C"
+  },
+  {
+    "path": "src/main/resources/application.yml",
+    "sha256": "BDEEC8528C516613002E55176941F18FBCA8F939389F64636A1A7D7DFABF9850"
+  },
+  {
+    "path": "src/main/resources/static/app.js",
+    "sha256": "8CB203D0CD4EF8A208293E7F444472B5D41E2C99EED5F1477E2AF036FA54FE77"
+  },
+  {
+    "path": "src/main/resources/static/index.html",
+    "sha256": "64BCE4B4C773AC90DBAA9CEC96230AFA0C01C699D336793FDC521E25D8BB3E2B"
+  },
+  {
+    "path": "src/main/resources/static/style.css",
+    "sha256": "01156523197C672FD156D0F5DBF656A63AB8912FF6370D488F0C1AE3DD6153BB"
+  },
+  {
+    "path": "src/test/java/io/github/chocoemmm/danmakulab/core/ClientConnectionTest.java",
+    "sha256": "F9F63F19FCCA93EDFFC3A4104DBE1D85FE9DB2A6E319EB2F4052F9BC89D3886E"
+  },
+  {
+    "path": "src/test/java/io/github/chocoemmm/danmakulab/core/ConnectionRegistryTest.java",
+    "sha256": "CBDB34C5E02C383647D78DE59C09CBDB6B6F6438D38AF4407B7712FFA8099FB2"
+  },
+  {
+    "path": "src/test/java/io/github/chocoemmm/danmakulab/core/TokenBucketTest.java",
+    "sha256": "4A9CF501B2F8A246642E0F388FCA312E52B2C1210DA2C28A4CD71017AA7754BB"
+  },
+  {
+    "path": "src/test/java/io/github/chocoemmm/danmakulab/WebSocketIntegrationTest.java",
+    "sha256": "C8439F03100D1ADE62CC310002104204BA42D7E2DE9E55931F3909FA1F3636E5"
+  }
+]

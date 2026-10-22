@@ -1,0 +1,11 @@
+{
+  "capturedAt": "2026-10-22T21:45:34.9010510+08:00",
+  "os": "Microsoft Windows NT 10.0.26200.0",
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+  "logicalProcessors": 32,
+  "physicalMemoryBytes": 33605316608,
+  "java": "java version \"25.0.1\" 2025-10-21 LTS\r\nJava(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)\r\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)",
+  "k6": "k6.exe v2.0.0-rc1 (commit/fb943a6a80, go1.26.2, windows/amd64)",
+  "network": "http://127.0.0.1:8080",
+  "note": "Client and server placement, JVM heap and other server flags must be recorded in notes.md."
+}

@@ -1,0 +1,118 @@
+[
+  {
+    "name": "jvm.memory.used",
+    "description": "The amount of used memory",
+    "baseUnit": "bytes",
+    "measurements": [
+      {
+        "statistic": "VALUE",
+        "value": 132664672.0
+      }
+    ],
+    "availableTags": [
+      {
+        "tag": "area",
+        "values": [
+          "heap",
+          "nonheap"
+        ]
+      },
+      {
+        "tag": "id",
+        "values": [
+          "CodeHeap 'profiled nmethods'",
+          "G1 Old Gen",
+          "CodeHeap 'non-profiled nmethods'",
+          "G1 Survivor Space",
+          "Compressed Class Space",
+          "Metaspace",
+          "G1 Eden Space",
+          "CodeHeap 'non-nmethods'"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "jvm.threads.live",
+    "description": "The current number of live threads including both daemon and non-daemon threads",
+    "baseUnit": "threads",
+    "measurements": [
+      {
+        "statistic": "VALUE",
+        "value": 24.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.connections",
+    "measurements": [
+      {
+        "statistic": "VALUE",
+        "value": 0.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.deliveries.expected",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 600.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.deliveries.submitted",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 600.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.messages.accepted",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 60.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.messages.input",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 60.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.rooms",
+    "measurements": [
+      {
+        "statistic": "VALUE",
+        "value": 0.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "process.cpu.usage",
+    "description": "The \"recent cpu usage\" for the Java Virtual Machine process",
+    "measurements": [
+      {
+        "statistic": "VALUE",
+        "value": 0.00031823615623297844
+      }
+    ],
+    "availableTags": []
+  }
+]

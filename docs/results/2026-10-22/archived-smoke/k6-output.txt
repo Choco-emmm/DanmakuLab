@@ -1,0 +1,2 @@
+Smoke: joined=11, accepted=60, received=600/600, errors=0, duplicates=0, isolationFailures=0
+Summary: D:\coding\DanmakuLab\docs\results\2026-10-22\archived-smoke/k6-summary.json

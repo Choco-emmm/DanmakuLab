@@ -1,0 +1,10 @@
+{
+  "messages": 60,
+  "targetInputPerSecond": 1,
+  "viewers": 10,
+  "mode": "direct-baseline",
+  "expectedUniqueDeliveries": 600,
+  "wsUrl": "ws://127.0.0.1:8080/ws",
+  "scenario": "T0",
+  "isolationProbes": 1
+}

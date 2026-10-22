@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>DanmakuLab · 实时弹幕实验室</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div><p class="eyebrow">REALTIME BROADCAST EXPERIMENT</p><h1>DanmakuLab<span>弹幕实验室</span></h1></div>
+      <p id="status" role="status"><i></i><span>未连接</span></p>
+    </header>
+    <section class="intro"><h2>一句话，让同房间的人都看见。</h2><p>打开两个页面，加入同一个房间，观察弹幕如何实时到达。</p></section>
+    <section class="workspace">
+      <aside class="panel">
+        <p class="eyebrow">01 / JOIN A ROOM</p>
+        <h2>进入房间</h2>
+        <form id="join-form">
+          <label for="nickname">你的昵称</label><input id="nickname" name="nickname" maxlength="32" value="观察员" required autocomplete="nickname">
+          <label for="room">房间 ID</label><input id="room" name="room" maxlength="64" value="lobby" pattern="[A-Za-z0-9_-]+" required aria-describedby="room-help">
+          <p id="room-help" class="hint">使用字母、数字、下划线或短横线。</p>
+          <button id="join-button" type="submit">连接并加入</button>
+          <button id="disconnect" type="button" class="secondary" disabled>断开连接</button>
+        </form>
+        <div class="note"><strong>当前实验：直接广播</strong><p>普通弹幕不保存历史。重连后重新加入房间，断线期间的消息不会补发。</p></div>
+      </aside>
+      <section class="panel messages-panel" aria-labelledby="messages-title">
+        <div class="messages-heading"><div><p class="eyebrow">02 / LIVE MESSAGES</p><h2 id="messages-title">等待加入房间</h2></div><span id="received">0 条已接收</span></div>
+        <div id="messages" role="log" aria-label="房间弹幕" aria-live="polite"><p id="empty">这里将显示实时弹幕。<br><span>加入房间后，发送第一条消息。</span></p></div>
+        <form id="send-form">
+          <label class="sr-only" for="text">弹幕内容</label>
+          <div class="compose"><input id="text" name="text" maxlength="200" placeholder="写下一条弹幕…" required disabled autocomplete="off"><button id="send-button" type="submit" disabled>发送弹幕</button></div>
+          <p id="feedback" role="status">连接成功后即可发送，最多 200 个字符。</p>
+        </form>
+      </section>
+    </section>
+    <footer><span>DanmakuLab / 0.1</span><span>先观察行为，再用数据验证。</span></footer>
+  </main>
+</body>
+</html>

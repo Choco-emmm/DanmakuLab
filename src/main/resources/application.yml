@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: danmaku-lab
+server:
+  address: 127.0.0.1
+  port: 8080
+  tomcat:
+    threads:
+      max: 100
+      min-spare: 10
+    max-connections: 12000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+lab:
+  max-connections: 2000
+  max-rooms: 1000
+  max-frame-bytes: 1024
+  max-text-length: 200
+  connection-messages-per-second: 5
+  room-messages-per-second: 50

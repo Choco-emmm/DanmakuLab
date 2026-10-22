@@ -1,0 +1,26 @@
+# Java / Maven
+target/
+*.class
+*.log
+hs_err_pid*
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+application-local.yml
+application-local.yaml
+application-local.properties
+
+# Editors and operating system
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Local dependencies and generated load-test output
+node_modules/
+load-results/
+.gstack/
+.gstack/

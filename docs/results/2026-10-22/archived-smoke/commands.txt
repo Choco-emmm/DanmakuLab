@@ -1,0 +1,1 @@
+k6 run --quiet -e MESSAGES=60 -e WS_URL=ws://127.0.0.1:8080/ws -e SUMMARY_PATH=<run-directory>/k6-summary.json scripts/load/smoke.js
