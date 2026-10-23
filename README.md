@@ -10,6 +10,7 @@
 - [当前协议与实现边界](docs/PROTOCOL.md)
 - [第一次协作的代码阅读与练习](docs/LEARNING.md)
 - [提交与推送检查清单](docs/RELEASE_CHECKLIST.md)
+- [归档版本变更记录](CHANGELOG.md)与[本轮发布检查记录](docs/results/2026-10-23/release-check.md)
 
 ## 本地启动
 
@@ -38,7 +39,7 @@ k6 run scripts/load/smoke.js
 
 10 个同房间观众，额外 1 个其他房间探针；全部加入后以约 1 条/秒发送 60 条，预期 600 次唯一接收。脚本检查每个观众的接收数、拒绝/错误、重复、异常断连和串房；约 61 秒完成，失败时 k6 返回非零退出码。
 这只是工具和业务计数校验，不是容量压测。结果保存在被 Git 忽略的 `load-results/smoke-summary.json`；正式结果按 `docs/BENCHMARK.md` 归档。
-首日已归档结果见 [T0 记录](docs/results/2026-10-22/archived-smoke/notes.md)。
+首日已归档结果见 [T0 记录](docs/results/2026-10-22/archived-smoke/notes.md)，工具兼容性失败及修正见[首轮记录](docs/results/2026-10-22/first-smoke/notes.md)。
 
 快速检查可执行 `k6 run -e MESSAGES=3 scripts/load/smoke.js`。更换服务地址使用 `-e WS_URL=ws://127.0.0.1:8081/ws`。
 
@@ -49,6 +50,7 @@ Windows PowerShell 7 下可用 `pwsh -File scripts/run/smoke.ps1`，自动创建
 通过冒烟后，按 [T1 操作说明](docs/BASELINE.md) 使用 `scripts/load/baseline.js` 和 `scripts/run/baseline.ps1` 测量 100、500、1000 条连接。每档默认预热 60 秒、测量 180 秒，总输入 5 条/秒，保存客户端接收、抽样延迟、双端资源时序和服务端计数差值。
 完整输入 JSON 为 256 字节，广播 JSON 大小另行实测；这些参数不等于每秒 20 条、慢消费者或 30 分钟稳态验收。
 首轮实测见 [T1 结果报告](docs/results/2026-10-23/t1-report.md)：三档测量期均收齐，抽样 P95 为 4/14/23ms。每档目前只有一轮，同机回环，不能外推为最大容量或公网成绩。
+另有独立保存的 [100 连接手动复跑](docs/results/2026-10-23/t1-100-162328/notes.md)，未覆盖首轮结果。
 
 ## 当前实现与下一阶段
 
