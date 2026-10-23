@@ -1,0 +1,1 @@
+k6 run --quiet -e CONNECTIONS=100 -e WARMUP_SECONDS=60 -e DURATION_SECONDS=180 -e RATE=5 -e WS_URL=ws://127.0.0.1:8081/ws -e SUMMARY_PATH=D:\coding\DanmakuLab\docs\results\2026-10-23\t1-100/k6-summary.json scripts/load/baseline.js

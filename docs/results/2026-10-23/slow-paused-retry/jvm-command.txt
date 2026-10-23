@@ -1,0 +1,6 @@
+7548:
+VM Arguments:
+jvm_args: -Xms128m -Xmx256m 
+java_command: target/danmaku-lab-0.1.0-SNAPSHOT.jar --server.port=8081
+java_class_path (initial): target/danmaku-lab-0.1.0-SNAPSHOT.jar
+Launcher Type: SUN_STANDARD

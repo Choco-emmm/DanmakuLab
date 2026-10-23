@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-10-23T07:42:30.9240193+00:00",
+  "os": "Microsoft Windows NT 10.0.26200.0",
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+  "logicalProcessors": 32,
+  "physicalMemoryBytes": 33605316608,
+  "java": "java version \"25.0.1\" 2025-10-21 LTS\r\nJava(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)\r\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)",
+  "k6": "k6.exe v2.0.0-rc1 (commit/fb943a6a80, go1.26.2, windows/amd64)",
+  "target": "http://127.0.0.1:8081",
+  "serverCommandLine": "D:\\coding\\jdk\\bin\\java.exe -Xms128m -Xmx256m -jar target/danmaku-lab-0.1.0-SNAPSHOT.jar --server.port=8081",
+  "sourceCommit": "0faf68d2ee571ce7bd998b8f42b849167b6a7f4b",
+  "sourceStatus": "M docs/LEARNING.md\r\n M pom.xml\r\n M scripts/load/smoke.js\r\n M scripts/run/smoke.ps1\r\n M src/main/java/io/github/chocoemmm/danmakulab/DanmakuLabApplication.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/config/LabProperties.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/config/WebSocketConfiguration.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/core/ClientConnection.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/core/ConnectionRegistry.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/core/DirectBroadcaster.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/core/Room.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/core/TokenBucket.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/protocol/DanmakuHandler.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/protocol/ProtocolException.java\r\n M src/main/resources/application.yml\r\n M src/main/resources/static/app.js\r\n M src/main/resources/static/index.html\r\n M src/main/resources/static/style.css\r\n M src/test/java/io/github/chocoemmm/danmakulab/WebSocketIntegrationTest.java\r\n M src/test/java/io/github/chocoemmm/danmakulab/core/ClientConnectionTest.java\r\n M src/test/java/io/github/chocoemmm/danmakulab/core/ConnectionRegistryTest.java\r\n M src/test/java/io/github/chocoemmm/danmakulab/core/TokenBucketTest.java\r\n?? AGENTS.md\r\n?? docs/WALKTHROUGH.md\r\n?? docs/results/2026-10-23/\r\n?? scripts/load/baseline.js\r\n?? scripts/load/http-basics.js\r\n?? scripts/run/baseline.ps1",
+  "note": "Loopback client and server share CPU/RAM; one k6 VU coordinates sockets. Resource maxima are sampled, not absolute peaks."
+}

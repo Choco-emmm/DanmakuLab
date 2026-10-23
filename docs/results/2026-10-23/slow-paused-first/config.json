@@ -1,0 +1,8 @@
+{
+  "mode": "paused",
+  "url": "ws://127.0.0.1:8081/ws",
+  "seconds": 90,
+  "rate": 40,
+  "viewers": 10,
+  "output": "docs/results/2026-10-23/slow-paused-first"
+}

@@ -3,6 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <!-- Boot 父工程统一管理 Spring、Tomcat、Jackson 和测试依赖的兼容版本。 -->
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
@@ -15,21 +16,26 @@
     <name>DanmakuLab</name>
     <description>Measured experiments in WebSocket broadcast and resource isolation</description>
     <properties>
+        <!-- 编译使用 Java 21 的语言/API 边界；实际运行验证环境另在 README 和实验记录中说明。 -->
         <java.version>21</java.version>
     </properties>
     <dependencies>
+        <!-- 原生 WebSocket 及其所需 Web/MVC 和默认 Servlet 容器。 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
+        <!-- 提供 health/metrics 端点和 Micrometer 指标基础设施。 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+        <!-- 校验 LabProperties 上的 Min 等约束，在启动时发现无效配置。 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
+        <!-- JUnit、AssertJ、Mockito 等测试工具，只在测试阶段使用，不进入业务运行依赖。 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -37,6 +43,7 @@
         </dependency>
     </dependencies>
     <build>
+        <!-- 把依赖一起打入可执行 JAR，便于使用 java -jar 启动服务。 -->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
