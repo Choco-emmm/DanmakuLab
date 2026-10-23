@@ -1,0 +1,12 @@
+[
+  {
+    "Algorithm": "SHA256",
+    "Hash": "075AB6D06BDCFED80741B09129A2E9B4040103EFBE46763776222586741DD2D3",
+    "Path": "D:\\coding\\DanmakuLab\\scripts\\load\\slow-consumer.py"
+  },
+  {
+    "Algorithm": "SHA256",
+    "Hash": "602C375C64C941DB0E8AC7EF39A99000B7CEE39DEF5116E278F7412EBFF73F94",
+    "Path": "D:\\coding\\DanmakuLab\\target\\danmaku-lab-0.1.0-SNAPSHOT.jar"
+  }
+]

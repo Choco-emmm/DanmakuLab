@@ -1,0 +1,14 @@
+{
+  "sampleCount": 47,
+  "collectorErrors": 0,
+  "client": {
+    "sampledMaxCpuPercentOfMachine": 0.3885281156550682,
+    "sampledMaxWorkingSetBytes": 54153216.0
+  },
+  "server": {
+    "sampledMaxCpuPercentOfMachine": 0.482918089263904,
+    "sampledMaxWorkingSetBytes": 290676736.0
+  },
+  "sampledMaxHeapBytes": 93983744.0,
+  "sampledMaxJvmThreads": 73.0
+}

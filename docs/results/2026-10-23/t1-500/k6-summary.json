@@ -1,0 +1,426 @@
+{
+  "report": {
+    "scenario": "T1",
+    "connections": 500,
+    "warmupSeconds": 60,
+    "measureSeconds": 180,
+    "targetInputPerSecond": 5,
+    "requestBytes": 256,
+    "latencySampleEvery": 10,
+    "drainSeconds": 5,
+    "measuredMessages": 900,
+    "expectedMeasuredDeliveries": 450000,
+    "joined": 500,
+    "sent": 900,
+    "acceptedIncludingWarmup": 1200,
+    "received": 450000,
+    "missing": 0,
+    "completeness": 1,
+    "duplicates": 0,
+    "errors": 0,
+    "orderViolations": 0,
+    "unexpectedCloses": 0,
+    "actualInputPerSecond": 4.991459058943586,
+    "actualMeasureSeconds": 180.308,
+    "joinSeconds": 2.431,
+    "latencySamples": 45000,
+    "latencyMs": {
+      "med": 6,
+      "p(95)": 14,
+      "p(99)": 16,
+      "max": 21,
+      "avg": 6.580777777777778,
+      "min": 0
+    },
+    "broadcastBytes": {
+      "avg": 477.9788888888889,
+      "min": 476,
+      "med": 478,
+      "p(95)": 479,
+      "p(99)": 479,
+      "max": 479
+    },
+    "maxSendLagMs": 307,
+    "note": "One k6 VU coordinates all sockets. Latency is sampled; completeness covers every connection. Input JSON is 256 bytes; broadcast size is measured separately."
+  },
+  "metrics": {
+    "root_group": {
+      "groups": [],
+      "checks": [
+          {
+            "path": "::all configured connections joined",
+            "id": "3d7bc66032012108f67287ae9868a7e0",
+            "passes": 1,
+            "fails": 0,
+            "name": "all configured connections joined"
+          },
+          {
+            "name": "each viewer received all measured messages",
+            "path": "::each viewer received all measured messages",
+            "id": "1157473873a7ef4fddbe5e2642873651",
+            "passes": 500,
+            "fails": 0
+          },
+          {
+            "name": "each viewer received all warmup messages",
+            "path": "::each viewer received all warmup messages",
+            "id": "a454c46a6375e015f8f615ccde153f4f",
+            "passes": 500,
+            "fails": 0
+          }
+        ],
+      "name": "",
+      "path": "",
+      "id": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    "options": {
+      "summaryTrendStats": [
+        "avg",
+        "min",
+        "med",
+        "p(95)",
+        "p(99)",
+        "max"
+      ],
+      "summaryTimeUnit": "",
+      "noColor": true
+    },
+    "state": {
+      "isStdOutTTY": false,
+      "isStdErrTTY": false,
+      "testRunDurationMs": 247879.4571
+    },
+    "metrics": {
+      "vus_max": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "ws_sessions": {
+        "values": {
+          "count": 500,
+          "rate": 2.0171094686490663
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "ws_msgs_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 2459.6632860706713,
+          "count": 609700
+        }
+      },
+      "t1_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 450000,
+          "rate": 1815.3985217841596
+        },
+        "thresholds": {
+          "count==450000": {
+            "ok": true
+          }
+        }
+      },
+      "data_sent": {
+        "type": "counter",
+        "contains": "data",
+        "values": {
+          "count": 619690,
+          "rate": 2499.96513325428
+        }
+      },
+      "t1_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 45000,
+          "rate": 181.53985217841597
+        }
+      },
+      "t1_actual_input_per_second": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 4.991459058943586,
+          "min": 0,
+          "max": 4.991459058943586
+        },
+        "thresholds": {
+          "value>=4.75": {
+            "ok": true
+          },
+          "value<=5.25": {
+            "ok": true
+          }
+        }
+      },
+      "t1_order_violations": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "iteration_duration": {
+        "values": {
+          "p(99)": 247879.4571,
+          "max": 247879.4571,
+          "avg": 247879.4571,
+          "min": 247879.4571,
+          "med": 247879.4571,
+          "p(95)": 247879.4571
+        },
+        "type": "trend",
+        "contains": "time"
+      },
+      "data_received": {
+        "contains": "data",
+        "values": {
+          "count": 289494993,
+          "rate": 1167886.1830135903
+        },
+        "type": "counter"
+      },
+      "t1_measure_seconds": {
+        "contains": "default",
+        "values": {
+          "value": 180.308,
+          "min": 0,
+          "max": 180.308
+        },
+        "type": "gauge"
+      },
+      "t1_accepted": {
+        "values": {
+          "count": 1200,
+          "rate": 4.841062724757759
+        },
+        "thresholds": {
+          "count==1200": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "ws_session_duration": {
+        "type": "trend",
+        "contains": "time",
+        "values": {
+          "p(99)": 247861.473568,
+          "max": 247863.1064,
+          "avg": 246656.31504479994,
+          "min": 245446.461,
+          "med": 246656.5664,
+          "p(95)": 247762.75737
+        }
+      },
+      "t1_send_lag_ms": {
+        "type": "trend",
+        "contains": "time",
+        "values": {
+          "min": 0,
+          "med": 157,
+          "p(95)": 291,
+          "p(99)": 304.01,
+          "max": 307,
+          "avg": 153.9488888888889
+        }
+      },
+      "t1_unexpected_closes": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "checks": {
+        "values": {
+          "rate": 1,
+          "passes": 1001,
+          "fails": 0
+        },
+        "thresholds": {
+          "rate==1": {
+            "ok": true
+          }
+        },
+        "type": "rate",
+        "contains": "default"
+      },
+      "ws_msgs_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 10200,
+          "rate": 41.14903316044095
+        }
+      },
+      "t1_e2e_ms": {
+        "values": {
+          "min": 0,
+          "med": 6,
+          "p(95)": 14,
+          "p(99)": 16,
+          "max": 21,
+          "avg": 6.580777777777778
+        },
+        "type": "trend",
+        "contains": "time"
+      },
+      "t1_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "iterations": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.004034218937298132,
+          "count": 1
+        },
+        "thresholds": {
+          "count==1": {
+            "ok": true
+          }
+        }
+      },
+      "t1_duplicates": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "vus": {
+        "values": {
+          "min": 1,
+          "max": 1,
+          "value": 1
+        },
+        "type": "gauge",
+        "contains": "default"
+      },
+      "ws_connecting": {
+        "type": "trend",
+        "contains": "time",
+        "values": {
+          "p(95)": 2.7776799999999904,
+          "p(99)": 3.8878,
+          "max": 3.8878,
+          "avg": 1.562311799999997,
+          "min": 0.514,
+          "med": 1.5702
+        }
+      },
+      "t1_errors": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t1_sent": {
+        "contains": "default",
+        "values": {
+          "count": 900,
+          "rate": 3.630797043568319
+        },
+        "thresholds": {
+          "count==900": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t1_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 479,
+          "avg": 477.9788888888889,
+          "min": 476,
+          "med": 478,
+          "p(95)": 479,
+          "p(99)": 479
+        }
+      },
+      "t1_joined": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 500,
+          "rate": 2.0171094686490663
+        },
+        "thresholds": {
+          "count==500": {
+            "ok": true
+          }
+        }
+      },
+      "t1_warmup_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 150000,
+          "rate": 605.1328405947198
+        },
+        "thresholds": {
+          "count==150000": {
+            "ok": true
+          }
+        }
+      },
+      "t1_join_seconds": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 2.431,
+          "min": 2.431,
+          "max": 2.431
+        }
+      }
+    }
+  }
+}

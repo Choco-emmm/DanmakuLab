@@ -1,0 +1,5 @@
+time="2026-10-23T15:38:43+08:00" level=info msg="T1 joined all 10; warmup 2s" source=console
+time="2026-10-23T15:38:45+08:00" level=info msg="T1 measuring: 10 connections, target 5/s for 5s" source=console
+time="2026-10-23T15:38:50+08:00" level=info msg="T1 input stopped; draining pending deliveries" source=console
+time="2026-10-23T15:38:55+08:00" level=info msg="T1 finished: joined=10/10, measured unique=250/250" source=console
+

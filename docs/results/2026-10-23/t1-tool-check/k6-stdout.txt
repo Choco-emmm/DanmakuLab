@@ -1,0 +1,3 @@
+T1: connections=10/10, received=250/250, missing=0, errors=0, duplicates=0, orderViolations=0, actualInput=4.991/s
+Latency (sampled ms): {"avg":0.84,"min":0,"med":1,"p(95)":1.7999999999999972,"p(99)":2,"max":2}
+

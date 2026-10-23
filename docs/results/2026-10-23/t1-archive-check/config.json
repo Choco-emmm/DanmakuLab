@@ -1,0 +1,14 @@
+{
+  "scenario": "T1",
+  "mode": "direct-baseline",
+  "connections": 10,
+  "warmupSeconds": 1,
+  "durationSeconds": 3,
+  "targetInputPerSecond": 5,
+  "requestJsonBytes": 256,
+  "broadcastJsonBytes": "Measured in k6 summary; larger than input JSON",
+  "expectedMeasuredDeliveries": 150,
+  "latencySampleEvery": 10,
+  "resourceSampleSeconds": 5,
+  "drainSeconds": 5
+}

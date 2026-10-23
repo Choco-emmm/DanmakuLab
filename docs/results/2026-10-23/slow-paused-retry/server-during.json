@@ -1,0 +1,89 @@
+[
+  {
+    "name": "lab.connections",
+    "measurements": [
+      {
+        "statistic": "VALUE",
+        "value": 10.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.deliveries.expected",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 45578.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.deliveries.submitted",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 45576.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.messages.accepted",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 4183.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.messages.input",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 5678.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.messages.rejected",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 1496.0
+      }
+    ],
+    "availableTags": [
+      {
+        "tag": "reason",
+        "values": [
+          "connection_rate_limit"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "lab.rooms",
+    "measurements": [
+      {
+        "statistic": "VALUE",
+        "value": 1.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.writes.failed",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 4.0
+      }
+    ],
+    "availableTags": []
+  }
+]

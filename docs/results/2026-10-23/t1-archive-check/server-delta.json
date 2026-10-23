@@ -1,0 +1,12 @@
+{
+  "counters": {
+    "lab.messages.input": 20.0,
+    "lab.messages.accepted": 20.0,
+    "lab.messages.rejected": 0.0,
+    "lab.deliveries.expected": 200.0,
+    "lab.deliveries.submitted": 200.0,
+    "lab.writes.failed": 0.0
+  },
+  "serverCountersMatch": true,
+  "cleanupReturnedToStart": true
+}

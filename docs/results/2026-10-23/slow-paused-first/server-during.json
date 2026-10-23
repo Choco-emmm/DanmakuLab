@@ -1,0 +1,62 @@
+[
+  {
+    "name": "lab.connections",
+    "measurements": [
+      {
+        "statistic": "VALUE",
+        "value": 11.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.rooms",
+    "measurements": [
+      {
+        "statistic": "VALUE",
+        "value": 1.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.messages.input",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 3683.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.messages.accepted",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 3674.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.deliveries.expected",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 40414.0
+      }
+    ],
+    "availableTags": []
+  },
+  {
+    "name": "lab.deliveries.submitted",
+    "measurements": [
+      {
+        "statistic": "COUNT",
+        "value": 40403.0
+      }
+    ],
+    "availableTags": []
+  }
+]

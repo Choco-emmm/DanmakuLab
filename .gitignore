@@ -1,6 +1,7 @@
 # Java / Maven
 target/
 *.class
+__pycache__/
 *.log
 hs_err_pid*
 
