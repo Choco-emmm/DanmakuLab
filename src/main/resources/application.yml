@@ -2,22 +2,29 @@ spring:
   application:
     name: danmaku-lab
 server:
+  # 本地演示默认仅监听回环地址；外部访问需要另行明确部署与访问边界。
   address: 127.0.0.1
   port: 8080
   tomcat:
     threads:
+      # Servlet 工作线程共享使用，不为每条 WebSocket 长连接创建专属线程。
       max: 100
       min-spare: 10
+    # 容器层连接上限；下方 lab.max-connections 是应用登记层的另一个限制。
     max-connections: 12000
 management:
   endpoints:
     web:
       exposure:
+        # health 用于健康检查，metrics 用于观测；发送计数不能代替客户端实际接收数。
         include: health,info,metrics
 lab:
+  # 以下是实验配置上限，不表示已经实测支持这么多连接或房间。
   max-connections: 2000
   max-rooms: 1000
+  # 完整 JSON 的 UTF-8 字节上限，包含正文之外的字段；max-text-length 另限制正文字数。
   max-frame-bytes: 1024
   max-text-length: 200
+  # 令牌桶每秒补充量，也作为桶容量；连接桶与房间桶都通过后才允许广播。
   connection-messages-per-second: 5
   room-messages-per-second: 50

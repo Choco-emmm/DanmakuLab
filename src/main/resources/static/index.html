@@ -9,6 +9,7 @@
   <script src="/app.js" defer></script>
 </head>
 <body>
+  <!-- 演示页由同一个 Spring Boot 服务提供；元素 ID 供 app.js 查找和绑定事件。 -->
   <main>
     <header>
       <div><p class="eyebrow">REALTIME BROADCAST EXPERIMENT</p><h1>DanmakuLab<span>弹幕实验室</span></h1></div>
@@ -16,6 +17,7 @@
     </header>
     <section class="intro"><h2>一句话，让同房间的人都看见。</h2><p>打开两个页面，加入同一个房间，观察弹幕如何实时到达。</p></section>
     <section class="workspace">
+      <!-- 左侧负责连接与换房，右侧负责展示和发送；初始禁用发送，等待服务端 joined 确认。 -->
       <aside class="panel">
         <p class="eyebrow">01 / JOIN A ROOM</p>
         <h2>进入房间</h2>
@@ -30,6 +32,7 @@
       </aside>
       <section class="panel messages-panel" aria-labelledby="messages-title">
         <div class="messages-heading"><div><p class="eyebrow">02 / LIVE MESSAGES</p><h2 id="messages-title">等待加入房间</h2></div><span id="received">0 条已接收</span></div>
+        <!-- role=log 和 aria-live 让辅助阅读工具感知新增弹幕，正文通过 JS 的 textContent 写入。 -->
         <div id="messages" role="log" aria-label="房间弹幕" aria-live="polite"><p id="empty">这里将显示实时弹幕。<br><span>加入房间后，发送第一条消息。</span></p></div>
         <form id="send-form">
           <label class="sr-only" for="text">弹幕内容</label>
