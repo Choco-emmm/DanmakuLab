@@ -1,0 +1,1081 @@
+{
+  "mode": "paused",
+  "plannedInputMessages": 3600,
+  "inputMessages": 3600,
+  "attemptedInputMessages": 3600,
+  "submittedInputMessages": 3600,
+  "normalViewers": 10,
+  "accepted": 3449,
+  "normalExpected": 36000,
+  "normalReceived": 34490,
+  "perViewerReceived": {
+    "normal-0": 3449,
+    "normal-1": 3449,
+    "normal-2": 3449,
+    "normal-3": 3449,
+    "normal-4": 3449,
+    "normal-5": 3449,
+    "normal-6": 3449,
+    "normal-7": 3449,
+    "normal-8": 3449,
+    "normal-9": 3449,
+    "probe": 0
+  },
+  "probeReceiveBufferBytes": 1024,
+  "normalLatencyMs": {
+    "samples": 34490,
+    "p50": 1,
+    "p95": 1,
+    "p99": 4216,
+    "max": 5053
+  },
+  "duplicates": 0,
+  "orderViolations": 0,
+  "rejections": [
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:137",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:147",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:157",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:167",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:177",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:187",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:197",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:207",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:135",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:133",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:217",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:145",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:143",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:227",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:153",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:155",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:138",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:237",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:163",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:247",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:257",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:134",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:165",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:175",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:185",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:195",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:144",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:267",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:154",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:205",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:148",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:164",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:158",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:142",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:173",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:168",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:178",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:215",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:152",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:188",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:136",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:174",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:141",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:151",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:162",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:172",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:198",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:183",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:139",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:182",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:225",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:192",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:193",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:161",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:184",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:146",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:202",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:203",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:149",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:156",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:212",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:171",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:208",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:213",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:222",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:235",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:159",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:166",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:232",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:140",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:223",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:169",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:176",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:181",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:218",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:179",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:242",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:245",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:233",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:191",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:255",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:252",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:150",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:243",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:186",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:201",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:189",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:194",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:265",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:228",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:204",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:211",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:160",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:262",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:272",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:275",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:196",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:199",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:238",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:170",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:206",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:221",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:214",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:253",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:180",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:224",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:263",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:209",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:190",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:231",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:234",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:248",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:216",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:244",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:258",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:226",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:254",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:219",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:264",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:268",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:273",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:200",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:274",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:241",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:229",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:210",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:236",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:251",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:246",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:220",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:256",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:266",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:239",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:230",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:249",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:276",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:259",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:269",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:261",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:240",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:271",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:250",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:260",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:270",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:277",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:278",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:279",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:280",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:281",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:282",
+      "type": "send_result"
+    },
+    {
+      "status": "rejected",
+      "reason": "connection_rate_limit",
+      "clientMessageId": "slow-1792809348794973300:283",
+      "type": "send_result"
+    }
+  ],
+  "failures": [
+    {
+      "client": "probe",
+      "operation": "heartbeat",
+      "error": "[WinError 10054] 远程主机强迫关闭了一个现有的连接。",
+      "seconds": 20.002939200028777
+    }
+  ],
+  "sendElapsedSeconds": 89.9755945999641,
+  "samples": [
+    {
+      "seconds": 0.00015750003512948751,
+      "sent": 1,
+      "accepted": 0,
+      "normalReceived": 0,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 5.000450600055046,
+      "sent": 201,
+      "accepted": 74,
+      "normalReceived": 730,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 10.000371900037862,
+      "sent": 401,
+      "accepted": 249,
+      "normalReceived": 2490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 15.00048709998373,
+      "sent": 601,
+      "accepted": 449,
+      "normalReceived": 4490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 20.000813900027424,
+      "sent": 801,
+      "accepted": 649,
+      "normalReceived": 6490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 25.00060739996843,
+      "sent": 1001,
+      "accepted": 849,
+      "normalReceived": 8490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 30.000253099948168,
+      "sent": 1201,
+      "accepted": 1049,
+      "normalReceived": 10490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 35.000711699947715,
+      "sent": 1401,
+      "accepted": 1249,
+      "normalReceived": 12490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 40.00049530004617,
+      "sent": 1601,
+      "accepted": 1449,
+      "normalReceived": 14490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 45.00033950002398,
+      "sent": 1801,
+      "accepted": 1649,
+      "normalReceived": 16490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 50.00033519999124,
+      "sent": 2001,
+      "accepted": 1849,
+      "normalReceived": 18490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 55.00061079999432,
+      "sent": 2201,
+      "accepted": 2049,
+      "normalReceived": 20490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 60.000520700006746,
+      "sent": 2401,
+      "accepted": 2249,
+      "normalReceived": 22490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 65.00045239995234,
+      "sent": 2601,
+      "accepted": 2449,
+      "normalReceived": 24490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 70.00063559995033,
+      "sent": 2801,
+      "accepted": 2649,
+      "normalReceived": 26490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 75.000231300015,
+      "sent": 3001,
+      "accepted": 2849,
+      "normalReceived": 28490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 80.00038079998922,
+      "sent": 3201,
+      "accepted": 3049,
+      "normalReceived": 30490,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 85.00048209994566,
+      "sent": 3401,
+      "accepted": 3249,
+      "normalReceived": 32490,
+      "probeReceived": 0
+    }
+  ],
+  "inputScheduleCompleted": true,
+  "note": "Paused probe never calls recv after joined. Missing probe deliveries are intentional; normal viewers stay in denominator. No claim of reproduced backpressure without server evidence."
+}

@@ -2,6 +2,8 @@
 
 记录日期：2026-10-23。本文对应当前直接广播实现，帮助理解各类职责与调用方向；没有改动业务代码。
 
+2026-10-24 阅读提示：本文保留 direct 模式的调用链，buffered 模式额外经过连接邮箱与共享发送池，见 [有界输出说明](BOUNDED_OUTBOUND.md)。直接模式的实际网络锁现位于 `ClientConnection.writeNow`，Registry 注销后的邮箱清理在成员锁外执行。
+
 ## 一、先认识每个类的职责
 
 下表中的源码路径相对于 `src/main/java/io/github/chocoemmm/danmakulab/`。

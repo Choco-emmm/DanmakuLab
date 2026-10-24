@@ -1,0 +1,48 @@
+{
+  "mode": "paused",
+  "plannedInputMessages": 40,
+  "inputMessages": 40,
+  "attemptedInputMessages": 40,
+  "submittedInputMessages": 40,
+  "normalViewers": 10,
+  "accepted": 40,
+  "normalExpected": 400,
+  "normalReceived": 400,
+  "perViewerReceived": {
+    "normal-0": 40,
+    "normal-1": 40,
+    "normal-2": 40,
+    "normal-3": 40,
+    "normal-4": 40,
+    "normal-5": 40,
+    "normal-6": 40,
+    "normal-7": 40,
+    "normal-8": 40,
+    "normal-9": 40,
+    "probe": 0
+  },
+  "probeReceiveBufferBytes": 1024,
+  "normalLatencyMs": {
+    "samples": 400,
+    "p50": 1,
+    "p95": 2,
+    "p99": 2,
+    "max": 2
+  },
+  "duplicates": 0,
+  "orderViolations": 0,
+  "rejections": [],
+  "failures": [],
+  "sendElapsedSeconds": 0.9755855000112206,
+  "samples": [
+    {
+      "seconds": 0.00041360000614076853,
+      "sent": 1,
+      "accepted": 0,
+      "normalReceived": 0,
+      "probeReceived": 0
+    }
+  ],
+  "inputScheduleCompleted": true,
+  "note": "Paused probe never calls recv after joined. Missing probe deliveries are intentional; normal viewers stay in denominator. No claim of reproduced backpressure without server evidence."
+}

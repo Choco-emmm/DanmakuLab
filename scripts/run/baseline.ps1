@@ -30,6 +30,13 @@ try {
     New-Item -ItemType Directory -Path $OutputDirectory -Force | Out-Null
     $outputPath = (Resolve-Path -LiteralPath $OutputDirectory).Path
     $wsUrl = ($baseUrl -replace '^http', 'ws') + '/ws'
+    # 新服务显式报告模式；旧基线没有此指标时记 unreported，不能猜成 direct。
+    $broadcastMode = 'unreported'
+    $modeIndex = Invoke-RestMethod "$baseUrl/actuator/metrics" -TimeoutSec 5
+    if ($modeIndex.names -contains 'lab.outbound.mode.buffered') {
+        $modeSample = Invoke-RestMethod "$baseUrl/actuator/metrics/lab.outbound.mode.buffered" -TimeoutSec 5
+        $broadcastMode = $(if ($modeSample.measurements[0].value -eq 1) { 'buffered' } else { 'direct' })
+    }
 
     # 顺序采集的一组指标不是同一纳秒的快照，因此保留起止时间和采集耗时。
     # 每 5 秒采样一次，不可把采样最大值称为整个运行期间的绝对峰值。
@@ -93,7 +100,7 @@ try {
         note = 'Loopback client and server share CPU/RAM; one k6 VU coordinates sockets. Resource maxima are sampled, not absolute peaks.'
     } | ConvertTo-Json -Depth 6 | Set-Content (Join-Path $outputPath 'environment.json') -Encoding utf8
     [ordered]@{
-        scenario = 'T1'; mode = 'direct-baseline'; connections = $Connections
+        scenario = 'T1'; mode = $broadcastMode; connections = $Connections
         warmupSeconds = $WarmupSeconds; durationSeconds = $DurationSeconds
         targetInputPerSecond = $Rate; requestJsonBytes = 256
         broadcastJsonBytes = 'Measured in k6 summary; larger than input JSON'
@@ -191,6 +198,11 @@ try {
         $delta['lab.deliveries.submitted'] -eq $plannedInputs * $Connections -and $delta['lab.writes.failed'] -eq 0
     $cleanupCheck = (Metric-Value $after 'lab.connections') -eq (Metric-Value $before 'lab.connections') -and
         (Metric-Value $after 'lab.rooms') -eq (Metric-Value $before 'lab.rooms')
+    if ($broadcastMode -eq 'buffered') {
+        foreach ($name in @('lab.outbound.bytes', 'lab.outbound.messages', 'lab.outbound.slots')) {
+            $cleanupCheck = $cleanupCheck -and (Metric-Value $after $name) -eq (Metric-Value $before $name)
+        }
+    }
     [ordered]@{ counters = $delta; serverCountersMatch = $serverCheck; cleanupReturnedToStart = $cleanupCheck } |
         ConvertTo-Json | Set-Content (Join-Path $outputPath 'server-delta.json') -Encoding utf8
 
@@ -226,7 +238,7 @@ try {
     @"
 # T1 单轮记录
 
-- 连接数：$Connections；预热：$WarmupSeconds 秒；测量目标：$DurationSeconds 秒；目标输入：$Rate 条/秒。
+- 模式：$broadcastMode；连接数：$Connections；预热：$WarmupSeconds 秒；测量目标：$DurationSeconds 秒；目标输入：$Rate 条/秒。
 - 服务地址：$baseUrl；是否同机、JVM 启动参数与工具版本见 environment.json。
 - k6 退出码：$exitCode；服务端累计计数差值匹配：$serverCheck；连接/房间回到起点：$cleanupCheck。
 - 采集错误：$collectionErrors；资源每 5 秒采样，只能报告采样最大值，不是绝对峰值。

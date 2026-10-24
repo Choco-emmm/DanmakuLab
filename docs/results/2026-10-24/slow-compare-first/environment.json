@@ -1,0 +1,12 @@
+{
+  "cpuUnit": "Cumulative process CPU seconds, not percent",
+  "java": "java version \"25.0.1\" 2025-10-21 LTS\r\nJava(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)\r\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)\r\n",
+  "python": "Python 3.14.2",
+  "viewers": 10,
+  "os": "Microsoft Windows NT 10.0.26200.0",
+  "logicalProcessors": 32,
+  "note": "Same-host loopback, sequential four groups; JVMs share machine resources.",
+  "rate": 40,
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics        ",
+  "seconds": 90
+}

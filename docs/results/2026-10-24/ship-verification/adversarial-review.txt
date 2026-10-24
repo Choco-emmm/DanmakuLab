@@ -1,0 +1,15 @@
+Reviewed against `origin/main`, including untracked source, tests, and scripts. Read the existing tests, including the shutdown-race test added during this review. No files modified or services started; reproduction sequences below are derived from code, not executed.
+
+1. **P2 · High confidence — Forced shutdown abandons queued connection cleanup.**  
+   **Location:** [OutboundService.java:146](/D:/coding/DanmakuLab/src/main/java/io/github/chocoemmm/danmakulab/core/OutboundService.java:146), also line 150.  
+   **Evidence/reproduction:** Block both closer workers using latch-controlled sessions, then enqueue a third connection’s close. Let the seven-second wait expire, or interrupt the shutdown thread. `closers.shutdownNow()` removes the queued third task, but its returned task list is ignored. Consequently, that task’s `finally { retire(connection); }` never executes. Releasing the first two workers leaves the third connection in `active`, its slot occupied, and its session unclosed by this service. Independent container teardown may subsequently close the transport. Existing tests release their gates before teardown and do not exercise this cancellation path.  
+   **Fix:** Give queued close tasks explicit cancellation cleanup. Process tasks returned by `shutdownNow()` to retire their owners exactly once and explicitly transfer transport cleanup to container teardown.
+
+2. **P2 · High confidence — The experiment deadline discards redirected failure logs.**  
+   **Location:** [slow-compare.ps1:94](/D:/coding/DanmakuLab/scripts/run/slow-compare.ps1:94).  
+   **Evidence/reproduction:** Have the Python process emit diagnostic output and remain alive beyond `$Seconds + 60`. The script kills it and immediately throws. This bypasses lines 107–119, which are the only places that persist stdout, stderr, exit code, and run status. The outer `finally` only kills the process; the diagnostic streams already captured in memory are lost. A hung run therefore loses its client logs precisely when they are needed to diagnose the failure.  
+   **Fix:** Put per-run finalization in `finally`: terminate when necessary, wait for exit, persist both streams, and write a status containing the timeout or exception before propagating failure.
+
+The earlier close-submission race is excluded because the latest `ClientConnection.fail` implementation and new regression test address it.
+
+Recommendation: request changes because forced shutdown can abandon connection cleanup, and timed-out comparison runs lose their diagnostic logs.

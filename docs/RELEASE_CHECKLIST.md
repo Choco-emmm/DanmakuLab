@@ -43,6 +43,7 @@ git -c safe.directory=D:/coding/DanmakuLab diff --cached
 - [ ] 修改 baseline 脚本时先跑短轮，核对逐观众完整率、实际输入速率、服务端计数差值和断开清理，再运行正式规模。
 - [ ] 修改慢消费者脚本时检查 summary.json 的输入完成情况、拒绝与失败；Python 退出码为 0 不等于性能验收通过。
 - [ ] 修改工具错误处理时，执行 `python -m unittest discover -s scripts/tests -v` 和 `pwsh -NoProfile -File scripts/tests/metrics.test.ps1`，验证初始化超时、失败发送计数与缺失指标处理。
+- [ ] 修改子进程采集与失败收尾时，执行 `pwsh -NoProfile -File scripts/tests/process-evidence.test.ps1`，验证超时、非零退出与采样异常时仍有日志及状态，且子进程已结束。
 - [ ] 前端行为改变时验证双页面收发、跨房间隔离、断开重连和文本安全展示；纯注释改动检查行为未变。
 - [ ] 执行 `git diff --check` 检查差异中的空白错误；纯文档改动检查链接、命令和描述，无需重复完整压测。
 

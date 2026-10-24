@@ -10,6 +10,7 @@
 - [当前协议与实现边界](docs/PROTOCOL.md)
 - [第一次协作的代码阅读与练习](docs/LEARNING.md)
 - [提交与推送检查清单](docs/RELEASE_CHECKLIST.md)
+- [有界输出邮箱与慢连接对照](docs/BOUNDED_OUTBOUND.md)
 - [归档版本变更记录](CHANGELOG.md)与[本轮发布检查记录](docs/results/2026-10-23/release-check.md)
 
 ## 本地启动
@@ -54,11 +55,14 @@ Windows PowerShell 7 下可用 `pwsh -File scripts/run/smoke.ps1`，自动创建
 
 ## 当前实现与下一阶段
 
-真实慢消费者的首次小规模复现已完成：[操作说明](docs/SLOW_CONSUMER.md)、[对照结果](docs/results/2026-10-23/slow-report.md)。停止一个探针的 TCP 读取后捕获同步发送等待及 Room 锁竞争；有界缓冲优化尚未实现。
+真实慢消费者的首次小规模复现已完成：[操作说明](docs/SLOW_CONSUMER.md)、[旧基线结果](docs/results/2026-10-23/slow-report.md)。停止一个探针的 TCP 读取后捕获同步发送等待及 Room 锁竞争；新增的 [有界输出模式](docs/BOUNDED_OUTBOUND.md)通过独立对照继续验证效果。
 
 已具备房间加入/切换、直接广播、房间实例序号、连接清理、输入约束、连接/房间弹幕限流、应用心跳、浏览器退避重连和基础指标。页面仅以文本渲染弹幕，并限制保留的 DOM 数量。
 
-基线逐连接同步发送，慢连接仍可能拖慢分发。100/500/1000 连接首轮和小规模停读机制实验已完成；下一步核查实际发送超时，再引入有界发送缓冲、过载策略和批次调度。Redis 双实例属于 P1。
+基线逐连接同步发送，慢连接仍可能拖慢分发。2026-10-24 修正了 Tomcat 原生发送超时的传递位置，并接入可切换的连接有界邮箱、全局预算、过期/过载与关闭清理；房间入口队列、热点公平调度及正式长时间验收仍待完成。Redis 双实例属于 P1。
+当天 [首轮输出对照](docs/results/2026-10-24/outbound-report.md)中，同有效超时的停读场景 direct 正常观众 P99=4216ms，buffered P99=1ms 且收齐 36,000 次；仅为 11 连接、单轮 90 秒机制实验。
+
+[用户独立复测](docs/results/2026-10-24/slow-compare-205930/notes.md)同样完成四组对照；提交前补齐停机与失败日志路径后，最终 [32 项 Java 测试与制品冒烟](docs/results/2026-10-24/ship-verification/notes.md)通过。后续任务入口见 [TODOS](TODOS.md)。
 
 目标：北京时间 **2026 年 10 月 29 日 23:59 前**完成核心交付，10 月 30 日用于缓冲和演示。
 
