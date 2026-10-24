@@ -139,8 +139,8 @@ A 的浏览器发送 type=send
 | `TokenBucket.tryAcquire()` 的桶实例锁 | 一个桶的余额与结算时间 | 防止重复放行最后一个令牌 |
 | Registry 同步方法的 Registry 实例锁 | 连接、成员关系、房间和成员名单之间的一致性 | 换房与清理涉及多张表，必须协调更新 |
 | Broadcaster 中的 `synchronized(room)` | 一个房间的序号分配与整轮广播 | 防止同房间两轮广播交错 |
-| `ClientConnection.send()` 的连接实例锁 | 对该 Session 的发送操作 | 防止弹幕和控制回复并发写入同一连接 |
+| `ClientConnection.writeNow()` 的 `writeLock` | 对该 Session 的实际发送操作 | 防止弹幕和控制回复并发写入同一连接 |
 
-Room 对象锁与它持有的 TokenBucket 对象锁是不同的锁；ClientConnection 的发送锁与它持有的连接桶锁也不同。不要因为桶字段属于连接或房间，就把它们当作同一把锁。
+Room 对象锁与它持有的 TokenBucket 对象锁是不同的锁；ClientConnection 的 writeLock 与它持有的连接桶锁也不同，前者是独立锁对象。不要因为桶字段属于连接或房间，就把它们当作同一把锁。
 
 本文基于源码梳理调用关系，未新增或运行测试，不代表新增性能验证结果。

@@ -5,7 +5,7 @@
 
 ## 运行方法
 
-需要 Python 3，使用标准库，无需 pip 安装。保持测试服务 8081 运行，配置与 T1 相同。
+需要 Python 3，使用标准库，无需 pip 安装。保持测试服务 8081 以默认 direct 模式运行，配置与 T1 相同；buffered 的双服务对照入口见 [有界输出说明](BOUNDED_OUTBOUND.md)。
 在项目目录、另一个终端依次执行；每轮约 97 秒，目录名称必须尚不存在。
 
 ```powershell
@@ -50,17 +50,17 @@ jcmd <Java进程PID> Thread.print > load-results/slow-threads.txt
 
 ```text
 SocketWrapperBase.write / WsRemoteEndpointImplBase.sendMessageBlockInternal
-ClientConnection.send
+ClientConnection.writeNow / ClientConnection.send
 DirectBroadcaster.broadcast
 locked ... Room
 waiting to lock ... Room
 ```
 
 前一条调用链结合持有 Room 锁，说明正在同步发送路径里等待；其他线程等待同一 Room 锁，说明房间广播被连带阻塞。
-单次线程栈仅是某一时刻的证据，不能由此推出整段等待时长或超时原因。当前启动代码配置的 5 秒发送超时是否实际生效，需要结合真实运行配置进一步核查，不能从配置值推断端到端最长延迟。
+单次线程栈仅是某一时刻的证据，不能由此推出整段等待时长或超时原因。2026-10-24 已确认旧配置没有传入 Tomcat 原生属性，并修正为有效 5 秒同步发送超时；详见 [诊断与当前实现](BOUNDED_OUTBOUND.md)。这个单次写等待限制仍不是端到端最长延迟。
 
 ## 当前结果与下一阶段
 
-初步实验记录见 [2026-10-23 机制复现](results/2026-10-23/slow-report.md)。
-下一阶段为连接有界发送缓冲、单连接写入串行化、过载丢弃/断连与资源回收。
-优化后使用相同脚本、消息、速率和环境对照；不同时切换虚拟线程，避免无法归因。
+初步实验记录见 [2026-10-23 机制复现](results/2026-10-23/slow-report.md)；连接有界缓冲、统一单写、过载与回收已实现，并完成 [两轮同有效超时的四组对照](results/2026-10-24/outbound-report.md)。
+下一阶段为房间入口队列、普通/热点房间隔离，以及正式混合慢连接和长时间验收，见 [待办](../TODOS.md)。
+后续对照继续固定脚本、消息、速率和环境，不同时切换虚拟线程，避免无法归因。

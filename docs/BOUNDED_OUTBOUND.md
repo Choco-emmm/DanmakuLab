@@ -73,10 +73,12 @@ cd D:\coding\DanmakuLab
 mvn -B -ntp verify
 python -m unittest discover -s scripts/tests -v
 pwsh -NoProfile -File scripts/tests/metrics.test.ps1
+pwsh -NoProfile -File scripts/tests/process-evidence.test.ps1
 ```
 
 Java 集成测试对 direct 和 buffered 分别启动随机端口，复用同房间收发、跨房间隔离、并发序号、错误、换房和连接清理场景。
 邮箱单元测试通过闸门明确阻塞一个发送者，再验证另一个正常连接能推进、同一 Session 不并发写、UTF-8 预算与在途计费、丢弃、过期、拒绝、异常及重复注销。
+最终提交前验证为 32 项 Java、5 项 Python、5 项 PowerShell 指标和 5 项真实子进程证据回归；另覆盖首次失败与停机交错、强制取消关闭任务的名额回收及在途预算，原始日志见 [提交前验证](results/2026-10-24/ship-verification/notes.md)。
 
 ## 5. 四组真实 TCP 对照
 

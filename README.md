@@ -2,7 +2,7 @@
 
 面向 Java 后端学习与简历展示的实时弹幕系统，重点研究大量连接下的消息广播、慢消费者处理、热点房间隔离和性能验证。
 
-当前状态：已实现首版直接广播服务、演示网页和协议/资源边界测试。小规模冒烟及约 5 条/秒下的 100/500/1000 连接首轮基线已通过；最大容量、慢消费者优化和热点隔离仍待验证。
+当前状态：已实现直接广播服务、可切换的连接有界发送缓冲、演示网页和协议/资源边界测试。小规模冒烟、约 5 条/秒下的 100/500/1000 连接首轮基线，以及单停读探针的两轮输出对照已通过；最大容量、多慢连接长时间验收和热点隔离仍待验证。
 
 - [制作计划与每日任务](docs/PLAN.md)
 - [架构与消息语义](docs/ARCHITECTURE.md)
@@ -11,7 +11,7 @@
 - [第一次协作的代码阅读与练习](docs/LEARNING.md)
 - [提交与推送检查清单](docs/RELEASE_CHECKLIST.md)
 - [有界输出邮箱与慢连接对照](docs/BOUNDED_OUTBOUND.md)
-- [归档版本变更记录](CHANGELOG.md)与[本轮发布检查记录](docs/results/2026-10-23/release-check.md)
+- [归档版本变更记录](CHANGELOG.md)、[v0.2.0.0 提交前验证](docs/results/2026-10-24/ship-verification/notes.md)与[上一版发布检查记录](docs/results/2026-10-23/release-check.md)
 
 ## 本地启动
 
@@ -28,6 +28,7 @@ Windows 上重新打包前先停止已启动的 JAR，避免运行中的文件�
 
 默认只监听 `127.0.0.1:8080`，无需数据库、Redis 或 Docker。健康检查为 `/actuator/health`，指标入口为 `/actuator/metrics`。
 修改端口示例：启动时增加 `--server.port=8081`；配置在 `src/main/resources/application.yml`。
+默认输出模式为 `direct`；启动时增加 `--lab.outbound.mode=buffered` 才启用连接邮箱和共享发送池。两种模式的对照命令见 [有界输出说明](docs/BOUNDED_OUTBOUND.md)。
 
 ## 计数冒烟
 

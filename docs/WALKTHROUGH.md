@@ -90,7 +90,7 @@ java -Xms128m -Xmx256m -jar target/danmaku-lab-0.1.0-SNAPSHOT.jar
 
 同一连接可能被广播线程发送弹幕，同时被心跳处理路径发送 pong。标准底层 Session 不应被应用并发发送，因此所有应用消息统一进入 `ClientConnection.send()`。
 
-该方法上的 synchronized 锁住当前 ClientConnection 对象。同一连接的弹幕、加入响应、发送结果和 pong 逐个写入；不同连接各自拥有锁。只给弹幕加锁而让 pong 绕开，仍会留下并发写入路径。
+当前 `send()` 根据模式选择直接写或放入邮箱，实际写锁位于 `writeNow()` 的 `synchronized (writeLock)` 中，每个连接有自己的锁对象。同一连接的弹幕、加入响应、发送结果和 pong 逐个写入；只给弹幕加锁而让 pong 绕开，仍会留下并发写入路径。
 
 这把锁保证单连接发送串行，不保证客户端已经收到，也不解决慢连接导致的等待。房间锁保护整轮广播顺序，Registry 锁保护多张 Map 的关系更新，三者职责不同。
 
@@ -116,4 +116,4 @@ k6 run --quiet -e MESSAGES=3 scripts/load/smoke.js
 
 页面点击发送 -> WebSocket 文本消息 -> DanmakuHandler 校验与限流 -> Registry 查成员关系 -> DirectBroadcaster 取快照、生成序号和 JSON -> ClientConnection 逐连接串行发送 -> 观众 message 回调解析并展示。
 
-第一遍可以只跟踪这条路径。收到一条消息后，再回到相应方法读紧邻的中文注释。
+第一遍可以只跟踪这条默认 direct 路径。收到一条消息后，再回到相应方法读紧邻的中文注释；buffered 模式在 `send()` 后增加邮箱与共享发送线程，见 [有界输出说明](BOUNDED_OUTBOUND.md)。
