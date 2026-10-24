@@ -12,11 +12,10 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * 直接广播基线：一条输入通过校验与限流后，在当前调用线程里逐个向房间成员发送。
+ * 房间串行分发：direct 模式逐个同步发送；buffered 模式逐个快速投递到连接邮箱。
  * 它同时负责把响应转换成 JSON，确保控制响应和弹幕最终都进入 ClientConnection.send。
  *
- * 这份基线故意保留同步发送路径，方便后续与有界缓冲方案做对照。
- * 一个慢连接可能拖慢本轮广播，当前还不能声称已解决慢消费者或热点资源隔离。
+ * 保留同一份消息构造与序号逻辑用于对照；尚无房间入口队列或房间公平调度。
  */
 @Component
 public class DirectBroadcaster {
@@ -63,13 +62,13 @@ public class DirectBroadcaster {
             // 例如 10 位观众的一条弹幕：accepted 加 1，expected 加 10。
             metrics.counter("lab.messages.accepted").increment();
             metrics.counter("lab.deliveries.expected").increment(recipients.size());
-            // 先回复发送者“已通过准入”，不代表下面的所有观众已经收到。
-            // 当前基线没有应用入口队列；未来优化模式的 accepted 才表示成功进入有界队列。
+            // 两种模式当前都没有房间入口队列；accepted 仅表示通过输入准入。
+            // buffered 后续仍可能丢弃过期输出或断开慢连接，不把它解释为可靠交付。
             reply(sender, Map.of("type", "send_result", "status", "accepted",
                     "clientMessageId", clientMessageId, "roomSeq", sequence));
             for (var recipient : recipients) {
                 // 一个接收者失败会返回 false 并清理，循环仍尝试给其余成员发送。
-                if (reply(recipient, message)) {
+                if (reply(recipient, message, true) && !recipient.buffered()) {
                     // 仅说明服务端发送调用正常返回；真实接收量必须由客户端另外统计。
                     metrics.counter("lab.deliveries.submitted").increment();
                 }
@@ -84,10 +83,19 @@ public class DirectBroadcaster {
 
     /** 统一处理同步发送与连接失效；返回值只描述本次发送调用是否成功。 */
     private boolean reply(ClientConnection connection, TextMessage message) {
+        return reply(connection, message, false);
+    }
+
+    private boolean reply(ClientConnection connection, TextMessage message, boolean danmaku) {
         try {
-            connection.send(message);
+            connection.send(message, danmaku);
             return true;
         } catch (IOException | IllegalStateException failure) {
+            if (connection.buffered()) {
+                // 邮箱失败已记录具体原因；先请求异步注销/关闭，不能在房间锁里等待网络关闭。
+                connection.closeAfterFailure();
+                return false;
+            }
             // 网络断开或 Session 状态变化都可能导致发送失败；先注销再尽力关闭底层连接。
             // afterConnectionClosed 随后再次清理也是安全的，因为 Registry.remove 可重复调用。
             metrics.counter("lab.writes.failed").increment();

@@ -28,3 +28,16 @@ lab:
   # 令牌桶每秒补充量，也作为桶容量；连接桶与房间桶都通过后才允许广播。
   connection-messages-per-second: 5
   room-messages-per-second: 50
+  outbound:
+    # direct 为修复超时后的同步基线；启动参数 --lab.outbound.mode=buffered 启用有界邮箱。
+    mode: direct
+    # 包含排队与正在发送的一条；任一上限先到即触发旧弹幕淘汰或断连。
+    max-messages: 256
+    max-bytes: 65536
+    global-bytes: 134217728
+    # 固定线程共享所有连接，执行队列有界；拒绝不会回退到调用者线程发送。
+    workers: 8
+    task-capacity: 2000
+    # 未写出的普通弹幕超过 1 秒丢弃，控制回复超龄则关闭连接；已进传输层无法撤回。
+    max-age-millis: 1000
+    batch-size: 16

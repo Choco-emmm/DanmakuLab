@@ -13,6 +13,7 @@ import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+import org.springframework.web.socket.adapter.standard.StandardWebSocketSession;
 
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -45,9 +46,15 @@ public class DanmakuHandler extends TextWebSocketHandler {
     /** WebSocket 握手成功后登记连接；此时还没有加入任何业务房间。 */
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        // 为 Tomcat 的同步发送设置 5 秒超时，单位毫秒；当前基线在接收线程上直接广播。
-        // 它约束单次阻塞发送，不保证整轮逐连接广播在 5 秒内完成。
-        session.getAttributes().put("org.apache.tomcat.websocket.BLOCKING_SEND_TIMEOUT", 5_000L);
+        // Spring getAttributes() 是业务 Map，Tomcat 不从那里读取发送超时。
+        // 必须写入原生 Jakarta Session 的 userProperties，值使用 Long，单位毫秒。
+        // 只限制实际单次发送等待；不限制等待房间锁/执行器的时间，也不承诺观众已经收到。
+        if (session instanceof StandardWebSocketSession standard) {
+            standard.getNativeSession().getUserProperties()
+                    .put("org.apache.tomcat.websocket.BLOCKING_SEND_TIMEOUT", 5_000L);
+        } else {
+            throw new IllegalStateException("This experiment requires a standard Jakarta WebSocket session");
+        }
         try {
             registry.register(session);
         } catch (ProtocolException rejected) {
