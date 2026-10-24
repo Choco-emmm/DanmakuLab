@@ -1,0 +1,21 @@
+Joined 11; mode=paused; probe SO_RCVBUF=1024; input=40/s
+{"seconds": 0.00015750003512948751, "sent": 1, "accepted": 0, "normalReceived": 0, "probeReceived": 0}
+{"seconds": 5.000450600055046, "sent": 201, "accepted": 74, "normalReceived": 730, "probeReceived": 0}
+{"seconds": 10.000371900037862, "sent": 401, "accepted": 249, "normalReceived": 2490, "probeReceived": 0}
+{"seconds": 15.00048709998373, "sent": 601, "accepted": 449, "normalReceived": 4490, "probeReceived": 0}
+{"seconds": 20.000813900027424, "sent": 801, "accepted": 649, "normalReceived": 6490, "probeReceived": 0}
+{"seconds": 25.00060739996843, "sent": 1001, "accepted": 849, "normalReceived": 8490, "probeReceived": 0}
+{"seconds": 30.000253099948168, "sent": 1201, "accepted": 1049, "normalReceived": 10490, "probeReceived": 0}
+{"seconds": 35.000711699947715, "sent": 1401, "accepted": 1249, "normalReceived": 12490, "probeReceived": 0}
+{"seconds": 40.00049530004617, "sent": 1601, "accepted": 1449, "normalReceived": 14490, "probeReceived": 0}
+{"seconds": 45.00033950002398, "sent": 1801, "accepted": 1649, "normalReceived": 16490, "probeReceived": 0}
+{"seconds": 50.00033519999124, "sent": 2001, "accepted": 1849, "normalReceived": 18490, "probeReceived": 0}
+{"seconds": 55.00061079999432, "sent": 2201, "accepted": 2049, "normalReceived": 20490, "probeReceived": 0}
+{"seconds": 60.000520700006746, "sent": 2401, "accepted": 2249, "normalReceived": 22490, "probeReceived": 0}
+{"seconds": 65.00045239995234, "sent": 2601, "accepted": 2449, "normalReceived": 24490, "probeReceived": 0}
+{"seconds": 70.00063559995033, "sent": 2801, "accepted": 2649, "normalReceived": 26490, "probeReceived": 0}
+{"seconds": 75.000231300015, "sent": 3001, "accepted": 2849, "normalReceived": 28490, "probeReceived": 0}
+{"seconds": 80.00038079998922, "sent": 3201, "accepted": 3049, "normalReceived": 30490, "probeReceived": 0}
+{"seconds": 85.00048209994566, "sent": 3401, "accepted": 3249, "normalReceived": 32490, "probeReceived": 0}
+{"samples": 34490, "p50": 1, "p95": 1, "p99": 4216, "max": 5053}
+

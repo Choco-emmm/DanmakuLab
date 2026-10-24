@@ -1,0 +1,4 @@
+Joined 11; mode=paused; probe SO_RCVBUF=1024; input=40/s
+{"seconds": 0.00041360000614076853, "sent": 1, "accepted": 0, "normalReceived": 0, "probeReceived": 0}
+{"samples": 400, "p50": 1, "p95": 2, "p99": 2, "max": 2}
+

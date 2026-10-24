@@ -1,0 +1,8 @@
+{
+  "mode": "paused",
+  "url": "ws://127.0.0.1:8082/ws",
+  "seconds": 1,
+  "rate": 40,
+  "viewers": 10,
+  "output": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-24\\ship-verification\\runner-short\\buffered-paused"
+}

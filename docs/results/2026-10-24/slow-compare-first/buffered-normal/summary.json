@@ -1,0 +1,167 @@
+{
+  "mode": "normal",
+  "plannedInputMessages": 3600,
+  "inputMessages": 3600,
+  "attemptedInputMessages": 3600,
+  "submittedInputMessages": 3600,
+  "normalViewers": 10,
+  "accepted": 3600,
+  "normalExpected": 36000,
+  "normalReceived": 36000,
+  "perViewerReceived": {
+    "normal-0": 3600,
+    "normal-1": 3600,
+    "normal-2": 3600,
+    "normal-3": 3600,
+    "normal-4": 3600,
+    "normal-5": 3600,
+    "normal-6": 3600,
+    "normal-7": 3600,
+    "normal-8": 3600,
+    "normal-9": 3600,
+    "probe": 3600
+  },
+  "probeReceiveBufferBytes": 1024,
+  "normalLatencyMs": {
+    "samples": 36000,
+    "p50": 1,
+    "p95": 1,
+    "p99": 1,
+    "max": 4
+  },
+  "duplicates": 0,
+  "orderViolations": 0,
+  "rejections": [],
+  "failures": [],
+  "sendElapsedSeconds": 89.97537609993014,
+  "samples": [
+    {
+      "seconds": 0.00013960001524537802,
+      "sent": 1,
+      "accepted": 0,
+      "normalReceived": 0,
+      "probeReceived": 0
+    },
+    {
+      "seconds": 5.0007679999107495,
+      "sent": 201,
+      "accepted": 200,
+      "normalReceived": 2000,
+      "probeReceived": 200
+    },
+    {
+      "seconds": 10.000620699953288,
+      "sent": 401,
+      "accepted": 400,
+      "normalReceived": 4000,
+      "probeReceived": 400
+    },
+    {
+      "seconds": 15.000303499982692,
+      "sent": 601,
+      "accepted": 600,
+      "normalReceived": 6000,
+      "probeReceived": 600
+    },
+    {
+      "seconds": 20.00048359995708,
+      "sent": 801,
+      "accepted": 800,
+      "normalReceived": 8000,
+      "probeReceived": 800
+    },
+    {
+      "seconds": 25.000423699966632,
+      "sent": 1001,
+      "accepted": 1000,
+      "normalReceived": 10000,
+      "probeReceived": 1000
+    },
+    {
+      "seconds": 30.000370299909264,
+      "sent": 1201,
+      "accepted": 1200,
+      "normalReceived": 12000,
+      "probeReceived": 1200
+    },
+    {
+      "seconds": 35.00042099994607,
+      "sent": 1401,
+      "accepted": 1400,
+      "normalReceived": 14000,
+      "probeReceived": 1400
+    },
+    {
+      "seconds": 40.000253499951214,
+      "sent": 1601,
+      "accepted": 1600,
+      "normalReceived": 16000,
+      "probeReceived": 1600
+    },
+    {
+      "seconds": 45.00054609996732,
+      "sent": 1801,
+      "accepted": 1800,
+      "normalReceived": 18000,
+      "probeReceived": 1800
+    },
+    {
+      "seconds": 50.00035210000351,
+      "sent": 2001,
+      "accepted": 2000,
+      "normalReceived": 20000,
+      "probeReceived": 2000
+    },
+    {
+      "seconds": 55.000599000020884,
+      "sent": 2201,
+      "accepted": 2200,
+      "normalReceived": 22000,
+      "probeReceived": 2200
+    },
+    {
+      "seconds": 60.000163099961355,
+      "sent": 2401,
+      "accepted": 2400,
+      "normalReceived": 24000,
+      "probeReceived": 2400
+    },
+    {
+      "seconds": 65.00041719991714,
+      "sent": 2601,
+      "accepted": 2600,
+      "normalReceived": 26000,
+      "probeReceived": 2600
+    },
+    {
+      "seconds": 70.00045229995158,
+      "sent": 2801,
+      "accepted": 2800,
+      "normalReceived": 28000,
+      "probeReceived": 2800
+    },
+    {
+      "seconds": 75.0007445999654,
+      "sent": 3001,
+      "accepted": 3000,
+      "normalReceived": 30000,
+      "probeReceived": 3000
+    },
+    {
+      "seconds": 80.000400000019,
+      "sent": 3201,
+      "accepted": 3200,
+      "normalReceived": 32000,
+      "probeReceived": 3200
+    },
+    {
+      "seconds": 85.00091339997016,
+      "sent": 3401,
+      "accepted": 3400,
+      "normalReceived": 34000,
+      "probeReceived": 3400
+    }
+  ],
+  "inputScheduleCompleted": true,
+  "note": "Paused probe never calls recv after joined. Missing probe deliveries are intentional; normal viewers stay in denominator. No claim of reproduced backpressure without server evidence."
+}

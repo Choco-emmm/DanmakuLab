@@ -1,0 +1,21 @@
+Joined 11; mode=normal; probe SO_RCVBUF=1024; input=40/s
+{"seconds": 0.0001631999621167779, "sent": 1, "accepted": 0, "normalReceived": 0, "probeReceived": 0}
+{"seconds": 5.000438899965957, "sent": 201, "accepted": 200, "normalReceived": 2000, "probeReceived": 200}
+{"seconds": 10.00055249989964, "sent": 401, "accepted": 400, "normalReceived": 4000, "probeReceived": 400}
+{"seconds": 15.000521599897183, "sent": 601, "accepted": 600, "normalReceived": 6000, "probeReceived": 600}
+{"seconds": 20.00067310000304, "sent": 801, "accepted": 800, "normalReceived": 8000, "probeReceived": 800}
+{"seconds": 25.000220999936573, "sent": 1001, "accepted": 1000, "normalReceived": 10000, "probeReceived": 1000}
+{"seconds": 30.000290700001642, "sent": 1201, "accepted": 1200, "normalReceived": 12000, "probeReceived": 1200}
+{"seconds": 35.00092779996339, "sent": 1401, "accepted": 1400, "normalReceived": 14000, "probeReceived": 1400}
+{"seconds": 40.00071950000711, "sent": 1601, "accepted": 1600, "normalReceived": 16000, "probeReceived": 1600}
+{"seconds": 45.00053359998856, "sent": 1801, "accepted": 1800, "normalReceived": 18000, "probeReceived": 1800}
+{"seconds": 50.00041869992856, "sent": 2001, "accepted": 2000, "normalReceived": 20000, "probeReceived": 2000}
+{"seconds": 55.00051269994583, "sent": 2201, "accepted": 2200, "normalReceived": 22000, "probeReceived": 2200}
+{"seconds": 60.00065319996793, "sent": 2401, "accepted": 2400, "normalReceived": 24000, "probeReceived": 2400}
+{"seconds": 65.00063079991378, "sent": 2601, "accepted": 2600, "normalReceived": 26000, "probeReceived": 2600}
+{"seconds": 70.00066199991852, "sent": 2801, "accepted": 2800, "normalReceived": 28000, "probeReceived": 2800}
+{"seconds": 75.00028369994834, "sent": 3001, "accepted": 3000, "normalReceived": 30000, "probeReceived": 3000}
+{"seconds": 80.00056769989897, "sent": 3201, "accepted": 3200, "normalReceived": 32000, "probeReceived": 3200}
+{"seconds": 85.00067589990795, "sent": 3401, "accepted": 3400, "normalReceived": 34000, "probeReceived": 3400}
+{"samples": 36000, "p50": 1, "p95": 2, "p99": 2, "max": 5}
+
