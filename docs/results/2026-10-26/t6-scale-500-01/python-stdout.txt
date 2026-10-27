@@ -1,0 +1,10 @@
+T6 initial joined=500; stable=250; affected=250
+T6 window baseline; required viewers=500
+T6 window churn-1; required viewers=250
+T6 window recovered-1; required viewers=500
+T6 window churn-2; required viewers=250
+T6 window recovered-2; required viewers=500
+T6 window churn-3; required viewers=250
+T6 window recovered-3; required viewers=500
+{"passed": true, "requiredReceived": 550000, "recovery": [{"cycle": 1, "droppedAt": 1793002260.7563722, "allRejoined": true, "recovered": 250, "recoveryMs": 1029.8664569854736}, {"cycle": 2, "droppedAt": 1793002284.8141186, "allRejoined": true, "recovered": 250, "recoveryMs": 1006.2594413757324}, {"cycle": 3, "droppedAt": 1793002308.8663995, "allRejoined": true, "recovered": 250, "recoveryMs": 1017.1332359313965}], "admissionRejections": 9, "checks": {"allInitialJoined": true, "allWindowsPassed": true, "admissionProbesRejected": true, "recoveredAll": true, "plannedDisconnects": true, "noUnexpectedFailures": true, "noProtocolErrors": true, "noDuplicates": true, "noOrderErrors": true, "noMissingConfirmations": true, "noFatal": true}}
+

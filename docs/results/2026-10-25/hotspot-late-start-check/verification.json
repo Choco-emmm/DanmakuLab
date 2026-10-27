@@ -1,0 +1,8 @@
+{
+  "inputDelta": 0.0,
+  "expectedFailure": true,
+  "remainingConnections": 0.0,
+  "exitCode": 99,
+  "sent": 0.0,
+  "reason": "START_AT_MS=1 is in the past; no input is allowed."
+}

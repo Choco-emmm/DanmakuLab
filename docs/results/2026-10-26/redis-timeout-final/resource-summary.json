@@ -1,0 +1,116 @@
+{
+  "samples": 8,
+  "scope": "约2秒目标间隔，真实间隔含HTTP与Docker统计耗时；采样最大值不是绝对峰值。",
+  "nodes": {
+    "8087": {
+      "jvm.memory.used": {
+        "min": 101196992.0,
+        "max": 127411392.0
+      },
+      "jvm.threads.live": {
+        "min": 43.0,
+        "max": 52.0
+      },
+      "lab.outbound.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "lab.outbound.writes.inflight": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "lab.dispatch.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "lab.cluster.publish.bytes": {
+        "min": 0.0,
+        "max": 599.0
+      },
+      "lab.cluster.receive.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "workingSetBytesMax": 390549504,
+      "averageLogicalCores": 0.08393641141315215
+    },
+    "8088": {
+      "jvm.memory.used": {
+        "min": 67679176.0,
+        "max": 122528736.0
+      },
+      "jvm.threads.live": {
+        "min": 41.0,
+        "max": 52.0
+      },
+      "lab.outbound.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "lab.outbound.writes.inflight": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "lab.dispatch.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "lab.cluster.publish.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "lab.cluster.receive.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "workingSetBytesMax": 394072064,
+      "averageLogicalCores": 0.08708402684114536
+    }
+  },
+  "client": {
+    "workingSetBytesMax": 43118592,
+    "averageLogicalCores": 0.04511582113456928
+  },
+  "redisDockerSamples": [
+    {
+      "at": 0.0193127,
+      "cpuPercent": "0.59%",
+      "memory": "8.094MiB / 15.27GiB"
+    },
+    {
+      "at": 2.115374,
+      "cpuPercent": "0.57%",
+      "memory": "8.367MiB / 15.27GiB"
+    },
+    {
+      "at": 4.1506178,
+      "cpuPercent": "0.32%",
+      "memory": "8.523MiB / 15.27GiB"
+    },
+    {
+      "at": 6.172542,
+      "cpuPercent": "0.29%",
+      "memory": "8.066MiB / 15.27GiB"
+    },
+    {
+      "at": 8.8884166,
+      "cpuPercent": "0.63%",
+      "memory": "7.871MiB / 15.27GiB"
+    },
+    {
+      "at": 10.8956642,
+      "cpuPercent": "0.42%",
+      "memory": "7.762MiB / 15.27GiB"
+    },
+    {
+      "at": 12.9021979,
+      "cpuPercent": "0.24%",
+      "memory": "7.648MiB / 15.27GiB"
+    },
+    {
+      "at": 14.9115386,
+      "cpuPercent": "0.32%",
+      "memory": "7.074MiB / 15.27GiB"
+    }
+  ]
+}

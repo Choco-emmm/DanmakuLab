@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "joined": 2,
+  "accepted": 2,
+  "received": 4,
+  "sourceTextLimit": 300,
+  "receiverTextLimit": 200,
+  "longTextLength": 201,
+  "invalidVersionDroppedPerNode": 1,
+  "duplicates": 0,
+  "note": "真实双节点边界回归，不能代替容量或长时间实验"
+}

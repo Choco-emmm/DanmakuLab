@@ -1,0 +1,1 @@
+D:\coding\jdk\bin\java.exe -Xms128m -Xmx256m -jar target/danmaku-lab-0.1.0-SNAPSHOT.jar --server.port=8084 --lab.outbound.mode=buffered --lab.dispatch.mode=fair --lab.outbound.workers=32

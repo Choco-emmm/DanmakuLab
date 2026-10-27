@@ -1,0 +1,21 @@
+{
+  "source": "2026-10-26第一次排查的工具输出转录；后续可用同目录probe脚本复核，不把事后观测当作错误瞬间的系统快照。",
+  "requestsPerGroup": 60,
+  "newPortsWithoutSession": 60,
+  "newPortsWithSharedSession": 1,
+  "memory": {
+    "TotalVisibleMemorySize": 32817692,
+    "FreePhysicalMemory": 7894500,
+    "unit": "KiB"
+  },
+  "postFailureTcpStates": {
+    "TimeWait": 1499,
+    "Bound": 172,
+    "Established": 154
+  },
+  "dynamicTcpPorts": {
+    "start": 49152,
+    "count": 16384
+  },
+  "limitation": "支持采集器短连接累积模式，不能单独证明第494.690秒的WSAENOBUFS确由端口耗尽导致。"
+}

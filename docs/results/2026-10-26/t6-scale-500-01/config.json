@@ -1,0 +1,20 @@
+{
+  "probes": 3,
+  "recoveryDeadline": 15,
+  "latencySampleEvery": 10,
+  "connections": 500,
+  "seed": 20261026,
+  "resourceSampleSeconds": 1,
+  "affected": 250,
+  "scenario": "T6",
+  "churnSeconds": 10,
+  "drainSeconds": 2,
+  "rate": 20,
+  "steadySeconds": 10,
+  "dispatchMode": "fair",
+  "cycles": 3,
+  "probeAttempts": 3,
+  "inputJsonBytes": 256,
+  "maxAttempts": 6,
+  "outboundMode": "buffered"
+}

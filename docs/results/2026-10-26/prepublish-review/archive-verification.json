@@ -1,0 +1,11 @@
+{
+  "rawFilesVerified": 102,
+  "historicalJavaHashesVerified": 132,
+  "currentJavaDifferences": [
+    "src/main/java/io/github/chocoemmm/danmakulab/cluster/RedisBroadcastIngress.java",
+    "src/main/java/io/github/chocoemmm/danmakulab/cluster/RedisPubSubTransport.java"
+  ],
+  "baselinePreserved": true,
+  "testedRedisArchivePreserved": true,
+  "reviewedArchiveVerified": true
+}

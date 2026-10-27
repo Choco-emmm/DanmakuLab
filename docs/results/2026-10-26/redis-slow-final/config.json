@@ -1,0 +1,14 @@
+{
+  "scenario": "slow",
+  "nodeIds": {
+    "8088": 25412,
+    "8087": 5840
+  },
+  "normalPhysical": 22,
+  "seconds": 30,
+  "sampleEvery": 1,
+  "resourceSampleSeconds": 2,
+  "note": "另有两个隔离探针；slow额外一个限速观众；同机回环",
+  "rate": 20,
+  "connections": 20
+}

@@ -1,0 +1,43 @@
+"""保存最终复核材料；不修改任何历史结果或SHA清单。"""
+import hashlib
+import json
+import shutil
+import xml.etree.ElementTree as ET
+import zipfile
+from pathlib import Path
+
+root = Path.cwd()
+proof = root / 'docs/results/2026-10-26/writer-fix-verification'
+for source, target in [('target/async-final-tests-65.txt', 'maven-test-65.txt'),
+                       ('target/async-comment-compile.txt', 'comment-only-compile.txt'),
+                       ('target/audit-async-writer-fix.py', 'audit-async-writer-fix.py.txt'),
+                       ('target/summarize-formal-resources.py', 'summarize-resources.py.txt')]:
+    shutil.copyfile(root / source, proof / target)
+for path in (root / 'src/test/java/io/github/chocoemmm/danmakulab/core').glob('Outbound*.java'):
+    shutil.copyfile(path, proof / (path.name + '.txt'))
+suites = []
+for path in (root / 'target/surefire-reports').glob('TEST-*.xml'):
+    suite = ET.parse(path).getroot()
+    suites.append({key: suite.attrib[key] for key in ('name', 'tests', 'failures', 'errors', 'skipped')})
+assert sum(int(row['tests']) for row in suites) == 65
+assert sum(int(row[key]) for row in suites for key in ('failures', 'errors', 'skipped')) == 0
+(proof / 'test-summary-65.json').write_text(json.dumps(suites, ensure_ascii=False, indent=2), encoding='utf-8')
+
+# 测量结束后补正两行旧注释，重新编译但不重打包。运行JAR中的每份应用class必须逐字节相同。
+jar_path = root / 'target/danmaku-lab-0.1.0-SNAPSHOT.jar'
+with zipfile.ZipFile(jar_path) as archive:
+    names = [name for name in archive.namelist() if name.startswith('BOOT-INF/classes/') and name.endswith('.class')]
+    mismatches = [name for name in names if archive.read(name) != (root / 'target/classes' / name.removeprefix('BOOT-INF/classes/')).read_bytes()]
+assert not mismatches, mismatches
+(proof / 'compiled-class-match.json').write_text(json.dumps(dict(classes=len(names), mismatches=mismatches,
+    jarSha256=hashlib.sha256(jar_path.read_bytes()).hexdigest(), note='Two post-run comment corrections; all recompiled application class bytes match the tested JAR.'), indent=2), encoding='utf-8')
+
+formal = root / 'docs/results/2026-10-26/writer-fix-formal-t3-8writers-01'
+rows = [json.loads(line) for line in (formal / 'samples.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+def metric(row, name):
+    return next((m['measurements'][0]['value'] for m in row['snapshot']['metrics'] if m['name'] == name), 0)
+matches = [row for row in rows if metric(row, 'lab.outbound.writes.inflight') > 8 and metric(row, 'lab.outbound.writers.active') == 0]
+if matches:
+    (proof / 'async-wait-sample.json').write_text(json.dumps(dict(note='Endpoints sampled sequentially, not an atomic cross-metric snapshot. Regression test and code provide the concurrency guarantee.', sample=matches[0]), ensure_ascii=False, indent=2), encoding='utf-8')
+print(json.dumps(dict(javaTests=65, classesMatched=len(names), asyncWaitSamples=len(matches),
+    maxSampledInFlight=max(metric(row, 'lab.outbound.writes.inflight') for row in rows)), ensure_ascii=False))

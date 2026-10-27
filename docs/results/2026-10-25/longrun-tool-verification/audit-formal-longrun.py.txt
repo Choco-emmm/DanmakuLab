@@ -1,0 +1,44 @@
+"""复核本轮归档和运行文件；只读历史清单，源码不一致必须显示，不能改清单消除差异。"""
+import hashlib
+import json
+import re
+from pathlib import Path
+
+root = Path.cwd()
+base = root / 'docs/results/2026-10-25'
+names = ('formal-t4-direct-01', 'formal-t4-fair-01', 'formal-t3-32writers-01', 'formal-t5-32writers-01')
+jar = root / 'target/danmaku-lab-0.1.0-SNAPSHOT.jar'
+jar_hash = hashlib.sha256(jar.read_bytes()).hexdigest()
+details = []
+for name in names:
+    folder = base / name
+    checked_json = 0
+    for path in folder.rglob('*.json'):
+        json.loads(path.read_text(encoding='utf-8-sig'))
+        checked_json += 1
+    for path in folder.rglob('*.jsonl'):
+        with path.open(encoding='utf-8-sig') as stream:
+            for line in stream:
+                json.loads(line)
+    assert json.loads((folder / 'jar-sha256.json').read_text(encoding='utf-8-sig'))['Hash'].lower() == jar_hash
+    mismatches = []
+    for item in json.loads((folder / 'source-sha256.json').read_text(encoding='utf-8-sig')):
+        path = item['path'].replace('\\', '/')
+        current = hashlib.sha256((root / path).read_bytes()).hexdigest()
+        if current != item['sha256'].lower():
+            mismatches.append(path)
+    # 每场景真正执行的 Java/配置及客户端/编排文件必须与该轮清单完全相同。
+    runtime = {'pom.xml', 'scripts/run/ProcessEvidence.psm1'}
+    runtime |= {'scripts/load/hotspot.js', 'scripts/run/hotspot.ps1'} if name.startswith('formal-t4') else {
+        'scripts/load/longrun.py', 'scripts/run/longrun.ps1'}
+    assert not [p for p in mismatches if p.startswith('src/') or p in runtime], (name, mismatches)
+    details.append(dict(directory=name, jsonFiles=checked_json, sourceMismatches=mismatches))
+docs = [root / 'README.md', root / 'TODOS.md', root / 'docs/PLAN.md', root / 'docs/LONGRUN.md',
+        root / 'docs/ROOM_DISPATCH.md', root / 'docs/SLOW_CONSUMER.md', base / 'formal-longrun-report.md']
+for path in docs:
+    for link in re.findall(r'\]\(([^)]+)\)', path.read_text(encoding='utf-8-sig')):
+        if '://' not in link:
+            assert (path.parent / link.split('#')[0]).exists(), (path, link)
+result = dict(jarSha256=jar_hash, archives=details, localLinksChecked=True)
+(base / 'longrun-tool-verification/formal-archive-audit.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+print(json.dumps(result, ensure_ascii=False))

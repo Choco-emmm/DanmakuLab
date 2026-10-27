@@ -1,0 +1,162 @@
+[
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/throughput-summary.test.py",
+      "docs\\results\\2026-10-26\\t2-formal-01",
+      "--formal"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS FORMAL: docs\\results\\2026-10-26\\t2-formal-01; toolValid=True; allPhasesSloPassed=True",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/longrun-summary.test.py",
+      "docs\\results\\2026-10-26\\writer-fix-formal-t3-8writers-01",
+      "--formal"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS FORMAL: docs\\results\\2026-10-26\\writer-fix-formal-t3-8writers-01; normal=17820000/17820000; p99=35ms",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/longrun-summary.test.py",
+      "docs\\results\\2026-10-26\\t5-094730",
+      "--formal"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS FORMAL: docs\\results\\2026-10-26\\t5-094730; normal=36000000/36000000; p99=35ms",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/hotspot-summary.test.py",
+      "docs\\results\\2026-10-26\\async-t4-direct-02"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: docs\\results\\2026-10-26\\async-t4-direct-02; 1000 connections; 11544500 actual deliveries",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/hotspot-summary.test.py",
+      "docs\\results\\2026-10-26\\async-t4-fair-02"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS: docs\\results\\2026-10-26\\async-t4-fair-02; 1000 connections; 11544500 actual deliveries",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/reconnect-summary.test.py",
+      "docs\\results\\2026-10-26\\t6-formal-100-01",
+      "--formal"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS FORMAL T6: docs\\results\\2026-10-26\\t6-formal-100-01; required=110000; joins=250",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/reconnect-summary.test.py",
+      "docs\\results\\2026-10-26\\t6-scale-500-01"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS TOOL T6: docs\\results\\2026-10-26\\t6-scale-500-01; required=550000; joins=1250",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/cluster-summary.test.py",
+      "docs\\results\\2026-10-26\\redis-100-final"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS Redis steady: docs\\results\\2026-10-26\\redis-100-final; received=120000",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/cluster-summary.test.py",
+      "docs\\results\\2026-10-26\\redis-1000-final"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS Redis steady: docs\\results\\2026-10-26\\redis-1000-final; received=1200000",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/cluster-summary.test.py",
+      "docs\\results\\2026-10-26\\redis-node-exit-final"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS Redis node-exit: docs\\results\\2026-10-26\\redis-node-exit-final; received=17510",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/cluster-summary.test.py",
+      "docs\\results\\2026-10-26\\redis-outage-final"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS Redis redis-outage: docs\\results\\2026-10-26\\redis-outage-final; received=12000",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/cluster-summary.test.py",
+      "docs\\results\\2026-10-26\\redis-slow-final"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS Redis slow: docs\\results\\2026-10-26\\redis-slow-final; received=12000",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "python",
+      "-X",
+      "utf8",
+      "scripts/tests/cluster-summary.test.py",
+      "docs\\results\\2026-10-26\\redis-timeout-final"
+    ],
+    "exitCode": 0,
+    "stdout": "PASS Redis redis-timeout: docs\\results\\2026-10-26\\redis-timeout-final; received=12000",
+    "stderr": ""
+  }
+]

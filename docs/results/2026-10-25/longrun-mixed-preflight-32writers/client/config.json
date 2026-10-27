@@ -1,0 +1,13 @@
+{
+  "scenario": "T3",
+  "url": "ws://127.0.0.1:8084/ws",
+  "connections": 1000,
+  "seconds": 30,
+  "warmup_seconds": 5,
+  "rate": 20,
+  "slow_connections": 10,
+  "slow_bytes_per_second": 1024,
+  "latency_sample_every": 10,
+  "drain_seconds": 7,
+  "output": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-25\\longrun-mixed-preflight-32writers\\client"
+}

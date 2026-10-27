@@ -1,0 +1,94 @@
+"""从已归档T6派生摘要和曲线，复核源码/JAR哈希；不修改原始结果或覆盖失败轮。"""
+from datetime import datetime
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+import sys
+
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+
+def analyze(folder):
+    """按目录读原始一秒采样；CPU为累计CPU秒之差/真实时间差，单位为等效逻辑核。"""
+    def read(name):
+        return json.loads((folder / name).read_text(encoding='utf-8-sig'))
+
+    def metric(row, name):
+        snapshot = row.get('snapshot', row)
+        return next(item['measurements'][0]['value'] for item in snapshot['metrics'] if item['name'] == name)
+
+    def bounds(values):
+        return dict(first=values[0], last=values[-1], min=min(values), max=max(values))
+
+    config, report = read('config.json'), read('client/summary.json')
+    command = [sys.executable, 'scripts/tests/reconnect-summary.test.py', str(folder)]
+    if config['connections'] == 100:
+        command.append('--formal')
+    checked = subprocess.run(command, capture_output=True, text=True, encoding='utf-8')
+    (folder / 'verify-evidence.txt').write_text(checked.stdout + checked.stderr, encoding='utf-8')
+    assert checked.returncode == 0, checked.stdout + checked.stderr
+    sources = read('source-sha256.json')
+    for entry in sources:
+        assert hashlib.sha256(Path(entry['path']).read_bytes()).hexdigest().upper() == entry['sha256'], entry['path']
+    jar = read('jar-sha256.json')
+    assert hashlib.sha256(Path(jar['Path']).read_bytes()).hexdigest().upper() == jar['Hash']
+    rows = [json.loads(line) for line in (folder / 'samples.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+    assert rows and all('error' not in row for row in rows)
+    resource = dict(sampleCount=len(rows), scope='约一秒采样，包含建连、满额探针、发送、重连和排空；非绝对峰值。', processes={})
+    for name in ('jvm.memory.used','jvm.threads.live','lab.connections','lab.outbound.slots',
+                 'lab.outbound.bytes','lab.outbound.messages','lab.outbound.tasks','lab.outbound.writers.active',
+                 'lab.outbound.writes.inflight','lab.dispatch.bytes','lab.dispatch.messages'):
+        resource[name] = bounds([metric(row, name) for row in rows])
+    for role in ('server', 'client'):
+        selected = [(row['elapsedSeconds'], row[role]) for row in rows if row.get(role)]
+        first, last = selected[0], selected[-1]
+        resource['processes'][role] = dict(workingSetBytes=bounds([item['workingSetBytes'] for _, item in selected]),
+            averageLogicalCores=(last[1]['cpuSeconds']-first[1]['cpuSeconds'])/(last[0]-first[0]))
+    resource['lifetimeHighwater'] = {}
+    for name in ('lab.outbound.bytes.highwater','lab.dispatch.bytes.highwater'):
+        resource['lifetimeHighwater'][name] = dict(before=metric(read('server-before.json'),name),after=metric(read('server-after.json'),name))
+    (folder / 'resource-summary.json').write_text(json.dumps(resource, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
+    (folder / 'verification.json').write_text(json.dumps(dict(independentChecksPassed=True,
+        sourceFilesMatched=len(sources),jarSha256=jar['Hash'],connections=config['connections'],cycles=config['cycles'],
+        requiredReceived=report['requiredReceived'],allReceived=report['allReceived'],
+        cleanupGaugesVerified=12), indent=2)+'\n', encoding='utf-8')
+    plt.rcParams.update({'font.sans-serif':['Microsoft YaHei'],'axes.unicode_minus':False,
+        'figure.facecolor':'white','axes.spines.top':False,'axes.spines.right':False})
+    fig, axes = plt.subplots(4,1,figsize=(12,11),sharex=True,layout='constrained')
+    x = [row['elapsedSeconds'] for row in rows]
+    axes[0].plot(x,[metric(row,'lab.connections') for row in rows],label='应用登记连接')
+    axes[0].plot(x,[metric(row,'lab.outbound.slots') for row in rows],label='占用连接名额',linestyle='--')
+    axes[0].axhline(config['connections'],color='gray',linewidth=.6,label='配置上限')
+    axes[0].set_ylabel('连接数'); axes[0].legend(loc='lower right',ncol=3)
+    axes[1].plot(x,[metric(row,'jvm.memory.used')/1048576 for row in rows],label='JVM已用堆')
+    axes[1].plot(x,[row['server']['workingSetBytes']/1048576 for row in rows],label='Java工作集')
+    axes[1].set_ylabel('MiB'); axes[1].legend(loc='upper left',ncol=2)
+    axes[2].plot(x,[metric(row,'lab.outbound.bytes')/1024 for row in rows],label='输出保留载荷')
+    axes[2].plot(x,[metric(row,'lab.dispatch.bytes')/1024 for row in rows],label='房间入口载荷')
+    axes[2].set_ylabel('KiB'); axes[2].legend(loc='upper left',ncol=2)
+    for role,label in (('server','Java'),('client','Python客户端')):
+        selected=[(r['elapsedSeconds'],r[role]) for r in rows if r.get(role)]
+        pairs=list(zip(selected,selected[1:]))
+        axes[3].plot([b[0] for a,b in pairs],[(b[1]['cpuSeconds']-a[1]['cpuSeconds'])/(b[0]-a[0]) for a,b in pairs],label=label)
+    axes[3].set_ylabel('等效逻辑核'); axes[3].set_xlabel('采集开始后的秒数'); axes[3].legend(loc='upper left',ncol=2)
+    epoch=datetime.fromisoformat(rows[0]['snapshot']['startedAt']).timestamp()-rows[0]['elapsedSeconds']
+    for ax in axes:
+        ax.grid(alpha=.2)
+        for window in report['phaseWindows']:
+            if window['name'].startswith('churn'):
+                ax.axvspan(window['beganAt']-epoch,window['endedAt']-epoch,color='orange',alpha=.1)
+        for recovery in report['recovery']:
+            ax.axvline(recovery['droppedAt']-epoch,color='gray',linestyle='--',linewidth=.7)
+    axes[0].set_title(f"T6：{config['connections']}人，每轮{config['affected']}人断连，连续{config['cycles']}轮\n橙区是重连输入窗口；约一秒采样可能错过不足一秒的连接下降",loc='left')
+    for extension in ('png','svg'):
+        fig.savefig(folder/f'resources.{extension}',dpi=130)
+    plt.close(fig)
+    print(json.dumps(dict(directory=str(folder),required=report['requiredReceived'],allReceived=report['allReceived'],
+        recoveryMs=[r['recoveryMs'] for r in report['recovery']],resources=resource),ensure_ascii=False))
+
+
+for argument in sys.argv[1:]:
+    analyze(Path(argument))

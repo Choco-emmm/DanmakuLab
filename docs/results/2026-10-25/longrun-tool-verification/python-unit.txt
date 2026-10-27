@@ -1,0 +1,22 @@
+test_boolean_is_not_a_room_sequence (test_longrun.AccountingTest.test_boolean_is_not_a_room_sequence) ... ok
+test_missing_normal_viewer_stays_in_denominator_and_duplicate_not_counted (test_longrun.AccountingTest.test_missing_normal_viewer_stays_in_denominator_and_duplicate_not_counted) ... ok
+test_sender_confirmation_cannot_come_from_other_viewer (test_longrun.AccountingTest.test_sender_confirmation_cannot_come_from_other_viewer) ... ok
+test_client_frame_is_masked_and_recovers_original_payload (test_longrun.CodecTest.test_client_frame_is_masked_and_recovers_original_payload) ... ok
+test_histogram_keeps_overflow_and_exact_small_quantiles (test_longrun.CodecTest.test_histogram_keeps_overflow_and_exact_small_quantiles) ... ok
+test_invalid_server_frame_cannot_be_silently_counted (test_longrun.CodecTest.test_invalid_server_frame_cannot_be_silently_counted) ... ok
+test_server_frame_can_arrive_in_fragments_and_leave_next_frame (test_longrun.CodecTest.test_server_frame_can_arrive_in_fragments_and_leave_next_frame) ... ok
+test_handshake_and_join_share_total_deadline (test_slow_consumer.ClientInitializationTest.test_handshake_and_join_share_total_deadline)
+���ֻ������ joined ���ظ����ܺ�ʱ���룬���ܸ� joined �ٵ��������롣 ... ok
+test_handshake_timeout_closes_socket (test_slow_consumer.ClientInitializationTest.test_handshake_timeout_closes_socket)
+�Զ�һֱ���ظ����֣����볬ʱ�˳����ر���δ�Ǽǵ� clients �����ӡ� ... ok
+test_join_success_leaves_reading_under_caller_control (test_slow_consumer.ClientInitializationTest.test_join_success_leaves_reading_under_caller_control)
+�ɹ�������Զ������̣߳����� paused ̽��ԭ�е�ֹͣ��ȡ��Ϊ�� ... ok
+test_failed_final_send_does_not_complete_schedule (test_slow_consumer.InputAccountingTest.test_failed_final_send_does_not_complete_schedule)
+ʧ�ܵ����һ�γ����Թ鵵����������ɹ��ύ�������ܱ������ƻ���ɡ� ... ok
+test_successful_send_counts_once_and_preserves_early_receive (test_slow_consumer.InputAccountingTest.test_successful_send_counts_once_and_preserves_early_receive)
+����д��ֻ��һ�Σ�����������Ļظ����Բ鵽����ʱ�䣬������δ֪��Ϣ�� ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.045s
+
+OK

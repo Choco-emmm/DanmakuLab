@@ -1,0 +1,18 @@
+{
+  "executable": "C:\\Python314\\python.exe",
+  "arguments": [
+    "scripts/load/cluster.py",
+    "--connections",
+    "100",
+    "--seconds",
+    "60",
+    "--scenario",
+    "redis-timeout",
+    "--sample-every",
+    "10",
+    "--node-a-pid",
+    "5840",
+    "--output",
+    "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\redis-timeout-final/client"
+  ]
+}

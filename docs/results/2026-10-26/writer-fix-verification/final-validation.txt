@@ -1,0 +1,11 @@
+before: exit=0
+VALID FAILED EVIDENCE: docs\results\2026-10-26\writer-fix-before-20; normal=1566/4000
+
+after-small: exit=0
+PASS TOOL CHECK: docs\results\2026-10-26\writer-fix-after-20; normal=4000/4000; p99=2ms
+
+after-formal: exit=0
+PASS FORMAL: docs\results\2026-10-26\writer-fix-formal-t3-8writers-01; normal=17820000/17820000; p99=35ms
+
+after-normal: exit=0
+PASS TOOL CHECK: docs\results\2026-10-26\writer-fix-normal-1000-60s; normal=1200000/1200000; p99=36ms

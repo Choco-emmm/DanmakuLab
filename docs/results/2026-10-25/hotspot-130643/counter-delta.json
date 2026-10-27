@@ -1,0 +1,19 @@
+{
+  "server": {
+    "lab.messages.accepted": 2051.0,
+    "lab.messages.input": 4000.0,
+    "lab.messages.rejected": 1949.0,
+    "lab.deliveries.expected": 665500.0,
+    "lab.deliveries.enqueued": 665500.0,
+    "lab.outbound.dropped": 0.0,
+    "lab.writes.failed": 0.0,
+    "lab.deliveries.submitted": 665500.0
+  },
+  "client": {
+    "received": 665500.0,
+    "rejected": 1949.0,
+    "accepted": 2051.0,
+    "acceptedDeliveryDemand": 665500.0,
+    "sent": 4000.0
+  }
+}

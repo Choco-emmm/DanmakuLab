@@ -1,0 +1,7 @@
+T4 started: 60 connections; 2 k6 process(es); evidence: D:\coding\DanmakuLab\docs\results\2026-10-25\hotspot-child-failure-check
+T4 running: 0s; preparation=30s; input windows=12s plus drain
+Exception: D:\coding\DanmakuLab\scripts\run\hotspot.ps1:169
+Line |
+ 169 |  …  foreach ($job in $jobs) { $null=Receive-Job $job -ErrorAction Stop }
+     |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | 子进程退出码为 107。

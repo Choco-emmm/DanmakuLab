@@ -1,0 +1,26 @@
+# 在没有压测负载时执行：比较相同60次健康GET是否重复建立TCP连接。
+# 只读取回环服务和本机连接表；不调整系统端口范围，不改服务参数。
+param([string]$HttpUrl='http://127.0.0.1:8083')
+$ErrorActionPreference='Stop'
+$probeUri=[Uri]$HttpUrl
+if (-not $probeUri.IsLoopback) { throw '只允许本机回环探测。' }
+function Ports {
+    @(Get-NetTCPConnection -RemotePort $probeUri.Port -ErrorAction SilentlyContinue |
+        Select-Object -ExpandProperty LocalPort -Unique)
+}
+$before=Ports
+1..60 | ForEach-Object { $null=Invoke-RestMethod "$HttpUrl/actuator/health" -TimeoutSec 3 }
+$without=Ports
+$session=[Microsoft.PowerShell.Commands.WebRequestSession]::new()
+try {
+    1..60 | ForEach-Object { $null=Invoke-RestMethod "$HttpUrl/actuator/health" -TimeoutSec 3 -WebSession $session }
+    $with=Ports
+    $result=[ordered]@{requestsPerGroup=60;
+        newPortsWithoutSession=@($without | Where-Object {$_ -notin $before}).Count;
+        newPortsWithSharedSession=@($with | Where-Object {$_ -notin $without}).Count}
+    $result | ConvertTo-Json
+    # 检查的是短连接积累这一模式，不是声称能确定性重现瞬时系统缓冲不足。
+    if ($result.newPortsWithoutSession -lt 50 -or $result.newPortsWithSharedSession -gt 2) {
+        throw '本机未复现预期的连接复用差异，请检查服务是否主动关闭Keep-Alive及连接表变化。'
+    }
+} finally { $session.Dispose() }

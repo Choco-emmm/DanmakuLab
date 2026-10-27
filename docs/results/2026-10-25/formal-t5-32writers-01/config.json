@@ -1,0 +1,13 @@
+{
+  "rate": 20,
+  "slowBytesPerSecond": 1024,
+  "connections": 1000,
+  "sampleSeconds": 5,
+  "slowConnections": 0,
+  "dispatchMode": "fair",
+  "inputBytes": 256,
+  "scenario": "T5",
+  "outboundMode": "buffered",
+  "warmupSeconds": 60,
+  "seconds": 1800
+}

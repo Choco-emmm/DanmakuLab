@@ -1,0 +1,41 @@
+"""只读检查正式主对照的控制变量，以及所有失败/补充轮是否保留。"""
+import hashlib
+import json
+from pathlib import Path
+
+root = Path('docs/results/2026-10-26')
+def read(folder, name):
+    return json.loads((folder / name).read_text(encoding='utf-8-sig'))
+
+pair = [root / f'async-t4-{mode}-02' for mode in ('direct', 'fair')]
+configs = [read(folder, 'config.json') for folder in pair]
+assert [config.pop('dispatchMode') for config in configs] == ['direct', 'fair']
+assert configs[0] == configs[1]
+manifests = [read(folder, 'source-sha256.json') for folder in pair]
+assert manifests[0] == manifests[1]
+for folder in pair:
+    verified = read(folder, 'verification.json')
+    assert verified['allChecksPassed'] and verified['asyncInflightReturnedToZero']
+    assert verified['sourceFilesMatched'] == len(manifests[0])
+    assert read(folder, 'run-status.json')['collectorErrors'] == 0
+
+# 四个正式窗口均用相同后端制品。首次两轮与重跑两轮仅采集器源码有差异。
+all_runs = [root / f'async-t4-{mode}-{number}' for number in ('01', '02') for mode in ('direct', 'fair')]
+assert len({read(folder, 'jar-sha256.json')['Hash'] for folder in all_runs}) == 1
+old = read(all_runs[0], 'source-sha256.json')
+assert old == read(all_runs[1], 'source-sha256.json')
+old_map = {entry['path']: entry['sha256'] for entry in old}
+new_map = {entry['path']: entry['sha256'] for entry in manifests[0]}
+changed = [name for name in old_map if old_map[name] != new_map[name]]
+assert changed == ['scripts\\run\\hotspot.ps1'], changed
+saved = root / 'async-t4-verification/hotspot-before-connection-reuse.ps1.txt'
+assert hashlib.sha256(saved.read_bytes()).hexdigest().upper() == old_map[changed[0]]
+assert read(root / 'async-t4-direct-01', 'verification.json')['allChecksPassed']
+failed = read(root / 'async-t4-fair-01', 'failure-classification.json')
+assert not failed['overallPassed'] and failed['originalValidatorStillRejects']
+result = dict(pair=[folder.name for folder in pair], equalLoadConfiguration=True,
+              equalSourceManifests=True, jarIdenticalAcrossFourRuns=True,
+              onlyChangedHistoricalSource=changed, allChecksPassed=True,
+              failedRoundPreserved=True, note='主对照一对成功；额外原调度成功和fair采集失败均完整披露，不计作三对成功。')
+(root / 'async-t4-verification/pair-audit.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+print('PASS: identical backend/load/configuration; two clean formal runs; historical collector failure preserved.')

@@ -1,0 +1,82 @@
+"""独立复核各轮后派生资源曲线与摘要；只新增派生文件，不覆盖原始证据。"""
+from datetime import datetime
+import hashlib
+import json
+from pathlib import Path
+import subprocess
+import sys
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+
+base=Path('docs/results/2026-10-26')
+names=['redis-100-final','redis-1000-final','redis-outage-final','redis-timeout-final','redis-slow-final','redis-node-exit-final']
+for name in names:
+    folder=base/name
+    checked=subprocess.run([sys.executable,'scripts/tests/cluster-summary.test.py',str(folder)],capture_output=True,text=True,encoding='utf-8')
+    (folder/'verify-evidence.txt').write_text(checked.stdout+checked.stderr,encoding='utf-8')
+    assert checked.returncode==0,checked.stdout+checked.stderr
+    def read(file):return json.loads((folder/file).read_text(encoding='utf-8-sig'))
+    report=read('client/summary.json')
+    rows=[json.loads(line) for line in (folder/'samples.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+    resource=dict(samples=len(rows),scope='约2秒目标间隔，真实间隔含HTTP与Docker统计耗时；采样最大值不是绝对峰值。',nodes={})
+    def metric(snapshot,key):
+        return next(m['measurements'][0]['value'] for m in snapshot['metrics'] if m['name']==key)
+    for node in ('8087','8088'):
+        selected=[(r['elapsedSeconds'],r['nodes'][node]) for r in rows if 'snapshot' in r['nodes'][node]]
+        assert selected
+        resource['nodes'][node]={}
+        for key in ('jvm.memory.used','jvm.threads.live','lab.outbound.bytes','lab.outbound.writes.inflight',
+                    'lab.dispatch.bytes','lab.cluster.publish.bytes','lab.cluster.receive.bytes'):
+            values=[metric(row['snapshot'],key) for t,row in selected]
+            resource['nodes'][node][key]=dict(min=min(values),max=max(values))
+        processes=[(t,row['process']) for t,row in selected if row.get('process')]
+        first,last=processes[0],processes[-1]
+        resource['nodes'][node]['workingSetBytesMax']=max(p['workingSetBytes'] for t,p in processes)
+        resource['nodes'][node]['averageLogicalCores']=(last[1]['cpuSeconds']-first[1]['cpuSeconds'])/(last[0]-first[0])
+    client=[(r['elapsedSeconds'],r['client']) for r in rows if r.get('client')]
+    resource['client']=dict(workingSetBytesMax=max(p['workingSetBytes'] for t,p in client),
+        averageLogicalCores=(client[-1][1]['cpuSeconds']-client[0][1]['cpuSeconds'])/(client[-1][0]-client[0][0]))
+    redis=[]
+    for row in rows:
+        try: stats=json.loads(row['redisStats'])
+        except (ValueError,TypeError): continue
+        redis.append(dict(at=row['elapsedSeconds'],cpuPercent=stats.get('CPUPerc'),memory=stats.get('MemUsage')))
+    resource['redisDockerSamples']=redis
+    (folder/'resource-summary.json').write_text(json.dumps(resource,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    sources=read('source-sha256.json'); mismatch=[]; matched=0
+    for entry in sources:
+        path=Path(entry['path'])
+        if path.exists() and hashlib.sha256(path.read_bytes()).hexdigest().upper()==entry['sha256']:matched+=1
+        else:mismatch.append(entry['path'])
+    # 客户端后续加入超时探针/失败归档，原始manifest不改写；服务Java源码必须与测试版本相符。
+    assert not any('src/main/java' in p.replace('\\','/') for p in mismatch),mismatch
+    verification=dict(independentPassed=True,sourceFilesCurrentlyMatched=matched,sourceFilesSinceChanged=mismatch,
+        jarSha256=read('jar-sha256.json')['Hash'],nodeExitCountersPartial=read('run-status.json')['nodeExitCountersPartial'])
+    (folder/'verification.json').write_text(json.dumps(verification,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    # 原始证据独立做哈希，不把图、notes、派生摘要纳入后续不可变文件集合。
+    raw_names=['config.json','command.json','environment.json','source-sha256.json','jar-sha256.json','server-commands.json',
+               'server-before.json','server-after.json','counter-delta.json','run-status.json','samples.jsonl',
+               'python-stdout.txt','python-stderr.txt','python-status.json']
+    paths=[folder/p for p in raw_names]+list((folder/'client').glob('*.json'))
+    manifest=[dict(path=str(p.relative_to(folder)),sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in paths]
+    (folder/'raw-sha256.json').write_text(json.dumps(manifest,indent=2)+'\n',encoding='utf-8')
+    if name in ('redis-100-final','redis-1000-final'):
+        plt.rcParams.update({'font.sans-serif':['Microsoft YaHei'],'axes.unicode_minus':False,
+            'axes.spines.top':False,'axes.spines.right':False})
+        fig,axes=plt.subplots(3,1,figsize=(11,8),sharex=True,layout='constrained')
+        for node,label in (('8087','节点A'),('8088','节点B')):
+            selected=[(r['elapsedSeconds'],r['nodes'][node]) for r in rows if 'snapshot' in r['nodes'][node]]
+            x=[t for t,r in selected]
+            axes[0].plot(x,[metric(r['snapshot'],'jvm.memory.used')/1048576 for t,r in selected],label=label+'已用堆')
+            axes[1].plot(x,[metric(r['snapshot'],'lab.cluster.publish.bytes') for t,r in selected],label=label+'发布预算')
+            axes[1].plot(x,[metric(r['snapshot'],'lab.cluster.receive.bytes') for t,r in selected],linestyle='--',label=label+'接收预算')
+            pairs=list(zip(selected,selected[1:]))
+            axes[2].plot([b[0] for a,b in pairs],[(b[1]['process']['cpuSeconds']-a[1]['process']['cpuSeconds'])/(b[0]-a[0]) for a,b in pairs],label=label)
+        axes[0].set_title(f"Redis双节点：{report['connections']}名正常观众，合计20条输入/秒，测量60秒",loc='left')
+        axes[0].set_ylabel('MiB');axes[1].set_ylabel('保留载荷字节');axes[2].set_ylabel('等效逻辑核');axes[2].set_xlabel('采集开始后的秒数')
+        for ax in axes: ax.grid(alpha=.2);ax.legend(loc='upper left',ncol=2)
+        for extension in ('png','svg'):fig.savefig(folder/f'resources.{extension}',dpi=130)
+        plt.close(fig)
+    print(json.dumps(dict(directory=name,received=report['received'],phases=[dict(name=p['name'],required=p['requiredReceived'],demand=p['nominalDemand'],p99=p['latencyMs']['p99']) for p in report['phases']],resources=resource),ensure_ascii=False))

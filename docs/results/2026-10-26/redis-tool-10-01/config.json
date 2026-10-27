@@ -1,0 +1,13 @@
+{
+  "connections": 10,
+  "seconds": 3,
+  "rate": 20,
+  "sample_every": 1,
+  "scenario": "steady",
+  "node_a_pid": 0,
+  "output": "docs/results/2026-10-26/redis-tool-10-01",
+  "urls": [
+    "ws://127.0.0.1:8087/ws",
+    "ws://127.0.0.1:8088/ws"
+  ]
+}

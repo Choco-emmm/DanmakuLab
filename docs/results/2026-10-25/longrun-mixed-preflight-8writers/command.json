@@ -1,0 +1,24 @@
+{
+  "executable": "C:\\Python314\\python.exe",
+  "arguments": [
+    "scripts/load/longrun.py",
+    "--scenario",
+    "T3",
+    "--url",
+    "ws://127.0.0.1:8083/ws",
+    "--connections",
+    "1000",
+    "--seconds",
+    "30",
+    "--warmup-seconds",
+    "5",
+    "--rate",
+    "20",
+    "--slow-connections",
+    "10",
+    "--slow-bytes-per-second",
+    "1024",
+    "--output",
+    "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-25\\longrun-mixed-preflight-8writers\\client"
+  ]
+}

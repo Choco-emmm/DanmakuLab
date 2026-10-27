@@ -1,0 +1,13 @@
+{
+  "scenario": "T3",
+  "sampleSeconds": 5,
+  "slowBytesPerSecond": 1024,
+  "connections": 20,
+  "seconds": 20,
+  "slowConnections": 10,
+  "rate": 20,
+  "outboundMode": "buffered",
+  "dispatchMode": "fair",
+  "inputBytes": 256,
+  "warmupSeconds": 2
+}

@@ -1,0 +1,22 @@
+{
+  "executable": "C:\\Python314\\python.exe",
+  "arguments": [
+    "scripts/load/throughput.py",
+    "--url",
+    "ws://127.0.0.1:8085/ws",
+    "--connections",
+    "1000",
+    "--workers",
+    "4",
+    "--seconds",
+    "10",
+    "--warmup-seconds",
+    "2",
+    "--rates",
+    "5,20,50,100",
+    "--latency-sample-every",
+    "10",
+    "--output",
+    "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\t2-tool-1000-01\\client"
+  ]
+}

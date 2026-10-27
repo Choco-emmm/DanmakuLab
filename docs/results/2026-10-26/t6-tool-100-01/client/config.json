@@ -1,0 +1,19 @@
+{
+  "url": "ws://127.0.0.1:8086/ws",
+  "connections": 100,
+  "affected": 50,
+  "cycles": 1,
+  "steady_seconds": 2,
+  "churn_seconds": 2,
+  "rate": 20,
+  "recovery_deadline": 15,
+  "max_attempts": 6,
+  "probes": 3,
+  "probe_attempts": 3,
+  "seed": 20261026,
+  "latency_sample_every": 10,
+  "drain_seconds": 1,
+  "output": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\t6-tool-100-01\\client",
+  "slow_connections": 0,
+  "slow_bytes_per_second": 1024
+}

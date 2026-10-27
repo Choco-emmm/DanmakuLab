@@ -1,0 +1,14 @@
+{
+  "rate": 20,
+  "sampleEvery": 10,
+  "note": "另有两个隔离探针；slow额外一个限速观众；同机回环",
+  "nodeIds": {
+    "8088": 25412,
+    "8087": 5840
+  },
+  "scenario": "redis-outage",
+  "connections": 100,
+  "seconds": 60,
+  "resourceSampleSeconds": 2,
+  "normalPhysical": 102
+}

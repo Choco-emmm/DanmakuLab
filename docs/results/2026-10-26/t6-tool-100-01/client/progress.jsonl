@@ -1,0 +1,13 @@
+{"at": 1793002050.9809606, "sent": 0, "accepted": 0, "requiredReceived": 0, "allReceived": 0, "liveClients": 100, "retries": 0, "failures": {}}
+{"at": 1793002051.99359, "sent": 21, "accepted": 20, "requiredReceived": 2000, "allReceived": 2000, "liveClients": 100, "retries": 0, "failures": {}}
+{"at": 1793002053.0081875, "sent": 40, "accepted": 40, "requiredReceived": 4000, "allReceived": 4000, "liveClients": 100, "retries": 3, "failures": {}}
+{"at": 1793002054.0212379, "sent": 40, "accepted": 40, "requiredReceived": 4000, "allReceived": 4000, "liveClients": 100, "retries": 3, "failures": {}}
+{"at": 1793002055.036097, "sent": 40, "accepted": 40, "requiredReceived": 4000, "allReceived": 4000, "liveClients": 100, "retries": 6, "failures": {}}
+{"at": 1793002056.0490806, "sent": 40, "accepted": 40, "requiredReceived": 4000, "allReceived": 4000, "liveClients": 100, "retries": 6, "failures": {}}
+{"at": 1793002057.0525973, "sent": 40, "accepted": 40, "requiredReceived": 4000, "allReceived": 4000, "liveClients": 100, "retries": 9, "failures": {}}
+{"at": 1793002058.057705, "sent": 60, "accepted": 60, "requiredReceived": 5000, "allReceived": 5506, "liveClients": 98, "retries": 57, "failures": {}}
+{"at": 1793002059.0636485, "sent": 80, "accepted": 80, "requiredReceived": 6000, "allReceived": 7505, "liveClients": 100, "retries": 59, "failures": {}}
+{"at": 1793002060.0709631, "sent": 80, "accepted": 80, "requiredReceived": 6000, "allReceived": 7505, "liveClients": 100, "retries": 59, "failures": {}}
+{"at": 1793002061.0766547, "sent": 100, "accepted": 100, "requiredReceived": 8000, "allReceived": 9505, "liveClients": 100, "retries": 59, "failures": {}}
+{"at": 1793002062.0869694, "sent": 120, "accepted": 120, "requiredReceived": 10000, "allReceived": 11505, "liveClients": 100, "retries": 59, "failures": {}}
+{"at": 1793002063.0945997, "sent": 120, "accepted": 120, "requiredReceived": 10000, "allReceived": 11505, "liveClients": 100, "retries": 59, "failures": {}}

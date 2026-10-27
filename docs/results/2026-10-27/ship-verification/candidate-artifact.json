@@ -1,0 +1,10 @@
+{
+  "jar": ".lab-artifacts/ship-20261027/danmaku-lab-release.jar",
+  "jarSha256": "bc5652880ad8fa34b903b7f6350e292d090fa914c85456879243082a38f43f65",
+  "sourceArchive": ".lab-artifacts/ship-20261027/source.zip",
+  "sourceArchiveSha256": "2257bcf5f0882335477272dcde876bfcc9dca4d4ba7cec3364d0c3b7aa0727ab",
+  "sourceFiles": 74,
+  "ordinaryJavaTests": 82,
+  "redisIntegrationTests": 1,
+  "pythonTests": 44
+}

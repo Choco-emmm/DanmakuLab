@@ -1,0 +1,17 @@
+{
+  "note": "计划关闭TCP可能引发写失败或丢弃；不删除固定在线观众分母，逐窗口真实接收才是通过依据。",
+  "server": {
+    "lab.outbound.dropped": 0.0,
+    "lab.writes.failed": 0.0,
+    "lab.messages.input": 1400.0,
+    "lab.messages.rejected": 0.0,
+    "lab.dispatch.discarded": 0.0,
+    "lab.deliveries.expected": 692173.0,
+    "lab.outbound.closed": 0.0,
+    "lab.messages.accepted": 1400.0,
+    "lab.deliveries.cancelled": 0.0,
+    "lab.deliveries.submitted": 692173.0,
+    "lab.deliveries.enqueued": 692173.0,
+    "lab.connections.rejected": 9.0
+  }
+}

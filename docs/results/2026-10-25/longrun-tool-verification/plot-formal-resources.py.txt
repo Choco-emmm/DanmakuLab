@@ -1,0 +1,50 @@
+"""从已完成长测的原始五秒采样绘图；曲线覆盖准备、预热、测量和排空。"""
+import json
+import sys
+from pathlib import Path
+
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+
+def plot(folder):
+    rows = [json.loads(line) for line in (folder / 'samples.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+    assert rows and all('error' not in row for row in rows)
+    config = json.loads((folder / 'config.json').read_text(encoding='utf-8-sig'))
+    def metric(row, name):
+        return next((item['measurements'][0]['value'] for item in row['snapshot']['metrics'] if item['name'] == name), 0)
+    times = [row['elapsedSeconds'] / 60 for row in rows]
+    plt.rcParams.update({'font.family': 'Microsoft YaHei', 'font.size': 10, 'axes.unicode_minus': False})
+    fig, panels = plt.subplots(2, 2, figsize=(13, 8), constrained_layout=True)
+    memory, queues, cpu, connections = panels.flat
+    mib = 1024 * 1024
+    memory.plot(times, [metric(row, 'jvm.memory.used') / mib for row in rows], label='JVM 已用堆')
+    memory.plot(times, [row['server']['workingSetBytes'] / mib for row in rows], label='Java 进程工作集')
+    memory.plot(times, [row['client']['workingSetBytes'] / mib for row in rows], label='Python 进程工作集')
+    memory.set(title='内存：堆与进程工作集分别计量', ylabel='MiB')
+    for name, label in [('lab.outbound.bytes', '连接输出'), ('lab.dispatch.bytes', '房间入口')]:
+        queues.plot(times, [metric(row, name) / 1024 for row in rows], label=label)
+    queues.set(title='当前待发逻辑载荷（采样值）', ylabel='KiB')
+    # 相邻采样的 CPU 累计秒差除以墙钟秒差，表示这一小段平均占用几个逻辑核。
+    # 不能把该值直接写成整台32逻辑核机器的CPU百分比。
+    for role, label in [('server', 'Java'), ('client', 'Python')]:
+        cores = [(rows[i][role]['cpuSeconds'] - rows[i-1][role]['cpuSeconds']) /
+                 (rows[i]['elapsedSeconds'] - rows[i-1]['elapsedSeconds']) for i in range(1, len(rows))]
+        cpu.plot(times[1:], cores, label=label)
+    cpu.set(title='分段平均 CPU 使用量', ylabel='等效逻辑核数', ylim=(0, None))
+    connections.plot(times, [metric(row, 'lab.connections') for row in rows], label='服务端连接数')
+    connections.set(title='在线连接（包含准备与收尾）', ylabel='条', ylim=(0, config['connections'] * 1.05))
+    for panel in panels.flat:
+        panel.set_xlabel('采集开始后的分钟数')
+        panel.grid(alpha=.2)
+        panel.legend(loc='best')
+    fig.suptitle(f"{config['scenario']} · {config['connections']}连接 · {config['rate']}/s · 32发送线程候选配置\nWindows同机回环；五秒采样最大值不等于绝对峰值", fontsize=13)
+    fig.savefig(folder / 'resources.png', dpi=160)
+    fig.savefig(folder / 'resources.svg')
+    plt.close(fig)
+    print(folder / 'resources.png')
+
+
+for argument in sys.argv[1:]:
+    plot(Path(argument))

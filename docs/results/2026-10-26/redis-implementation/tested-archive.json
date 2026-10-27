@@ -1,0 +1,7 @@
+{
+  "testedJar": ".lab-artifacts\\redis-tested\\danmaku-lab-redis.jar",
+  "jarSha256": "d54ac0e09d5612c5ddaab03e3378ea9199253da7e10f37eaaa10b6f900ca9798",
+  "sourceArchive": ".lab-artifacts\\redis-tested\\source.zip",
+  "sourceArchiveSha256": "5d8f57dcc01430931f35e5abc0b325144f3e2afef8d74410dc6fba1d1ed4d1f8",
+  "note": "包含最终服务源码及收尾时工具；各历史轮工具差异以其source-sha256和verification为准。"
+}

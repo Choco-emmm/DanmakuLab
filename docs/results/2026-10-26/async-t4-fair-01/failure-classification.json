@@ -1,0 +1,9 @@
+{
+  "overallPassed": false,
+  "reason": "collectorErrors=1",
+  "businessCountsComplete": true,
+  "originalValidatorStillRejects": true,
+  "failedSampleElapsedSeconds": 494.6903834,
+  "originalError": "由于系统缓冲区空间不足或队列已满，不能执行套接字上的操作。 (127.0.0.1:8083)",
+  "rawEvidenceUnchanged": true
+}

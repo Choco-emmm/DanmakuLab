@@ -1,0 +1,19 @@
+{
+  "url": "ws://127.0.0.1:8085/ws",
+  "connections": 100,
+  "workers": 4,
+  "rates": [
+    5,
+    20,
+    50,
+    100
+  ],
+  "seconds": 3,
+  "warmup_seconds": 1,
+  "latency_sample_every": 1,
+  "drain_seconds": 7,
+  "output": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\t2-tool-smoke-01\\client",
+  "room": "t2-a088c1df2846ef6e",
+  "slow_connections": 0,
+  "slow_bytes_per_second": 1024
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "D:\coding\DanmakuLab\scripts\tests\hotspot-summary.test.py", line 72, in <module>
+    verify(Path(sys.argv[1]))
+    ~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "D:\coding\DanmakuLab\scripts\tests\hotspot-summary.test.py", line 19, in verify
+    assert status["collectorErrors"] == 0, status
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'collectorErrors': 1, 'cleanupReturnedToZero': True, 'serverCountersMatch': True, 'processesPassed': True, 'phaseAlignmentPassed': True, 'processIds': {'normal': 48440, 'hot': 55256}}

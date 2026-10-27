@@ -1,0 +1,14 @@
+{
+  "connections": 1000,
+  "latencySampleEvery": 10,
+  "inputJsonBytes": 256,
+  "rates": "5,20,50,100",
+  "workers": 4,
+  "phaseSeconds": 10,
+  "resourceSampleSeconds": 5,
+  "roomLimit": 200,
+  "dispatchMode": "fair",
+  "scenario": "T2",
+  "warmupSeconds": 2,
+  "outboundMode": "buffered"
+}

@@ -1,0 +1,28 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-26T23:49:16.862+08:00  INFO 19036 --- [danmaku-lab] [           main] i.g.c.danmakulab.DanmakuLabApplication   : Starting DanmakuLabApplication v0.1.0-SNAPSHOT using Java 25.0.1 with PID 19036 (D:\coding\DanmakuLab\target\danmaku-lab-prepublish.jar started by renpe in D:\coding\DanmakuLab)
+2026-10-26T23:49:16.864+08:00  INFO 19036 --- [danmaku-lab] [           main] i.g.c.danmakulab.DanmakuLabApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-10-26T23:49:17.736+08:00  INFO 19036 --- [danmaku-lab] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8087 (http)
+2026-10-26T23:49:17.747+08:00  INFO 19036 --- [danmaku-lab] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-26T23:49:17.747+08:00  INFO 19036 --- [danmaku-lab] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-10-26T23:49:17.801+08:00  INFO 19036 --- [danmaku-lab] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-26T23:49:17.802+08:00  INFO 19036 --- [danmaku-lab] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 899 ms
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::allocateMemory has been called by io.netty.util.internal.PlatformDependent0$2 (jar:nested:/D:/coding/DanmakuLab/target/danmaku-lab-prepublish.jar/!BOOT-INF/lib/netty-common-4.1.135.Final.jar!/)
+WARNING: Please consider reporting this to the maintainers of class io.netty.util.internal.PlatformDependent0$2
+WARNING: sun.misc.Unsafe::allocateMemory will be removed in a future release
+2026-10-26T23:49:18.253+08:00  INFO 19036 --- [danmaku-lab] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-10-26T23:49:18.530+08:00  INFO 19036 --- [danmaku-lab] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-10-26T23:49:18.577+08:00  INFO 19036 --- [danmaku-lab] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8087 (http) with context path '/'
+2026-10-26T23:49:18.588+08:00  INFO 19036 --- [danmaku-lab] [           main] i.g.c.danmakulab.DanmakuLabApplication   : Started DanmakuLabApplication in 2.091 seconds (process running for 2.407)
+2026-10-26T23:50:18.928+08:00  INFO 19036 --- [danmaku-lab] [0.1-8087-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-26T23:50:18.928+08:00  INFO 19036 --- [danmaku-lab] [0.1-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-26T23:50:18.929+08:00  INFO 19036 --- [danmaku-lab] [0.1-8087-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms

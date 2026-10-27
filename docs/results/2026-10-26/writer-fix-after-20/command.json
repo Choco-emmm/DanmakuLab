@@ -1,0 +1,24 @@
+{
+  "arguments": [
+    "scripts/load/longrun.py",
+    "--scenario",
+    "T3",
+    "--url",
+    "ws://127.0.0.1:8084/ws",
+    "--connections",
+    "20",
+    "--seconds",
+    "20",
+    "--warmup-seconds",
+    "2",
+    "--rate",
+    "20",
+    "--slow-connections",
+    "10",
+    "--slow-bytes-per-second",
+    "1024",
+    "--output",
+    "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\writer-fix-after-20\\client"
+  ],
+  "executable": "C:\\Python314\\python.exe"
+}

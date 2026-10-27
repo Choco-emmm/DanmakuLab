@@ -1,0 +1,13 @@
+{
+  "connections": 20,
+  "seconds": 30,
+  "rate": 20,
+  "sample_every": 1,
+  "scenario": "slow",
+  "node_a_pid": 5840,
+  "output": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\redis-slow-final/client",
+  "urls": [
+    "ws://127.0.0.1:8087/ws",
+    "ws://127.0.0.1:8088/ws"
+  ]
+}

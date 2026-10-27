@@ -1,0 +1,6 @@
+{
+  "classes": 21,
+  "mismatches": [],
+  "jarSha256": "63c3f3bf6f415e0165fda5ee710acdfca896d8e96981a0539314dd88c4994e28",
+  "note": "Two post-run comment corrections; all recompiled application class bytes match the tested JAR."
+}

@@ -1,0 +1,100 @@
+{
+  "sampleCount": 80,
+  "scope": "约一秒采样，包含建连、满额探针、发送、重连和排空；非绝对峰值。",
+  "processes": {
+    "server": {
+      "workingSetBytes": {
+        "first": 277635072,
+        "last": 312180736,
+        "min": 277635072,
+        "max": 319184896
+      },
+      "averageLogicalCores": 0.2431619707292619
+    },
+    "client": {
+      "workingSetBytes": {
+        "first": 12050432,
+        "last": 45252608,
+        "min": 12050432,
+        "max": 45273088
+      },
+      "averageLogicalCores": 0.041274036506272566
+    }
+  },
+  "jvm.memory.used": {
+    "first": 58660832.0,
+    "last": 87811472.0,
+    "min": 39138304.0,
+    "max": 109392896.0
+  },
+  "jvm.threads.live": {
+    "first": 56.0,
+    "last": 96.0,
+    "min": 56.0,
+    "max": 96.0
+  },
+  "lab.connections": {
+    "first": 0.0,
+    "last": 100.0,
+    "min": 0.0,
+    "max": 100.0
+  },
+  "lab.outbound.slots": {
+    "first": 0.0,
+    "last": 100.0,
+    "min": 0.0,
+    "max": 100.0
+  },
+  "lab.outbound.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0
+  },
+  "lab.outbound.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0
+  },
+  "lab.outbound.tasks": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0
+  },
+  "lab.outbound.writers.active": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0
+  },
+  "lab.outbound.writes.inflight": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0
+  },
+  "lab.dispatch.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0
+  },
+  "lab.dispatch.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0
+  },
+  "lifetimeHighwater": {
+    "lab.outbound.bytes.highwater": {
+      "before": 48103.0,
+      "after": 48204.0
+    },
+    "lab.dispatch.bytes.highwater": {
+      "before": 480.0,
+      "after": 481.0
+    }
+  }
+}

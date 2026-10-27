@@ -1,0 +1,20 @@
+{
+  "outboundMode": "buffered",
+  "drainSeconds": 2,
+  "recoveryDeadline": 15,
+  "maxAttempts": 6,
+  "inputJsonBytes": 256,
+  "cycles": 3,
+  "steadySeconds": 10,
+  "dispatchMode": "fair",
+  "resourceSampleSeconds": 1,
+  "latencySampleEvery": 10,
+  "probeAttempts": 3,
+  "seed": 20261026,
+  "churnSeconds": 10,
+  "scenario": "T6",
+  "rate": 20,
+  "connections": 100,
+  "probes": 3,
+  "affected": 50
+}

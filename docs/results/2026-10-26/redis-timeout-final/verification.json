@@ -1,0 +1,11 @@
+{
+  "independentPassed": true,
+  "sourceFilesCurrentlyMatched": 70,
+  "sourceFilesSinceChanged": [
+    "src\\main\\resources\\static\\index.html",
+    "src\\test\\java\\io\\github\\chocoemmm\\danmakulab\\cluster\\RedisBroadcastIngressTest.java",
+    "scripts\\tests\\test_cluster.py"
+  ],
+  "jarSha256": "D54AC0E09D5612C5DDAAB03E3378EA9199253DA7E10F37EAAA10B6F900CA9798",
+  "nodeExitCountersPartial": false
+}

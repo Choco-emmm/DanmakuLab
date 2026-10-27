@@ -1,0 +1,36 @@
+{
+  "jarSha256": "63c3f3bf6f415e0165fda5ee710acdfca896d8e96981a0539314dd88c4994e28",
+  "trials": [
+    {
+      "directory": "writer-fix-after-20",
+      "runtimeSourceMatchesWithDocumentedCommentException": true,
+      "postRunCommentOnlyChanges": [
+        "src/main/java/io/github/chocoemmm/danmakulab/core/OutboundMailbox.java"
+      ],
+      "changedNonRuntimeFiles": [
+        "scripts/run/longrun.ps1",
+        "scripts/tests/longrun-summary.test.py",
+        "src/test/java/io/github/chocoemmm/danmakulab/core/OutboundAsyncTest.java"
+      ]
+    },
+    {
+      "directory": "writer-fix-formal-t3-8writers-01",
+      "runtimeSourceMatchesWithDocumentedCommentException": true,
+      "postRunCommentOnlyChanges": [
+        "src/main/java/io/github/chocoemmm/danmakulab/core/OutboundMailbox.java"
+      ],
+      "changedNonRuntimeFiles": [
+        "src/test/java/io/github/chocoemmm/danmakulab/core/OutboundAsyncTest.java"
+      ]
+    },
+    {
+      "directory": "writer-fix-normal-1000-60s",
+      "runtimeSourceMatchesWithDocumentedCommentException": true,
+      "postRunCommentOnlyChanges": [
+        "src/main/java/io/github/chocoemmm/danmakulab/core/OutboundMailbox.java"
+      ],
+      "changedNonRuntimeFiles": []
+    }
+  ],
+  "localLinksChecked": true
+}

@@ -1,0 +1,141 @@
+"""复核异步版T4原始证据，并生成可追溯的资源和分阶段汇总。
+
+从仓库根目录运行，参数是完整的一轮输出目录；不修改原始JSON或历史SHA清单。
+已有独立校验器负责逐房间完整率，本入口额外核对异步在途写、预算、源码和制品。
+"""
+import hashlib
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+
+EXPECTED_JAR = '63C3F3BF6F415E0165FDA5EE710ACDFCA896D8E96981A0539314DD88C4994E28'
+
+
+def read(path):
+    # PowerShell可能写入BOM，utf-8-sig同时兼容有、无BOM的文件。
+    return json.loads(path.read_text(encoding='utf-8-sig'))
+
+
+def metric(snapshot, name, statistic='VALUE', required=True):
+    for item in snapshot['metrics']:
+        if item['name'] == name:
+            for value in item['measurements']:
+                if value['statistic'] == statistic:
+                    return value['value']
+    if required:
+        raise AssertionError(f'缺少指标 {name}/{statistic}')
+    return None
+
+
+def bounds(values):
+    # 缺失不当作零；资源采样最大值不等于两次采样之间的绝对峰值。
+    values = [value for value in values if value is not None]
+    return dict(first=values[0], last=values[-1], min=min(values), max=max(values)) if values else None
+
+
+def analyze(folder):
+    checked = subprocess.run([sys.executable, 'scripts/tests/hotspot-summary.test.py', str(folder)],
+                             capture_output=True, text=True, encoding='utf-8')
+    (folder / 'verify-evidence.py.txt').write_text(checked.stdout + checked.stderr, encoding='utf-8')
+    assert checked.returncode == 0, checked.stdout + checked.stderr
+    config = read(folder / 'config.json')
+    assert config['mode'] == 'buffered' and config['splitProcesses']
+    assert config['phaseSeconds'] == 180 and config['normalRooms'] == 10
+    assert config['normalConnections'] == 50 and config['hotConnections'] == 500
+    assert config['hotRates'] == '20,100,200' and config['latencySampleEvery'] == 10
+    command = (folder / 'server-command.txt').read_text(encoding='utf-8-sig')
+    assert '-Xms128m -Xmx256m' in command and '--lab.outbound.workers' not in command
+    assert f"--lab.dispatch.mode={config['dispatchMode']}" in command
+    jar = read(folder / 'jar-sha256.json')
+    assert jar['Hash'] == EXPECTED_JAR
+    assert hashlib.sha256(Path(jar['Path']).read_bytes()).hexdigest().upper() == EXPECTED_JAR
+    sources = read(folder / 'source-sha256.json')
+    for source in sources:
+        assert hashlib.sha256(Path(source['path']).read_bytes()).hexdigest().upper() == source['sha256'], source['path']
+
+    before, after = (read(folder / f'server-{which}.json') for which in ('before', 'after'))
+    for snapshot in (before, after):
+        assert metric(snapshot, 'lab.outbound.mode.buffered') == 1
+        assert metric(snapshot, 'lab.dispatch.mode.fair') == (1 if config['dispatchMode'] == 'fair' else 0)
+    cleanup = ('lab.connections', 'lab.rooms', 'lab.outbound.bytes', 'lab.outbound.messages',
+               'lab.outbound.slots', 'lab.outbound.tasks', 'lab.outbound.writers.active',
+               'lab.outbound.writes.inflight', 'lab.dispatch.bytes', 'lab.dispatch.messages',
+               'lab.dispatch.rooms', 'lab.dispatch.ready')
+    for name in cleanup:
+        assert metric(before, name) == metric(after, name) == 0, name
+    delta = read(folder / 'counter-delta.json')
+    for name in ('lab.dispatch.discarded', 'lab.deliveries.cancelled'):
+        assert delta['server'][name] == 0, name
+
+    rows = [json.loads(line) for line in (folder / 'samples.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+    assert rows and all('error' not in row for row in rows)
+    # 预算是载荷保留量，含每连接最多一条在途写；不包含容器/内核或JVM对象内存。
+    ceilings = {'lab.connections': 1000, 'lab.outbound.bytes': 134217728,
+                'lab.outbound.messages': 1000 * 256, 'lab.outbound.slots': 1000,
+                'lab.outbound.tasks': 2000, 'lab.outbound.writers.active': 8,
+                'lab.outbound.writes.inflight': 1000, 'lab.dispatch.bytes': 4194304,
+                'lab.dispatch.messages': 4096, 'lab.dispatch.rooms': 1000, 'lab.dispatch.ready': 1000}
+    resources = dict(sampleCount=len(rows), firstElapsedSeconds=rows[0]['elapsedSeconds'],
+                     lastElapsedSeconds=rows[-1]['elapsedSeconds'],
+                     scope='准备、四阶段、排空期间约五秒采样；最大值为采样最大值；各指标先后读取，非原子快照。')
+    for name, limit in ceilings.items():
+        values = [metric(row['snapshot'], name) for row in rows]
+        assert all(0 <= value <= limit for value in values), name
+        resources[name] = {**bounds(values), 'limit': limit}
+    for name in ('jvm.memory.used', 'jvm.threads.live'):
+        resources[name] = bounds([metric(row['snapshot'], name) for row in rows])
+    resources['processes'] = {}
+    for role in ('server', 'normal', 'hot'):
+        selected = [(row['elapsedSeconds'], row.get('server') if role == 'server' else row.get('clients', {}).get(role)) for row in rows]
+        selected = [(elapsed, item) for elapsed, item in selected if item]
+        assert len(selected) > 1, role
+        first, last = selected[0], selected[-1]
+        seconds = last[0] - first[0]
+        cpu = last[1]['cpuSeconds'] - first[1]['cpuSeconds']
+        # CPU累计秒差/墙钟秒 = 平均占用几个逻辑核，不能直接称整机CPU百分比。
+        resources['processes'][role] = dict(sampleCount=len(selected),
+            workingSetBytes=bounds([item['workingSetBytes'] for _, item in selected]),
+            threads=bounds([item['threads'] for _, item in selected]),
+            cpuSecondsDelta=cpu, averageLogicalCores=cpu / seconds)
+    resources['lifetimeHighwater'] = {}
+    for name in ('lab.outbound.bytes.highwater', 'lab.dispatch.bytes.highwater'):
+        resources['lifetimeHighwater'][name] = dict(first=metric(rows[0]['snapshot'], name), last=metric(after, name))
+    for statistic in ('COUNT', 'TOTAL_TIME'):
+        first = metric(rows[0]['snapshot'], 'jvm.gc.pause', statistic, False)
+        last = metric(rows[-1]['snapshot'], 'jvm.gc.pause', statistic, False)
+        resources[f'gc{statistic}Delta'] = last - first if first is not None and last is not None else None
+
+    normal, hot = (read(folder / role / 'k6-summary.json')['report'] for role in ('normal', 'hot'))
+    # 正式时长不足或发送计划明显迟到，不能凭最终接收总数冒充目标负载有效。
+    for report in (normal, hot):
+        assert report['phaseSeconds'] == 180 and report['requestBytes'] == 256
+        for room in report['rooms']:
+            for phase in room['phases']:
+                target = phase['targetInputPerSecond']
+                actual = phase['actualInputPerSecond']
+                assert abs(actual - target) <= target * .05 if target else actual == 0
+                assert phase['maxSendLagMs'] < 1000
+    phases = []
+    for index, hot_phase in enumerate(hot['rooms'][0]['phases']):
+        normals = [room['phases'][index] for room in normal['rooms']]
+        phases.append(dict(name=hot_phase['name'],
+            normalP99RangeMs=[min(p['latencyMs']['p(99)'] for p in normals), max(p['latencyMs']['p(99)'] for p in normals)],
+            normalP95RangeMs=[min(p['latencyMs']['p(95)'] for p in normals), max(p['latencyMs']['p(95)'] for p in normals)],
+            normalReceived=sum(p['received'] for p in normals), normalRejected=sum(p['rejected'] for p in normals),
+            normalMaxSendLagMs=max(p['maxSendLagMs'] for p in normals),
+            hot={key: hot_phase[key] for key in ('actualInputPerSecond', 'sent', 'accepted', 'rejected', 'received',
+                                               'acceptedDeliveryDemand', 'latencyMs', 'maxSendLagMs', 'latencySamples')}))
+    result = dict(dispatchMode=config['dispatchMode'], jarSha256=EXPECTED_JAR, sourceFilesMatched=len(sources),
+                  actualDeliveries=delta['client']['received'], totals=delta['client'], phases=phases,
+                  startLagMs={role: report['startLagMs'] for role, report in (('normal', normal), ('hot', hot))},
+                  allChecksPassed=True, asyncInflightReturnedToZero=True, sampledBudgetsWithinLimits=True,
+                  note='十个普通房间的P99只取范围，不平均；无热点阶段hot延迟无样本。原始脚本note中的No room scheduler implemented为过时文字，实际模式由配置、命令和Gauge共同核对。')
+    for name, value in (('resource-summary.json', resources), ('verification.json', result)):
+        (folder / name).write_text(json.dumps(value, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print(json.dumps(result, ensure_ascii=False))
+
+
+for argument in sys.argv[1:]:
+    analyze(Path(argument))

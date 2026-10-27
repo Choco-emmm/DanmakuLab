@@ -1,0 +1,13 @@
+{
+  "connections": 100,
+  "seconds": 60,
+  "rate": 20,
+  "sample_every": 10,
+  "scenario": "steady",
+  "node_a_pid": 78288,
+  "output": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\redis-100-01/client",
+  "urls": [
+    "ws://127.0.0.1:8087/ws",
+    "ws://127.0.0.1:8088/ws"
+  ]
+}

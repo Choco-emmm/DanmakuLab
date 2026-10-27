@@ -1,0 +1,804 @@
+{
+  "8088": {
+    "at": "2026-10-26T15:07:41.2179810+00:00",
+    "metrics": [
+      {
+        "name": "jvm.threads.live",
+        "description": "The current number of live threads including both daemon and non-daemon threads",
+        "baseUnit": "threads",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 69.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.local.enqueued",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 1200.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.publish.bytes",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.publish.messages",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.publish.results",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 600.0
+          }
+        ],
+        "availableTags": [
+          {
+            "tag": "reason",
+            "values": [
+              ""
+            ]
+          },
+          {
+            "tag": "status",
+            "values": [
+              "accepted"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "lab.cluster.publish.subscribers",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 1200.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.published",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 600.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.ready",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 1.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.receive.bytes",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.receive.messages",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.received",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 1200.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.connections",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.deliveries.enqueued",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 60000.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.deliveries.expected",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 60000.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.deliveries.submitted",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 60000.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.bytes",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.bytes.highwater",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 556.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.completed",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 1200.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.messages",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.mode.fair",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 1.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.ready",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.rooms",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.wait",
+        "baseUnit": "seconds",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 1200.0
+          },
+          {
+            "statistic": "TOTAL_TIME",
+            "value": 0.0510021
+          },
+          {
+            "statistic": "MAX",
+            "value": 0.0004074
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.messages.accepted",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 600.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.messages.input",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 600.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.bytes",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.bytes.highwater",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 27991.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.messages",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.mode.buffered",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 1.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.slots",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.tasks",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.writers.active",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.writes.inflight",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.rooms",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "process.cpu.usage",
+        "description": "The \"recent cpu usage\" for the Java Virtual Machine process",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0017693269613858463
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "jvm.memory.used",
+        "description": "The amount of used memory",
+        "baseUnit": "bytes",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 39113248.0
+          }
+        ],
+        "availableTags": [
+          {
+            "tag": "id",
+            "values": [
+              "G1 Survivor Space",
+              "G1 Old Gen",
+              "G1 Eden Space"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "8087": {
+    "at": "2026-10-26T15:07:40.9823725+00:00",
+    "metrics": [
+      {
+        "name": "jvm.threads.live",
+        "description": "The current number of live threads including both daemon and non-daemon threads",
+        "baseUnit": "threads",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 74.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.local.enqueued",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 1200.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.publish.bytes",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.publish.messages",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.publish.results",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 600.0
+          }
+        ],
+        "availableTags": [
+          {
+            "tag": "reason",
+            "values": [
+              ""
+            ]
+          },
+          {
+            "tag": "status",
+            "values": [
+              "accepted"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "lab.cluster.publish.subscribers",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 1200.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.published",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 600.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.ready",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 1.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.receive.bytes",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.receive.messages",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.cluster.received",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 1200.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.connections",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.deliveries.enqueued",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 60000.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.deliveries.expected",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 60000.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.deliveries.submitted",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 60000.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.bytes",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.bytes.highwater",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 556.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.completed",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 1200.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.messages",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.mode.fair",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 1.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.ready",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.rooms",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.dispatch.wait",
+        "baseUnit": "seconds",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 1200.0
+          },
+          {
+            "statistic": "TOTAL_TIME",
+            "value": 0.0518362
+          },
+          {
+            "statistic": "MAX",
+            "value": 0.000411
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.messages.accepted",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 600.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.messages.input",
+        "measurements": [
+          {
+            "statistic": "COUNT",
+            "value": 600.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.bytes",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.bytes.highwater",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 27991.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.messages",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.mode.buffered",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 1.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.slots",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.tasks",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.writers.active",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.outbound.writes.inflight",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "lab.rooms",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "process.cpu.usage",
+        "description": "The \"recent cpu usage\" for the Java Virtual Machine process",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 0.0016553095063121482
+          }
+        ],
+        "availableTags": []
+      },
+      {
+        "name": "jvm.memory.used",
+        "description": "The amount of used memory",
+        "baseUnit": "bytes",
+        "measurements": [
+          {
+            "statistic": "VALUE",
+            "value": 45666160.0
+          }
+        ],
+        "availableTags": [
+          {
+            "tag": "id",
+            "values": [
+              "G1 Survivor Space",
+              "G1 Old Gen",
+              "G1 Eden Space"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

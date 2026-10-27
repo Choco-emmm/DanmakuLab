@@ -1,0 +1,11 @@
+t4-direct: exit=0
+PASS: docs\results\2026-10-25\formal-t4-direct-01; 1000 connections; 11544500 actual deliveries
+
+t4-fair: exit=0
+PASS: docs\results\2026-10-25\formal-t4-fair-01; 1000 connections; 11544500 actual deliveries
+
+t3: exit=0
+PASS FORMAL: docs\results\2026-10-25\formal-t3-32writers-01; normal=17820000/17820000; p99=37ms
+
+t5: exit=0
+PASS FORMAL: docs\results\2026-10-25\formal-t5-32writers-01; normal=36000000/36000000; p99=36ms

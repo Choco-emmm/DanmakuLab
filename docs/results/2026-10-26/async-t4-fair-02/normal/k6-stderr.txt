@@ -1,0 +1,7 @@
+time="2026-10-26T11:16:55+08:00" level=info msg="T4 normal: all 500 joined; shared start=1792984643073" source=console
+time="2026-10-26T11:17:23+08:00" level=info msg="T4 phase 1/4: normal-only; ordinary 2/s/room; hot 0/s" source=console
+time="2026-10-26T11:20:23+08:00" level=info msg="T4 phase 2/4: hot-20-0; ordinary 2/s/room; hot 20/s" source=console
+time="2026-10-26T11:23:23+08:00" level=info msg="T4 phase 3/4: hot-100-1; ordinary 2/s/room; hot 100/s" source=console
+time="2026-10-26T11:26:23+08:00" level=info msg="T4 phase 4/4: hot-200-2; ordinary 2/s/room; hot 200/s" source=console
+time="2026-10-26T11:29:23+08:00" level=info msg="T4 input stopped; drain 5s" source=console
+

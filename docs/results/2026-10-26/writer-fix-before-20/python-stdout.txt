@@ -1,0 +1,10 @@
+Joined 20; scenario=T3; warmup=2s; measured=20s; slow=10
+{"at": 1792975367.32391, "measuring": false, "sent": 0, "accepted": 0, "normalReceived": 0, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 0.0}
+Measurement started; slow recv throttling enabled where configured
+{"at": 1792975372.3397155, "measuring": true, "sent": 101, "accepted": 100, "normalReceived": 600, "slowReceived": 60, "normalFailures": 0, "maxSendLagMs": 15.545599977485836}
+{"at": 1792975377.3537455, "measuring": true, "sent": 201, "accepted": 197, "normalReceived": 1566, "slowReceived": 160, "normalFailures": 0, "maxSendLagMs": 15.586000052280724}
+{"at": 1792975382.3588288, "measuring": true, "sent": 301, "accepted": 197, "normalReceived": 1566, "slowReceived": 260, "normalFailures": 10, "maxSendLagMs": 16.05790003668517}
+{"at": 1792975387.3648164, "measuring": true, "sent": 401, "accepted": 197, "normalReceived": 1566, "slowReceived": 350, "normalFailures": 10, "maxSendLagMs": 16.05790003668517}
+{"at": 1792975392.3784018, "measuring": true, "sent": 440, "accepted": 197, "normalReceived": 1566, "slowReceived": 450, "normalFailures": 10, "maxSendLagMs": 16.05790003668517}
+{"scenario": "T3", "passed": false, "normalExpected": 4000, "normalReceived": 1566, "normalLatencyMs": {"samples": 157, "p50": 1, "p95": 2, "p99": 2, "max": 3, "avg": 1.178343949044586, "overflowAbove120000ms": 0}, "failures": {"normal:read": 10}, "checks": {"allJoined": true, "scheduleComplete": true, "acceptedAll": false, "noMissingResults": false, "normalComplete": false, "normalWarmupComplete": true, "inputRateValid": true, "noNormalFailures": false, "noDuplicates": true, "noOrderErrors": true, "noProtocolErrors": true, "sendLagValid": true, "latencySlo": true, "noFatal": true}}
+

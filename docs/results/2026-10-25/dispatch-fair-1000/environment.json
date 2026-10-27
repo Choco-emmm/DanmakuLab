@@ -1,0 +1,11 @@
+{
+  "os": "Microsoft Windows NT 10.0.26200.0",
+  "note": "Same-host loopback; server and k6 share CPU/RAM. CPU is cumulative seconds; resource maxima are sampled. No backend scheduler change.",
+  "capturedAt": "2026-10-25T13:50:24.1977579+00:00",
+  "sourceCommit": "b9e25e9d1bb133af9e16f5929b59feebc9ba5340",
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics        ",
+  "java": "java version \"25.0.1\" 2025-10-21 LTS\r\nJava(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)\r\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)",
+  "k6": "k6.exe v2.0.0-rc1 (commit/fb943a6a80, go1.26.2, windows/amd64)",
+  "sourceStatus": " M README.md\r\n M TODOS.md\r\n M docs/ARCHITECTURE.md\r\n M docs/BOUNDED_OUTBOUND.md\r\n M docs/PLAN.md\r\n M docs/PROTOCOL.md\r\n M src/main/java/io/github/chocoemmm/danmakulab/core/ConnectionRegistry.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/core/DirectBroadcaster.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/core/Room.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/protocol/DanmakuHandler.java\r\n M src/main/resources/application.yml\r\n M src/test/java/io/github/chocoemmm/danmakulab/protocol/SendTimeoutTest.java\r\n?? docs/HOTSPOT.md\r\n?? docs/ROOM_DISPATCH.md\r\n?? docs/results/2026-10-24/hotspot-initial-1000/\r\n?? docs/results/2026-10-24/hotspot-initial-report.md\r\n?? docs/results/2026-10-24/hotspot-tool-smoke/\r\n?? docs/results/2026-10-25/\r\n?? scripts/load/hotspot.js\r\n?? scripts/run/hotspot.ps1\r\n?? scripts/tests/hotspot-summary.test.py\r\n?? src/main/java/io/github/chocoemmm/danmakulab/config/DispatchProperties.java\r\n?? src/main/java/io/github/chocoemmm/danmakulab/core/FairRoomDispatcher.java\r\n?? src/test/java/io/github/chocoemmm/danmakulab/FairWebSocketIntegrationTest.java\r\n?? src/test/java/io/github/chocoemmm/danmakulab/core/FairRoomDispatcherTest.java\r\n?? src/test/java/io/github/chocoemmm/danmakulab/protocol/RoomAdmissionTest.java\r\n",
+  "logicalProcessors": 32
+}

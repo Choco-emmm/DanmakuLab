@@ -1,0 +1,1758 @@
+{
+  "client": {
+    "acceptedDeliveryDemand": 11544500.0,
+    "accepted": 36049.0,
+    "rejected": 35951.0,
+    "sent": 72000.0,
+    "received": 11544500.0
+  },
+  "note": "Per-room quantiles remain separate; same-host processes still share CPU/RAM.",
+  "reports": [
+    {
+      "scenario": "T4-initial",
+      "role": "normal",
+      "totalConnections": 500,
+      "configuredConnections": 1000,
+      "normalRooms": 10,
+      "normalConnections": 50,
+      "hotConnections": 500,
+      "plannedStartAtMs": 1792982790623,
+      "readyAtMs": 1792982763385,
+      "startedAtMs": 1792982790649,
+      "startLagMs": 26,
+      "phaseSeconds": 180,
+      "hotRates": [
+        20,
+        100,
+        200
+      ],
+      "requestBytes": 256,
+      "latencySampleEvery": 10,
+      "dedupBytes": 720000,
+      "joined": 500,
+      "errors": 0,
+      "duplicates": 0,
+      "orderViolations": 0,
+      "isolationFailures": 0,
+      "unexpectedCloses": 0,
+      "missingAccepted": 0,
+      "missingResults": 0,
+      "rooms": [
+        {
+          "name": "normal-0",
+          "connections": 50,
+          "phases": [
+            {
+              "name": "normal-only",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(99)": 13.009999999999991,
+                "max": 22,
+                "avg": 3.15,
+                "min": 0,
+                "med": 2,
+                "p(95)": 9
+              },
+              "maxSendLagMs": 26,
+              "broadcastBytes": {
+                "min": 486,
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.47777777777776
+              }
+            },
+            {
+              "name": "hot-20-0",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999222252467959,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(95)": 8,
+                "p(99)": 14,
+                "max": 23,
+                "avg": 2.7672222222222222,
+                "min": 0,
+                "med": 2
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.80555555555554,
+                "min": 488,
+                "med": 489,
+                "p(95)": 489
+              }
+            },
+            {
+              "name": "hot-100-1",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "avg": 2.1555555555555554,
+                "min": 0,
+                "med": 2,
+                "p(95)": 6,
+                "p(99)": 10,
+                "max": 24
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "med": 489,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490,
+                "avg": 489.03055555555557,
+                "min": 488
+              }
+            },
+            {
+              "name": "hot-200-2",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 2,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(95)": 6,
+                "p(99)": 11,
+                "max": 28,
+                "avg": 2.2594444444444446,
+                "min": 0,
+                "med": 2
+              },
+              "maxSendLagMs": 19,
+              "broadcastBytes": {
+                "avg": 489.80555555555554,
+                "min": 489,
+                "med": 490,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490
+              }
+            }
+          ]
+        },
+        {
+          "name": "normal-1",
+          "connections": 50,
+          "phases": [
+            {
+              "name": "normal-only",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(95)": 12,
+                "p(99)": 16,
+                "max": 24,
+                "avg": 4.802222222222222,
+                "min": 0,
+                "med": 4
+              },
+              "maxSendLagMs": 26,
+              "broadcastBytes": {
+                "avg": 488.47777777777776,
+                "min": 486,
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489
+              }
+            },
+            {
+              "name": "hot-20-0",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999222252467959,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(95)": 12,
+                "p(99)": 16,
+                "max": 19,
+                "avg": 4.708333333333333,
+                "min": 0,
+                "med": 4
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.80555555555554,
+                "min": 488
+              }
+            },
+            {
+              "name": "hot-100-1",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "avg": 4.0311111111111115,
+                "min": 0,
+                "med": 3,
+                "p(95)": 9,
+                "p(99)": 17,
+                "max": 31
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "med": 489,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490,
+                "avg": 489.03055555555557,
+                "min": 488
+              }
+            },
+            {
+              "name": "hot-200-2",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 2,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(99)": 14,
+                "max": 35,
+                "avg": 3.866111111111111,
+                "min": 0,
+                "med": 3,
+                "p(95)": 9
+              },
+              "maxSendLagMs": 19,
+              "broadcastBytes": {
+                "min": 489,
+                "med": 490,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490,
+                "avg": 489.80555555555554
+              }
+            }
+          ]
+        },
+        {
+          "name": "normal-2",
+          "connections": 50,
+          "phases": [
+            {
+              "name": "normal-only",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "med": 6,
+                "p(95)": 13.049999999999955,
+                "p(99)": 18.00999999999999,
+                "max": 25,
+                "avg": 6.673333333333333,
+                "min": 0
+              },
+              "maxSendLagMs": 26,
+              "broadcastBytes": {
+                "avg": 488.47777777777776,
+                "min": 486,
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489
+              }
+            },
+            {
+              "name": "hot-20-0",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999222252467959,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(95)": 12,
+                "p(99)": 15,
+                "max": 29,
+                "avg": 5.933333333333334,
+                "min": 0,
+                "med": 5
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.80555555555554,
+                "min": 488
+              }
+            },
+            {
+              "name": "hot-100-1",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "med": 5,
+                "p(95)": 11,
+                "p(99)": 18,
+                "max": 27,
+                "avg": 5.477222222222222,
+                "min": 0
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "avg": 489.03055555555557,
+                "min": 488,
+                "med": 489,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490
+              }
+            },
+            {
+              "name": "hot-200-2",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 2,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "avg": 5.545,
+                "min": 0,
+                "med": 5,
+                "p(95)": 12,
+                "p(99)": 17.00999999999999,
+                "max": 36
+              },
+              "maxSendLagMs": 19,
+              "broadcastBytes": {
+                "med": 490,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490,
+                "avg": 489.80555555555554,
+                "min": 489
+              }
+            }
+          ]
+        },
+        {
+          "name": "normal-3",
+          "connections": 50,
+          "phases": [
+            {
+              "name": "normal-only",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "avg": 7.512222222222222,
+                "min": 0,
+                "med": 7,
+                "p(95)": 14,
+                "p(99)": 16,
+                "max": 24
+              },
+              "maxSendLagMs": 26,
+              "broadcastBytes": {
+                "avg": 488.47777777777776,
+                "min": 486,
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489
+              }
+            },
+            {
+              "name": "hot-20-0",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999222252467959,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(95)": 14,
+                "p(99)": 20,
+                "max": 25,
+                "avg": 7.331111111111111,
+                "min": 0,
+                "med": 7
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.80555555555554,
+                "min": 488,
+                "med": 489,
+                "p(95)": 489
+              }
+            },
+            {
+              "name": "hot-100-1",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(99)": 17,
+                "max": 21,
+                "avg": 6.737222222222222,
+                "min": 0,
+                "med": 6,
+                "p(95)": 13
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "avg": 489.03055555555557,
+                "min": 488,
+                "med": 489,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490
+              }
+            },
+            {
+              "name": "hot-200-2",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 2,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "med": 6,
+                "p(95)": 12,
+                "p(99)": 16,
+                "max": 34,
+                "avg": 6.636666666666667,
+                "min": 0
+              },
+              "maxSendLagMs": 19,
+              "broadcastBytes": {
+                "avg": 489.80555555555554,
+                "min": 489,
+                "med": 490,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490
+              }
+            }
+          ]
+        },
+        {
+          "name": "normal-4",
+          "connections": 50,
+          "phases": [
+            {
+              "name": "normal-only",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "med": 8,
+                "p(95)": 15,
+                "p(99)": 20.00999999999999,
+                "max": 25,
+                "avg": 8.53111111111111,
+                "min": 1
+              },
+              "maxSendLagMs": 26,
+              "broadcastBytes": {
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.47777777777776,
+                "min": 486,
+                "med": 489,
+                "p(95)": 489
+              }
+            },
+            {
+              "name": "hot-20-0",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999222252467959,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "max": 31,
+                "avg": 8.192222222222222,
+                "min": 1,
+                "med": 8,
+                "p(95)": 14,
+                "p(99)": 17
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.80555555555554,
+                "min": 488
+              }
+            },
+            {
+              "name": "hot-100-1",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "max": 25,
+                "avg": 7.955,
+                "min": 1,
+                "med": 7,
+                "p(95)": 14,
+                "p(99)": 18
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "avg": 489.03055555555557,
+                "min": 488,
+                "med": 489,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490
+              }
+            },
+            {
+              "name": "hot-200-2",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 2,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(95)": 14,
+                "p(99)": 19,
+                "max": 33,
+                "avg": 7.878333333333333,
+                "min": 1,
+                "med": 7
+              },
+              "maxSendLagMs": 19,
+              "broadcastBytes": {
+                "min": 489,
+                "med": 490,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490,
+                "avg": 489.80555555555554
+              }
+            }
+          ]
+        },
+        {
+          "name": "normal-5",
+          "connections": 50,
+          "phases": [
+            {
+              "name": "normal-only",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(95)": 15,
+                "p(99)": 21.00999999999999,
+                "max": 24,
+                "avg": 8.847777777777777,
+                "min": 0,
+                "med": 9
+              },
+              "maxSendLagMs": 26,
+              "broadcastBytes": {
+                "avg": 488.47777777777776,
+                "min": 486,
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489
+              }
+            },
+            {
+              "name": "hot-20-0",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999222252467959,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "avg": 9.282222222222222,
+                "min": 0,
+                "med": 9,
+                "p(95)": 15,
+                "p(99)": 20,
+                "max": 33
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "avg": 488.80555555555554,
+                "min": 488,
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489
+              }
+            },
+            {
+              "name": "hot-100-1",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "avg": 8.947222222222223,
+                "min": 2,
+                "med": 8,
+                "p(95)": 15,
+                "p(99)": 21.00999999999999,
+                "max": 24
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "avg": 489.03055555555557,
+                "min": 488,
+                "med": 489,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490
+              }
+            },
+            {
+              "name": "hot-200-2",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 2,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(99)": 21.00999999999999,
+                "max": 34,
+                "avg": 9.29111111111111,
+                "min": 3,
+                "med": 9,
+                "p(95)": 16
+              },
+              "maxSendLagMs": 19,
+              "broadcastBytes": {
+                "avg": 489.80555555555554,
+                "min": 489,
+                "med": 490,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490
+              }
+            }
+          ]
+        },
+        {
+          "name": "normal-6",
+          "connections": 50,
+          "phases": [
+            {
+              "name": "normal-only",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(99)": 19,
+                "max": 24,
+                "avg": 9.257222222222222,
+                "min": 0,
+                "med": 9,
+                "p(95)": 15
+              },
+              "maxSendLagMs": 26,
+              "broadcastBytes": {
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.47777777777776,
+                "min": 486,
+                "med": 489
+              }
+            },
+            {
+              "name": "hot-20-0",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999222252467959,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(99)": 22,
+                "max": 25,
+                "avg": 10.597777777777777,
+                "min": 2,
+                "med": 10,
+                "p(95)": 17
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.80555555555554,
+                "min": 488,
+                "med": 489
+              }
+            },
+            {
+              "name": "hot-100-1",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "avg": 10.454444444444444,
+                "min": 2,
+                "med": 10,
+                "p(95)": 16,
+                "p(99)": 21.019999999999982,
+                "max": 30
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "avg": 489.03055555555557,
+                "min": 488,
+                "med": 489,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490
+              }
+            },
+            {
+              "name": "hot-200-2",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 2,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "avg": 10.549444444444445,
+                "min": 2,
+                "med": 10,
+                "p(95)": 18,
+                "p(99)": 23,
+                "max": 36
+              },
+              "maxSendLagMs": 19,
+              "broadcastBytes": {
+                "avg": 489.80555555555554,
+                "min": 489,
+                "med": 490,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490
+              }
+            }
+          ]
+        },
+        {
+          "name": "normal-7",
+          "connections": 50,
+          "phases": [
+            {
+              "name": "normal-only",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "avg": 10.193888888888889,
+                "min": 2,
+                "med": 10,
+                "p(95)": 16,
+                "p(99)": 21,
+                "max": 26
+              },
+              "maxSendLagMs": 26,
+              "broadcastBytes": {
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.47777777777776,
+                "min": 486,
+                "med": 489
+              }
+            },
+            {
+              "name": "hot-20-0",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999222252467959,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(95)": 18,
+                "p(99)": 24,
+                "max": 26,
+                "avg": 11.54111111111111,
+                "min": 2,
+                "med": 11
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.80555555555554,
+                "min": 488,
+                "med": 489
+              }
+            },
+            {
+              "name": "hot-100-1",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "med": 11,
+                "p(95)": 18,
+                "p(99)": 25.00999999999999,
+                "max": 29,
+                "avg": 11.85,
+                "min": 4
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490,
+                "avg": 489.03055555555557,
+                "min": 488,
+                "med": 489
+              }
+            },
+            {
+              "name": "hot-200-2",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 2,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(99)": 25,
+                "max": 34,
+                "avg": 11.995,
+                "min": 4,
+                "med": 11,
+                "p(95)": 19
+              },
+              "maxSendLagMs": 19,
+              "broadcastBytes": {
+                "p(99)": 490,
+                "max": 490,
+                "avg": 489.80555555555554,
+                "min": 489,
+                "med": 490,
+                "p(95)": 490
+              }
+            }
+          ]
+        },
+        {
+          "name": "normal-8",
+          "connections": 50,
+          "phases": [
+            {
+              "name": "normal-only",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "max": 25,
+                "avg": 10.525555555555556,
+                "min": 1,
+                "med": 11,
+                "p(95)": 18,
+                "p(99)": 22
+              },
+              "maxSendLagMs": 26,
+              "broadcastBytes": {
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.47777777777776,
+                "min": 486,
+                "med": 489,
+                "p(95)": 489
+              }
+            },
+            {
+              "name": "hot-20-0",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999222252467959,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "max": 29,
+                "avg": 12.631666666666666,
+                "min": 2,
+                "med": 12,
+                "p(95)": 19,
+                "p(99)": 25
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "avg": 488.80555555555554,
+                "min": 488,
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489
+              }
+            },
+            {
+              "name": "hot-100-1",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "med": 12,
+                "p(95)": 19,
+                "p(99)": 23,
+                "max": 27,
+                "avg": 12.661111111111111,
+                "min": 2
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "max": 490,
+                "avg": 489.03055555555557,
+                "min": 488,
+                "med": 489,
+                "p(95)": 490,
+                "p(99)": 490
+              }
+            },
+            {
+              "name": "hot-200-2",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 2,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "med": 13,
+                "p(95)": 21.049999999999955,
+                "p(99)": 28,
+                "max": 34,
+                "avg": 13.347777777777777,
+                "min": 4
+              },
+              "maxSendLagMs": 19,
+              "broadcastBytes": {
+                "max": 490,
+                "avg": 489.80555555555554,
+                "min": 489,
+                "med": 490,
+                "p(95)": 490,
+                "p(99)": 490
+              }
+            }
+          ]
+        },
+        {
+          "name": "normal-9",
+          "connections": 50,
+          "phases": [
+            {
+              "name": "normal-only",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "min": 1,
+                "med": 12,
+                "p(95)": 17,
+                "p(99)": 21,
+                "max": 26,
+                "avg": 11.306111111111111
+              },
+              "maxSendLagMs": 26,
+              "broadcastBytes": {
+                "avg": 488.47777777777776,
+                "min": 486,
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489
+              }
+            },
+            {
+              "name": "hot-20-0",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999222252467959,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "p(99)": 26,
+                "max": 28,
+                "avg": 13.34,
+                "min": 1,
+                "med": 13,
+                "p(95)": 20
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "avg": 488.80555555555554,
+                "min": 488,
+                "med": 489,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489
+              }
+            },
+            {
+              "name": "hot-100-1",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 1.9999111150615527,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "med": 13,
+                "p(95)": 22,
+                "p(99)": 26,
+                "max": 31,
+                "avg": 13.921666666666667,
+                "min": 3
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "avg": 489.03055555555557,
+                "min": 488,
+                "med": 489,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490
+              }
+            },
+            {
+              "name": "hot-200-2",
+              "targetInputPerSecond": 2,
+              "plannedInputMessages": 360,
+              "sent": 360,
+              "accepted": 360,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 2,
+              "allInputDeliveryDemand": 18000,
+              "acceptedDeliveryDemand": 18000,
+              "received": 18000,
+              "missingAccepted": 0,
+              "latencySamples": 1800,
+              "latencyMs": {
+                "avg": 14.280555555555555,
+                "min": 1,
+                "med": 13,
+                "p(95)": 23,
+                "p(99)": 29,
+                "max": 34
+              },
+              "maxSendLagMs": 19,
+              "broadcastBytes": {
+                "avg": 489.80555555555554,
+                "min": 489,
+                "med": 490,
+                "p(95)": 490,
+                "p(99)": 490,
+                "max": 490
+              }
+            }
+          ]
+        }
+      ],
+      "note": "Same-host, all readers normal; one VU per process handles only its ROLE. Split roles share absolute phase boundaries. Finite drain, sampled latency; processes still share host CPU/RAM. No room scheduler implemented; not formal 15/30-minute validation."
+    },
+    {
+      "scenario": "T4-initial",
+      "role": "hot",
+      "totalConnections": 500,
+      "configuredConnections": 1000,
+      "normalRooms": 10,
+      "normalConnections": 50,
+      "hotConnections": 500,
+      "plannedStartAtMs": 1792982790623,
+      "readyAtMs": 1792982763399,
+      "startedAtMs": 1792982790624,
+      "startLagMs": 1,
+      "phaseSeconds": 180,
+      "hotRates": [
+        20,
+        100,
+        200
+      ],
+      "requestBytes": 256,
+      "latencySampleEvery": 10,
+      "dedupBytes": 28800000,
+      "joined": 500,
+      "errors": 0,
+      "duplicates": 0,
+      "orderViolations": 0,
+      "isolationFailures": 0,
+      "unexpectedCloses": 0,
+      "missingAccepted": 0,
+      "missingResults": 0,
+      "rooms": [
+        {
+          "name": "hot",
+          "connections": 500,
+          "phases": [
+            {
+              "name": "normal-only",
+              "targetInputPerSecond": 0,
+              "plannedInputMessages": 0,
+              "sent": 0,
+              "accepted": 0,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 0,
+              "allInputDeliveryDemand": 0,
+              "acceptedDeliveryDemand": 0,
+              "received": 0,
+              "missingAccepted": 0,
+              "latencySamples": 0,
+              "latencyMs": null,
+              "maxSendLagMs": 0,
+              "broadcastBytes": null
+            },
+            {
+              "name": "hot-20-0",
+              "targetInputPerSecond": 20,
+              "plannedInputMessages": 3600,
+              "sent": 3600,
+              "accepted": 3600,
+              "rejected": 0,
+              "roomRateRejected": 0,
+              "rejectionReasons": {
+                "room_rate_limit": 0,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 19.99988888950617,
+              "allInputDeliveryDemand": 1800000,
+              "acceptedDeliveryDemand": 1800000,
+              "received": 1800000,
+              "missingAccepted": 0,
+              "latencySamples": 180000,
+              "latencyMs": {
+                "min": 0,
+                "med": 7,
+                "p(95)": 14,
+                "p(99)": 19,
+                "max": 31,
+                "avg": 7.650361111111111
+              },
+              "maxSendLagMs": 18,
+              "broadcastBytes": {
+                "avg": 487.4480555555556,
+                "min": 483,
+                "med": 488,
+                "p(95)": 488,
+                "p(99)": 488,
+                "max": 488
+              }
+            },
+            {
+              "name": "hot-100-1",
+              "targetInputPerSecond": 100,
+              "plannedInputMessages": 18000,
+              "sent": 18000,
+              "accepted": 9049,
+              "rejected": 8951,
+              "roomRateRejected": 8951,
+              "rejectionReasons": {
+                "room_rate_limit": 8951,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 99.9977778271594,
+              "allInputDeliveryDemand": 9000000,
+              "acceptedDeliveryDemand": 4524500,
+              "received": 4524500,
+              "missingAccepted": 0,
+              "latencySamples": 452450,
+              "latencyMs": {
+                "avg": 10.61862305227097,
+                "min": 0,
+                "med": 8,
+                "p(95)": 32,
+                "p(99)": 83,
+                "max": 232
+              },
+              "maxSendLagMs": 120,
+              "broadcastBytes": {
+                "avg": 488.07426234943085,
+                "min": 486,
+                "med": 488,
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489
+              }
+            },
+            {
+              "name": "hot-200-2",
+              "targetInputPerSecond": 200,
+              "plannedInputMessages": 36000,
+              "sent": 36000,
+              "accepted": 9000,
+              "rejected": 27000,
+              "roomRateRejected": 27000,
+              "rejectionReasons": {
+                "room_rate_limit": 27000,
+                "connection_rate_limit": 0,
+                "other": 0
+              },
+              "actualInputPerSecond": 199.99111150615528,
+              "allInputDeliveryDemand": 18000000,
+              "acceptedDeliveryDemand": 4500000,
+              "received": 4500000,
+              "missingAccepted": 0,
+              "latencySamples": 450000,
+              "latencyMs": {
+                "min": 0,
+                "med": 8,
+                "p(95)": 48,
+                "p(99)": 105,
+                "max": 185,
+                "avg": 11.832651111111112
+              },
+              "maxSendLagMs": 113,
+              "broadcastBytes": {
+                "p(95)": 489,
+                "p(99)": 489,
+                "max": 489,
+                "avg": 488.7801111111111,
+                "min": 487,
+                "med": 489
+              }
+            }
+          ]
+        }
+      ],
+      "note": "Same-host, all readers normal; one VU per process handles only its ROLE. Split roles share absolute phase boundaries. Finite drain, sampled latency; processes still share host CPU/RAM. No room scheduler implemented; not formal 15/30-minute validation."
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+test_missing_always_online_viewer_stays_in_denominator (test_reconnect.AccountingTest.test_missing_always_online_viewer_stays_in_denominator)
+少一位固定在线观众就失败，不能拿重连组额外收到的消息抵消缺口。 ... ok
+test_offline_viewers_are_not_required_to_replay_history (test_reconnect.AccountingTest.test_offline_viewers_are_not_required_to_replay_history)
+明确离线期间不可靠补发；重连期必达分母仍固定为三位始终在线观众。 ... ok
+test_planned_close_is_not_unexpected_but_stable_failure_is (test_reconnect.AccountingTest.test_planned_close_is_not_unexpected_but_stable_failure_is)
+脚本主动关旧连接不报意外；固定组真正的读失败必须保留。 ... ok
+test_refusal_cannot_reduce_nominal_required_demand (test_reconnect.AccountingTest.test_refusal_cannot_reduce_nominal_required_demand)
+输入被拒绝时仍保留原计划需求，而且本场景不能算通过。 ... ok
+test_same_input_across_connection_generations_is_still_duplicate (test_reconnect.AccountingTest.test_same_input_across_connection_generations_is_still_duplicate)
+换了socket不清去重表，不能把重复补发当成新的业务消息。 ... ok
+test_wrong_sender_cannot_confirm_and_boolean_is_not_sequence (test_reconnect.AccountingTest.test_wrong_sender_cannot_confirm_and_boolean_is_not_sequence)
+验证接受结果的发送者身份，并排除Python的bool被误当整数序号。 ... ok
+test_exponential_caps_and_thirty_second_ceiling (test_reconnect.BackoffTest.test_exponential_caps_and_thirty_second_ceiling)
+检查1/2/4/8/16/30秒上限，重复失败不能把定时器扩大到无界。 ... ok
+test_full_jitter_can_be_zero_and_stays_below_cap (test_reconnect.BackoffTest.test_full_jitter_can_be_zero_and_stays_below_cap)
+全抖动覆盖零等待与接近上限，不能变成所有客户端统一延迟。 ... ok
+test_only_real_close_frame_1013_qualifies_as_capacity_rejection (test_reconnect.BackoffTest.test_only_real_close_frame_1013_qualifies_as_capacity_rejection)
+TCP关闭、超时和其他关闭码不能被报告成成功观察到准入拒绝。 ... ok
+test_expired_recovery_budget_does_not_start_socket_attempt (test_reconnect.RetryTest.test_expired_recovery_budget_does_not_start_socket_attempt)
+总恢复时间已耗尽时失败退出，不能继续无界创建连接。 ... ok
+test_real_rejection_outcomes_advance_attempt_and_cap (test_reconnect.RetryTest.test_real_rejection_outcomes_advance_attempt_and_cap)
+用假的等待只验证重试控制流；真实毫秒等待另在网络归档中核对，不能混为实测。 ... ok
+test_success_stops_retrying_after_first_join (test_reconnect.RetryTest.test_success_stops_retrying_after_first_join)
+join成功后停止本轮重试，不再多开一个相同逻辑观众的连接。 ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.118s
+
+OK

@@ -1,0 +1,5 @@
+window=before; sent=60; totalReceived=6000
+window=churn; sent=60; totalReceived=11510
+window=recovered; sent=60; totalReceived=17510
+{"passed": true, "received": 17510, "failures": {}, "fatal": null}
+

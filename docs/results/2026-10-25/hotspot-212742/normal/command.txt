@@ -1,0 +1,1 @@
+k6 run --quiet -e NORMAL_ROOMS=10 -e NORMAL_CONNECTIONS=50 -e HOT_CONNECTIONS=500 -e PHASE_SECONDS=30 -e DRAIN_SECONDS=5 -e HOT_RATES=20,100,200 -e LATENCY_SAMPLE_EVERY=10 -e WS_URL=ws://127.0.0.1:8082/ws -e ROLE=normal -e START_AT_MS=1792934895752 -e SUMMARY_PATH=D:\coding\DanmakuLab\docs\results\2026-10-25\hotspot-212742\normal\k6-summary.json scripts/load/hotspot.js

@@ -1,0 +1,160 @@
+{
+  "sampleCount": 150,
+  "firstElapsedSeconds": 0.0076438,
+  "lastElapsedSeconds": 751.3280151,
+  "scope": "准备、四阶段、排空期间约五秒采样；最大值为采样最大值；各指标先后读取，非原子快照。",
+  "lab.connections": {
+    "first": 0.0,
+    "last": 1000.0,
+    "min": 0.0,
+    "max": 1000.0,
+    "limit": 1000
+  },
+  "lab.outbound.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 200979.0,
+    "limit": 134217728
+  },
+  "lab.outbound.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 416.0,
+    "limit": 256000
+  },
+  "lab.outbound.slots": {
+    "first": 0.0,
+    "last": 1000.0,
+    "min": 0.0,
+    "max": 1000.0,
+    "limit": 1000
+  },
+  "lab.outbound.tasks": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 305.0,
+    "limit": 2000
+  },
+  "lab.outbound.writers.active": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 8.0,
+    "limit": 8
+  },
+  "lab.outbound.writes.inflight": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 17.0,
+    "limit": 1000
+  },
+  "lab.dispatch.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "limit": 4194304
+  },
+  "lab.dispatch.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "limit": 4096
+  },
+  "lab.dispatch.rooms": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "limit": 1000
+  },
+  "lab.dispatch.ready": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "limit": 1000
+  },
+  "jvm.memory.used": {
+    "first": 79969200.0,
+    "last": 85915128.0,
+    "min": 78391816.0,
+    "max": 149820520.0
+  },
+  "jvm.threads.live": {
+    "first": 24.0,
+    "last": 123.0,
+    "min": 24.0,
+    "max": 123.0
+  },
+  "processes": {
+    "server": {
+      "sampleCount": 150,
+      "workingSetBytes": {
+        "first": 248270848,
+        "last": 351485952,
+        "min": 248270848,
+        "max": 373186560
+      },
+      "threads": {
+        "first": 64,
+        "last": 163,
+        "min": 64,
+        "max": 172
+      },
+      "cpuSecondsDelta": 518.34375,
+      "averageLogicalCores": 0.6899104161159858
+    },
+    "normal": {
+      "sampleCount": 149,
+      "workingSetBytes": {
+        "first": 80916480,
+        "last": 113836032,
+        "min": 80916480,
+        "max": 119787520
+      },
+      "threads": {
+        "first": 38,
+        "last": 59,
+        "min": 38,
+        "max": 60
+      },
+      "cpuSecondsDelta": 105.828125,
+      "averageLogicalCores": 0.1418159253665085
+    },
+    "hot": {
+      "sampleCount": 149,
+      "workingSetBytes": {
+        "first": 95166464,
+        "last": 206110720,
+        "min": 95166464,
+        "max": 209424384
+      },
+      "threads": {
+        "first": 39,
+        "last": 65,
+        "min": 39,
+        "max": 65
+      },
+      "cpuSecondsDelta": 1052.109375,
+      "averageLogicalCores": 1.4098885773739627
+    }
+  },
+  "lifetimeHighwater": {
+    "lab.outbound.bytes.highwater": {
+      "first": 0.0,
+      "last": 3310835.0
+    },
+    "lab.dispatch.bytes.highwater": {
+      "first": 0.0,
+      "last": 0.0
+    }
+  },
+  "gcCOUNTDelta": null,
+  "gcTOTAL_TIMEDelta": null
+}
