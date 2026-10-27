@@ -1,12 +1,13 @@
 # 从一条弹幕看懂两层队列与异步发送
 
-本文讲当前`lab.dispatch.mode=fair`、`lab.outbound.mode=buffered`的路径。两个开关默认都是direct；只启动默认服务不会经过本文全部步骤。Java源码保持不变，本文是阅读导航。
+本文讲当前`lab.cluster.mode=local`、`lab.dispatch.mode=fair`、`lab.outbound.mode=buffered`的路径。后两个开关默认都是direct；只启动默认服务不会经过本文全部步骤。Java源码保持不变，本文是阅读导航；跨节点路径见 [Redis双节点](CLUSTER.md)。
 
 假设房间里有A、B、C三位观众，A发出“你好”。广播也发给A自己，所以会产生三份观众投递。
 
 ```text
 A的WebSocket发来send
   → DanmakuHandler.send：校验、连接限流、房间限流
+  → BroadcastIngress.submit：local模式由LocalBroadcastIngress选择本地调度
   → FairRoomDispatcher.submit：给房间队列追加一次“你好”
   → lab-room-dispatch线程：轮到该房间，取得成员快照[A,B,C]
   → DirectBroadcaster.deliver：分别投递到A、B、C的输出邮箱
@@ -18,7 +19,7 @@ A的WebSocket发来send
 
 ## 1. 房间队列：先收下一条待广播输入
 
-打开[DanmakuHandler](../src/main/java/io/github/chocoemmm/danmakulab/protocol/DanmakuHandler.java)，找到`send`最后的`dispatcher.submit(...)`。它只在fair开启时进入房间调度器；原房间调度会走另一条路径。
+打开[DanmakuHandler](../src/main/java/io/github/chocoemmm/danmakulab/protocol/DanmakuHandler.java)，找到`send`最后的`ingress.submit(...)`。在local模式下，沿[LocalBroadcastIngress.submit](../src/main/java/io/github/chocoemmm/danmakulab/core/LocalBroadcastIngress.java)找到`dispatcher.submit(...)`；fair开启时才进入房间调度器，原房间调度会走另一条路径。
 
 再看[FairRoomDispatcher](../src/main/java/io/github/chocoemmm/danmakulab/core/FairRoomDispatcher.java)的`submit`：
 

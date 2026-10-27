@@ -80,6 +80,8 @@ python -X utf8 scripts/tests/cluster-summary.test.py docs/results/日期/本轮�
 
 Redis中断时控制连接仍存在，但不能发布；恢复后新消息正常收发，不补发离线输入。node-exit由客户端抖动后选择B，验证固定在线B观众持续收到以及恢复全员完整率。本机回环只能证明已测范围，不能外推百万连接或带宽线性增长。
 
-首轮实现与验收见 [双节点报告](results/2026-10-26/redis-report.md)。单机完整源码/JAR的长期本地位置、哈希和回归日志见 [归档索引](results/2026-10-26/redis-implementation/baseline-archive.json)，不受mvn clean影响，尚未提交推送。
+首轮实现与验收见 [双节点报告](results/2026-10-26/redis-report.md)。单机完整源码/JAR的长期本地位置、哈希和回归日志见 [归档索引](results/2026-10-26/redis-implementation/baseline-archive.json)，本地二进制归档不受mvn clean影响，也不纳入Git。
 
 提交前审查又修复了两处边界：订阅端不再用默认200字覆盖来源节点的可配置正文上限，仍受完整信封4KiB限制；版本号必须能精确放入long再与1比较，防止超大整数截断。来源节点与接收节点可以使用不同的输入正文上限，接收不重新执行输入准入。新增边界回归及修订制品见 [提交前审查](results/2026-10-26/prepublish-review/README.md)，首轮长短测的原始哈希保持不变。
+
+2026-10-27，归档版本`0.3.0.0`已提交并推送至`codex/hotspot-baseline`，尚未合入main。最终候选SHA-256为`bc5652880ad8fa34b903b7f6350e292d090fa914c85456879243082a38f43f65`，通过82项普通Java、1项显式真实Redis集成、44项Python测试，真实双节点边界收到4/4次，10观众冒烟收到600/600次。两节点各16项状态归零，本轮自建节点与Redis已停止；详见 [发布检查](results/2026-10-27/ship-verification/README.md)及 [制品索引](results/2026-10-27/ship-verification/candidate-artifact.json)。该候选没有重新完成首轮全部规模与故障实验。

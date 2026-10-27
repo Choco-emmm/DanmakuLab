@@ -2,7 +2,9 @@
 
 面向 Java 后端学习与简历展示的实时弹幕系统，重点研究大量连接下的消息广播、慢消费者处理、热点房间隔离和性能验证。
 
-新增可选 [Redis双节点](docs/CLUSTER.md)：100/1000正常观众60秒分别收齐120000/1200000次，抽样P99=7/40ms；Redis中断、真实发布超时unknown、TCP慢读和节点退出重连通过，见 [报告](docs/results/2026-10-26/redis-report.md)。默认local保留，限流/序号按节点计量，不承诺容量翻倍、可靠补发或全局严格顺序。单机65项基线回归与旧JAR已长期本地归档，当前实现未提交推送。
+新增可选 [Redis双节点](docs/CLUSTER.md)：首轮制品100/1000正常观众60秒分别收齐120000/1200000次，抽样P99=7/40ms；Redis中断、真实发布超时unknown、TCP慢读和节点退出重连通过，见 [报告](docs/results/2026-10-26/redis-report.md)。默认local保留，限流/序号按节点计量，不承诺容量翻倍、可靠补发或全局严格顺序。单机65项基线回归与旧JAR已长期本地归档。
+
+归档版本`0.3.0.0`的实现、工具和证据已提交并推送至`codex/hotspot-baseline`，尚未合入main。最终候选通过82项普通Java、1项真实Redis集成、44项Python测试，以及双节点4/4次边界投递和10观众600/600次冒烟；本轮自建资源已清理，见 [发布检查与制品哈希](docs/results/2026-10-27/ship-verification/README.md)。首轮规模和故障成绩仍绑定各自原制品，未冒充最终候选已重复全部长测。
 
 当前状态：已实现直接广播、有界连接邮箱、可选房间入口与批次轮转及演示网页。2026-10-26将buffered改为容器异步写，修复多个慢连接占满共享发送池；保留默认8个提交线程，千连接、初始1%慢读、15分钟正式T3中正常组收齐1782万次，抽样P99=35ms，见 [修复报告](docs/results/2026-10-26/async-writer-report.md)。
 用户又完成同一新版JAR、默认8提交线程的 [30分钟正式T5](docs/results/2026-10-26/t5-094730/notes.md)：1000正常连接收齐3600万次测量投递，抽样P95/P99=28/35ms，计数与清理通过。新版 [正式T4主对照](docs/results/2026-10-26/async-t4-report.md)也已完成：两种房间调度各收齐11544500次，普通房间P99均未超过32.01ms；修复一次指标采集连接问题并保留失败轮，未证明fair全面更快。旧版8线程失败及临时32线程成绩保留在 [历史报告](docs/results/2026-10-25/formal-longrun-report.md)。
@@ -25,7 +27,7 @@
 - [T2单房间吞吐阶梯操作与口径](docs/THROUGHPUT.md)
 - [T6突发断连与退避重连操作](docs/RECONNECT.md)
 - [Redis双节点运行、消息身份与失败语义](docs/CLUSTER.md)
-- [当前未发布改动的审查、修复和提交分组](docs/results/2026-10-26/prepublish-review/README.md)
+- [提交前改动的审查、修复和分组记录](docs/results/2026-10-26/prepublish-review/README.md)
 - [归档版本变更记录](CHANGELOG.md)、[v0.2.0.0 提交前验证](docs/results/2026-10-24/ship-verification/notes.md)与[上一版发布检查记录](docs/results/2026-10-23/release-check.md)
 
 ## 本地启动
@@ -81,7 +83,7 @@ Windows PowerShell 7 下可用 `pwsh -File scripts/run/smoke.ps1`，自动创建
 
 已具备房间加入/切换、直接广播、房间实例序号、连接清理、输入约束、连接/房间弹幕限流、应用心跳、浏览器退避重连和基础指标。页面仅以文本渲染弹幕，并限制保留的 DOM 数量。
 
-基线逐连接同步发送，慢连接仍可能拖慢分发。已修正Tomcat原生发送超时并实现有界输出、可选房间入口、全局输入预算和观众批次轮转；新版buffered用原生异步完成回调释放预算、恢复提交，默认8线程混合慢读正式T3已通过一次。其余新版矩阵与重复仍待完成；Redis双实例属于完整P0之后的P1。
+基线逐连接同步发送，慢连接仍可能拖慢分发。已修正Tomcat原生发送超时并实现有界输出、可选房间入口、全局输入预算和观众批次轮转；新版buffered用原生异步完成回调释放预算、恢复提交，默认8线程混合慢读正式T3已通过一次。T2～T6及Redis双节点均已有首轮记录；关键独立重复和完整P0交付仍待完成，双节点结果不替代单机验收。
 当天 [首轮输出对照](docs/results/2026-10-24/outbound-report.md)中，同有效超时的停读场景 direct 正常观众 P99=4216ms，buffered P99=1ms 且收齐 36,000 次；仅为 11 连接、单轮 90 秒机制实验。
 
 [用户独立复测](docs/results/2026-10-24/slow-compare-205930/notes.md)同样完成四组对照；提交前补齐停机与失败日志路径后，最终 [32 项 Java 测试与制品冒烟](docs/results/2026-10-24/ship-verification/notes.md)通过。后续任务入口见 [TODOS](TODOS.md)。

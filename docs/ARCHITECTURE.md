@@ -1,6 +1,6 @@
 # 架构与消息语义草案
 
-状态：保留原广播路径、buffered连接邮箱和可选fair房间轮转；2026-10-26将buffered改为容器异步写，避免多个慢写长期占用共享提交线程。见 [异步输出](ASYNC_OUTBOUND.md)、[房间调度](ROOM_DISPATCH.md)、[连接输出](BOUNDED_OUTBOUND.md)及[协议](PROTOCOL.md)。历史制品的验收不能移用为新制品成绩，多实例仍为目标设计。
+状态：保留原广播路径、buffered连接邮箱和可选fair房间轮转；2026-10-26将buffered改为容器异步写，避免多个慢写长期占用共享提交线程。见 [异步输出](ASYNC_OUTBOUND.md)、[房间调度](ROOM_DISPATCH.md)、[连接输出](BOUNDED_OUTBOUND.md)及[协议](PROTOCOL.md)。已实现可选Redis双节点，路径见第8节；历史制品的验收不能移用为新制品成绩。
 
 ## 1. 需要验证的问题
 
@@ -72,7 +72,7 @@ buffered要求当前Jakarta原生会话，使用Async.sendText的完成回调；
 - 连接降级会出现序号缺口；序号缺口不等于乱序。连接中途加入也会自然缺少更早的序号。
 - 成员快照在分发时确定。计数、正常退出和断连清理需要围绕这个边界统一，避免把未加入的用户算作丢失。
 - 普通弹幕允许因明确降级或连接故障丢失，不做历史补发，不宣称可靠交付或 exactly-once。
-- 基线与 fair 都在短房间锁内分配序号；fair 不持该锁遍历观众。空房间退休时取消旧队列，同名重建换实例。使用 `runId + roomInstanceId + roomSeq` 解释唯一范围，跨节点扩展仍属待实现设计。
+- 基线与 fair 都在短房间锁内分配序号；fair 不持该锁遍历观众。空房间退休时取消旧队列，同名重建换实例。本地使用 `runId + roomInstanceId + roomSeq` 解释唯一范围；Redis模式保留来源流身份，增加 `originNodeId` 与 `messageId`，不生成集群全局严格序号，见第8节。
 
 ## 6. 慢消费者处理
 
