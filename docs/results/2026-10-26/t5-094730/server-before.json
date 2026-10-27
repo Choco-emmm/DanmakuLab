@@ -1,0 +1,210 @@
+{
+  "startedAt": "2026-10-26T01:47:29.2991024+00:00",
+  "endedAt": "2026-10-26T01:47:30.6689977+00:00",
+  "metrics": [
+    {
+      "name": "jvm.threads.live",
+      "description": "The current number of live threads including both daemon and non-daemon threads",
+      "baseUnit": "threads",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 25.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.connections",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.bytes",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.bytes.highwater",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.messages",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.mode.fair",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 1.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.ready",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.rooms",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.bytes",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.bytes.highwater",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.messages",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.mode.buffered",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 1.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.slots",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.tasks",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.writers.active",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.writes.inflight",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.rooms",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "process.cpu.usage",
+      "description": "The \"recent cpu usage\" for the Java Virtual Machine process",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0313094127416185
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "jvm.memory.used",
+      "description": "The amount of used memory",
+      "baseUnit": "bytes",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 59010952.0
+        }
+      ],
+      "availableTags": [
+        {
+          "tag": "id",
+          "values": [
+            "G1 Survivor Space",
+            "G1 Old Gen",
+            "G1 Eden Space"
+          ]
+        }
+      ]
+    }
+  ]
+}

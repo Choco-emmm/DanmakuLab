@@ -1,0 +1,82 @@
+[
+  {
+    "path": "application.yml",
+    "sha256": "c689cb1ec4eee43a1fd922b8bce898275666032ddb8d59af9647ae548644650e"
+  },
+  {
+    "path": "client\\checkpoint-1.json",
+    "sha256": "193fec3fc39542808cfd1f5f52b3492d6b1d492071a793b13b8887f9e0615d7b"
+  },
+  {
+    "path": "client\\config.json",
+    "sha256": "1e06085b050aa25c72ccaf0161c58201fab13380c084ace8856e9732e2589ba4"
+  },
+  {
+    "path": "client\\observations.json",
+    "sha256": "612d95a4c3d583fc881a72ab9840666f0dd45557b63d043dd694878bdcf38e12"
+  },
+  {
+    "path": "client\\progress.jsonl",
+    "sha256": "9bbe1c9f2bb48fd987569523dc309e90908bc637d67165b4ecbdf93e3e00e8f3"
+  },
+  {
+    "path": "client\\summary.json",
+    "sha256": "e57a6d19c9535182405f571ca89a0b4310268c192c644be400a54cef8ab3a191"
+  },
+  {
+    "path": "command.json",
+    "sha256": "7584a1fa9aa28bf8eaaf28b97746b2c356decc2de7752aa3ebc2d0c3b71d47f4"
+  },
+  {
+    "path": "config.json",
+    "sha256": "c420f1c56c0c5fe96266498e9268bd4e643b5b504b63bd7fa42c6ecc511709ea"
+  },
+  {
+    "path": "counter-delta.json",
+    "sha256": "751795bca04e7d4e16a04ac7d5b8b5ef0fa828f963493744fe3b8506ffafddfd"
+  },
+  {
+    "path": "environment.json",
+    "sha256": "c1174d71beaf9990cdb044e24c7b024629fb70dba703f4509b0c871894a705cd"
+  },
+  {
+    "path": "jar-sha256.json",
+    "sha256": "ea8d99ee9910a5e5dd3c478659a1cdc0976cd14f4502b9a2b8663fbaa8127435"
+  },
+  {
+    "path": "python-status.json",
+    "sha256": "4473952e1d8e0ffa19115bcce153d08fd322a4ec7a50fbc56bff8db64c374ade"
+  },
+  {
+    "path": "python-stderr.txt",
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+  },
+  {
+    "path": "python-stdout.txt",
+    "sha256": "4a60d7b243eb014c1d9a037a4fe01c0df1326387a2f882bb346b97067c440964"
+  },
+  {
+    "path": "run-status.json",
+    "sha256": "b5ea5727b55632f9568bb50d8a21ecb718682adc0ea6135e63067f40976229b7"
+  },
+  {
+    "path": "samples.jsonl",
+    "sha256": "68d48658f8b6fbe23f5df2c4e840ef9928931a2ff783e6f1c61c0ef59842488d"
+  },
+  {
+    "path": "server-after.json",
+    "sha256": "4b69588748985cebe0c23a6016aa2519650edc180b6f70fe9c2e2eb949911670"
+  },
+  {
+    "path": "server-before.json",
+    "sha256": "0f2c8225959a20cc0bd35e395339abe679c9c3b25a7ce0087a02592d250971f5"
+  },
+  {
+    "path": "server-command.txt",
+    "sha256": "30847fe19216cdc91deaa75f702f08a0257fae4445f62d5a8c7645601eb6a8d3"
+  },
+  {
+    "path": "source-sha256.json",
+    "sha256": "105fa03ecd4d69d9e043dff96ca00ec3ade2d400bc9dbf0dedfe2c17d0673f8b"
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "name": "lab.outbound.closed",
+  "measurements": [
+    {
+      "statistic": "COUNT",
+      "value": 1000.0
+    }
+  ],
+  "availableTags": []
+}

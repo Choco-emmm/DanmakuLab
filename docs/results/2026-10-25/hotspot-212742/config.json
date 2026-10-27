@@ -1,0 +1,17 @@
+{
+  "limitNote": "Effective limits must be read together from application.yml and server-command.txt; this script does not change limits.",
+  "mode": "buffered",
+  "hotRates": "20,100,200",
+  "drainSeconds": 5,
+  "normalRooms": 10,
+  "resourceSampleSeconds": 5,
+  "normalConnections": 50,
+  "requestJsonBytes": 256,
+  "phaseSeconds": 30,
+  "hotConnections": 500,
+  "startDelaySeconds": 30,
+  "latencySampleEvery": 10,
+  "splitProcesses": true,
+  "normalInputPerRoom": 2,
+  "scenario": "T4-initial"
+}

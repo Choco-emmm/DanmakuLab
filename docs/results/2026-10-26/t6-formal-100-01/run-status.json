@@ -1,0 +1,11 @@
+{
+  "processPassed": true,
+  "clientPassed": true,
+  "collectorErrors": 0,
+  "sampledBoundsPassed": true,
+  "cleanupReturnedToZero": true,
+  "serverInputCountersMatch": true,
+  "admissionCountersMatch": true,
+  "deliveryBoundsPassed": true,
+  "passed": true
+}

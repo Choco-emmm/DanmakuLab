@@ -1,0 +1,53 @@
+{
+  "status": "completed",
+  "jarSha256": "1DB6EA8966FFAF75496B5B8EA68E2B10DB213DCA58671E290A1A0344336B0B9D",
+  "network": "Windows same-host loopback; loads run sequentially",
+  "backendChangedDuringTesting": false,
+  "defaultOutboundWorkers": 8,
+  "candidateOutboundWorkers": 32,
+  "trials": [
+    {
+      "name": "T4-direct-01",
+      "directory": "formal-t4-direct-01",
+      "workers": 8,
+      "phaseSeconds": 180,
+      "status": "passed"
+    },
+    {
+      "name": "T4-fair-01",
+      "directory": "formal-t4-fair-01",
+      "workers": 8,
+      "phaseSeconds": 180,
+      "status": "passed"
+    },
+    {
+      "name": "T3-candidate-01",
+      "directory": "formal-t3-32writers-01",
+      "workers": 32,
+      "seconds": 900,
+      "status": "passed"
+    },
+    {
+      "name": "T5-candidate-01",
+      "directory": "formal-t5-32writers-01",
+      "workers": 32,
+      "seconds": 1800,
+      "status": "passed"
+    }
+  ],
+  "failedPreflights": [
+    "longrun-mixed-preflight-8writers",
+    "longrun-mixed-minimal-8writers"
+  ],
+  "passedPreflights": [
+    "longrun-tool-smoke",
+    "longrun-mixed-minimal-32writers",
+    "longrun-mixed-preflight-32writers"
+  ],
+  "notes": [
+    "8-writer mixed-reader preflight failed; preserve and report it, not formal validation success.",
+    "32-writer candidate keeps all other service parameters unchanged. It is not the project default.",
+    "One trial of each planned duration completed. Three repeats remain a distinct requirement.",
+    "T3 is an initial 1% slow-reader cohort; closed probes were not replaced. T5 followed T3 on the same candidate JVM without restart."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "jarSha256": "1db6ea8966ffaf75496b5b8ea68e2b10db213dca58671e290a1a0344336b0b9d",
+  "archives": [
+    {
+      "directory": "formal-t4-direct-01",
+      "jsonFiles": 17,
+      "sourceMismatches": []
+    },
+    {
+      "directory": "formal-t4-fair-01",
+      "jsonFiles": 17,
+      "sourceMismatches": []
+    },
+    {
+      "directory": "formal-t3-32writers-01",
+      "jsonFiles": 14,
+      "sourceMismatches": []
+    },
+    {
+      "directory": "formal-t5-32writers-01",
+      "jsonFiles": 14,
+      "sourceMismatches": []
+    }
+  ],
+  "localLinksChecked": true
+}

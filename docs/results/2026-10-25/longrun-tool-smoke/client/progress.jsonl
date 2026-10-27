@@ -1,0 +1,3 @@
+{"at": 1792938586.2718453, "measuring": false, "sent": 0, "accepted": 0, "normalReceived": 0, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 0.0}
+{"at": 1792938591.2883363, "measuring": true, "sent": 101, "accepted": 100, "normalReceived": 3600, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 16.15059992764145}
+{"at": 1792938596.2990725, "measuring": true, "sent": 140, "accepted": 140, "normalReceived": 6000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 16.15059992764145}

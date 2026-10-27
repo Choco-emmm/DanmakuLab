@@ -1,0 +1,10 @@
+{
+  "changedEntries": [
+    "BOOT-INF/classes/static/index.html"
+  ],
+  "javaClassesUnchanged": true,
+  "dependencyJarsUnchanged": true,
+  "testedSha256": "d54ac0e09d5612c5ddaab03e3378ea9199253da7e10f37eaaa10b6f900ca9798",
+  "deliverySha256": "dc47737ded23f1353ecf80619fe06a16c87a45d312cb1dd8fbe9d109acdd3b6f",
+  "note": "仅修正页面固定实验名称，避免Redis/fair运行时仍写直接广播；全部Java类及依赖逐字节相同。"
+}

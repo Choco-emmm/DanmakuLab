@@ -1,0 +1,46 @@
+"""只读汇总五秒资源采样；运行结束后写出派生 JSON，不把采样最大值当绝对峰值。"""
+import json
+import sys
+from pathlib import Path
+
+
+def summarize(folder):
+    # 各指标同时保留 statistic，避免把 GC 的 COUNT 和 TOTAL_TIME 混成一个数。
+    rows = [json.loads(line) for line in (folder / 'samples.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+    assert rows and all('error' not in row for row in rows)
+    def metric(row, name, statistic='VALUE'):
+        for item in row['snapshot']['metrics']:
+            if item['name'] == name:
+                return next((m['value'] for m in item['measurements'] if m['statistic'] == statistic), None)
+        return None
+    def bounds(values):
+        present = [v for v in values if v is not None]
+        return {'first': present[0], 'last': present[-1], 'min': min(present), 'max': max(present)} if present else None
+    result = {'sampleCount': len(rows), 'firstElapsedSeconds': rows[0]['elapsedSeconds'],
+              'lastElapsedSeconds': rows[-1]['elapsedSeconds'], 'scope': 'All collected samples including preparation, warmup and drain; maxima are sampled, not absolute peaks.'}
+    for name in ('jvm.memory.used', 'jvm.threads.live', 'lab.outbound.bytes', 'lab.outbound.messages',
+                 'lab.outbound.tasks', 'lab.outbound.writers.active', 'lab.dispatch.bytes', 'lab.dispatch.messages'):
+        result[name] = bounds([metric(row, name) for row in rows])
+    # CPU 秒差除以墙钟秒，得到平均占用几个逻辑核；不是整台机器的百分比。
+    for role in ('server', 'client'):
+        selected = [row for row in rows if row.get(role)]
+        if selected:
+            first, last = selected[0], selected[-1]
+            seconds = last['elapsedSeconds'] - first['elapsedSeconds']
+            result[role] = {'workingSetBytes': bounds([row[role]['workingSetBytes'] for row in selected]),
+                            'threads': bounds([row[role]['threads'] for row in selected]),
+                            'cpuSecondsDelta': last[role]['cpuSeconds'] - first[role]['cpuSeconds']}
+            result[role]['averageLogicalCores'] = result[role]['cpuSecondsDelta'] / seconds if seconds > 0 else None
+    for statistic in ('COUNT', 'TOTAL_TIME'):
+        first, last = metric(rows[0], 'jvm.gc.pause', statistic), metric(rows[-1], 'jvm.gc.pause', statistic)
+        result['gc' + statistic + 'Delta'] = last - first if first is not None and last is not None else None
+    # 高水位是进程生命周期指标；前一轮已达的值不能简单相减成当前轮峰值。
+    result['lifetimeHighwater'] = {}
+    for name in ('lab.outbound.bytes.highwater', 'lab.dispatch.bytes.highwater'):
+        result['lifetimeHighwater'][name] = {'first': metric(rows[0], name), 'last': metric(rows[-1], name)}
+    (folder / 'resource-summary.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    print(json.dumps({'directory': str(folder), **result}, ensure_ascii=False))
+
+
+for argument in sys.argv[1:]:
+    summarize(Path(argument))

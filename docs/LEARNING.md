@@ -32,4 +32,21 @@
 - 如果把每次发送都丢进线程池，需要限制哪些资源？
 - 假如我们选择丢弃旧普通弹幕，怎样让报告区分主动丢弃、网络断连和未知缺失？
 
-这些问题是慢消费者实验的起点。目前已完成 [小规模停读机制复现](results/2026-10-23/slow-report.md)，观察到同步发送等待和同房间锁竞争；正式长时间验收及有界缓冲优化仍未完成。操作方法见 [慢消费者实验说明](SLOW_CONSUMER.md)。
+这些问题是慢消费者实验的起点。目前已完成 [旧基线停读机制复现](results/2026-10-23/slow-report.md)，接入 [有界输出](BOUNDED_OUTBOUND.md)与可选 [房间入口/轮转](ROOM_DISPATCH.md)；正式热点与长期验收仍待完成。
+
+## 10 月 26 日从这里接着看
+
+用户已完成 30 秒阶段的 fair 手动复测，10 月 25 日收尾后不再安排当晚代码学习。明天先沿以下路径阅读，不必重新通读整个项目：
+
+1. `FairRoomDispatcher.submit`：怎样检查容量，什么时候分配序号，accepted 表示什么。
+2. `dispatchOneTurn`：怎样保留观众遍历位置，什么时候把房间放回队尾。
+3. `DirectBroadcaster.deliver → ClientConnection.send → OutboundMailbox.drain`：房间调度怎样交给连接邮箱，哪一步才写网络。
+4. `FairRoomDispatcherTest`：用轮转轨迹、序号和预算断言核对上面的理解。
+
+今日完成与未完成事项见 [收尾交接](results/2026-10-25/day4-wrapup.md)。
+
+10月26日后，buffered的实际网络写已改为`drain → ClientConnection.writeAsync → OutboundMailbox.finish`，direct保留同步基线。先看 [混合预检为什么失败与异步修复](ASYNC_OUTBOUND.md)：提交返回、完成回调和客户端收到是三个时刻；预算在回调完成时才释放。
+
+今天已整理 [一条弹幕的完整代码阅读路线](MESSAGE_PATH.md)，用A/B/C三位观众解释房间输入队列、每连接邮箱、共享提交线程和回调。先按里面的方法名跳转，再看 [T2工具如何证明实际接收](THROUGHPUT.md)；正式四档结果和限制见 [T2首轮报告](results/2026-10-26/t2-report.md)。
+
+同日已完成 [T6重连验证](RECONNECT.md)：100/500人各三轮，一半主动断开并重新join，另一半继续收齐。读Java时接着看`ConnectionRegistry.register/remove → ClientConnection.retireIfFinished`：为什么旧连接关闭与在途写都完成后，名额才能供新连接复用。首次重连成功与多轮失败退避的覆盖不同，详见 [T6报告](results/2026-10-26/t6-report.md)。

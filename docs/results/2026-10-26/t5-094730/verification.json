@@ -1,0 +1,14 @@
+{
+  "formalValidation": "passed",
+  "viewers": 1000,
+  "minReceivedPerViewer": 36000,
+  "maxReceivedPerViewer": 36000,
+  "measuredDeliveries": 36000000,
+  "includingWarmup": 37200000,
+  "sourceFilesMatched": 51,
+  "sourceMismatches": [],
+  "jarSha256": "63c3f3bf6f415e0165fda5ee710acdfca896d8e96981a0539314dd88c4994e28",
+  "sameJarAsAsyncFix": true,
+  "localLinksChecked": true,
+  "limits": "One Windows same-host run; not three repeats, maximal capacity or complete P0."
+}

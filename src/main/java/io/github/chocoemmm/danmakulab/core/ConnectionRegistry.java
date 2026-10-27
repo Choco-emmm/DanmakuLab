@@ -4,6 +4,7 @@ import io.github.chocoemmm.danmakulab.config.LabProperties;
 import io.github.chocoemmm.danmakulab.protocol.ProtocolException;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.socket.WebSocketSession;
 
 import java.util.HashMap;
@@ -24,6 +25,7 @@ import java.util.Map;
 @Component
 public class ConnectionRegistry {
     private final LabProperties properties;
+    private final OutboundService outbound;
     // 连接 ID -> 连接包装。已经建立但尚未加入房间的连接也在这里。
     private final Map<String, ClientConnection> connections = new HashMap<>();
     // 连接 ID -> 当前房间与显示昵称。不存在这条记录意味着尚未加入房间。
@@ -34,7 +36,14 @@ public class ConnectionRegistry {
     private final Map<Room, Map<String, ClientConnection>> members = new HashMap<>();
 
     public ConnectionRegistry(LabProperties properties, MeterRegistry metrics) {
+        this(properties, metrics, null);
+    }
+
+    /** Spring 使用带输出资源的构造器；上面的便捷构造器用于不涉及网络的直接模式单元测试。 */
+    @Autowired
+    public ConnectionRegistry(LabProperties properties, MeterRegistry metrics, OutboundService outbound) {
         this.properties = properties;
+        this.outbound = outbound;
         // gauge 是按采集时刻读取的当前值，不是不断累加的事件计数。
         // 方法引用使采集器需要数据时调用 connectionCount()/roomCount()。
         metrics.gauge("lab.connections", this, ConnectionRegistry::connectionCount);
@@ -46,7 +55,8 @@ public class ConnectionRegistry {
         if (connections.size() >= properties.maxConnections()) {
             throw new ProtocolException("connection_limit");
         }
-        var connection = new ClientConnection(session, properties.connectionMessagesPerSecond());
+        var connection = outbound == null ? new ClientConnection(session, properties.connectionMessagesPerSecond())
+                : outbound.connection(session, properties.connectionMessagesPerSecond(), () -> remove(session.getId()));
         connections.put(session.getId(), connection);
         return connection;
     }
@@ -116,9 +126,14 @@ public class ConnectionRegistry {
      * 注销连接并离开房间。连接关闭、传输异常和发送失败都可能触发它。
      * 重复清理也安全，即“幂等”：第二次调用不会再删别人或重复扣减成员数量。
      */
-    public synchronized void remove(String id) {
-        connections.remove(id);
-        detach(id);
+    public void remove(String id) {
+        ClientConnection removed;
+        synchronized (this) {
+            removed = connections.remove(id);
+            detach(id);
+        }
+        // 释放 Registry 锁以后再取消邮箱，避免 Registry 锁与邮箱/生命周期锁互相嵌套。
+        if (removed != null) removed.dispose();
     }
 
     /** 仅删除房间关系，连接登记本身保留；调用方必须已持有当前 Registry 对象的锁。 */
@@ -131,6 +146,8 @@ public class ConnectionRegistry {
         var roomMembers = members.get(previous.room());
         roomMembers.remove(id);
         if (roomMembers.isEmpty()) {
+            // 先标记这一代房间结束；调度器下一轮会取消它的待处理输入，不影响同名新实例。
+            previous.room().retire();
             // 空房间及时回收，防止不断创建新房间让内存中的房间表永久增长。
             members.remove(previous.room());
             // 同时指定 key 和 value，表达“删除的必须是这一代 Room”，避免误删同名的新实例。
@@ -147,6 +164,9 @@ public class ConnectionRegistry {
     public synchronized int roomCount() {
         return rooms.size();
     }
+
+    /** Redis接收按名称定位本节点当前房间；返回引用后可能退休，调度入队时必须再检查退休标记。 */
+    public synchronized Room currentRoom(String roomId) { return rooms.get(roomId); }
 
     /** 不可变的成员关系数据；record 自动提供 room() 和 nickname() 访问方法。 */
     public record Membership(Room room, String nickname) {

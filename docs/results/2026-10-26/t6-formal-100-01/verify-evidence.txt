@@ -1,0 +1,1 @@
+PASS FORMAL T6: docs\results\2026-10-26\t6-formal-100-01; required=110000; joins=250

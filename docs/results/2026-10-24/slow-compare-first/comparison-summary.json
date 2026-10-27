@@ -1,0 +1,140 @@
+[
+  {
+    "group": "direct-normal",
+    "input": 3600,
+    "accepted": 3600,
+    "rejectedByReason": {},
+    "normalReceived": 36000,
+    "normalExpected": 36000,
+    "latencyMs": {
+      "samples": 36000,
+      "p50": 1,
+      "p95": 1,
+      "p99": 2,
+      "max": 5
+    },
+    "counterDeltas": {
+      "lab.messages.input": 3600.0,
+      "lab.messages.accepted": 3600.0,
+      "lab.messages.rejected": 0,
+      "lab.deliveries.expected": 39600.0,
+      "lab.deliveries.enqueued": 0,
+      "lab.deliveries.submitted": 39600.0,
+      "lab.writes.failed": 0,
+      "lab.outbound.dropped": 0,
+      "lab.outbound.discarded": 0
+    },
+    "sampleCount": 81,
+    "collectionErrors": 0,
+    "sampledMaxOutboundBytes": 0.0,
+    "processHighwaterAfterBytes": 0.0,
+    "sampledMaxHeapBytes": 91229216.0,
+    "sampledMaxWorkingSetBytes": 293711872,
+    "normalErrors": [],
+    "firstSampleOfWriteFailureSeconds": null
+  },
+  {
+    "group": "direct-paused",
+    "input": 3600,
+    "accepted": 3449,
+    "rejectedByReason": {
+      "connection_rate_limit": 151
+    },
+    "normalReceived": 34490,
+    "normalExpected": 36000,
+    "latencyMs": {
+      "samples": 34490,
+      "p50": 1,
+      "p95": 1,
+      "p99": 4216,
+      "max": 5053
+    },
+    "counterDeltas": {
+      "lab.messages.input": 3600.0,
+      "lab.messages.accepted": 3449.0,
+      "lab.messages.rejected": 151.0,
+      "lab.deliveries.expected": 34564.0,
+      "lab.deliveries.enqueued": 0,
+      "lab.deliveries.submitted": 34563.0,
+      "lab.writes.failed": 1.0,
+      "lab.outbound.dropped": 0,
+      "lab.outbound.discarded": 0
+    },
+    "sampleCount": 82,
+    "collectionErrors": 0,
+    "sampledMaxOutboundBytes": 0.0,
+    "processHighwaterAfterBytes": 0.0,
+    "sampledMaxHeapBytes": 94140192.0,
+    "sampledMaxWorkingSetBytes": 297717760,
+    "normalErrors": [],
+    "firstSampleOfWriteFailureSeconds": 8.3057596
+  },
+  {
+    "group": "buffered-normal",
+    "input": 3600,
+    "accepted": 3600,
+    "rejectedByReason": {},
+    "normalReceived": 36000,
+    "normalExpected": 36000,
+    "latencyMs": {
+      "samples": 36000,
+      "p50": 1,
+      "p95": 1,
+      "p99": 1,
+      "max": 4
+    },
+    "counterDeltas": {
+      "lab.messages.input": 3600.0,
+      "lab.messages.accepted": 3600.0,
+      "lab.messages.rejected": 0,
+      "lab.deliveries.expected": 39600.0,
+      "lab.deliveries.enqueued": 39600.0,
+      "lab.deliveries.submitted": 39600.0,
+      "lab.writes.failed": 0,
+      "lab.outbound.dropped": 0,
+      "lab.outbound.discarded": 0
+    },
+    "sampleCount": 81,
+    "collectionErrors": 0,
+    "sampledMaxOutboundBytes": 8397.0,
+    "processHighwaterAfterBytes": 10481.0,
+    "sampledMaxHeapBytes": 93174224.0,
+    "sampledMaxWorkingSetBytes": 278786048,
+    "normalErrors": [],
+    "firstSampleOfWriteFailureSeconds": null
+  },
+  {
+    "group": "buffered-paused",
+    "input": 3600,
+    "accepted": 3600,
+    "rejectedByReason": {},
+    "normalReceived": 36000,
+    "normalExpected": 36000,
+    "latencyMs": {
+      "samples": 36000,
+      "p50": 1,
+      "p95": 1,
+      "p99": 1,
+      "max": 3
+    },
+    "counterDeltas": {
+      "lab.messages.input": 3600.0,
+      "lab.messages.accepted": 3600.0,
+      "lab.messages.rejected": 0,
+      "lab.deliveries.expected": 36276.0,
+      "lab.deliveries.enqueued": 36276.0,
+      "lab.deliveries.submitted": 36073.0,
+      "lab.writes.failed": 1.0,
+      "lab.outbound.dropped": 162.0,
+      "lab.outbound.discarded": 40.0
+    },
+    "sampleCount": 82,
+    "collectionErrors": 0,
+    "sampledMaxOutboundBytes": 39087.0,
+    "processHighwaterAfterBytes": 48515.0,
+    "sampledMaxHeapBytes": 95043440.0,
+    "sampledMaxWorkingSetBytes": 310468608,
+    "normalErrors": [],
+    "firstSampleOfWriteFailureSeconds": 7.1377241
+  }
+]

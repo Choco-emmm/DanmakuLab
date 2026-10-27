@@ -1,0 +1,15 @@
+{"at": 1792977193.1577234, "measuring": false, "sent": 0, "accepted": 0, "normalReceived": 0, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 0.0}
+{"at": 1792977198.1611948, "measuring": true, "sent": 101, "accepted": 100, "normalReceived": 0, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 3.2719000009819865}
+{"at": 1792977203.179093, "measuring": true, "sent": 201, "accepted": 201, "normalReceived": 101000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 16.20589999947697}
+{"at": 1792977208.2499182, "measuring": true, "sent": 301, "accepted": 301, "normalReceived": 201000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 16.22660004068166}
+{"at": 1792977213.2509813, "measuring": true, "sent": 402, "accepted": 402, "normalReceived": 302000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 43.196599930524826}
+{"at": 1792977218.2567341, "measuring": true, "sent": 502, "accepted": 502, "normalReceived": 402000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 43.196599930524826}
+{"at": 1792977223.2910843, "measuring": true, "sent": 602, "accepted": 602, "normalReceived": 502000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 43.196599930524826}
+{"at": 1792977228.305099, "measuring": true, "sent": 703, "accepted": 703, "normalReceived": 603000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 43.196599930524826}
+{"at": 1792977233.3177757, "measuring": true, "sent": 803, "accepted": 803, "normalReceived": 703000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 43.196599930524826}
+{"at": 1792977238.3206615, "measuring": true, "sent": 904, "accepted": 903, "normalReceived": 803000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 43.196599930524826}
+{"at": 1792977243.3375416, "measuring": true, "sent": 1004, "accepted": 1004, "normalReceived": 904000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 43.196599930524826}
+{"at": 1792977248.3429034, "measuring": true, "sent": 1104, "accepted": 1104, "normalReceived": 1004000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 43.196599930524826}
+{"at": 1792977253.3441405, "measuring": true, "sent": 1204, "accepted": 1203, "normalReceived": 1103000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 43.196599930524826}
+{"at": 1792977258.351954, "measuring": true, "sent": 1300, "accepted": 1300, "normalReceived": 1200000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 43.196599930524826}
+{"at": 1792977263.3546777, "measuring": true, "sent": 1300, "accepted": 1300, "normalReceived": 1200000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 43.196599930524826}

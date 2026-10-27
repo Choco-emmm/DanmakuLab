@@ -1,0 +1,8 @@
+{
+  "allChecksPassed": true,
+  "finalGaugeCount": 12,
+  "measuredDeliveries": 31500000,
+  "includingWarmupDeliveries": 34125000,
+  "formalParameters": true,
+  "realSloRechecked": true
+}

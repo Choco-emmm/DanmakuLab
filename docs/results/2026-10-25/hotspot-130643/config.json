@@ -1,0 +1,15 @@
+{
+  "resourceSampleSeconds": 5,
+  "mode": "buffered",
+  "requestJsonBytes": 256,
+  "normalRooms": 10,
+  "latencySampleEvery": 10,
+  "scenario": "T4-initial",
+  "hotRates": "20,100,200",
+  "hotConnections": 500,
+  "limitNote": "Effective limits must be read together from application.yml and server-command.txt; this script does not change limits.",
+  "drainSeconds": 5,
+  "normalInputPerRoom": 2,
+  "phaseSeconds": 10,
+  "normalConnections": 50
+}

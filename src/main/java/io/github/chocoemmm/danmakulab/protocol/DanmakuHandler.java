@@ -7,12 +7,17 @@ import io.github.chocoemmm.danmakulab.config.LabProperties;
 import io.github.chocoemmm.danmakulab.core.ClientConnection;
 import io.github.chocoemmm.danmakulab.core.ConnectionRegistry;
 import io.github.chocoemmm.danmakulab.core.DirectBroadcaster;
+import io.github.chocoemmm.danmakulab.core.FairRoomDispatcher;
+import io.github.chocoemmm.danmakulab.core.BroadcastIngress;
+import io.github.chocoemmm.danmakulab.core.LocalBroadcastIngress;
+import org.springframework.beans.factory.annotation.Autowired;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+import org.springframework.web.socket.adapter.standard.StandardWebSocketSession;
 
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -32,22 +37,37 @@ public class DanmakuHandler extends TextWebSocketHandler {
     private final ConnectionRegistry registry;
     private final DirectBroadcaster broadcaster;
     private final MeterRegistry metrics;
+    private final BroadcastIngress ingress;
 
     public DanmakuHandler(ObjectMapper json, LabProperties properties, ConnectionRegistry registry,
-                          DirectBroadcaster broadcaster, MeterRegistry metrics) {
+                          DirectBroadcaster broadcaster, MeterRegistry metrics, FairRoomDispatcher dispatcher) {
+        this(json, properties, registry, broadcaster, metrics, new LocalBroadcastIngress(broadcaster, dispatcher));
+    }
+
+    /** Spring按运行模式注入入口；便捷构造器继续支持原有本地单元测试。 */
+    @Autowired
+    public DanmakuHandler(ObjectMapper json, LabProperties properties, ConnectionRegistry registry,
+                          DirectBroadcaster broadcaster, MeterRegistry metrics, BroadcastIngress ingress) {
         this.json = json;
         this.properties = properties;
         this.registry = registry;
         this.broadcaster = broadcaster;
         this.metrics = metrics;
+        this.ingress = ingress;
     }
 
     /** WebSocket 握手成功后登记连接；此时还没有加入任何业务房间。 */
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        // 为 Tomcat 的同步发送设置 5 秒超时，单位毫秒；当前基线在接收线程上直接广播。
-        // 它约束单次阻塞发送，不保证整轮逐连接广播在 5 秒内完成。
-        session.getAttributes().put("org.apache.tomcat.websocket.BLOCKING_SEND_TIMEOUT", 5_000L);
+        // Spring getAttributes() 是业务 Map，Tomcat 不从那里读取发送超时。
+        // 必须写入原生 Jakarta Session 的 userProperties，值使用 Long，单位毫秒。
+        // 只限制实际单次发送等待；不限制等待房间锁/执行器的时间，也不承诺观众已经收到。
+        if (session instanceof StandardWebSocketSession standard) {
+            standard.getNativeSession().getUserProperties()
+                    .put("org.apache.tomcat.websocket.BLOCKING_SEND_TIMEOUT", 5_000L);
+        } else {
+            throw new IllegalStateException("This experiment requires a standard Jakarta WebSocket session");
+        }
         try {
             registry.register(session);
         } catch (ProtocolException rejected) {
@@ -132,7 +152,9 @@ public class DanmakuHandler extends TextWebSocketHandler {
         if (!membership.room().admitMessage()) {
             throw new ProtocolException("room_rate_limit");
         }
-        broadcaster.broadcast(connection, membership, id, content, timestamp.longValue());
+        // 本地入口保持旧语义；Redis入口只提交发布任务，不额外直发本地，也不锁内等待网络。
+        // 同步的准入异常仍由统一catch回应；已排队任务的最终发布结果由入口异步反馈。
+        ingress.submit(connection, membership, id, content, timestamp.longValue());
     }
 
     /** 通用文本校验：要求字段为字符串、非空白且长度不超限，不把其他 JSON 类型自动转成文字。 */

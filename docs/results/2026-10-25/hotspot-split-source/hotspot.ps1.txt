@@ -1,0 +1,229 @@
+#requires -Version 7.0
+<#
+T4 初步基线入口：固定房间与成员，先普通房间单独发言，再逐级施加热点输入。
+默认 10×50 个普通观众 + 500 个热点观众，阶段各 30 秒；正式阶段可改为 180 秒。
+服务由用户提前启动，本入口不修改限流或调度。客户端拒绝、接收、尾延迟分房间/阶段保存。
+SplitProcesses 将同一套负载拆为 normal/hot 两个真实 k6 进程；共同起点前必须全部加入。
+父进程只采样和汇总，子进程各自独立收发，避免热点回调直接占用普通房间的 JS 事件循环。
+#>
+param(
+    [ValidateRange(1,10)][int]$NormalRooms = 10,
+    [ValidateRange(2,100)][int]$NormalConnections = 50,
+    [ValidateRange(2,1500)][int]$HotConnections = 500,
+    [ValidateRange(2,180)][int]$PhaseSeconds = 30,
+    [ValidateRange(1,30)][int]$DrainSeconds = 5,
+    [ValidateRange(1,100)][int]$LatencySampleEvery = 10,
+    [string]$HotRates = '20,100,200',
+    [ValidateSet('direct','buffered')][string]$Mode = 'buffered',
+    [string]$HttpUrl = 'http://127.0.0.1:8082',
+    [switch]$SplitProcesses,
+    [ValidateRange(10,120)][int]$StartDelaySeconds = 30,
+    [string]$OutputDirectory
+)
+$ErrorActionPreference = 'Stop'
+Import-Module (Join-Path $PSScriptRoot 'ProcessEvidence.psm1') -Force
+$root = (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
+Push-Location $root
+try {
+    $url = $HttpUrl.TrimEnd('/')
+    $uri = [Uri]$url
+    if (-not $uri.IsLoopback) { throw '当前入口只采集同机回环实验，远端资源需要另行采集。' }
+    if ((Invoke-RestMethod "$url/actuator/health" -TimeoutSec 5).status -ne 'UP') { throw '请先启动服务。' }
+    $modeValue = (Invoke-RestMethod "$url/actuator/metrics/lab.outbound.mode.buffered" -TimeoutSec 5).measurements[0].value
+    if ($modeValue -ne $(if ($Mode -eq 'buffered') { 1 } else { 0 })) { throw '实际服务模式与 Mode 参数不符。' }
+
+    # 指标读取是顺序采样，保留采集起止时间，不能称为同一时刻的原子快照。
+    function Snapshot {
+        $began = [DateTimeOffset]::UtcNow
+        $index = Invoke-RestMethod "$url/actuator/metrics" -TimeoutSec 3
+        $entries = @($index.names | Where-Object { $_ -like 'lab.*' -or $_ -in @('jvm.threads.live','jvm.gc.pause','process.cpu.usage') } |
+            ForEach-Object { Invoke-RestMethod "$url/actuator/metrics/$_" -TimeoutSec 3 })
+        $entries += Invoke-RestMethod "$url/actuator/metrics/jvm.memory.used?tag=area:heap" -TimeoutSec 3
+        @{ startedAt=$began.ToString('o'); endedAt=[DateTimeOffset]::UtcNow.ToString('o'); metrics=$entries }
+    }
+    function Metric($Snapshot, [string]$Name, [switch]$Required) {
+        $entries = @($Snapshot.metrics | Where-Object name -eq $Name)
+        if ($entries.Count -eq 0) {
+            # 从未发生的事件可能尚未登记 Counter；连接/预算 Gauge 则必须存在，不能缺失当零。
+            if ($Required) { throw "缺少必需指标：$Name" }
+            return 0.0
+        }
+        $value = $entries[0].measurements[0].value
+        if ($null -eq $value -or [double]::IsNaN([double]$value) -or [double]::IsInfinity([double]$value)) { throw "无效指标：$Name" }
+        return [double]$value
+    }
+    function Process-Sample([Diagnostics.Process]$Item) {
+        try { $Item.Refresh(); @{ pid=$Item.Id; cpuSeconds=$Item.TotalProcessorTime.TotalSeconds; workingSetBytes=$Item.WorkingSet64; threads=$Item.Threads.Count } }
+        catch { $null } # 进程恰好退出时没有样本，不把 null 冒充资源归零。
+    }
+    $before = Snapshot
+    if ((Metric $before 'lab.connections' -Required) -ne 0) { throw '实验前仍有连接，请先断开演示网页并等待清理。' }
+    if (-not $OutputDirectory) {
+        $beijing = [TimeZoneInfo]::ConvertTimeBySystemTimeZoneId([DateTimeOffset]::UtcNow, 'China Standard Time')
+        $OutputDirectory = "docs/results/$($beijing.ToString('yyyy-MM-dd'))/hotspot-$($beijing.ToString('HHmmss'))"
+    }
+    if (Test-Path -LiteralPath $OutputDirectory) { throw '输出目录已存在，请为每轮实验保留独立目录。' }
+    New-Item -ItemType Directory -Path $OutputDirectory -Force | Out-Null
+    $output = (Resolve-Path -LiteralPath $OutputDirectory).Path
+    $before | ConvertTo-Json -Depth 14 | Set-Content (Join-Path $output 'server-before.json') -Encoding utf8
+    $listener = Get-NetTCPConnection -State Listen -LocalPort $uri.Port | Select-Object -First 1
+    $server = Get-Process -Id $listener.OwningProcess
+    $serverCommand = (Get-CimInstance Win32_Process -Filter "ProcessId=$($server.Id)").CommandLine
+    $serverCommand | Set-Content (Join-Path $output 'server-command.txt') -Encoding utf8
+    Copy-Item src/main/resources/application.yml (Join-Path $output 'application.yml')
+    @{ capturedAt=[DateTimeOffset]::UtcNow.ToString('o'); os=[Environment]::OSVersion.VersionString;
+       cpu=(Get-CimInstance Win32_Processor).Name; logicalProcessors=[Environment]::ProcessorCount;
+       java=((& java -version 2>&1)|Out-String).Trim(); k6=((& k6 version)|Out-String).Trim();
+       sourceCommit=(& git -c safe.directory=D:/coding/DanmakuLab rev-parse HEAD); sourceStatus=((& git -c safe.directory=D:/coding/DanmakuLab status --short)|Out-String);
+       note='Same-host loopback; server and k6 share CPU/RAM. CPU is cumulative seconds; resource maxima are sampled. No backend scheduler change.' } |
+        ConvertTo-Json -Depth 5 | Set-Content (Join-Path $output 'environment.json') -Encoding utf8
+    @{ scenario='T4-initial'; mode=$Mode; normalRooms=$NormalRooms; normalConnections=$NormalConnections;
+       splitProcesses=[bool]$SplitProcesses; startDelaySeconds=$(if ($SplitProcesses) { $StartDelaySeconds } else { 0 });
+       hotConnections=$HotConnections; normalInputPerRoom=2; hotRates=$HotRates; phaseSeconds=$PhaseSeconds;
+       drainSeconds=$DrainSeconds; latencySampleEvery=$LatencySampleEvery; resourceSampleSeconds=5; requestJsonBytes=256;
+       limitNote='Effective limits must be read together from application.yml and server-command.txt; this script does not change limits.' } |
+        ConvertTo-Json | Set-Content (Join-Path $output 'config.json') -Encoding utf8
+    $manifest = @(Get-Item pom.xml) + @(Get-ChildItem src,scripts -Recurse -File | Where-Object FullName -notmatch '__pycache__')
+    @($manifest | Sort-Object FullName | ForEach-Object {
+        @{ path=[IO.Path]::GetRelativePath($root,$_.FullName); sha256=(Get-FileHash -LiteralPath $_.FullName).Hash }
+    }) | ConvertTo-Json -Depth 4 | Set-Content (Join-Path $output 'source-sha256.json') -Encoding utf8
+    Get-FileHash target/danmaku-lab-0.1.0-SNAPSHOT.jar | ConvertTo-Json | Set-Content (Join-Path $output 'jar-sha256.json') -Encoding utf8
+
+    $k6Path = (Get-Command k6).Source
+    $commonArguments = @('run','--quiet','-e',"NORMAL_ROOMS=$NormalRooms",'-e',"NORMAL_CONNECTIONS=$NormalConnections",
+        '-e',"HOT_CONNECTIONS=$HotConnections",'-e',"PHASE_SECONDS=$PhaseSeconds",'-e',"DRAIN_SECONDS=$DrainSeconds",
+        '-e',"HOT_RATES=$HotRates",'-e',"LATENCY_SAMPLE_EVERY=$LatencySampleEvery",'-e',"WS_URL=$(($url -replace '^http','ws')+'/ws')")
+    # 先完成环境/源码归档，再约定共同起点，避免采集本身消耗客户端的加入预算。
+    # 30 秒是连接准备窗口，不计入四个输入阶段。迟到会失败，不能擅自平移一边的起点。
+    $startAt = if ($SplitProcesses) { [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds() + $StartDelaySeconds * 1000L } else { 0L }
+    $roles = if ($SplitProcesses) { @('normal','hot') } else { @('combined') }
+    $specs = @($roles | ForEach-Object {
+        $directory = if ($SplitProcesses) { Join-Path $output $_ } else { $output }
+        New-Item -ItemType Directory -Path $directory -Force | Out-Null
+        $arguments = $commonArguments + @('-e',"ROLE=$_",'-e',"START_AT_MS=$startAt",
+            '-e',"SUMMARY_PATH=$(Join-Path $directory 'k6-summary.json')",'scripts/load/hotspot.js')
+        # command.json 保留参数边界；command.txt 只给人阅读，实际启动不经 shell 拼接。
+        @{ executable=$k6Path; arguments=$arguments } | ConvertTo-Json -Depth 5 |
+            Set-Content (Join-Path $directory 'command.json') -Encoding utf8
+        "k6 $($arguments -join ' ')" | Set-Content (Join-Path $directory 'command.txt') -Encoding utf8
+        @{ Role=$_; Directory=$directory; Arguments=$arguments }
+    })
+    @{ splitProcesses=[bool]$SplitProcesses; plannedStartAtMs=$startAt; roles=$roles } |
+        ConvertTo-Json | Set-Content (Join-Path $output 'schedule.json') -Encoding utf8
+    # ThreadJob 是 PowerShell 的本地任务，不是另一个智能体。它们只负责看守两个独立的 k6 OS 进程。
+    # 并发字典用于把 PID 和取消请求传给采样主循环；不跨线程共享普通 Hashtable 的可变字段。
+    $processIds = [Collections.Concurrent.ConcurrentDictionary[string,int]]::new()
+    $cancel = [Collections.Concurrent.ConcurrentDictionary[string,bool]]::new()
+    $cancel['requested'] = $false
+    $jobs = @()
+    $timeout = [Math]::Max(60, $StartDelaySeconds) + 4*$PhaseSeconds + $DrainSeconds + 30
+    $sampling = [pscustomobject]@{ Next=0.0; NextProgress=0.0; Errors=0 }
+    $runError = $null
+    $status = [ordered]@{ collectorErrors=0; cleanupReturnedToZero=$false; serverCountersMatch=$false;
+        processesPassed=$false; phaseAlignmentPassed=$false; processIds=@{} }
+    Write-Output "T4 started: $($NormalRooms * $NormalConnections + $HotConnections) connections; $($roles.Count) k6 process(es); evidence: $output"
+    try {
+        foreach ($spec in $specs) {
+            $jobs += Start-ThreadJob -ArgumentList $root,$k6Path,$spec,$timeout,$processIds,$cancel -ScriptBlock {
+                param($root,$k6Path,$spec,$timeout,$processIds,$cancel)
+                $ErrorActionPreference = 'Stop'
+                # 主线程已加载 C# 读取器类型；模块在任务里只导出函数，避免两个任务重复编译类型。
+                Import-Module (Join-Path $root 'scripts/run/ProcessEvidence.psm1')
+                $info = [Diagnostics.ProcessStartInfo]::new()
+                $info.FileName=$k6Path; $info.WorkingDirectory=$root
+                $info.UseShellExecute=$false; $info.CreateNoWindow=$true
+                $info.RedirectStandardOutput=$true; $info.RedirectStandardError=$true
+                $info.Environment['K6_WEB_DASHBOARD']='false'
+                foreach ($argument in $spec.Arguments) { $info.ArgumentList.Add([string]$argument) }
+                Invoke-ProcessWithEvidence -StartInfo $info -Prefix (Join-Path $spec.Directory 'k6') -TimeoutSeconds $timeout -OnTick {
+                    param($child,$elapsed)
+                    $processIds[$spec.Role]=$child.Id
+                    if ($cancel['requested']) { throw '主采集流程已取消，终止本角色并保存证据。' }
+                }
+            }
+        }
+        $clock = [Diagnostics.Stopwatch]::StartNew()
+        while (@($jobs | Where-Object State -in @('NotStarted','Running')).Count) {
+            $elapsed=$clock.Elapsed.TotalSeconds
+            if ($elapsed -ge $timeout + 10) { throw '压测任务超过总截止时间。' }
+            if ($elapsed -ge $sampling.NextProgress) {
+                Write-Host "T4 running: $([Math]::Floor($elapsed))s; preparation=$($startAt -ne 0 ? $StartDelaySeconds : 0)s; input windows=$($PhaseSeconds * 4)s plus drain"
+                $sampling.NextProgress=$elapsed+10
+            }
+            if ($elapsed -ge $sampling.Next) {
+                $clients=@{}
+                foreach ($role in $roles) {
+                    if ($processIds.ContainsKey($role)) {
+                        $item=Get-Process -Id $processIds[$role] -ErrorAction SilentlyContinue
+                        $clients[$role]=if ($item) { Process-Sample $item } else { $null }
+                    }
+                }
+                $sample=@{ elapsedSeconds=$elapsed; clients=$clients; server=Process-Sample $server }
+                try { $sample.snapshot=Snapshot } catch { $sample.error=$_.Exception.Message; $sampling.Errors++ }
+                $sample | ConvertTo-Json -Compress -Depth 14 | Add-Content (Join-Path $output 'samples.jsonl') -Encoding utf8
+                $sampling.Next=$elapsed+5
+            }
+            Start-Sleep -Milliseconds 100
+        }
+        # 一个任务失败也等两个子进程完成各自的收尾，然后读取错误；不能提前丢掉另一份输出。
+        foreach ($job in $jobs) { $null=Receive-Job $job -ErrorAction Stop }
+        $status.processesPassed=$true
+    } catch { $runError = $_ }
+    finally {
+        $cancel['requested']=$true
+        if ($jobs.Count) {
+            $null=Wait-Job -Job $jobs -Timeout 10
+            # 正常取消通过 OnTick 进入模块的 finally；极端情况下任务不响应，再终止对应 k6。
+            foreach ($job in $jobs) { if ($job.State -in @('Running','NotStarted')) { Stop-Job $job } }
+            foreach ($role in $roles) {
+                if ($processIds.ContainsKey($role)) {
+                    $status.processIds[$role]=$processIds[$role]
+                    $left=Get-Process -Id $processIds[$role] -ErrorAction SilentlyContinue
+                    if ($left -and $left.Path -eq $k6Path) { $left.Kill($true); $null=$left.WaitForExit(5000) }
+                }
+            }
+            Remove-Job -Job $jobs -Force
+        }
+        # 子进程模块先保存 stdout/stderr/status；即使退出失败，也尽力补服务端最终状态。
+        Start-Sleep -Seconds 2
+        try {
+            $after = Snapshot
+            $after | ConvertTo-Json -Depth 14 | Set-Content (Join-Path $output 'server-after.json') -Encoding utf8
+            $status.cleanupReturnedToZero = (Metric $after 'lab.connections' -Required) -eq 0 -and
+                (Metric $after 'lab.rooms' -Required) -eq 0 -and (Metric $after 'lab.outbound.bytes' -Required) -eq 0 -and
+                (Metric $after 'lab.outbound.messages' -Required) -eq 0 -and (Metric $after 'lab.outbound.slots' -Required) -eq 0
+        } catch { $status.cleanupError=$_.Exception.Message; if (-not $runError) { $runError=$_ } }
+        $status.collectorErrors = $sampling.Errors
+        if ($runError) { $status.error=$runError.Exception.Message }
+        $status | ConvertTo-Json -Depth 6 | Set-Content (Join-Path $output 'run-status.json') -Encoding utf8
+    }
+    if ($runError) { throw $runError }
+    $reports=@($specs | ForEach-Object { (Get-Content (Join-Path $_.Directory 'k6-summary.json') -Raw | ConvertFrom-Json).report })
+    # 两个 PID 必须不同，且两个报告都在共同起点前就绪、按约定时间开始。
+    # 报告保留各自分位数；不能把两份 P99 做平均，伪造为整体 P99。
+    $status.phaseAlignmentPassed= -not $SplitProcesses -or (
+        $status.processIds.normal -ne $status.processIds.hot -and
+        @($reports | Where-Object { $_.plannedStartAtMs -ne $startAt -or $_.readyAtMs -le 0 -or
+            $_.readyAtMs -ge $startAt -or $_.startedAtMs -lt $startAt -or $_.startLagMs -ge 1000 }).Count -eq 0)
+    $allPhases = @($reports | ForEach-Object { $_.rooms } | ForEach-Object { $_.phases })
+    $clientTotals = @{}
+    foreach ($field in 'sent','accepted','rejected','acceptedDeliveryDemand','received') {
+        $clientTotals[$field] = ($allPhases | Measure-Object -Property $field -Sum).Sum
+    }
+    $delta = @{}
+    foreach ($name in 'lab.messages.input','lab.messages.accepted','lab.messages.rejected','lab.deliveries.expected','lab.deliveries.submitted','lab.deliveries.enqueued','lab.writes.failed','lab.outbound.dropped') {
+        $delta[$name] = (Metric $after $name) - (Metric $before $name)
+    }
+    $status.serverCountersMatch = $delta['lab.messages.input'] -eq $clientTotals.sent -and
+        $delta['lab.messages.accepted'] -eq $clientTotals.accepted -and $delta['lab.messages.rejected'] -eq $clientTotals.rejected -and
+        $delta['lab.deliveries.expected'] -eq $clientTotals.acceptedDeliveryDemand -and
+        $delta['lab.deliveries.submitted'] -eq $clientTotals.received
+    @{ client=$clientTotals; server=$delta } | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $output 'counter-delta.json') -Encoding utf8
+    @{ reports=$reports; client=$clientTotals; note='Per-room quantiles remain separate; same-host processes still share CPU/RAM.' } |
+        ConvertTo-Json -Depth 16 | Set-Content (Join-Path $output 'comparison.json') -Encoding utf8
+    $status | ConvertTo-Json | Set-Content (Join-Path $output 'run-status.json') -Encoding utf8
+    if ($status.collectorErrors -or -not $status.cleanupReturnedToZero -or -not $status.serverCountersMatch -or
+        -not $status.phaseAlignmentPassed -or -not $status.processesPassed) { throw "T4 采集、对齐、计数或清理不通过：$output" }
+    foreach ($spec in $specs) { Get-Content (Join-Path $spec.Directory 'k6-stdout.txt') }
+    Write-Output "T4 tool checks passed. Review each room/phase's rejections, latency and validity limits: $output"
+} finally { Pop-Location }

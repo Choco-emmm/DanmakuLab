@@ -1,0 +1,40 @@
+"""只读分类首轮fair失败：业务完整不等于资源证据完整，不改原始失败标记。"""
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+folder = Path(sys.argv[1])
+def read(name):
+    return json.loads((folder / name).read_text(encoding='utf-8-sig'))
+
+# 原独立验收必须继续失败，防止为了收尾偷偷放宽采集错误标准。
+original = subprocess.run([sys.executable, 'scripts/tests/hotspot-summary.test.py', str(folder)],
+                          capture_output=True, text=True, encoding='utf-8')
+assert original.returncode != 0
+(folder / 'expected-verification-failure.txt').write_text(original.stdout + original.stderr, encoding='utf-8')
+status = read('run-status.json')
+assert status['collectorErrors'] == 1
+assert all(status[key] for key in ('cleanupReturnedToZero', 'serverCountersMatch', 'processesPassed', 'phaseAlignmentPassed'))
+errors = [json.loads(line) for line in (folder / 'samples.jsonl').read_text(encoding='utf-8-sig').splitlines() if '"error"' in line]
+assert len(errors) == 1 and 'snapshot' not in errors[0]
+client = read('counter-delta.json')['client']
+assert client['received'] == client['acceptedDeliveryDemand'] == 11544500
+for role in ('normal', 'hot'):
+    report = read(f'{role}/k6-summary.json')['report']
+    child = read(f'{role}/k6-status.json')
+    assert child['exitCode'] == 0 and child['captureComplete'] and not child['timedOut']
+    for key in ('errors', 'duplicates', 'orderViolations', 'isolationFailures', 'unexpectedCloses', 'missingAccepted', 'missingResults'):
+        assert report[key] == 0
+    for room in report['rooms']:
+        for phase in room['phases']:
+            assert phase['received'] == phase['acceptedDeliveryDemand'] == phase['accepted'] * room['connections']
+            assert phase['sent'] == phase['accepted'] + phase['rejected'] == phase['plannedInputMessages']
+            assert phase['rejectionReasons']['connection_rate_limit'] == phase['rejectionReasons']['other'] == 0
+            if role == 'normal':
+                assert phase['rejected'] == 0
+result = dict(overallPassed=False, reason='collectorErrors=1', businessCountsComplete=True,
+              originalValidatorStillRejects=True, failedSampleElapsedSeconds=errors[0]['elapsedSeconds'],
+              originalError=errors[0]['error'], rawEvidenceUnchanged=True)
+(folder / 'failure-classification.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+print('Confirmed: business counts complete; original overall verification remains FAILED due to one missing metric snapshot.')

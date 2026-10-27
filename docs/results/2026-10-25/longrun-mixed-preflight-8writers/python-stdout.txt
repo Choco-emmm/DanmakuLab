@@ -1,0 +1,13 @@
+Joined 1000; scenario=T3; warmup=5s; measured=30s; slow=10
+{"at": 1792938663.6007054, "measuring": false, "sent": 0, "accepted": 0, "normalReceived": 0, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 0.0}
+Measurement started; slow recv throttling enabled where configured
+{"at": 1792938668.6150618, "measuring": true, "sent": 101, "accepted": 100, "normalReceived": 0, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 14.179699937812984}
+{"at": 1792938673.6361237, "measuring": true, "sent": 201, "accepted": 201, "normalReceived": 99990, "slowReceived": 100, "normalFailures": 0, "maxSendLagMs": 15.871300012804568}
+{"at": 1792938678.6645226, "measuring": true, "sent": 301, "accepted": 257, "normalReceived": 154445, "slowReceived": 200, "normalFailures": 23, "maxSendLagMs": 15.899299993179739}
+{"at": 1792938683.6763003, "measuring": true, "sent": 402, "accepted": 257, "normalReceived": 154445, "slowReceived": 290, "normalFailures": 990, "maxSendLagMs": 15.899299993179739}
+{"at": 1792938688.6798394, "measuring": true, "sent": 502, "accepted": 257, "normalReceived": 154445, "slowReceived": 390, "normalFailures": 990, "maxSendLagMs": 15.899299993179739}
+{"at": 1792938693.6862092, "measuring": true, "sent": 602, "accepted": 257, "normalReceived": 154445, "slowReceived": 490, "normalFailures": 990, "maxSendLagMs": 16.543000005185604}
+{"at": 1792938698.694865, "measuring": true, "sent": 700, "accepted": 257, "normalReceived": 154445, "slowReceived": 508, "normalFailures": 990, "maxSendLagMs": 16.543000005185604}
+{"at": 1792938703.7038138, "measuring": true, "sent": 700, "accepted": 257, "normalReceived": 154445, "slowReceived": 528, "normalFailures": 990, "maxSendLagMs": 16.543000005185604}
+{"scenario": "T3", "passed": false, "normalExpected": 594000, "normalReceived": 154445, "normalLatencyMs": {"samples": 15445, "p50": 18, "p95": 31, "p99": 36, "max": 51, "avg": 18.154354159922306, "overflowAbove120000ms": 0}, "failures": {"normal:read": 990, "slow:read": 8}, "checks": {"allJoined": true, "scheduleComplete": true, "acceptedAll": false, "noMissingResults": false, "normalComplete": false, "normalWarmupComplete": true, "inputRateValid": true, "noNormalFailures": false, "noDuplicates": true, "noOrderErrors": true, "noProtocolErrors": true, "sendLagValid": true, "latencySlo": true, "noFatal": true}}
+

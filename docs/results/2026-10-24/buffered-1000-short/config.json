@@ -1,0 +1,14 @@
+{
+  "scenario": "T1",
+  "mode": "buffered",
+  "connections": 1000,
+  "warmupSeconds": 2,
+  "durationSeconds": 10,
+  "targetInputPerSecond": 5,
+  "requestJsonBytes": 256,
+  "broadcastJsonBytes": "Measured in k6 summary; larger than input JSON",
+  "expectedMeasuredDeliveries": 50000,
+  "latencySampleEvery": 10,
+  "resourceSampleSeconds": 5,
+  "drainSeconds": 5
+}

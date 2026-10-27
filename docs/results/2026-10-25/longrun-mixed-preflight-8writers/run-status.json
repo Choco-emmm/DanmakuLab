@@ -1,0 +1,8 @@
+{
+  "processPassed": false,
+  "collectorErrors": 0,
+  "cleanupReturnedToZero": true,
+  "serverCountersMatch": false,
+  "backpressureObserved": true,
+  "error": "子进程退出码为 1。"
+}

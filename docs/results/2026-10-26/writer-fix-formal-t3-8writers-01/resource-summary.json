@@ -1,0 +1,104 @@
+{
+  "sampleCount": 192,
+  "firstElapsedSeconds": 0.0183787,
+  "lastElapsedSeconds": 963.4307303,
+  "scope": "All collected samples including preparation, warmup and drain; maxima are sampled, not absolute peaks.",
+  "jvm.memory.used": {
+    "first": 42235584.0,
+    "last": 107746872.0,
+    "min": 42235584.0,
+    "max": 132784264.0
+  },
+  "jvm.threads.live": {
+    "first": 45.0,
+    "last": 126.0,
+    "min": 45.0,
+    "max": 126.0
+  },
+  "lab.outbound.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 435045.0
+  },
+  "lab.outbound.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 824.0
+  },
+  "lab.outbound.tasks": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 749.0
+  },
+  "lab.outbound.writers.active": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 8.0
+  },
+  "lab.outbound.writes.inflight": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 19.0
+  },
+  "lab.dispatch.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 0.0
+  },
+  "lab.dispatch.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "server": {
+    "workingSetBytes": {
+      "first": 268062720,
+      "last": 351707136,
+      "min": 268062720,
+      "max": 372613120
+    },
+    "threads": {
+      "first": 90,
+      "last": 165,
+      "min": 90,
+      "max": 174
+    },
+    "cpuSecondsDelta": 760.84375,
+    "averageLogicalCores": 0.7897384217011734
+  },
+  "client": {
+    "workingSetBytes": {
+      "first": 10506240,
+      "last": 122548224,
+      "min": 10506240,
+      "max": 126124032
+    },
+    "threads": {
+      "first": 4,
+      "last": 1,
+      "min": 1,
+      "max": 5
+    },
+    "cpuSecondsDelta": 482.796875,
+    "averageLogicalCores": 0.5011321208392113
+  },
+  "gcCOUNTDelta": 533.0,
+  "gcTOTAL_TIMEDelta": 0.615,
+  "lifetimeHighwater": {
+    "lab.outbound.bytes.highwater": {
+      "first": 111115.0,
+      "last": 1861209.0
+    },
+    "lab.dispatch.bytes.highwater": {
+      "first": 482.0,
+      "last": 1932.0
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "executable": "C:\\Python314\\python.exe",
+  "arguments": [
+    "scripts/load/reconnect.py",
+    "--url",
+    "ws://127.0.0.1:8086/ws",
+    "--connections",
+    "500",
+    "--affected",
+    "250",
+    "--cycles",
+    "3",
+    "--steady-seconds",
+    "10",
+    "--churn-seconds",
+    "10",
+    "--rate",
+    "20",
+    "--recovery-deadline",
+    "15",
+    "--drain-seconds",
+    "2",
+    "--latency-sample-every",
+    "10",
+    "--seed",
+    "20261026",
+    "--output",
+    "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\t6-scale-500-01\\client"
+  ]
+}

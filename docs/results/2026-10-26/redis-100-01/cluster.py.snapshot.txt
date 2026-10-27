@@ -1,0 +1,282 @@
+"""Redis双节点真实接收工具：来源序号按流校验，初始正常观众不因断线而从分母删除。
+
+每个节点/房间独立记录joined的本地实例；广播身份却来自发布节点，二者不可混淆。
+复用既有原始TCP编解码，不改写历史工具。故障操作仅对显式传入的本实验进程/容器执行。
+"""
+import argparse
+import asyncio
+from array import array
+from collections import Counter
+import json
+from pathlib import Path
+import random
+import socket
+import time
+from types import SimpleNamespace
+from urllib.request import urlopen
+
+from longrun import Peer, Histogram
+
+
+def save(path, value):
+    path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+
+class NodeState:
+    """Peer握手需要节点自己的房间实例，不能要求两个JVM的本地Room UUID相同。"""
+    def __init__(self, owner, node, room):
+        self.owner,self.node,self.room=owner,node,room
+        self.instance=None
+        self.joined=0
+        self.args=SimpleNamespace(url=owner.args.urls[node],slow_connections=0,slow_bytes_per_second=1024)
+    @property
+    def closing(self): return self.owner.closing
+    @property
+    def measuring(self): return self.owner.measuring
+    @property
+    def protocol_errors(self): return self.owner.protocol_errors
+    @protocol_errors.setter
+    def protocol_errors(self, value): self.owner.protocol_errors=value
+    def event(self, peer, event): self.owner.event(peer,event)
+    def failure(self,peer,operation,error): self.owner.failure(peer,operation,error)
+
+
+class State:
+    def __init__(self,args,output):
+        self.args,self.output=args,output
+        self.room='cluster-'+__import__('os').urandom(6).hex()
+        self.nodes=[NodeState(self,node,self.room) for node in range(2)]
+        self.peers=[]
+        self.created=[]
+        self.closing=self.measuring=False
+        self.protocol_errors=self.duplicates=self.order_errors=self.isolation=0
+        self.failures=Counter(); self.details=[]; self.slow_received=0; self.slow_closed=0
+        # 最大输入量由CLI限制；去重表为每观众bytearray，避免保存数百万个Python对象。
+        self.capacity=12000
+        self.seen=[bytearray(self.capacity) for _ in range(args.connections)]
+        self.status=bytearray(self.capacity)
+        self.times=array('q',[0])*self.capacity
+        self.receipts=array('H',[0])*self.capacity
+        self.origins=[None]*self.capacity
+        self.identities=[None]*self.capacity
+        self.metadata=[None]*self.capacity
+        self.last=[{} for _ in range(args.connections)]
+        self.per_viewer=[[] for _ in range(args.connections)]
+        self.inputs=0; self.phases=[]; self.current=None; self.hist=[]; self.input_phase=bytearray(self.capacity)
+        self.reasons=Counter(); self.controls=[]
+        self.reconnections=[]
+
+    def failure(self,peer,operation,error):
+        if getattr(peer,'slow',False):
+            self.slow_closed+=1; return
+        if getattr(peer,'planned',False): return
+        self.failures[operation]+=1
+        if len(self.details)<50: self.details.append(dict(viewer=peer.index,error=f'{type(error).__name__}:{error}'))
+
+    def event(self,peer,event):
+        if event.get('type')=='pong': return
+        if peer.index>=self.args.connections:
+            if peer.slow and event.get('type')=='danmaku': self.slow_received+=1
+            else: self.isolation+=1
+            return
+        identity=event.get('clientMessageId','')
+        prefix=self.room+':'
+        if not isinstance(identity,str) or not identity.startswith(prefix): raise ValueError('未知输入或串房')
+        index=int(identity[len(prefix):])
+        if not 0<=index<self.inputs: raise ValueError('输入越界')
+        if event.get('type')=='send_result':
+            if self.status[index]: raise ValueError('重复确认')
+            outcome={'accepted':1,'rejected':2,'unknown':3}.get(event.get('status'))
+            if outcome is None: raise ValueError('未知结果类型')
+            self.status[index]=outcome
+            if outcome!=1: self.reasons[event.get('reason','unknown')]+=1
+            return
+        if event.get('type')!='danmaku' or event.get('roomId')!=self.room or event.get('clientSentAt')!=self.times[index]:
+            raise ValueError('广播类型、房间或时间戳不匹配')
+        if event.get('originNodeId')!=self.origins[index] or event.get('text')!=self.text: raise ValueError('来源或正文错误')
+        stream=(event.get('originNodeId'),event.get('runId'),event.get('roomInstanceId'))
+        sequence=event.get('roomSeq')
+        message_id=event.get('messageId')
+        if type(sequence) is not int or sequence<1 or not isinstance(message_id,str) or not message_id: raise ValueError('身份缺失')
+        observed=(*stream,sequence)
+        if self.identities[index] not in (None,message_id) or self.metadata[index] not in (None,observed): raise ValueError('跨节点篡改来源身份')
+        self.identities[index],self.metadata[index]=message_id,observed
+        if self.seen[peer.index][index]: self.duplicates+=1; return
+        if sequence<=self.last[peer.index].get(stream,0): self.order_errors+=1
+        self.last[peer.index][stream]=sequence
+        self.seen[peer.index][index]=1; self.receipts[index]+=1
+        phase=self.input_phase[index]
+        self.per_viewer[peer.index][phase]+=1
+        # churn阶段只抽样始终在线组，其他阶段抽样全部正常观众；完整率仍检查全部必达者。
+        if peer.index in self.phases[phase]['requiredIndices'] and peer.index%self.args.sample_every==0:
+            self.hist[phase].add(time.time_ns()//1000000-self.times[index])
+
+    async def connect(self,index,node,room=None,slow=False):
+        state=self.nodes[node] if room is None else NodeState(self,node,room)
+        peer=Peer(state,index); peer.planned=False
+        if slow:
+            peer.slow=True; peer.sock.setsockopt(socket.SOL_SOCKET,socket.SO_RCVBUF,1024)
+        self.created.append(peer)
+        await peer.open()
+        return peer
+
+    async def window(self,name,seconds,senders=None,required=None,offline=False):
+        """固定窗口按绝对计划发；分母保留明确的必达索引，额外接收不能抵消某位观众漏收。"""
+        phase=len(self.phases); begin=self.inputs
+        required=list(range(self.args.connections)) if required is None else list(required)
+        senders=list(range(self.args.connections)) if senders is None else list(senders)
+        count=int(seconds*self.args.rate)
+        entry=dict(name=name,offset=begin,planned=count,requiredIndices=required,offline=offline,
+                   beganAt=time.time(),maxLagMs=0)
+        self.phases.append(entry); self.hist.append(Histogram())
+        for row in self.per_viewer: row.append(0)
+        clock=time.monotonic()
+        for number in range(count):
+            await asyncio.sleep(max(0,clock+number/self.args.rate-time.monotonic()))
+            entry['maxLagMs']=max(entry['maxLagMs'],(time.monotonic()-clock-number/self.args.rate)*1000)
+            index=self.inputs; self.inputs+=1; self.input_phase[index]=phase
+            peer=self.peers[senders[number%len(senders)]]
+            event=dict(type='send',clientMessageId=f'{self.room}:{index:06d}',text='',clientSentAt=time.time_ns()//1000000)
+            self.text='x'*(256-len(json.dumps(event,separators=(',',':')).encode()))
+            event['text']=self.text; self.times[index]=event['clientSentAt']
+            self.origins[index]='node-a' if peer.state.node==0 else 'node-b'
+            await peer.send(event)
+        await asyncio.sleep(max(0,clock+seconds-time.monotonic()))
+        entry['actualSeconds']=time.monotonic()-clock
+        entry['endedAt']=time.time()
+        print(f'window={name}; sent={count}; totalReceived={sum(self.receipts)}',flush=True)
+
+    def report(self,fatal):
+        phases=[]
+        for p,phase in enumerate(self.phases):
+            lo,hi=phase['offset'],phase['offset']+phase['planned']
+            statuses=list(self.status[lo:hi]); counts=[row[p] for row in self.per_viewer]
+            required=phase['requiredIndices']; accepted=statuses.count(1)
+            required_received=sum(counts[v] for v in required)
+            offline=phase['offline']; rate=phase['planned']/phase['actualSeconds']
+            valid=(0 not in statuses and phase['maxLagMs']<1000 and self.args.rate*.95<=rate<=self.args.rate*1.05)
+            if offline:
+                passed=valid and accepted==0 and sum(counts)==0
+            else:
+                latency=self.hist[p].report()
+                passed=(valid and accepted==phase['planned'] and all(counts[v]==accepted for v in required)
+                        and latency['p95'] is not None and latency['p95']<200 and latency['p99']<500)
+            phases.append(dict(**phase,accepted=accepted,rejected=statuses.count(2),unknown=statuses.count(3),
+                nominalDemand=phase['planned']*len(required),requiredReceived=required_received,allReceived=sum(counts),
+                allInitialPotential=phase['planned']*self.args.connections,perViewer=counts,actualRate=rate,
+                latencyMs=self.hist[p].report(),passed=passed))
+        return dict(scenario=self.args.scenario,connections=self.args.connections,initialPhysicalConnections=len(self.created)-len(self.reconnections),
+            sent=self.inputs,accepted=self.status[:self.inputs].count(1),rejected=self.status[:self.inputs].count(2),unknown=self.status[:self.inputs].count(3),
+            received=sum(self.receipts),phases=phases,reasons=dict(self.reasons),failures=dict(self.failures),failureDetails=self.details,
+            duplicates=self.duplicates,orderViolations=self.order_errors,isolationFailures=self.isolation,protocolErrors=self.protocol_errors,
+            slowReceived=self.slow_received,slowClosed=self.slow_closed,slowTcpBytes=sum(p.measured_bytes for p in self.created if p.slow),
+            reconnections=self.reconnections,controls=self.controls,fatal=fatal,
+            passed=bool(phases) and all(p['passed'] for p in phases) and not fatal and not self.failures
+                and self.duplicates==self.order_errors==self.isolation==self.protocol_errors==0)
+
+    async def command(self,*args):
+        """显式实验控制也保存退出码，不因故障命令失败而继续伪造成功场景。"""
+        child=await asyncio.create_subprocess_exec(*args,stdout=asyncio.subprocess.PIPE,stderr=asyncio.subprocess.PIPE)
+        out,err=await asyncio.wait_for(child.communicate(),20)
+        self.controls.append(dict(command=list(args),exitCode=child.returncode,out=out.decode(errors='replace'),err=err.decode(errors='replace')))
+        if child.returncode: raise RuntimeError('实验故障操作失败')
+
+    async def ready(self,expected):
+        def check():
+            for port in (8087,8088):
+                with urlopen(f'http://127.0.0.1:{port}/actuator/metrics/lab.cluster.ready',timeout=2) as response:
+                    if json.load(response)['measurements'][0]['value']!=expected: return False
+            return True
+        deadline=time.monotonic()+20
+        while time.monotonic()<deadline:
+            if await asyncio.to_thread(check): return
+            await asyncio.sleep(.2)
+        raise TimeoutError('订阅就绪状态未按预期改变')
+
+
+async def run(args,output):
+    state=State(args,output); fatal=None; tasks=[]
+    try:
+        semaphore=asyncio.Semaphore(20)
+        async def opening(index):
+            async with semaphore: return await state.connect(index,index%2)
+        state.peers=list(await asyncio.gather(*(opening(i) for i in range(args.connections))))
+        for node in range(2):
+            await state.connect(args.connections+node,node,'isolation-'+state.room)
+        if args.scenario=='slow': await state.connect(args.connections+2,0,slow=True)
+        state.measuring=True
+        async def heartbeat():
+            while True:
+                await asyncio.sleep(10)
+                for peer in state.created:
+                    if peer.alive and not peer.planned:
+                        try: await peer.send(dict(type='ping'))
+                        except Exception as error: state.failure(peer,'heartbeat',error)
+        tasks=[asyncio.create_task(heartbeat())]
+        if args.scenario in ('steady','slow'):
+            await state.window('measurement',args.seconds)
+        elif args.scenario=='redis-outage':
+            await state.window('before',3); await asyncio.sleep(2)
+            await state.command('docker','stop','--time','1','danmakulab-redis-lab')
+            await state.ready(0)
+            await state.window('offline',2,required=[],offline=True)
+            await asyncio.sleep(1)
+            await state.command('docker','start','danmakulab-redis-lab')
+            await state.ready(1)
+            await state.window('recovered',3)
+        else:
+            await state.window('before',3); await asyncio.sleep(2)
+            affected=[i for i,p in enumerate(state.peers) if p.state.node==0]
+            stable=[i for i,p in enumerate(state.peers) if p.state.node==1]
+            for peer in state.created:
+                if peer.state.node==0: peer.planned=True
+            # 只允许停止显式传入且启动命令匹配本实验端口/JAR的自建JVM。
+            command=f"$p=Get-CimInstance Win32_Process -Filter 'ProcessId={args.node_a_pid}'; if($p.CommandLine -notlike '*danmaku-lab-redis.jar*--server.port=8087*--lab.cluster.mode=redis*'){{throw '节点身份不匹配'}}; Stop-Process -Id {args.node_a_pid}"
+            await state.command('pwsh','-NoProfile','-Command',command)
+            async def reconnect(index):
+                await asyncio.sleep(random.Random(20261026+index).random())
+                old=state.peers[index]; old.close()
+                state.peers[index]=await state.connect(index,1)
+                state.reconnections.append(dict(viewer=index,node='node-b',at=time.time()))
+            recovery=[asyncio.create_task(reconnect(i)) for i in affected]; tasks+=recovery
+            await state.window('churn',3,senders=stable,required=stable)
+            await asyncio.gather(*recovery); await asyncio.sleep(1)
+            await state.window('recovered',3)
+        await asyncio.sleep(3)
+    except Exception as error: fatal=f'{type(error).__name__}:{error}'
+    finally:
+        report=state.report(fatal)
+        save(output/'summary.json',report)
+        total=state.inputs
+        save(output/'observations.json',dict(status=list(state.status[:total]),receipts=list(state.receipts[:total]),
+            timestamps=list(state.times[:total]),origins=state.origins[:total],messageIds=state.identities[:total],
+            metadata=state.metadata[:total],perViewer=state.per_viewer,
+            histograms=[[[v,c] for v,c in enumerate(h.bins) if c] for h in state.hist]))
+        state.closing=True
+        for task in tasks: task.cancel()
+        for peer in state.created: peer.close()
+        await asyncio.gather(*tasks,*(p.task for p in state.created if p.task),return_exceptions=True)
+    print(json.dumps(dict(passed=report['passed'],received=report['received'],failures=report['failures'],fatal=fatal)),flush=True)
+    return 0 if report['passed'] else 1
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--connections',type=int,default=100)
+    parser.add_argument('--seconds',type=int,default=60)
+    parser.add_argument('--rate',type=int,default=20)
+    parser.add_argument('--sample-every',type=int,default=10)
+    parser.add_argument('--scenario',choices=['steady','redis-outage','node-exit','slow'],default='steady')
+    parser.add_argument('--node-a-pid',type=int,default=0)
+    parser.add_argument('--output',required=True)
+    args=parser.parse_args()
+    if not (4<=args.connections<=1000 and args.connections%2==0 and 1<=args.seconds<=300 and 1<=args.rate<=40
+            and 1<=args.sample_every<=args.connections and args.rate*args.seconds<=12000): parser.error('参数超出有界范围')
+    if args.rate/args.connections>4: parser.error('每发送者目标不应超过4/s')
+    if args.scenario=='node-exit' and args.node_a_pid<=0: parser.error('节点退出必须显式指定自建节点PID')
+    args.urls=['ws://127.0.0.1:8087/ws','ws://127.0.0.1:8088/ws']
+    output=Path(args.output); output.mkdir(parents=True,exist_ok=False); save(output/'config.json',vars(args))
+    raise SystemExit(asyncio.run(run(args,output)))
+
+
+if __name__=='__main__': main()

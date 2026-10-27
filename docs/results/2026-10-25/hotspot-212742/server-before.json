@@ -1,0 +1,140 @@
+{
+  "startedAt": "2026-10-25T13:27:40.6577742+00:00",
+  "metrics": [
+    {
+      "name": "jvm.threads.live",
+      "description": "The current number of live threads including both daemon and non-daemon threads",
+      "baseUnit": "threads",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 24.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.connections",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.bytes",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.bytes.highwater",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.messages",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.mode.buffered",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 1.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.slots",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.tasks",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.writers.active",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.rooms",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "process.cpu.usage",
+      "description": "The \"recent cpu usage\" for the Java Virtual Machine process",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.03095304883073744
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "jvm.memory.used",
+      "description": "The amount of used memory",
+      "baseUnit": "bytes",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 58658520.0
+        }
+      ],
+      "availableTags": [
+        {
+          "tag": "id",
+          "values": [
+            "G1 Survivor Space",
+            "G1 Old Gen",
+            "G1 Eden Space"
+          ]
+        }
+      ]
+    }
+  ],
+  "endedAt": "2026-10-25T13:27:42.2641052+00:00"
+}

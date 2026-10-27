@@ -1,0 +1,14 @@
+# 仅创建本实验的Redis；不复用或清空本机其他项目的6379，不持久化普通弹幕。
+services:
+  redis:
+    image: redis@sha256:e7723ff73d963f5cc6d9c4643ea3d989527a402a319239054e9472a7fb9219a2
+    container_name: danmakulab-redis-lab
+    ports:
+      - "127.0.0.1:16379:6379"
+    # Redis服务器自身的订阅输出缓冲也设置硬/软上限，不能只限制Java接收队列。
+    command: ["redis-server", "--save", "", "--appendonly", "no", "--client-output-buffer-limit", "pubsub 8388608 2097152 10"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 1s
+      retries: 10

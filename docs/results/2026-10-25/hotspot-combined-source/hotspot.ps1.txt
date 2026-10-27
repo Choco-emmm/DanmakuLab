@@ -1,0 +1,155 @@
+#requires -Version 7.0
+<#
+T4 初步基线入口：固定房间与成员，先普通房间单独发言，再逐级施加热点输入。
+默认 10×50 个普通观众 + 500 个热点观众，阶段各 30 秒；正式阶段可改为 180 秒。
+服务由用户提前启动，本入口不修改限流或调度。客户端拒绝、接收、尾延迟分房间/阶段保存。
+#>
+param(
+    [ValidateRange(1,10)][int]$NormalRooms = 10,
+    [ValidateRange(2,100)][int]$NormalConnections = 50,
+    [ValidateRange(2,1500)][int]$HotConnections = 500,
+    [ValidateRange(2,180)][int]$PhaseSeconds = 30,
+    [ValidateRange(1,30)][int]$DrainSeconds = 5,
+    [ValidateRange(1,100)][int]$LatencySampleEvery = 10,
+    [string]$HotRates = '20,100,200',
+    [ValidateSet('direct','buffered')][string]$Mode = 'buffered',
+    [string]$HttpUrl = 'http://127.0.0.1:8082',
+    [string]$OutputDirectory
+)
+$ErrorActionPreference = 'Stop'
+Import-Module (Join-Path $PSScriptRoot 'ProcessEvidence.psm1') -Force
+$root = (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
+Push-Location $root
+try {
+    $url = $HttpUrl.TrimEnd('/')
+    $uri = [Uri]$url
+    if (-not $uri.IsLoopback) { throw '当前入口只采集同机回环实验，远端资源需要另行采集。' }
+    if ((Invoke-RestMethod "$url/actuator/health" -TimeoutSec 5).status -ne 'UP') { throw '请先启动服务。' }
+    $modeValue = (Invoke-RestMethod "$url/actuator/metrics/lab.outbound.mode.buffered" -TimeoutSec 5).measurements[0].value
+    if ($modeValue -ne $(if ($Mode -eq 'buffered') { 1 } else { 0 })) { throw '实际服务模式与 Mode 参数不符。' }
+
+    # 指标读取是顺序采样，保留采集起止时间，不能称为同一时刻的原子快照。
+    function Snapshot {
+        $began = [DateTimeOffset]::UtcNow
+        $index = Invoke-RestMethod "$url/actuator/metrics" -TimeoutSec 3
+        $entries = @($index.names | Where-Object { $_ -like 'lab.*' -or $_ -in @('jvm.threads.live','jvm.gc.pause','process.cpu.usage') } |
+            ForEach-Object { Invoke-RestMethod "$url/actuator/metrics/$_" -TimeoutSec 3 })
+        $entries += Invoke-RestMethod "$url/actuator/metrics/jvm.memory.used?tag=area:heap" -TimeoutSec 3
+        @{ startedAt=$began.ToString('o'); endedAt=[DateTimeOffset]::UtcNow.ToString('o'); metrics=$entries }
+    }
+    function Metric($Snapshot, [string]$Name, [switch]$Required) {
+        $entries = @($Snapshot.metrics | Where-Object name -eq $Name)
+        if ($entries.Count -eq 0) {
+            # 从未发生的事件可能尚未登记 Counter；连接/预算 Gauge 则必须存在，不能缺失当零。
+            if ($Required) { throw "缺少必需指标：$Name" }
+            return 0.0
+        }
+        $value = $entries[0].measurements[0].value
+        if ($null -eq $value -or [double]::IsNaN([double]$value) -or [double]::IsInfinity([double]$value)) { throw "无效指标：$Name" }
+        return [double]$value
+    }
+    function Process-Sample([Diagnostics.Process]$Item) {
+        try { $Item.Refresh(); @{ pid=$Item.Id; cpuSeconds=$Item.TotalProcessorTime.TotalSeconds; workingSetBytes=$Item.WorkingSet64; threads=$Item.Threads.Count } }
+        catch { $null } # 进程恰好退出时没有样本，不把 null 冒充资源归零。
+    }
+    $before = Snapshot
+    if ((Metric $before 'lab.connections' -Required) -ne 0) { throw '实验前仍有连接，请先断开演示网页并等待清理。' }
+    if (-not $OutputDirectory) {
+        $beijing = [TimeZoneInfo]::ConvertTimeBySystemTimeZoneId([DateTimeOffset]::UtcNow, 'China Standard Time')
+        $OutputDirectory = "docs/results/$($beijing.ToString('yyyy-MM-dd'))/hotspot-$($beijing.ToString('HHmmss'))"
+    }
+    if (Test-Path -LiteralPath $OutputDirectory) { throw '输出目录已存在，请为每轮实验保留独立目录。' }
+    New-Item -ItemType Directory -Path $OutputDirectory -Force | Out-Null
+    $output = (Resolve-Path -LiteralPath $OutputDirectory).Path
+    $before | ConvertTo-Json -Depth 14 | Set-Content (Join-Path $output 'server-before.json') -Encoding utf8
+    $listener = Get-NetTCPConnection -State Listen -LocalPort $uri.Port | Select-Object -First 1
+    $server = Get-Process -Id $listener.OwningProcess
+    $serverCommand = (Get-CimInstance Win32_Process -Filter "ProcessId=$($server.Id)").CommandLine
+    $serverCommand | Set-Content (Join-Path $output 'server-command.txt') -Encoding utf8
+    Copy-Item src/main/resources/application.yml (Join-Path $output 'application.yml')
+    @{ capturedAt=[DateTimeOffset]::UtcNow.ToString('o'); os=[Environment]::OSVersion.VersionString;
+       cpu=(Get-CimInstance Win32_Processor).Name; logicalProcessors=[Environment]::ProcessorCount;
+       java=((& java -version 2>&1)|Out-String).Trim(); k6=((& k6 version)|Out-String).Trim();
+       sourceCommit=(& git -c safe.directory=D:/coding/DanmakuLab rev-parse HEAD); sourceStatus=((& git -c safe.directory=D:/coding/DanmakuLab status --short)|Out-String);
+       note='Same-host loopback; server and k6 share CPU/RAM. CPU is cumulative seconds; resource maxima are sampled. No backend scheduler change.' } |
+        ConvertTo-Json -Depth 5 | Set-Content (Join-Path $output 'environment.json') -Encoding utf8
+    @{ scenario='T4-initial'; mode=$Mode; normalRooms=$NormalRooms; normalConnections=$NormalConnections;
+       hotConnections=$HotConnections; normalInputPerRoom=2; hotRates=$HotRates; phaseSeconds=$PhaseSeconds;
+       drainSeconds=$DrainSeconds; latencySampleEvery=$LatencySampleEvery; resourceSampleSeconds=5; requestJsonBytes=256;
+       limitNote='Effective limits must be read together from application.yml and server-command.txt; this script does not change limits.' } |
+        ConvertTo-Json | Set-Content (Join-Path $output 'config.json') -Encoding utf8
+    $manifest = @(Get-Item pom.xml) + @(Get-ChildItem src,scripts -Recurse -File | Where-Object FullName -notmatch '__pycache__')
+    @($manifest | Sort-Object FullName | ForEach-Object {
+        @{ path=[IO.Path]::GetRelativePath($root,$_.FullName); sha256=(Get-FileHash -LiteralPath $_.FullName).Hash }
+    }) | ConvertTo-Json -Depth 4 | Set-Content (Join-Path $output 'source-sha256.json') -Encoding utf8
+    Get-FileHash target/danmaku-lab-0.1.0-SNAPSHOT.jar | ConvertTo-Json | Set-Content (Join-Path $output 'jar-sha256.json') -Encoding utf8
+
+    $info = [Diagnostics.ProcessStartInfo]::new()
+    $info.FileName = (Get-Command k6).Source
+    $info.WorkingDirectory = $root
+    $info.UseShellExecute = $false
+    $info.CreateNoWindow = $true
+    $info.RedirectStandardOutput = $true
+    $info.RedirectStandardError = $true
+    $info.Environment['K6_WEB_DASHBOARD'] = 'false' # 排除已有环境变量开启面板后等待浏览器退出。
+    $arguments = @('run','--quiet','-e',"NORMAL_ROOMS=$NormalRooms",'-e',"NORMAL_CONNECTIONS=$NormalConnections",
+        '-e',"HOT_CONNECTIONS=$HotConnections",'-e',"PHASE_SECONDS=$PhaseSeconds",'-e',"DRAIN_SECONDS=$DrainSeconds",
+        '-e',"HOT_RATES=$HotRates",'-e',"LATENCY_SAMPLE_EVERY=$LatencySampleEvery",'-e',"WS_URL=$(($url -replace '^http','ws')+'/ws')",
+        '-e',"SUMMARY_PATH=$(Join-Path $output 'k6-summary.json')",'scripts/load/hotspot.js')
+    foreach ($argument in $arguments) { $info.ArgumentList.Add($argument) }
+    "k6 $($arguments -join ' ')" | Set-Content (Join-Path $output 'command.txt') -Encoding utf8
+    $sampling = [pscustomobject]@{ Next=0.0; NextProgress=0.0; Errors=0 }
+    $runError = $null
+    $status = [ordered]@{ collectorErrors=0; cleanupReturnedToZero=$false; serverCountersMatch=$false }
+    Write-Output "T4 started: $($NormalRooms * $NormalConnections + $HotConnections) connections; four phases; evidence: $output"
+    try {
+        $null = Invoke-ProcessWithEvidence -StartInfo $info -Prefix (Join-Path $output 'k6') -TimeoutSeconds (60 + 4*$PhaseSeconds + $DrainSeconds + 30) -OnTick {
+            param($child, $elapsed)
+            if ($elapsed -ge $sampling.NextProgress) {
+                Write-Host "T4 running: $([Math]::Floor($elapsed))s; target input windows: $($PhaseSeconds * 4)s plus join/drain"
+                $sampling.NextProgress = $elapsed + 10
+            }
+            if ($elapsed -ge $sampling.Next) {
+                $sample = @{ elapsedSeconds=$elapsed; client=Process-Sample $child; server=Process-Sample $server }
+                try { $sample.snapshot = Snapshot }
+                catch { $sample.error=$_.Exception.Message; $sampling.Errors++ }
+                $sample | ConvertTo-Json -Compress -Depth 14 | Add-Content (Join-Path $output 'samples.jsonl') -Encoding utf8
+                $sampling.Next = $elapsed + 5
+            }
+        }
+    } catch { $runError = $_ }
+    finally {
+        # 子进程模块先保存 stdout/stderr/status；即使退出失败，也尽力补服务端最终状态。
+        Start-Sleep -Seconds 2
+        try {
+            $after = Snapshot
+            $after | ConvertTo-Json -Depth 14 | Set-Content (Join-Path $output 'server-after.json') -Encoding utf8
+            $status.cleanupReturnedToZero = (Metric $after 'lab.connections' -Required) -eq 0 -and
+                (Metric $after 'lab.rooms' -Required) -eq 0 -and (Metric $after 'lab.outbound.bytes' -Required) -eq 0 -and
+                (Metric $after 'lab.outbound.messages' -Required) -eq 0 -and (Metric $after 'lab.outbound.slots' -Required) -eq 0
+        } catch { $status.cleanupError=$_.Exception.Message; if (-not $runError) { $runError=$_ } }
+        $status.collectorErrors = $sampling.Errors
+        if ($runError) { $status.error=$runError.Exception.Message }
+        $status | ConvertTo-Json -Depth 6 | Set-Content (Join-Path $output 'run-status.json') -Encoding utf8
+    }
+    if ($runError) { throw $runError }
+    $report = (Get-Content (Join-Path $output 'k6-summary.json') -Raw | ConvertFrom-Json).report
+    $allPhases = @($report.rooms | ForEach-Object { $_.phases })
+    $clientTotals = @{}
+    foreach ($field in 'sent','accepted','rejected','acceptedDeliveryDemand','received') {
+        $clientTotals[$field] = ($allPhases | Measure-Object -Property $field -Sum).Sum
+    }
+    $delta = @{}
+    foreach ($name in 'lab.messages.input','lab.messages.accepted','lab.messages.rejected','lab.deliveries.expected','lab.deliveries.submitted','lab.deliveries.enqueued','lab.writes.failed','lab.outbound.dropped') {
+        $delta[$name] = (Metric $after $name) - (Metric $before $name)
+    }
+    $status.serverCountersMatch = $delta['lab.messages.input'] -eq $clientTotals.sent -and
+        $delta['lab.messages.accepted'] -eq $clientTotals.accepted -and $delta['lab.messages.rejected'] -eq $clientTotals.rejected -and
+        $delta['lab.deliveries.expected'] -eq $clientTotals.acceptedDeliveryDemand -and
+        $delta['lab.deliveries.submitted'] -eq $clientTotals.received
+    @{ client=$clientTotals; server=$delta } | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $output 'counter-delta.json') -Encoding utf8
+    $status | ConvertTo-Json | Set-Content (Join-Path $output 'run-status.json') -Encoding utf8
+    if ($status.collectorErrors -or -not $status.cleanupReturnedToZero -or -not $status.serverCountersMatch) { throw "T4 采集、计数或清理不通过：$output" }
+    Get-Content (Join-Path $output 'k6-stdout.txt')
+    Write-Output "T4 tool checks passed. Review each room/phase's rejections, latency and validity limits: $output"
+} finally { Pop-Location }

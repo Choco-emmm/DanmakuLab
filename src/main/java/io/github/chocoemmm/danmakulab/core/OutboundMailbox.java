@@ -1,0 +1,230 @@
+package io.github.chocoemmm.danmakulab.core;
+
+import org.springframework.web.socket.TextMessage;
+
+import java.io.IOException;
+import java.util.ArrayDeque;
+import java.util.concurrent.RejectedExecutionException;
+
+/**
+ * 一条连接的有界输出邮箱（Mailbox）：广播线程只投递，发送线程稍后实际写网络。
+ * 所有状态由此对象的监视器保护，但网络 I/O 永远在锁外，慢发送不会挡住其他入队与注销。
+ * 预算包括队列和 inFlight（已经取出、异步写尚未完成的一条）；不能一取出就假装释放内存。
+ * active 表示“已安排、正在提交或等待异步完成”；等待期间不占共享提交线程。
+ * inFlight 最多一个，包含发起调用和等待回调两阶段，不能提前发下一条或释放预算。
+ */
+final class OutboundMailbox {
+    private final ClientConnection connection;
+    private final OutboundService service;
+    private final ArrayDeque<Entry> queue = new ArrayDeque<>();
+    private long bytes;
+    private int count;
+    private boolean active;
+    private boolean closed;
+    private Pending inFlight;
+
+    OutboundMailbox(ClientConnection connection, OutboundService service) {
+        this.connection = connection;
+        this.service = service;
+    }
+
+    /** record 是不可变消息条目；同一只读 TextMessage 可共享，预算仍按每份投递计算。 */
+    private record Entry(TextMessage message, boolean danmaku, long queuedAt, int bytes) { }
+
+    /**
+     * 一次在途写的状态，所有字段由邮箱锁保护。invoking 表示 sendText 调用尚未返回。
+     * 完成回调可能同步发生：这时只记录结果，由当前提交者继续；不能递归提交下一条。
+     */
+    private static final class Pending {
+        final Entry entry;
+        boolean invoking = true;
+        boolean completed;
+        Throwable failure;
+        Pending(Entry entry) { this.entry = entry; }
+    }
+
+    /**
+     * 将完整 JSON 入队。只允许移除未发送的普通弹幕，控制回复绝不静默丢弃。
+     * 条数/字节满时优先淘汰最旧弹幕；无法腾空间或全局预算不足时关闭本连接。
+     * 返回仅表示入队成功，不表示容器已完成写入，更不表示客户端已收到。
+     */
+    void offer(TextMessage message, boolean danmaku) throws IOException {
+        String failure = null;
+        boolean start = false;
+        int size = message.getPayloadLength();
+        synchronized (this) {
+            if (closed) throw new IOException("Outbound mailbox is closed");
+            evictExpired(System.nanoTime());
+            if (size > service.properties.maxBytes()) {
+                failure = "message_too_large";
+            } else {
+                while (count >= service.properties.maxMessages() || bytes > service.properties.maxBytes() - size) {
+                    Entry oldest = null;
+                    // 心跳/加入/发送结果可能夹在弹幕中，用迭代器找最旧可丢弹幕，不移动控制回复。
+                    var iterator = queue.iterator();
+                    while (iterator.hasNext()) {
+                        var entry = iterator.next();
+                        if (entry.danmaku()) { oldest = entry; iterator.remove(); break; }
+                    }
+                    if (oldest == null) { failure = "mailbox_full"; break; }
+                    release(oldest);
+                    service.event("lab.outbound.dropped", "overflow");
+                }
+                if (failure == null) {
+                    if (!service.reserve(size)) {
+                        failure = "global_budget";
+                    } else {
+                        queue.addLast(new Entry(message, danmaku, System.nanoTime(), size));
+                        bytes += size;
+                        count++;
+                        if (danmaku) service.metrics.counter("lab.deliveries.enqueued").increment();
+                        if (!active) { active = true; start = true; }
+                    }
+                }
+            }
+        }
+        if (failure != null) {
+            connection.fail(failure);
+            throw new IOException("Outbound rejected: " + failure);
+        }
+        if (start) schedule();
+    }
+
+    /** 提交的任务只有“激活连接”这一种粒度，不会每份投递各堆一个执行器任务。 */
+    private void schedule() throws IOException {
+        try {
+            service.schedule(this::drain);
+        } catch (RejectedExecutionException rejected) {
+            connection.fail("executor_rejected");
+            throw new IOException("Outbound executor rejected connection", rejected);
+        }
+    }
+
+    /**
+     * 同步完成的快写一轮最多推进 batchSize 条，随后让出提交线程。
+     * 若容器尚未完成，本方法立即返回；回调以后重新激活本邮箱，不等待 Future 或占线程轮询。
+     */
+    private void drain() {
+        for (int i = 0; i < service.properties.batchSize(); i++) {
+            Pending pending;
+            boolean controlExpired;
+            synchronized (this) {
+                if (closed) { active = false; return; }
+                evictExpired(System.nanoTime());
+                var entry = queue.pollFirst();
+                if (entry == null) { active = false; return; }
+                controlExpired = !entry.danmaku() && expired(entry, System.nanoTime());
+                inFlight = pending = new Pending(entry);
+                service.writeStarted();
+                // 已移出队列但仍占预算；只有 finish 收到结果才释放，注销只清尚未发送的队列。
+            }
+            try {
+                if (controlExpired) {
+                    finish(pending, new IOException("Control reply expired"), "control_expired");
+                } else {
+                    connection.writeAsync(pending.entry.message(), failure ->
+                            finish(pending, failure, failure == null ? null : "write_failure"));
+                }
+            } catch (IOException | RuntimeException writeFailure) {
+                // 发起本身也可能抛异常。即使容器此前已回调，completed 也保证只处理一次。
+                finish(pending, writeFailure, "write_failure");
+            }
+            synchronized (this) {
+                pending.invoking = false;
+                if (!pending.completed) return; // active仍为true；由未来回调恢复，不提交第二个发送者。
+                if (pending.failure != null || closed) { active = false; return; }
+            }
+        }
+        synchronized (this) {
+            if (closed || queue.isEmpty()) { active = false; return; }
+            // 继续保留 active=true，新入队无需再提交第二个任务。
+        }
+        try { schedule(); } catch (IOException ignored) { /* schedule 已注销连接并记录拒绝原因。 */ }
+    }
+
+    /**
+     * 容器回调、发起异常或控制过期共用一个完成入口，重复通知不得重复释放、计数或激活。
+     * 不在邮箱锁中调用生命周期方法，避免 dispose 的“生命周期锁→邮箱锁”形成锁循环。
+     */
+    private void finish(Pending pending, Throwable failure, String reason) {
+        boolean restart = false;
+        synchronized (this) {
+            if (pending.completed) return;
+            pending.completed = true;
+            pending.failure = failure;
+            inFlight = null;
+            release(pending.entry);
+            service.writeFinished();
+            if (failure != null) {
+                closed = true;
+                active = false;
+            } else if (!pending.invoking) {
+                if (closed || queue.isEmpty()) active = false;
+                else restart = true; // 保留active，offer不会再提交一个任务。
+            }
+        }
+        try {
+            if (failure != null) {
+                if ("write_failure".equals(reason)) service.metrics.counter("lab.writes.failed").increment();
+                connection.fail(reason);
+            } else if (pending.entry.danmaku()) {
+                // 容器完成异步写，仍不等于客户端业务回调已收到；实际接收继续由压测端统计。
+                service.metrics.counter("lab.deliveries.submitted").increment();
+            }
+        } finally {
+            connection.writeFinished();
+        }
+        if (restart) {
+            try { schedule(); } catch (IOException ignored) { /* 拒绝已清理连接与排队预算。 */ }
+        }
+    }
+
+    /** 周期清理仅涉及未发送条目；传输层里的数据不能撤回。控制回复超龄直接关闭连接。 */
+    void expire() {
+        boolean fail = false;
+        synchronized (this) {
+            if (closed) return;
+            long now = System.nanoTime();
+            evictExpired(now);
+            for (var entry : queue) {
+                if (!entry.danmaku() && expired(entry, now)) { fail = true; break; }
+            }
+        }
+        if (fail) connection.fail("control_expired");
+    }
+
+    private boolean expired(Entry entry, long now) {
+        return now - entry.queuedAt() >= service.properties.maxAgeMillis() * 1_000_000L;
+    }
+
+    private void evictExpired(long now) {
+        var iterator = queue.iterator();
+        while (iterator.hasNext()) {
+            var entry = iterator.next();
+            if (entry.danmaku() && expired(entry, now)) {
+                iterator.remove();
+                release(entry);
+                service.event("lab.outbound.dropped", "expired");
+            }
+        }
+    }
+
+    /** 调用方持有邮箱锁；一条预算只能从排队、过期、丢弃或发送完成其中一个路径释放。 */
+    private void release(Entry entry) {
+        bytes -= entry.bytes();
+        count--;
+        service.release(entry.bytes());
+    }
+
+    synchronized void cancel() {
+        // finish失败时可能先标closed；仍须清理队列。重复调用时队列为空，因此仍然幂等。
+        closed = true;
+        while (!queue.isEmpty()) {
+            var entry = queue.removeFirst();
+            release(entry);
+            service.event("lab.outbound.discarded", "connection_closed");
+        }
+    }
+
+    synchronized boolean hasInFlight() { return inFlight != null; }
+}

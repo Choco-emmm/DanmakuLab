@@ -1,0 +1,144 @@
+{
+  "dispatchMode": "direct",
+  "jarSha256": "63C3F3BF6F415E0165FDA5EE710ACDFCA896D8E96981A0539314DD88C4994E28",
+  "sourceFilesMatched": 51,
+  "actualDeliveries": 11544500.0,
+  "totals": {
+    "received": 11544500.0,
+    "rejected": 35951.0,
+    "accepted": 36049.0,
+    "sent": 72000.0,
+    "acceptedDeliveryDemand": 11544500.0
+  },
+  "phases": [
+    {
+      "name": "normal-only",
+      "normalP99RangeMs": [
+        17.00999999999999,
+        20
+      ],
+      "normalP95RangeMs": [
+        14.049999999999955,
+        16
+      ],
+      "normalReceived": 180000,
+      "normalRejected": 0,
+      "normalMaxSendLagMs": 24,
+      "hot": {
+        "actualInputPerSecond": 0,
+        "sent": 0,
+        "accepted": 0,
+        "rejected": 0,
+        "received": 0,
+        "acceptedDeliveryDemand": 0,
+        "latencyMs": null,
+        "maxSendLagMs": 0,
+        "latencySamples": 0
+      }
+    },
+    {
+      "name": "hot-20-0",
+      "normalP99RangeMs": [
+        19,
+        25
+      ],
+      "normalP95RangeMs": [
+        14,
+        20
+      ],
+      "normalReceived": 180000,
+      "normalRejected": 0,
+      "normalMaxSendLagMs": 10,
+      "hot": {
+        "actualInputPerSecond": 19.999000049997502,
+        "sent": 3600,
+        "accepted": 3600,
+        "rejected": 0,
+        "received": 1800000,
+        "acceptedDeliveryDemand": 1800000,
+        "latencyMs": {
+          "avg": 7.779944444444444,
+          "min": 0,
+          "med": 8,
+          "p(95)": 14,
+          "p(99)": 20,
+          "max": 31
+        },
+        "maxSendLagMs": 18,
+        "latencySamples": 180000
+      }
+    },
+    {
+      "name": "hot-100-1",
+      "normalP99RangeMs": [
+        20,
+        30.00999999999999
+      ],
+      "normalP95RangeMs": [
+        13.049999999999955,
+        20
+      ],
+      "normalReceived": 180000,
+      "normalRejected": 0,
+      "normalMaxSendLagMs": 16,
+      "hot": {
+        "actualInputPerSecond": 99.99722229938057,
+        "sent": 18000,
+        "accepted": 9048,
+        "rejected": 8952,
+        "received": 4524000,
+        "acceptedDeliveryDemand": 4524000,
+        "latencyMs": {
+          "avg": 15.006710875331565,
+          "min": 0,
+          "med": 8,
+          "p(95)": 67,
+          "p(99)": 171,
+          "max": 324
+        },
+        "maxSendLagMs": 295,
+        "latencySamples": 452400
+      }
+    },
+    {
+      "name": "hot-200-2",
+      "normalP99RangeMs": [
+        21,
+        32.00999999999999
+      ],
+      "normalP95RangeMs": [
+        14,
+        24
+      ],
+      "normalReceived": 180000,
+      "normalRejected": 0,
+      "normalMaxSendLagMs": 13,
+      "hot": {
+        "actualInputPerSecond": 199.99444459876113,
+        "sent": 36000,
+        "accepted": 9001,
+        "rejected": 26999,
+        "received": 4500500,
+        "acceptedDeliveryDemand": 4500500,
+        "latencyMs": {
+          "avg": 22.691492056438175,
+          "min": 0,
+          "med": 9,
+          "p(95)": 119,
+          "p(99)": 234,
+          "max": 404
+        },
+        "maxSendLagMs": 224,
+        "latencySamples": 450050
+      }
+    }
+  ],
+  "startLagMs": {
+    "normal": 24,
+    "hot": 0
+  },
+  "allChecksPassed": true,
+  "asyncInflightReturnedToZero": true,
+  "sampledBudgetsWithinLimits": true,
+  "note": "十个普通房间的P99只取范围，不平均；无热点阶段hot延迟无样本。原始脚本note中的No room scheduler implemented为过时文字，实际模式由配置、命令和Gauge共同核对。"
+}

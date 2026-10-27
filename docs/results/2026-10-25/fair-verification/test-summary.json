@@ -1,0 +1,79 @@
+[
+  {
+    "name": "io.github.chocoemmm.danmakulab.BufferedWebSocketIntegrationTest",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "io.github.chocoemmm.danmakulab.core.ClientConnectionTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "io.github.chocoemmm.danmakulab.core.ConnectionRegistryTest",
+    "tests": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "io.github.chocoemmm.danmakulab.core.FairRoomDispatcherTest",
+    "tests": 14,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "io.github.chocoemmm.danmakulab.core.OutboundMailboxTest",
+    "tests": 11,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "io.github.chocoemmm.danmakulab.core.OutboundShutdownTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "io.github.chocoemmm.danmakulab.core.TokenBucketTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "io.github.chocoemmm.danmakulab.FairWebSocketIntegrationTest",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "io.github.chocoemmm.danmakulab.protocol.RoomAdmissionTest",
+    "tests": 5,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "io.github.chocoemmm.danmakulab.protocol.SendTimeoutTest",
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  {
+    "name": "io.github.chocoemmm.danmakulab.WebSocketIntegrationTest",
+    "tests": 7,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  }
+]

@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "unknownFeedback": "发布结果未知，消息可能已经送出；系统不会自动重发。",
+  "countsBeforeSwitch": [
+    1,
+    1
+  ],
+  "isolationPassed": true,
+  "mobileOverflow": false,
+  "pageErrors": []
+}

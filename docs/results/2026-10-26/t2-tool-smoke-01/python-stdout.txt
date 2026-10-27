@@ -1,0 +1,6 @@
+T2 joined=100; workers=4; rates=[5, 20, 50, 100]; seconds/phase=3
+T2 5/s: actual=4.993/s; received=1500/1500; rejected=0; p99=3ms; toolValid=True; candidateSlo=True
+T2 20/s: actual=20.032/s; received=6000/6000; rejected=0; p99=2ms; toolValid=True; candidateSlo=True
+T2 50/s: actual=50.119/s; received=15000/15000; rejected=0; p99=2ms; toolValid=True; candidateSlo=True
+T2 100/s: actual=99.857/s; received=30000/30000; rejected=0; p99=2ms; toolValid=True; candidateSlo=True
+

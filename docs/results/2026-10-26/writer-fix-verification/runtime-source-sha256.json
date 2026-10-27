@@ -1,0 +1,26 @@
+[
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/core/ClientConnection.java",
+    "sha256": "F9D0C6AB80F6F5FE640B47814CEC75193C59C81DA160A641F75BF96B4A9F1C04"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/core/OutboundMailbox.java",
+    "sha256": "BC01FA14A8D1B4DC7DE28BAEB5702EF6159CBA37CFF97C021586C73CAD0C90BC"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/core/OutboundService.java",
+    "sha256": "C7B5AF25161B331AFE218F4B93B7F5CDB216A06A5F5CF046761D3EDB262D9872"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/config/OutboundProperties.java",
+    "sha256": "0D023A5EDA297334BDE56F1EB74E5FEE64D56229BF770F2E567ACBBC7915504B"
+  },
+  {
+    "path": "src/main/java/io/github/chocoemmm/danmakulab/config/WebSocketConfiguration.java",
+    "sha256": "D0F54DE39DF5695B8FF255ECA6F0227A1E0174D51B855C4011FF0887DE174B16"
+  },
+  {
+    "path": "src/main/resources/application.yml",
+    "sha256": "C689CB1EC4EEE43A1FD922B8BCE898275666032DDB8D59AF9647AE548644650E"
+  }
+]

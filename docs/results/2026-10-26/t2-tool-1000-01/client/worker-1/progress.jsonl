@@ -1,0 +1,12 @@
+{"at": 1792998833.7771332, "worker": 1, "sent": 0, "received": 0, "failures": {}}
+{"at": 1792998838.789926, "worker": 1, "sent": 0, "received": 3750, "failures": {}}
+{"at": 1792998843.8056984, "worker": 1, "sent": 0, "received": 10000, "failures": {}}
+{"at": 1792998848.8104725, "worker": 1, "sent": 0, "received": 20000, "failures": {}}
+{"at": 1792998853.818955, "worker": 1, "sent": 0, "received": 45000, "failures": {}}
+{"at": 1792998858.8229122, "worker": 1, "sent": 0, "received": 70250, "failures": {}}
+{"at": 1792998863.830164, "worker": 1, "sent": 0, "received": 125250, "failures": {}}
+{"at": 1792998868.8362575, "worker": 1, "sent": 0, "received": 187832, "failures": {}}
+{"at": 1792998873.838038, "worker": 1, "sent": 0, "received": 275702, "failures": {}}
+{"at": 1792998878.8401804, "worker": 1, "sent": 0, "received": 400711, "failures": {}}
+{"at": 1792998883.8511384, "worker": 1, "sent": 0, "received": 525000, "failures": {}}
+{"at": 1792998888.8555005, "worker": 1, "sent": 0, "received": 525000, "failures": {}}

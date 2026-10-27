@@ -1,0 +1,58 @@
+"""只读复核历史归档与本轮修订；输出派生JSON，不修改任何原始实验manifest。
+
+历史源码从绑定哈希的source.zip读取，当前源码变化只列差异，避免后续合法修改破坏历史证据解释。
+运行目录为仓库根目录：python -X utf8 docs/results/2026-10-26/prepublish-review/verify-archive.py.txt
+"""
+import hashlib
+import json
+from pathlib import Path
+import zipfile
+
+base = Path('docs/results/2026-10-26')
+output = base / 'prepublish-review'
+
+
+def read(path):
+    return json.loads(path.read_text(encoding='utf-8-sig'))
+
+
+def sha(path):
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+
+
+tested = read(base / 'redis-implementation/tested-archive.json')
+assert sha(tested['sourceArchive']) == tested['sourceArchiveSha256']
+assert sha(tested['testedJar']) == tested['jarSha256']
+raw_count = source_count = 0
+changes = set()
+with zipfile.ZipFile(tested['sourceArchive']) as archive:
+    for folder in sorted(base.glob('redis-*-final')):
+        for entry in read(folder / 'raw-sha256.json'):
+            assert sha(folder / entry['path']) == entry['sha256']
+            raw_count += 1
+        for entry in read(folder / 'source-sha256.json'):
+            name = entry['path'].replace('\\', '/')
+            if name.startswith('src/main/java/'):
+                assert hashlib.sha256(archive.read(name)).hexdigest().upper() == entry['sha256']
+                source_count += 1
+                if sha(name).upper() != entry['sha256']:
+                    changes.add(name)
+
+baseline = read(base / 'redis-implementation/baseline-archive.json')
+assert sha(baseline['path']) == baseline['sha256']
+with zipfile.ZipFile(baseline['path']) as archive:
+    assert hashlib.sha256(archive.read('danmaku-lab-0.1.0-SNAPSHOT.jar')).hexdigest().upper() == baseline['jarSha256']
+
+reviewed = read(output / 'reviewed-artifact.json')
+assert sha(reviewed['jar']) == reviewed['jarSha256']
+assert sha(reviewed['sourceArchive']) == reviewed['sourceArchiveSha256']
+assert changes == {
+    'src/main/java/io/github/chocoemmm/danmakulab/cluster/RedisBroadcastIngress.java',
+    'src/main/java/io/github/chocoemmm/danmakulab/cluster/RedisPubSubTransport.java',
+}
+
+report = dict(rawFilesVerified=raw_count, historicalJavaHashesVerified=source_count,
+              currentJavaDifferences=sorted(changes), baselinePreserved=True,
+              testedRedisArchivePreserved=True, reviewedArchiveVerified=True)
+(output / 'archive-verification.json').write_text(json.dumps(report, indent=2) + '\n', encoding='utf-8')
+print(json.dumps(report, indent=2))

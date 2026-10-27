@@ -1,0 +1,45 @@
+--- hotspot-before.ps1
++++ scripts/run/hotspot.ps1
+@@ -29,11 +29,15 @@
+     $url = $HttpUrl.TrimEnd('/')
+     $uri = [Uri]$url
+     if (-not $uri.IsLoopback) { throw '当前入口只采集同机回环实验，远端资源需要另行采集。' }
+-    if ((Invoke-RestMethod "$url/actuator/health" -TimeoutSec 5).status -ne 'UP') { throw '请先启动服务。' }
+-    $modeValue = (Invoke-RestMethod "$url/actuator/metrics/lab.outbound.mode.buffered" -TimeoutSec 5).measurements[0].value
++    # 整轮采样共享一个HTTP会话，复用连接；例如60次GET不再为每次请求新建TCP连接。
++    # 千连接长测时，监控本身也要控制资源，避免不断制造短连接；请求仍有3秒超时，
++    # 真正的读取失败仍记录collectorErrors，不重试后静默抹掉，也不补造缺失采样。
++    $metricsSession = [Microsoft.PowerShell.Commands.WebRequestSession]::new()
++    if ((Invoke-RestMethod "$url/actuator/health" -TimeoutSec 3 -WebSession $metricsSession).status -ne 'UP') { throw '请先启动服务。' }
++    $modeValue = (Invoke-RestMethod "$url/actuator/metrics/lab.outbound.mode.buffered" -TimeoutSec 3 -WebSession $metricsSession).measurements[0].value
+     if ($modeValue -ne $(if ($Mode -eq 'buffered') { 1 } else { 0 })) { throw '实际服务模式与 Mode 参数不符。' }
+     # 旧版服务没有调度模式 Gauge，仅在期望 direct 且明确返回 404 时兼容；不能把连接失败当旧版。
+-    try { $dispatchValue = (Invoke-RestMethod "$url/actuator/metrics/lab.dispatch.mode.fair" -TimeoutSec 5).measurements[0].value }
++    try { $dispatchValue = (Invoke-RestMethod "$url/actuator/metrics/lab.dispatch.mode.fair" -TimeoutSec 3 -WebSession $metricsSession).measurements[0].value }
+     catch {
+         if ($DispatchMode -eq 'direct' -and [int]$_.Exception.Response.StatusCode -eq 404) { $dispatchValue=0 }
+         else { throw }
+@@ -43,10 +47,10 @@
+     # 指标读取是顺序采样，保留采集起止时间，不能称为同一时刻的原子快照。
+     function Snapshot {
+         $began = [DateTimeOffset]::UtcNow
+-        $index = Invoke-RestMethod "$url/actuator/metrics" -TimeoutSec 3
++        $index = Invoke-RestMethod "$url/actuator/metrics" -TimeoutSec 3 -WebSession $metricsSession
+         $entries = @($index.names | Where-Object { $_ -like 'lab.*' -or $_ -in @('jvm.threads.live','jvm.gc.pause','process.cpu.usage') } |
+-            ForEach-Object { Invoke-RestMethod "$url/actuator/metrics/$_" -TimeoutSec 3 })
+-        $entries += Invoke-RestMethod "$url/actuator/metrics/jvm.memory.used?tag=area:heap" -TimeoutSec 3
++            ForEach-Object { Invoke-RestMethod "$url/actuator/metrics/$_" -TimeoutSec 3 -WebSession $metricsSession })
++        $entries += Invoke-RestMethod "$url/actuator/metrics/jvm.memory.used?tag=area:heap" -TimeoutSec 3 -WebSession $metricsSession
+         @{ startedAt=$began.ToString('o'); endedAt=[DateTimeOffset]::UtcNow.ToString('o'); metrics=$entries }
+     }
+     function Metric($Snapshot, [string]$Name, [switch]$Required) {
+@@ -238,4 +242,8 @@
+         -not $status.phaseAlignmentPassed -or -not $status.processesPassed) { throw "T4 采集、对齐、计数或清理不通过：$output" }
+     foreach ($spec in $specs) { Get-Content (Join-Path $spec.Directory 'k6-stdout.txt') }
+     Write-Output "T4 tool checks passed. Review each room/phase's rejections, latency and validity limits: $output"
+-} finally { Pop-Location }
++} finally {
++    # 正常结束和中途失败都释放采集器会话；业务WebSocket由两个k6子进程各自收尾。
++    if ($metricsSession) { $metricsSession.Dispose() }
++    Pop-Location
++}

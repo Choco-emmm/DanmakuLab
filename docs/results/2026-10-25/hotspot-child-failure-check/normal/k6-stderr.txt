@@ -1,0 +1,2 @@
+time="2026-10-25T21:20:20+08:00" level=error msg="Error: HOT_RATES must contain exactly three integer rates in 1..500\n\tat file:///D:/coding/DanmakuLab/scripts/load/hotspot.js:34:9(144)\n" hint="script exception"
+

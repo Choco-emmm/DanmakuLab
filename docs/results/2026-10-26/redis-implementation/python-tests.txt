@@ -1,0 +1,17 @@
+test_cross_node_identity_is_preserved (test_cluster.ClusterAccountingTest.test_cross_node_identity_is_preserved)
+所有观众看到的同一输入必须有同一messageId，不接受接收节点重新生成身份。 ... ok
+test_duplicate_cannot_increase_receipt (test_cluster.ClusterAccountingTest.test_duplicate_cannot_increase_receipt)
+同一观众重复收到同一输入，只计一次并明确报重复。 ... ok
+test_odd_stable_cohort_has_sampled_viewer (test_cluster.ClusterAccountingTest.test_odd_stable_cohort_has_sampled_viewer)
+节点B恰为奇数索引时仍从必达组内抽样，不能用全局取模导致延迟样本为零。 ... ok
+test_partial_window_keeps_failure_report_instead_of_dividing_by_zero (test_cluster.ClusterAccountingTest.test_partial_window_keeps_failure_report_instead_of_dividing_by_zero)
+发送中途异常时窗口未完成，仍须生成明确失败的报告，不能在收尾再次异常而丢失证据。 ... ok
+test_unknown_is_not_rejection_or_acceptance (test_cluster.ClusterAccountingTest.test_unknown_is_not_rejection_or_acceptance)
+发布结果未知有独立状态，不能被汇总成正常成功。 ... ok
+test_wrong_origin_is_protocol_error (test_cluster.ClusterAccountingTest.test_wrong_origin_is_protocol_error)
+不能把来自B的广播当成A发送的那条。 ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.002s
+
+OK

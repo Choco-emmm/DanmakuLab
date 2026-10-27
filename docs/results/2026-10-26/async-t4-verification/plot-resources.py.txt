@@ -1,0 +1,82 @@
+"""从两轮已验证的T4证据绘图；保留各房间分位数，不合并或平均P99。
+
+用法：python target/plot-async-t4.py <direct目录> <fair目录>。
+PNG方便阅读，SVG保留可缩放原图；图仅展示采样和本轮观测，不外推最大容量。
+"""
+import json
+import sys
+from pathlib import Path
+
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+
+plt.rcParams.update({'font.sans-serif': ['Microsoft YaHei'], 'axes.unicode_minus': False,
+                     'font.size': 10, 'figure.facecolor': 'white', 'axes.spines.top': False,
+                     'axes.spines.right': False})
+COLORS = {'direct': '#2563eb', 'fair': '#b45309'}
+
+
+def read(path):
+    return json.loads(path.read_text(encoding='utf-8-sig'))
+
+
+def metric(row, name):
+    return next(item['measurements'][0]['value'] for item in row['snapshot']['metrics'] if item['name'] == name)
+
+
+folders = [Path(argument) for argument in sys.argv[1:]]
+assert len(folders) == 2
+for folder in folders:
+    rows = [json.loads(line) for line in (folder / 'samples.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+    config = read(folder / 'config.json')
+    mode = config['dispatchMode']
+    x = [row['elapsedSeconds'] for row in rows]
+    fig, axes = plt.subplots(3, 1, figsize=(12, 9), sharex=True, layout='constrained')
+    # JVM已用堆和进程工作集是不同口径，逻辑邮箱字节也不能当作总内存。
+    axes[0].plot(x, [metric(row, 'jvm.memory.used') / 1048576 for row in rows], label='JVM已用堆')
+    axes[0].plot(x, [row['server']['workingSetBytes'] / 1048576 for row in rows], label='Java工作集')
+    axes[0].set_ylabel('MiB'); axes[0].legend(loc='upper left', ncol=2)
+    axes[1].plot(x, [metric(row, 'lab.outbound.bytes') / 1024 for row in rows], label='连接输出保留载荷')
+    axes[1].plot(x, [metric(row, 'lab.dispatch.bytes') / 1024 for row in rows], label='房间入口保留载荷')
+    axes[1].set_ylabel('KiB'); axes[1].legend(loc='upper left', ncol=2)
+    # 相邻进程CPU累计秒差/时间差得到该采样区间的等效逻辑核，缺进程时跳过。
+    for role, label in (('server', 'Java'), ('normal', 'k6普通房间'), ('hot', 'k6热点房间')):
+        points = [(row['elapsedSeconds'], row.get('server') if role == 'server' else row.get('clients', {}).get(role)) for row in rows]
+        points = [(elapsed, item) for elapsed, item in points if item]
+        axes[2].plot([b[0] for a, b in zip(points, points[1:])],
+                     [(b[1]['cpuSeconds'] - a[1]['cpuSeconds']) / (b[0] - a[0]) for a, b in zip(points, points[1:])], label=label)
+    axes[2].set_ylabel('等效逻辑核'); axes[2].set_xlabel('从采集开始计时（秒）'); axes[2].legend(loc='upper left', ncol=3)
+    for ax in axes:
+        ax.grid(alpha=.2)
+        for index in range(5):
+            ax.axvline(config['startDelaySeconds'] + index * config['phaseSeconds'], color='#9ca3af', linewidth=.7, linestyle='--')
+    axes[0].set_title(f'T4 {mode}：1000连接、默认8提交线程、四阶段各180秒\n约五秒采样；虚线为计划阶段边界，采样最大值不是绝对峰值', loc='left')
+    for extension in ('png', 'svg'):
+        fig.savefig(folder / f'resources.{extension}', dpi=140)
+    plt.close(fig)
+
+# 并列展示十个普通房间的P99散点，竖线仅为最小—最大范围。
+# 这些点是各自分布的分位数，不是同一总体的新样本，更不能取平均形成总体P99。
+fig, axes = plt.subplots(2, 1, figsize=(11, 8), layout='constrained')
+for folder in folders:
+    mode = read(folder / 'config.json')['dispatchMode']
+    normal, hot = [read(folder / role / 'k6-summary.json')['report'] for role in ('normal', 'hot')]
+    offset = -.12 if mode == 'direct' else .12
+    for phase in range(4):
+        ys = [room['phases'][phase]['latencyMs']['p(99)'] for room in normal['rooms']]
+        xp = phase + offset
+        axes[0].vlines(xp, min(ys), max(ys), color=COLORS[mode], linewidth=2)
+        axes[0].scatter([xp] * len(ys), ys, s=20, alpha=.65, color=COLORS[mode], label=mode if phase == 0 else None)
+    hp = hot['rooms'][0]['phases']
+    axes[1].plot([1, 2, 3], [hp[index]['latencyMs']['p(99)'] for index in (1, 2, 3)], marker='o', color=COLORS[mode], label=mode)
+for ax in axes:
+    ax.set_xticks(range(4), ['普通单独', '热点尝试20/s', '热点尝试100/s', '热点尝试200/s'])
+    ax.set_ylabel('抽样P99（毫秒）'); ax.set_ylim(bottom=0); ax.grid(alpha=.2); ax.legend()
+axes[0].set_title('普通房间：每点是一个房间的P99，竖线为十个房间范围', loc='left')
+axes[1].set_title('热点房间：只对已接受消息的实际接收计算延迟', loc='left')
+fig.suptitle('异步版T4首轮对照｜相同JAR、默认8提交线程、同机回环\n一对实验；不代表三次重复或最大容量', fontsize=13)
+for extension in ('png', 'svg'):
+    fig.savefig(folders[0].parent / f'async-t4-comparison.{extension}', dpi=140)
+plt.close(fig)

@@ -1,0 +1,11 @@
+{
+  "started": true,
+  "processId": 68580,
+  "exitCode": 107,
+  "timedOut": false,
+  "elapsedSeconds": 0.1899792,
+  "error": "子进程退出码为 107。",
+  "captureComplete": true,
+  "captureErrors": [],
+  "cleanupErrors": []
+}

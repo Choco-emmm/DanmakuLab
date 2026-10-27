@@ -1,0 +1,46 @@
+{
+  "8087": {
+    "pid": 19036,
+    "gauges": {
+      "lab.cluster.publish.bytes": 0.0,
+      "lab.cluster.receive.bytes": 0.0,
+      "lab.outbound.writes.inflight": 0.0,
+      "lab.cluster.receive.messages": 0.0,
+      "lab.outbound.slots": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 0.0,
+      "lab.outbound.writers.active": 0.0,
+      "lab.outbound.tasks": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.connections": 0.0,
+      "lab.rooms": 0.0,
+      "lab.outbound.messages": 0.0,
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.cluster.publish.messages": 0.0
+    },
+    "command": "D:\\coding\\jdk\\bin\\java.exe -Xms128m -Xmx256m -jar target/danmaku-lab-prepublish.jar --server.port=8087 --lab.cluster.mode=redis --lab.cluster.node-id=node-a --lab.cluster.namespace=danmakulab-prepublish --lab.outbound.mode=buffered --lab.dispatch.mode=fair --lab.max-text-length=300"
+  },
+  "8088": {
+    "pid": 26040,
+    "gauges": {
+      "lab.cluster.publish.bytes": 0.0,
+      "lab.cluster.receive.bytes": 0.0,
+      "lab.outbound.writes.inflight": 0.0,
+      "lab.cluster.receive.messages": 0.0,
+      "lab.outbound.slots": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 0.0,
+      "lab.outbound.writers.active": 0.0,
+      "lab.outbound.tasks": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.connections": 0.0,
+      "lab.rooms": 0.0,
+      "lab.outbound.messages": 0.0,
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.cluster.publish.messages": 0.0
+    },
+    "command": "D:\\coding\\jdk\\bin\\java.exe -Xms128m -Xmx256m -jar target/danmaku-lab-prepublish.jar --server.port=8088 --lab.cluster.mode=redis --lab.cluster.node-id=node-b --lab.cluster.namespace=danmakulab-prepublish --lab.outbound.mode=buffered --lab.dispatch.mode=fair"
+  }
+}

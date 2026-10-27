@@ -1,0 +1,267 @@
+{
+  "root_group": {
+    "path": "",
+    "id": "d41d8cd98f00b204e9800998ecf8427e",
+    "groups": [],
+    "checks": [
+        {
+          "passes": 1,
+          "fails": 0,
+          "name": "all viewers and isolation probe joined",
+          "path": "::all viewers and isolation probe joined",
+          "id": "614a6de8ba18fede803f5cff63871418"
+        },
+        {
+          "name": "every viewer received every unique message",
+          "path": "::every viewer received every unique message",
+          "id": "a046de52e3288576e87a4b265487f3b1",
+          "passes": 10,
+          "fails": 0
+        }
+      ],
+    "name": ""
+  },
+  "options": {
+    "summaryTrendStats": [
+      "avg",
+      "min",
+      "med",
+      "max",
+      "p(90)",
+      "p(95)"
+    ],
+    "summaryTimeUnit": "",
+    "noColor": true
+  },
+  "state": {
+    "isStdOutTTY": false,
+    "isStdErrTTY": false,
+    "testRunDurationMs": 3674.0484
+  },
+  "metrics": {
+    "ws_sessions": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 11,
+        "rate": 2.9939725344935573
+      }
+    },
+    "data_sent": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "rate": 893.5647118856681,
+        "count": 3283
+      }
+    },
+    "lab_errors": {
+      "contains": "default",
+      "values": {
+        "count": 0,
+        "rate": 0
+      },
+      "thresholds": {
+        "count==0": {
+          "ok": true
+        }
+      },
+      "type": "counter"
+    },
+    "lab_received": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 30,
+        "rate": 8.165379639527885
+      },
+      "thresholds": {
+        "count==30": {
+          "ok": true
+        }
+      }
+    },
+    "vus": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 1,
+        "min": 1,
+        "max": 1
+      }
+    },
+    "iteration_duration": {
+      "values": {
+        "avg": 3673.2545,
+        "min": 3673.2545,
+        "med": 3673.2545,
+        "max": 3673.2545,
+        "p(90)": 3673.2545,
+        "p(95)": 3673.2545
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "lab_joined": {
+      "values": {
+        "count": 11,
+        "rate": 2.9939725344935573
+      },
+      "thresholds": {
+        "count==11": {
+          "ok": true
+        }
+      },
+      "type": "counter",
+      "contains": "default"
+    },
+    "lab_order_violations": {
+      "values": {
+        "count": 0,
+        "rate": 0
+      },
+      "thresholds": {
+        "count==0": {
+          "ok": true
+        }
+      },
+      "type": "counter",
+      "contains": "default"
+    },
+    "ws_connecting": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "med": 116.1264,
+        "max": 116.1264,
+        "p(90)": 116.1264,
+        "p(95)": 116.1264,
+        "avg": 115.61149999999999,
+        "min": 113.5602
+      }
+    },
+    "ws_msgs_sent": {
+      "contains": "default",
+      "values": {
+        "count": 25,
+        "rate": 6.8044830329399035
+      },
+      "type": "counter"
+    },
+    "lab_isolation_failures": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 0,
+        "rate": 0
+      },
+      "thresholds": {
+        "count==0": {
+          "ok": true
+        }
+      }
+    },
+    "vus_max": {
+      "type": "gauge",
+      "contains": "default",
+      "values": {
+        "value": 1,
+        "min": 1,
+        "max": 1
+      }
+    },
+    "iterations": {
+      "thresholds": {
+        "count==1": {
+          "ok": true
+        }
+      },
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 1,
+        "rate": 0.27217932131759615
+      }
+    },
+    "checks": {
+      "type": "rate",
+      "contains": "default",
+      "values": {
+        "rate": 1,
+        "passes": 11,
+        "fails": 0
+      },
+      "thresholds": {
+        "rate==1": {
+          "ok": true
+        }
+      }
+    },
+    "ws_msgs_received": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 44,
+        "rate": 11.975890137974229
+      }
+    },
+    "lab_accepted": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "count": 3,
+        "rate": 0.8165379639527883
+      },
+      "thresholds": {
+        "count==3": {
+          "ok": true
+        }
+      }
+    },
+    "lab_duplicates": {
+      "type": "counter",
+      "contains": "default",
+      "values": {
+        "rate": 0,
+        "count": 0
+      },
+      "thresholds": {
+        "count==0": {
+          "ok": true
+        }
+      }
+    },
+    "ws_session_duration": {
+      "values": {
+        "avg": 3672.3886090909086,
+        "min": 3671.1208,
+        "med": 3672.7294,
+        "max": 3672.7294,
+        "p(90)": 3672.7294,
+        "p(95)": 3672.7294
+      },
+      "type": "trend",
+      "contains": "time"
+    },
+    "data_received": {
+      "type": "counter",
+      "contains": "data",
+      "values": {
+        "rate": 3612.908311169771,
+        "count": 13274
+      }
+    },
+    "lab_e2e_ms": {
+      "type": "trend",
+      "contains": "time",
+      "values": {
+        "min": 1,
+        "med": 2,
+        "max": 6,
+        "p(90)": 6,
+        "p(95)": 6,
+        "avg": 2.7666666666666666
+      }
+    }
+  }
+}

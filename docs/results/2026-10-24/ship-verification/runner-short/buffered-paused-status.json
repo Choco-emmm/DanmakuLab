@@ -1,0 +1,15 @@
+{
+  "collectionErrors": 0,
+  "connectionsAfter": 0.0,
+  "bufferedBytesAfter": 0.0,
+  "slotsAfter": 0.0,
+  "started": true,
+  "processId": 60852,
+  "exitCode": 0,
+  "timedOut": false,
+  "elapsedSeconds": 8.6245316,
+  "error": null,
+  "captureComplete": true,
+  "captureErrors": [],
+  "cleanupErrors": []
+}

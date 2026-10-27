@@ -1,0 +1,15 @@
+{
+  "pair": [
+    "async-t4-direct-02",
+    "async-t4-fair-02"
+  ],
+  "equalLoadConfiguration": true,
+  "equalSourceManifests": true,
+  "jarIdenticalAcrossFourRuns": true,
+  "onlyChangedHistoricalSource": [
+    "scripts\\run\\hotspot.ps1"
+  ],
+  "allChecksPassed": true,
+  "failedRoundPreserved": true,
+  "note": "主对照一对成功；额外原调度成功和fair采集失败均完整披露，不计作三对成功。"
+}

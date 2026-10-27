@@ -18,8 +18,15 @@
     <properties>
         <!-- 编译使用 Java 21 的语言/API 边界；实际运行验证环境另在 README 和实验记录中说明。 -->
         <java.version>21</java.version>
+        <!-- 可覆盖制品名，Redis实验打到新JAR，避免覆盖仍用于单机复现的旧制品。 -->
+        <lab.artifact-name>danmaku-lab-0.1.0-SNAPSHOT</lab.artifact-name>
     </properties>
     <dependencies>
+        <!-- 版本由Boot统一管理。直接使用Lettuce以分别控制发布/订阅重连，不启用本地模式的Redis健康依赖。 -->
+        <dependency>
+            <groupId>io.lettuce</groupId>
+            <artifactId>lettuce-core</artifactId>
+        </dependency>
         <!-- 原生 WebSocket 及其所需 Web/MVC 和默认 Servlet 容器。 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,6 +50,7 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>${lab.artifact-name}</finalName>
         <!-- 把依赖一起打入可执行 JAR，便于使用 java -jar 启动服务。 -->
         <plugins>
             <plugin>
@@ -51,4 +59,15 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <!-- 默认单元测试不要求Redis；只有此显式profile执行*IT，连接失败会使verify失败。 -->
+        <profile>
+            <id>redis-integration</id>
+            <build><plugins><plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <executions><execution><goals><goal>integration-test</goal><goal>verify</goal></goals></execution></executions>
+            </plugin></plugins></build>
+        </profile>
+    </profiles>
 </project>

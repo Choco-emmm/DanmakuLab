@@ -23,5 +23,7 @@ Thumbs.db
 # Local dependencies and generated load-test output
 node_modules/
 load-results/
+# 长期本地基线制品/源码压缩包；独立于target，mvn clean不会删除，Git只归档索引与哈希。
+.lab-artifacts/
 .gstack/
 .gstack/

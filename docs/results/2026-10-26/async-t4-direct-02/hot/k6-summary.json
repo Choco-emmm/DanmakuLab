@@ -1,0 +1,962 @@
+{
+  "report": {
+    "scenario": "T4-initial",
+    "role": "hot",
+    "totalConnections": 500,
+    "configuredConnections": 1000,
+    "normalRooms": 10,
+    "normalConnections": 50,
+    "hotConnections": 500,
+    "plannedStartAtMs": 1792983844575,
+    "readyAtMs": 1792983817351,
+    "startedAtMs": 1792983844575,
+    "startLagMs": 0,
+    "phaseSeconds": 180,
+    "hotRates": [
+      20,
+      100,
+      200
+    ],
+    "requestBytes": 256,
+    "latencySampleEvery": 10,
+    "dedupBytes": 28800000,
+    "joined": 500,
+    "errors": 0,
+    "duplicates": 0,
+    "orderViolations": 0,
+    "isolationFailures": 0,
+    "unexpectedCloses": 0,
+    "missingAccepted": 0,
+    "missingResults": 0,
+    "rooms": [
+      {
+        "name": "hot",
+        "connections": 500,
+        "phases": [
+          {
+            "name": "normal-only",
+            "targetInputPerSecond": 0,
+            "plannedInputMessages": 0,
+            "sent": 0,
+            "accepted": 0,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 0,
+            "allInputDeliveryDemand": 0,
+            "acceptedDeliveryDemand": 0,
+            "received": 0,
+            "missingAccepted": 0,
+            "latencySamples": 0,
+            "latencyMs": null,
+            "maxSendLagMs": 0,
+            "broadcastBytes": null
+          },
+          {
+            "name": "hot-20-0",
+            "targetInputPerSecond": 20,
+            "plannedInputMessages": 3600,
+            "sent": 3600,
+            "accepted": 3600,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 19.999000049997502,
+            "allInputDeliveryDemand": 1800000,
+            "acceptedDeliveryDemand": 1800000,
+            "received": 1800000,
+            "missingAccepted": 0,
+            "latencySamples": 180000,
+            "latencyMs": {
+              "avg": 7.779944444444444,
+              "min": 0,
+              "med": 8,
+              "p(95)": 14,
+              "p(99)": 20,
+              "max": 31
+            },
+            "maxSendLagMs": 18,
+            "broadcastBytes": {
+              "avg": 487.4480555555556,
+              "min": 483,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-100-1",
+            "targetInputPerSecond": 100,
+            "plannedInputMessages": 18000,
+            "sent": 18000,
+            "accepted": 9048,
+            "rejected": 8952,
+            "roomRateRejected": 8952,
+            "rejectionReasons": {
+              "room_rate_limit": 8952,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 99.99722229938057,
+            "allInputDeliveryDemand": 9000000,
+            "acceptedDeliveryDemand": 4524000,
+            "received": 4524000,
+            "missingAccepted": 0,
+            "latencySamples": 452400,
+            "latencyMs": {
+              "avg": 15.006710875331565,
+              "min": 0,
+              "med": 8,
+              "p(95)": 67,
+              "p(99)": 171,
+              "max": 324
+            },
+            "maxSendLagMs": 295,
+            "broadcastBytes": {
+              "med": 488,
+              "p(95)": 489,
+              "p(99)": 489,
+              "max": 489,
+              "avg": 488.07482316534043,
+              "min": 486
+            }
+          },
+          {
+            "name": "hot-200-2",
+            "targetInputPerSecond": 200,
+            "plannedInputMessages": 36000,
+            "sent": 36000,
+            "accepted": 9001,
+            "rejected": 26999,
+            "roomRateRejected": 26999,
+            "rejectionReasons": {
+              "room_rate_limit": 26999,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 199.99444459876113,
+            "allInputDeliveryDemand": 18000000,
+            "acceptedDeliveryDemand": 4500500,
+            "received": 4500500,
+            "missingAccepted": 0,
+            "latencySamples": 450050,
+            "latencyMs": {
+              "avg": 22.691492056438175,
+              "min": 0,
+              "med": 9,
+              "p(95)": 119,
+              "p(99)": 234,
+              "max": 404
+            },
+            "maxSendLagMs": 224,
+            "broadcastBytes": {
+              "avg": 488.7811354293967,
+              "min": 487,
+              "med": 489,
+              "p(95)": 489,
+              "p(99)": 489,
+              "max": 489
+            }
+          }
+        ]
+      }
+    ],
+    "note": "Same-host, all readers normal; one VU per process handles only its ROLE. Split roles share absolute phase boundaries. Finite drain, sampled latency; processes still share host CPU/RAM. No room scheduler implemented; not formal 15/30-minute validation."
+  },
+  "metrics": {
+    "root_group": {
+      "id": "d41d8cd98f00b204e9800998ecf8427e",
+      "groups": [],
+      "checks": [
+          {
+            "path": "::各观众收齐全部已接受输入且发送结果齐全",
+            "id": "f3d7af9c0f6b540cabe6af2960f86542",
+            "passes": 1,
+            "fails": 0,
+            "name": "各观众收齐全部已接受输入且发送结果齐全"
+          }
+        ],
+      "name": "",
+      "path": ""
+    },
+    "options": {
+      "summaryTrendStats": [
+        "avg",
+        "min",
+        "med",
+        "p(95)",
+        "p(99)",
+        "max"
+      ],
+      "summaryTimeUnit": "",
+      "noColor": true
+    },
+    "state": {
+      "isStdOutTTY": false,
+      "isStdErrTTY": false,
+      "testRunDurationMs": 754766.5378
+    },
+    "metrics": {
+      "t4_r0_p0_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "data_sent": {
+        "type": "counter",
+        "contains": "data",
+        "values": {
+          "count": 15870790,
+          "rate": 21027.416035507238
+        }
+      },
+      "t4_r0_p1_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "vus": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "t4_r0_p1_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p2_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p3_other_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r0_p2_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 295,
+          "avg": 9.347333333333333,
+          "min": 0,
+          "med": 7,
+          "p(95)": 27,
+          "p(99)": 76
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p1_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p0_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p3_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 26999,
+          "rate": 35.771326162255306
+        }
+      },
+      "t4_r0_p0_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p0_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "max": 0,
+          "value": 0
+        }
+      },
+      "iterations": {
+        "contains": "default",
+        "values": {
+          "count": 1,
+          "rate": 0.0013249130027873368
+        },
+        "thresholds": {
+          "count==1": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t4_r0_p2_received": {
+        "contains": "default",
+        "values": {
+          "count": 4524000,
+          "rate": 5993.9064246099115
+        },
+        "type": "counter"
+      },
+      "t4_r0_p3_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 26999,
+          "rate": 35.771326162255306
+        }
+      },
+      "t4_r0_p2_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 8952,
+          "rate": 11.86062120095224
+        }
+      },
+      "iteration_duration": {
+        "values": {
+          "max": 754766,
+          "avg": 754766,
+          "min": 754766,
+          "med": 754766,
+          "p(95)": 754766,
+          "p(99)": 754766
+        },
+        "type": "trend",
+        "contains": "time"
+      },
+      "t4_start_lag_ms": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "max": 0,
+          "value": 0,
+          "min": 0
+        },
+        "thresholds": {
+          "value<1000": {
+            "ok": true
+          },
+          "value>=0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p3_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 11.925541938088818,
+          "count": 9001
+        }
+      },
+      "t4_r0_p2_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 489,
+          "max": 489,
+          "avg": 488.07482316534043,
+          "min": 486,
+          "med": 488,
+          "p(95)": 489
+        }
+      },
+      "t4_r0_p3_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 119,
+          "p(99)": 234,
+          "max": 404,
+          "avg": 22.691492056438175,
+          "min": 0,
+          "med": 9
+        }
+      },
+      "t4_r0_p2_connection_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_duplicates": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_joined": {
+        "contains": "default",
+        "values": {
+          "count": 500,
+          "rate": 0.6624565013936684
+        },
+        "thresholds": {
+          "count==500": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t4_r0_p2_missing": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r0_p1_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 488,
+          "avg": 487.4480555555556,
+          "min": 483,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488
+        }
+      },
+      "t4_r0_p3_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 4500500,
+          "rate": 5962.770969044409
+        }
+      },
+      "data_received": {
+        "type": "counter",
+        "contains": "data",
+        "values": {
+          "count": 5336166455,
+          "rate": 7069956.321267108
+        }
+      },
+      "t4_started_at_ms": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1792983844575,
+          "min": 1792983844575,
+          "max": 1792983844575
+        }
+      },
+      "t4_r0_p2_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 8952,
+          "rate": 11.86062120095224
+        }
+      },
+      "ws_msgs_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 10907600,
+          "rate": 14451.621069203155
+        }
+      },
+      "t4_r0_p1_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p0_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r0_p2_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 67,
+          "p(99)": 171,
+          "max": 324,
+          "avg": 15.006710875331565,
+          "min": 0,
+          "med": 8
+        }
+      },
+      "t4_r0_p0_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "ws_session_duration": {
+        "values": {
+          "med": 753526.8489999999,
+          "p(95)": 754635.64232,
+          "p(99)": 754735.7129970001,
+          "max": 754739.9308,
+          "avg": 753528.7307235998,
+          "min": 752320.7038
+        },
+        "type": "trend",
+        "contains": "time"
+      },
+      "checks": {
+        "type": "rate",
+        "contains": "default",
+        "values": {
+          "rate": 1,
+          "passes": 1,
+          "fails": 0
+        },
+        "thresholds": {
+          "rate==1": {
+            "ok": true
+          }
+        }
+      },
+      "ws_sessions": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 500,
+          "rate": 0.6624565013936684
+        }
+      },
+      "t4_r0_p2_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 452400,
+          "rate": 599.3906424609912
+        }
+      },
+      "t4_r0_p1_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 4.703055555555555,
+          "min": 0,
+          "med": 5,
+          "p(95)": 9,
+          "p(99)": 10,
+          "max": 18
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_unexpected_closes": {
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p0_sent": {
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p3_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 596.2770969044409,
+          "count": 450050
+        }
+      },
+      "t4_r0_p3_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "max": 199.99444459876113,
+          "value": 199.99444459876113
+        },
+        "thresholds": {
+          "value>=190": {
+            "ok": true
+          },
+          "value<=210": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p1_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 3600,
+          "rate": 4.769686810034412
+        },
+        "thresholds": {
+          "count==3600": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p1_actual_rate": {
+        "thresholds": {
+          "value>=19": {
+            "ok": true
+          },
+          "value<=21": {
+            "ok": true
+          }
+        },
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 19.999000049997502,
+          "min": 0,
+          "max": 19.999000049997502
+        }
+      },
+      "t4_missing_accepted": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r0_p2_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 9048,
+          "rate": 11.987812849219823
+        }
+      },
+      "t4_isolation_failures": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r0_p1_received": {
+        "contains": "default",
+        "values": {
+          "rate": 2384.8434050172064,
+          "count": 1800000
+        },
+        "type": "counter"
+      },
+      "ws_connecting": {
+        "values": {
+          "max": 11.2293,
+          "avg": 2.3732235999999998,
+          "min": 0.4504,
+          "med": 1.7533,
+          "p(95)": 7.599,
+          "p(99)": 8.6178
+        },
+        "type": "trend",
+        "contains": "time"
+      },
+      "vus_max": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "t4_r0_p1_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 180000,
+          "rate": 238.48434050172062
+        }
+      },
+      "t4_r0_p1_connection_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r0_p1_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 3600,
+          "rate": 4.769686810034412
+        }
+      },
+      "t4_r0_p1_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 14,
+          "p(99)": 20,
+          "max": 31,
+          "avg": 7.779944444444444,
+          "min": 0,
+          "med": 8
+        }
+      },
+      "ws_msgs_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 83600,
+          "rate": 110.76272703302136
+        }
+      },
+      "t4_r0_p0_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_ready_at_ms": {
+        "contains": "default",
+        "values": {
+          "value": 1792983817351,
+          "min": 1792983817351,
+          "max": 1792983817351
+        },
+        "type": "gauge"
+      },
+      "t4_r0_p3_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r0_p0_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p3_connection_rejected": {
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        },
+        "type": "counter"
+      },
+      "t4_errors": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_order_violations": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t4_r0_p3_sent": {
+        "thresholds": {
+          "count==36000": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 47.696868100344126,
+          "count": 36000
+        }
+      },
+      "t4_missing_results": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p2_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "max": 99.99722229938057,
+          "value": 99.99722229938057
+        },
+        "thresholds": {
+          "value<=105": {
+            "ok": true
+          },
+          "value>=95": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p3_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 488.7811354293967,
+          "min": 487,
+          "med": 489,
+          "p(95)": 489,
+          "p(99)": 489,
+          "max": 489
+        }
+      },
+      "t4_r0_p2_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 18000,
+          "rate": 23.848434050172063
+        },
+        "thresholds": {
+          "count==18000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p3_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 49,
+          "p(99)": 106,
+          "max": 224,
+          "avg": 12.422888888888888,
+          "min": 0,
+          "med": 8
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p0_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      }
+    }
+  }
+}

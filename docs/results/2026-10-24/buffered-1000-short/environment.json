@@ -1,0 +1,14 @@
+{
+  "capturedAt": "2026-10-24T02:42:16.7496396+00:00",
+  "os": "Microsoft Windows NT 10.0.26200.0",
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+  "logicalProcessors": 32,
+  "physicalMemoryBytes": 33605316608,
+  "java": "java version \"25.0.1\" 2025-10-21 LTS\r\nJava(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)\r\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)",
+  "k6": "k6.exe v2.0.0-rc1 (commit/fb943a6a80, go1.26.2, windows/amd64)",
+  "target": "http://127.0.0.1:8082",
+  "serverCommandLine": "D:\\coding\\jdk\\bin\\java.exe -Xms128m -Xmx256m -jar target/danmaku-lab-0.1.0-SNAPSHOT.jar --server.port=8082 --lab.outbound.mode=buffered",
+  "sourceCommit": "0600053a79ed77854914a7d6f80a82166c29e9f2",
+  "sourceStatus": "M README.md\r\n M docs/ARCHITECTURE.md\r\n M docs/CLASS_RELATIONSHIPS.md\r\n M docs/LEARNING.md\r\n M docs/PROTOCOL.md\r\n M scripts/run/baseline.ps1\r\n M src/main/java/io/github/chocoemmm/danmakulab/core/ClientConnection.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/core/ConnectionRegistry.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/core/DirectBroadcaster.java\r\n M src/main/java/io/github/chocoemmm/danmakulab/protocol/DanmakuHandler.java\r\n M src/main/resources/application.yml\r\n?? docs/BOUNDED_OUTBOUND.md\r\n?? docs/results/2026-10-24/\r\n?? scripts/run/slow-compare.ps1\r\n?? src/main/java/io/github/chocoemmm/danmakulab/config/OutboundProperties.java\r\n?? src/main/java/io/github/chocoemmm/danmakulab/core/OutboundMailbox.java\r\n?? src/main/java/io/github/chocoemmm/danmakulab/core/OutboundService.java\r\n?? src/test/java/io/github/chocoemmm/danmakulab/BufferedWebSocketIntegrationTest.java\r\n?? src/test/java/io/github/chocoemmm/danmakulab/core/OutboundMailboxTest.java\r\n?? src/test/java/io/github/chocoemmm/danmakulab/protocol/",
+  "note": "Loopback client and server share CPU/RAM; one k6 VU coordinates sockets. Resource maxima are sampled, not absolute peaks."
+}

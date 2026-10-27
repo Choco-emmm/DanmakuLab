@@ -1,0 +1,8 @@
+{
+  "splitProcesses": true,
+  "roles": [
+    "normal",
+    "hot"
+  ],
+  "plannedStartAtMs": 1792934895752
+}

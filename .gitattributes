@@ -10,3 +10,7 @@
 *.ps1 text eol=crlf
 *.cmd text eol=crlf
 *.bat text eol=crlf
+
+# 实验原始记录以完整文件字节计算SHA-256，不能在提交/检出时转换换行符。
+# 包括UTF-8/UTF-16、BOM和JSONL在内都保留原样，避免换一台机器后哈希失配。
+docs/results/** -text

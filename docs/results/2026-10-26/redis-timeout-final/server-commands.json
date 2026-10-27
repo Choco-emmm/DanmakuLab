@@ -1,0 +1,4 @@
+{
+  "8087": "D:\\coding\\jdk\\bin\\java.exe -Xms128m -Xmx256m -jar target/danmaku-lab-redis.jar --server.port=8087 --lab.cluster.mode=redis --lab.cluster.node-id=node-a --lab.outbound.mode=buffered --lab.dispatch.mode=fair",
+  "8088": "D:\\coding\\jdk\\bin\\java.exe -Xms128m -Xmx256m -jar target/danmaku-lab-redis.jar --server.port=8088 --lab.cluster.mode=redis --lab.cluster.node-id=node-b --lab.outbound.mode=buffered --lab.dispatch.mode=fair"
+}

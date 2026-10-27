@@ -1,0 +1,6 @@
+{
+  "cleanupReturnedToZero": true,
+  "bothChildDiagnosticsSaved": true,
+  "parentExitCode": 1,
+  "expectedFailure": true
+}

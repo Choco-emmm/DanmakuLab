@@ -1,0 +1,46 @@
+"""审计修复结果：只比较实际Java运行文件，列明测试/采集脚本的后续变动，不改历史清单。"""
+import hashlib
+import json
+import re
+from pathlib import Path
+
+root = Path.cwd()
+base = root / 'docs/results/2026-10-26'
+proof = base / 'writer-fix-verification'
+current_jar = hashlib.sha256((root / 'target/danmaku-lab-0.1.0-SNAPSHOT.jar').read_bytes()).hexdigest()
+results = []
+for name in ('writer-fix-after-20', 'writer-fix-formal-t3-8writers-01', 'writer-fix-normal-1000-60s'):
+    folder = base / name
+    for path in folder.rglob('*.json'):
+        json.loads(path.read_text(encoding='utf-8-sig'))
+    for path in folder.rglob('*.jsonl'):
+        for line in path.read_text(encoding='utf-8-sig').splitlines():
+            json.loads(line)
+    assert json.loads((folder / 'jar-sha256.json').read_text(encoding='utf-8-sig'))['Hash'].lower() == current_jar
+    changed = []
+    comment_only = []
+    for item in json.loads((folder / 'source-sha256.json').read_text(encoding='utf-8-sig')):
+        path = item['path'].replace('\\', '/')
+        content = (root / path).read_bytes()
+        if hashlib.sha256(content).hexdigest() == item['sha256'].lower():
+            continue
+        if path.endswith('/OutboundMailbox.java'):
+            # 测量结束后仅补正两条注释，恢复原文再核对，绝不改归档清单消除差异。
+            original = content.decode('utf-8').replace('已经取出、异步写尚未完成的一条', '已经取出、发送尚未返回的一条').replace(
+                '返回仅表示入队成功，不表示容器已完成写入，更不表示客户端已收到。',
+                '返回仅表示入队成功，不表示 sendMessage 已返回，更不表示客户端已收到。')
+            assert hashlib.sha256(original.encode('utf-8')).hexdigest() == item['sha256'].lower()
+            comment_only.append(path)
+        else:
+            changed.append(path)
+    assert not [path for path in changed if path == 'pom.xml' or path.startswith('src/main/')], (name, changed)
+    results.append(dict(directory=name, runtimeSourceMatchesWithDocumentedCommentException=True,
+                        postRunCommentOnlyChanges=comment_only, changedNonRuntimeFiles=changed))
+for path in (root / 'README.md', root / 'TODOS.md', root / 'docs/PLAN.md', root / 'docs/BOUNDED_OUTBOUND.md',
+             root / 'docs/ASYNC_OUTBOUND.md', root / 'docs/LONGRUN.md', base / 'async-writer-report.md'):
+    for link in re.findall(r'\]\(([^)]+)\)', path.read_text(encoding='utf-8-sig')):
+        if '://' not in link:
+            assert (path.parent / link.split('#')[0]).exists(), (path, link)
+result = dict(jarSha256=current_jar, trials=results, localLinksChecked=True)
+(proof / 'archive-audit.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+print(json.dumps(result, ensure_ascii=False))

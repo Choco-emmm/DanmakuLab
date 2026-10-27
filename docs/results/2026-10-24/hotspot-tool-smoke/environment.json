@@ -1,0 +1,11 @@
+{
+  "java": "java version \"25.0.1\" 2025-10-21 LTS\r\nJava(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)\r\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)",
+  "sourceStatus": "?? scripts/load/hotspot.js\r\n?? scripts/run/hotspot.ps1\r\n",
+  "note": "Same-host loopback; server and k6 share CPU/RAM. CPU is cumulative seconds; resource maxima are sampled. No backend scheduler change.",
+  "capturedAt": "2026-10-24T14:09:24.5835809+00:00",
+  "os": "Microsoft Windows NT 10.0.26200.0",
+  "k6": "k6.exe v2.0.0-rc1 (commit/fb943a6a80, go1.26.2, windows/amd64)",
+  "logicalProcessors": 32,
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics        ",
+  "sourceCommit": "b9e25e9d1bb133af9e16f5929b59feebc9ba5340"
+}

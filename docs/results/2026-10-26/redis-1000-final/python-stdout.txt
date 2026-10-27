@@ -1,0 +1,3 @@
+window=measurement; sent=1200; totalReceived=1200000
+{"passed": true, "received": 1200000, "failures": {}, "fatal": null}
+

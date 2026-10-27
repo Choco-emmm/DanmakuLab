@@ -1,0 +1,11 @@
+{
+  "powershell": "7.6.5",
+  "python": "Python 3.14.2",
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics        ",
+  "logicalProcessors": 32,
+  "java": "java version \"25.0.1\" 2025-10-21 LTS\r\nJava(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)\r\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)",
+  "docker": "29.7.2",
+  "commit": "b9e25e9d1bb133af9e16f5929b59feebc9ba5340",
+  "uncommitted": true,
+  "redisImage": "sha256:e7723ff73d963f5cc6d9c4643ea3d989527a402a319239054e9472a7fb9219a2"
+}

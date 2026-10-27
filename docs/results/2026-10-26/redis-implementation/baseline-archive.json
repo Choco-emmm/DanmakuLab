@@ -1,0 +1,8 @@
+{
+  "path": ".lab-artifacts\\baselines\\pre-redis-20261026.zip",
+  "sha256": "c649f04e7a24d701e92417293ce6e991283f32ccc388d5429ab2b8f3acf12b39",
+  "bytes": 26924988,
+  "sourceFilesVerified": 59,
+  "jarSha256": "63C3F3BF6F415E0165FDA5EE710ACDFCA896D8E96981A0539314DD88C4994E28",
+  "note": "本地长期保留，不受mvn clean影响；Git只保存本索引、哈希及测试日志。未提交推送。"
+}

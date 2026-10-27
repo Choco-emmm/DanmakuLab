@@ -1,0 +1,6 @@
+{"at": 1792975367.32391, "measuring": false, "sent": 0, "accepted": 0, "normalReceived": 0, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 0.0}
+{"at": 1792975372.3397155, "measuring": true, "sent": 101, "accepted": 100, "normalReceived": 600, "slowReceived": 60, "normalFailures": 0, "maxSendLagMs": 15.545599977485836}
+{"at": 1792975377.3537455, "measuring": true, "sent": 201, "accepted": 197, "normalReceived": 1566, "slowReceived": 160, "normalFailures": 0, "maxSendLagMs": 15.586000052280724}
+{"at": 1792975382.3588288, "measuring": true, "sent": 301, "accepted": 197, "normalReceived": 1566, "slowReceived": 260, "normalFailures": 10, "maxSendLagMs": 16.05790003668517}
+{"at": 1792975387.3648164, "measuring": true, "sent": 401, "accepted": 197, "normalReceived": 1566, "slowReceived": 350, "normalFailures": 10, "maxSendLagMs": 16.05790003668517}
+{"at": 1792975392.3784018, "measuring": true, "sent": 440, "accepted": 197, "normalReceived": 1566, "slowReceived": 450, "normalFailures": 10, "maxSendLagMs": 16.05790003668517}

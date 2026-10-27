@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: danmaku-lab
+server:
+  # 本地演示默认仅监听回环地址；外部访问需要另行明确部署与访问边界。
+  address: 127.0.0.1
+  port: 8080
+  tomcat:
+    threads:
+      # Servlet 工作线程共享使用，不为每条 WebSocket 长连接创建专属线程。
+      max: 100
+      min-spare: 10
+    # 容器层连接上限；下方 lab.max-connections 是应用登记层的另一个限制。
+    max-connections: 12000
+management:
+  endpoints:
+    web:
+      exposure:
+        # health 用于健康检查，metrics 用于观测；发送计数不能代替客户端实际接收数。
+        include: health,info,metrics
+lab:
+  # 以下是实验配置上限，不表示已经实测支持这么多连接或房间。
+  max-connections: 2000
+  max-rooms: 1000
+  # 完整 JSON 的 UTF-8 字节上限，包含正文之外的字段；max-text-length 另限制正文字数。
+  max-frame-bytes: 1024
+  max-text-length: 200
+  # 令牌桶每秒补充量，也作为桶容量；连接桶与房间桶都通过后才允许广播。
+  connection-messages-per-second: 5
+  room-messages-per-second: 50
+  dispatch:
+    # direct 保留原广播路径。fair 需要同时设置 outbound.mode=buffered，避免调度线程写网络。
+    mode: direct
+    # 每房间预算包括排队和正在分发的输入；按完整广播 JSON 计算字节。
+    max-messages: 64
+    max-bytes: 65536
+    # 所有房间共享的入口预算；房间状态名额另外受 max-rooms 限制，含待回收旧实例。
+    global-messages: 4096
+    global-bytes: 4194304
+    # 一轮最多完成 4 条输入或尝试 64 份观众投递，先到者让出调度机会。
+    batch-messages: 4
+    batch-recipients: 64
+    # 首次开始分发前等待超过 1 秒则丢弃；已经开始的成员快照继续分批处理。
+    max-age-millis: 1000
+  outbound:
+    # direct 为修复超时后的同步基线；启动参数 --lab.outbound.mode=buffered 启用有界邮箱。
+    mode: direct
+    # 包含排队与正在发送的一条；任一上限先到即触发旧弹幕淘汰或断连。
+    max-messages: 256
+    max-bytes: 65536
+    global-bytes: 134217728
+    # 固定线程为所有连接提交异步写，不等待网络完成；任务队列有界，拒绝不回退到调用者发送。
+    workers: 8
+    task-capacity: 2000
+    # 未写出的普通弹幕超过 1 秒丢弃，控制回复超龄则关闭连接；已进传输层无法撤回。
+    max-age-millis: 1000
+    batch-size: 16

@@ -1,0 +1,11 @@
+{
+  "collectorErrors": 0,
+  "cleanupReturnedToZero": true,
+  "serverCountersMatch": true,
+  "processesPassed": true,
+  "phaseAlignmentPassed": true,
+  "processIds": {
+    "normal": 81456,
+    "hot": 47984
+  }
+}

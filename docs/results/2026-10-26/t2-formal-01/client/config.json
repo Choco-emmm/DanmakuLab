@@ -1,0 +1,19 @@
+{
+  "url": "ws://127.0.0.1:8085/ws",
+  "connections": 1000,
+  "workers": 4,
+  "rates": [
+    5,
+    20,
+    50,
+    100
+  ],
+  "seconds": 180,
+  "warmup_seconds": 15,
+  "latency_sample_every": 10,
+  "drain_seconds": 7,
+  "output": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\t2-formal-01\\client",
+  "room": "t2-18f766438eb8910b",
+  "slow_connections": 0,
+  "slow_bytes_per_second": 1024
+}

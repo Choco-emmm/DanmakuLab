@@ -1,0 +1,345 @@
+{
+  "metrics": [
+    {
+      "name": "jvm.gc.pause",
+      "description": "Time spent in GC pause",
+      "baseUnit": "seconds",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 255.0
+        },
+        {
+          "statistic": "TOTAL_TIME",
+          "value": 0.316
+        },
+        {
+          "statistic": "MAX",
+          "value": 0.002
+        }
+      ],
+      "availableTags": [
+        {
+          "tag": "cause",
+          "values": [
+            "G1 Evacuation Pause"
+          ]
+        },
+        {
+          "tag": "action",
+          "values": [
+            "end of minor GC"
+          ]
+        },
+        {
+          "tag": "gc",
+          "values": [
+            "G1 Young Generation"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "jvm.threads.live",
+      "description": "The current number of live threads including both daemon and non-daemon threads",
+      "baseUnit": "threads",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 123.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.connections",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.deliveries.enqueued",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 11544500.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.deliveries.expected",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 11544500.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.deliveries.submitted",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 11544500.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.bytes",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.bytes.highwater",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 12688.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.completed",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 36049.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.messages",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.mode.fair",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 1.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.ready",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.rooms",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.wait",
+      "baseUnit": "seconds",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 36049.0
+        },
+        {
+          "statistic": "TOTAL_TIME",
+          "value": 6.4993032
+        },
+        {
+          "statistic": "MAX",
+          "value": 0.0022882
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.messages.accepted",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 36049.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.messages.input",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 72000.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.messages.rejected",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 35951.0
+        }
+      ],
+      "availableTags": [
+        {
+          "tag": "reason",
+          "values": [
+            "room_rate_limit"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "lab.outbound.bytes",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.bytes.highwater",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 5883816.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.messages",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.mode.buffered",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 1.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.slots",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.tasks",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.writers.active",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.writes.inflight",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.rooms",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "process.cpu.usage",
+      "description": "The \"recent cpu usage\" for the Java Virtual Machine process",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0037453535733160586
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "jvm.memory.used",
+      "description": "The amount of used memory",
+      "baseUnit": "bytes",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 114132312.0
+        }
+      ],
+      "availableTags": [
+        {
+          "tag": "id",
+          "values": [
+            "G1 Survivor Space",
+            "G1 Old Gen",
+            "G1 Eden Space"
+          ]
+        }
+      ]
+    }
+  ],
+  "endedAt": "2026-10-26T03:29:31.1533557+00:00",
+  "startedAt": "2026-10-26T03:29:30.9931449+00:00"
+}

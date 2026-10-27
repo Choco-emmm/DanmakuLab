@@ -1,0 +1,10 @@
+{
+  "processPassed": true,
+  "collectorErrors": 0,
+  "cleanupReturnedToZero": true,
+  "serverInputCountersMatch": true,
+  "deliveryCountersMatch": true,
+  "toolValid": true,
+  "allPhasesSloPassed": true,
+  "formalParametersSatisfied": false
+}

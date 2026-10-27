@@ -1,0 +1,29 @@
+"""额外只读核对正式T2的真实SLO和最终Gauge，不仅信任报告中的布尔值。"""
+import json
+from pathlib import Path
+
+folder = Path('docs/results/2026-10-26/t2-formal-01')
+def read(name):
+    return json.loads((folder / name).read_text(encoding='utf-8-sig'))
+
+report, status = read('client/summary.json'), read('run-status.json')
+assert status['toolValid'] and status['allPhasesSloPassed'] and status['formalParametersSatisfied']
+names = ('lab.connections', 'lab.rooms', 'lab.outbound.bytes', 'lab.outbound.messages', 'lab.outbound.slots',
+         'lab.outbound.tasks', 'lab.outbound.writers.active', 'lab.outbound.writes.inflight',
+         'lab.dispatch.bytes', 'lab.dispatch.messages', 'lab.dispatch.rooms', 'lab.dispatch.ready')
+after = {item['name']: item['measurements'][0]['value'] for item in read('server-after.json')['metrics']}
+assert all(after[name] == 0 for name in names)
+for phase in report['phases']:
+    assert phase['accepted'] == phase['sent'] == phase['rate'] * 180
+    assert phase['rejected'] == phase['readerFailures'] == phase['missingAccepted'] == 0
+    assert phase['received'] == phase['acceptedDeliveryDemand']
+    assert all(count == phase['accepted'] for count in phase['perViewerReceived'])
+    assert phase['latencyMs']['p95'] < 200 and phase['latencyMs']['p99'] < 500
+    assert phase['latencyMs']['overflowAbove120000ms'] == 0
+    assert phase['actualMeasureSeconds'] >= 180 * .95
+assert report['receivedIncludingWarmup'] == report['expectedAcceptedIncludingWarmup'] == 34125000
+assert sum(phase['received'] for phase in report['phases']) == 31500000
+result = dict(allChecksPassed=True, finalGaugeCount=len(names), measuredDeliveries=31500000,
+              includingWarmupDeliveries=34125000, formalParameters=True, realSloRechecked=True)
+(folder / 'additional-audit.json').write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
+print('PASS: four genuine SLO points; fixed 1000 viewers; 12 final gauges zero; no omitted warmup receipts.')

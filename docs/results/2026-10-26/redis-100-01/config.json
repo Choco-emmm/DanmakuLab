@@ -1,0 +1,14 @@
+{
+  "nodeIds": {
+    "8088": 44080,
+    "8087": 78288
+  },
+  "resourceSampleSeconds": 2,
+  "normalPhysical": 102,
+  "connections": 100,
+  "note": "另有两个隔离探针；slow额外一个限速观众；同机回环",
+  "rate": 20,
+  "seconds": 60,
+  "scenario": "steady",
+  "sampleEvery": 10
+}

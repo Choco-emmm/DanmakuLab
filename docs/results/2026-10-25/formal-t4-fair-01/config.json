@@ -1,0 +1,18 @@
+{
+  "scenario": "T4-initial",
+  "dispatchMode": "fair",
+  "limitNote": "Effective limits must be read together from application.yml and server-command.txt; this script does not change limits.",
+  "normalInputPerRoom": 2,
+  "latencySampleEvery": 10,
+  "hotConnections": 500,
+  "resourceSampleSeconds": 5,
+  "mode": "buffered",
+  "phaseSeconds": 180,
+  "normalConnections": 50,
+  "drainSeconds": 5,
+  "splitProcesses": true,
+  "hotRates": "20,100,200",
+  "startDelaySeconds": 30,
+  "requestJsonBytes": 256,
+  "normalRooms": 10
+}

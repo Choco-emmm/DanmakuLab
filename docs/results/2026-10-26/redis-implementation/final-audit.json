@@ -1,0 +1,9 @@
+{
+  "rawFiles": 102,
+  "jsonValues": 203,
+  "links": 17,
+  "javaSourceMatches": 132,
+  "baselineArchiveVerified": true,
+  "deliveryJavaAndDependenciesUnchanged": true,
+  "defaultLocalSmokeReceived": 30
+}

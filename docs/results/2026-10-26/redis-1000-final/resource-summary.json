@@ -1,0 +1,231 @@
+{
+  "samples": 31,
+  "scope": "约2秒目标间隔，真实间隔含HTTP与Docker统计耗时；采样最大值不是绝对峰值。",
+  "nodes": {
+    "8087": {
+      "jvm.memory.used": {
+        "min": 47763312.0,
+        "max": 123493136.0
+      },
+      "jvm.threads.live": {
+        "min": 74.0,
+        "max": 131.0
+      },
+      "lab.outbound.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "lab.outbound.writes.inflight": {
+        "min": 0.0,
+        "max": 12.0
+      },
+      "lab.dispatch.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "lab.cluster.publish.bytes": {
+        "min": 0.0,
+        "max": 600.0
+      },
+      "lab.cluster.receive.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "workingSetBytesMax": 378515456,
+      "averageLogicalCores": 0.5686990792546431
+    },
+    "8088": {
+      "jvm.memory.used": {
+        "min": 42258976.0,
+        "max": 114621464.0
+      },
+      "jvm.threads.live": {
+        "min": 69.0,
+        "max": 131.0
+      },
+      "lab.outbound.bytes": {
+        "min": 0.0,
+        "max": 232826.0
+      },
+      "lab.outbound.writes.inflight": {
+        "min": 0.0,
+        "max": 10.0
+      },
+      "lab.dispatch.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "lab.cluster.publish.bytes": {
+        "min": 0.0,
+        "max": 601.0
+      },
+      "lab.cluster.receive.bytes": {
+        "min": 0.0,
+        "max": 0.0
+      },
+      "workingSetBytesMax": 376401920,
+      "averageLogicalCores": 0.5779523184509588
+    }
+  },
+  "client": {
+    "workingSetBytesMax": 125337600,
+    "averageLogicalCores": 0.5336868228361515
+  },
+  "redisDockerSamples": [
+    {
+      "at": 0.0179033,
+      "cpuPercent": "2.58%",
+      "memory": "9.301MiB / 15.27GiB"
+    },
+    {
+      "at": 2.1196147,
+      "cpuPercent": "2.49%",
+      "memory": "8.832MiB / 15.27GiB"
+    },
+    {
+      "at": 4.2171384,
+      "cpuPercent": "0.65%",
+      "memory": "9.176MiB / 15.27GiB"
+    },
+    {
+      "at": 6.9050366,
+      "cpuPercent": "0.58%",
+      "memory": "9.297MiB / 15.27GiB"
+    },
+    {
+      "at": 8.9084595,
+      "cpuPercent": "0.65%",
+      "memory": "8.77MiB / 15.27GiB"
+    },
+    {
+      "at": 10.923229,
+      "cpuPercent": "0.57%",
+      "memory": "8.887MiB / 15.27GiB"
+    },
+    {
+      "at": 13.0264894,
+      "cpuPercent": "0.60%",
+      "memory": "8.633MiB / 15.27GiB"
+    },
+    {
+      "at": 15.0503307,
+      "cpuPercent": "0.57%",
+      "memory": "9.211MiB / 15.27GiB"
+    },
+    {
+      "at": 17.0566441,
+      "cpuPercent": "0.63%",
+      "memory": "9.535MiB / 15.27GiB"
+    },
+    {
+      "at": 19.0672236,
+      "cpuPercent": "0.66%",
+      "memory": "8.43MiB / 15.27GiB"
+    },
+    {
+      "at": 21.083896,
+      "cpuPercent": "0.60%",
+      "memory": "7.809MiB / 15.27GiB"
+    },
+    {
+      "at": 23.0867636,
+      "cpuPercent": "0.65%",
+      "memory": "7.359MiB / 15.27GiB"
+    },
+    {
+      "at": 25.1040876,
+      "cpuPercent": "0.57%",
+      "memory": "7.918MiB / 15.27GiB"
+    },
+    {
+      "at": 27.1418494,
+      "cpuPercent": "0.60%",
+      "memory": "8.309MiB / 15.27GiB"
+    },
+    {
+      "at": 29.2256844,
+      "cpuPercent": "0.58%",
+      "memory": "8.387MiB / 15.27GiB"
+    },
+    {
+      "at": 31.2486443,
+      "cpuPercent": "0.57%",
+      "memory": "8.398MiB / 15.27GiB"
+    },
+    {
+      "at": 33.3331208,
+      "cpuPercent": "2.56%",
+      "memory": "8.801MiB / 15.27GiB"
+    },
+    {
+      "at": 35.353353,
+      "cpuPercent": "2.67%",
+      "memory": "8.609MiB / 15.27GiB"
+    },
+    {
+      "at": 37.3620468,
+      "cpuPercent": "2.47%",
+      "memory": "8.668MiB / 15.27GiB"
+    },
+    {
+      "at": 39.3735118,
+      "cpuPercent": "2.63%",
+      "memory": "8.617MiB / 15.27GiB"
+    },
+    {
+      "at": 41.384806,
+      "cpuPercent": "2.67%",
+      "memory": "8.484MiB / 15.27GiB"
+    },
+    {
+      "at": 43.4932431,
+      "cpuPercent": "0.64%",
+      "memory": "8.418MiB / 15.27GiB"
+    },
+    {
+      "at": 46.2062773,
+      "cpuPercent": "0.56%",
+      "memory": "8.789MiB / 15.27GiB"
+    },
+    {
+      "at": 48.3107345,
+      "cpuPercent": "0.53%",
+      "memory": "9.137MiB / 15.27GiB"
+    },
+    {
+      "at": 50.3166643,
+      "cpuPercent": "0.59%",
+      "memory": "9.27MiB / 15.27GiB"
+    },
+    {
+      "at": 52.3215922,
+      "cpuPercent": "0.62%",
+      "memory": "8.914MiB / 15.27GiB"
+    },
+    {
+      "at": 54.3399501,
+      "cpuPercent": "0.59%",
+      "memory": "8.566MiB / 15.27GiB"
+    },
+    {
+      "at": 56.368534,
+      "cpuPercent": "0.62%",
+      "memory": "8.902MiB / 15.27GiB"
+    },
+    {
+      "at": 58.472228,
+      "cpuPercent": "0.59%",
+      "memory": "8.566MiB / 15.27GiB"
+    },
+    {
+      "at": 60.4895319,
+      "cpuPercent": "0.27%",
+      "memory": "8.645MiB / 15.27GiB"
+    },
+    {
+      "at": 62.4960245,
+      "cpuPercent": "0.32%",
+      "memory": "8.434MiB / 15.27GiB"
+    }
+  ]
+}

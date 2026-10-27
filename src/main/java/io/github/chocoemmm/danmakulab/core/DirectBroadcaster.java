@@ -12,11 +12,10 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * 直接广播基线：一条输入通过校验与限流后，在当前调用线程里逐个向房间成员发送。
+ * 房间串行分发：direct 模式逐个同步发送；buffered 模式逐个快速投递到连接邮箱。
  * 它同时负责把响应转换成 JSON，确保控制响应和弹幕最终都进入 ClientConnection.send。
  *
- * 这份基线故意保留同步发送路径，方便后续与有界缓冲方案做对照。
- * 一个慢连接可能拖慢本轮广播，当前还不能声称已解决慢消费者或热点资源隔离。
+ * 保留直接广播路径用于对照；FairRoomDispatcher 复用本类编码和统一输出入口。
  */
 @Component
 public class DirectBroadcaster {
@@ -45,35 +44,41 @@ public class DirectBroadcaster {
         synchronized (room) {
             var recipients = registry.snapshot(room);
             long sequence = room.nextSequence();
-            // 使用 Map 组装协议对象；LinkedHashMap 让输出字段顺序稳定，方便阅读抓包和日志。
-            var event = new LinkedHashMap<String, Object>();
-            event.put("type", "danmaku");
-            event.put("runId", runId);
-            event.put("roomId", room.id());
-            event.put("roomInstanceId", room.instanceId());
-            event.put("roomSeq", sequence);
-            event.put("clientMessageId", clientMessageId);
-            event.put("clientSentAt", clientSentAt);
-            event.put("senderId", sender.id());
-            event.put("nickname", membership.nickname());
-            event.put("text", text);
-            // 同一条广播只序列化一次，并复用只读 TextMessage，避免每位观众重复做 JSON 编码。
-            var message = encode(event);
-            // accepted 统计输入条数；expected 统计投递次数，两者口径不同。
-            // 例如 10 位观众的一条弹幕：accepted 加 1，expected 加 10。
+            var message = prepare(sender, membership, clientMessageId, text, clientSentAt, sequence);
             metrics.counter("lab.messages.accepted").increment();
             metrics.counter("lab.deliveries.expected").increment(recipients.size());
-            // 先回复发送者“已通过准入”，不代表下面的所有观众已经收到。
-            // 当前基线没有应用入口队列；未来优化模式的 accepted 才表示成功进入有界队列。
+            // direct 调度路径没有入口队列；确认通过准入，不表示所有观众已收到。
             reply(sender, Map.of("type", "send_result", "status", "accepted",
                     "clientMessageId", clientMessageId, "roomSeq", sequence));
-            for (var recipient : recipients) {
-                // 一个接收者失败会返回 false 并清理，循环仍尝试给其余成员发送。
-                if (reply(recipient, message)) {
-                    // 仅说明服务端发送调用正常返回；真实接收量必须由客户端另外统计。
-                    metrics.counter("lab.deliveries.submitted").increment();
-                }
-            }
+            for (var recipient : recipients) deliver(recipient, message);
+        }
+    }
+
+    /** 构造一条只读广播；调用一次编码后复用，fair 也按这个完整 JSON 的 UTF-8 大小计预算。 */
+    public TextMessage prepare(ClientConnection sender, ConnectionRegistry.Membership membership,
+                               String clientMessageId, String text, long clientSentAt, long sequence)
+            throws JsonProcessingException {
+        var room = membership.room();
+        // LinkedHashMap 保持协议字段顺序稳定，方便阅读抓包和日志。
+        var event = new LinkedHashMap<String, Object>();
+        event.put("type", "danmaku");
+        event.put("runId", runId);
+        event.put("roomId", room.id());
+        event.put("roomInstanceId", room.instanceId());
+        event.put("roomSeq", sequence);
+        event.put("clientMessageId", clientMessageId);
+        event.put("clientSentAt", clientSentAt);
+        event.put("senderId", sender.id());
+        event.put("nickname", membership.nickname());
+        event.put("text", text);
+        // 同一条广播只序列化一次，并复用只读 TextMessage，避免每位观众重复做 JSON 编码。
+        return encode(event);
+    }
+
+    /** 一份观众投递。buffered 的submitted由异步写完成入口增加，不能把入邮箱当成写入完成或观众收到。 */
+    public void deliver(ClientConnection recipient, TextMessage message) {
+        if (reply(recipient, message, true) && !recipient.buffered()) {
+            metrics.counter("lab.deliveries.submitted").increment();
         }
     }
 
@@ -84,10 +89,19 @@ public class DirectBroadcaster {
 
     /** 统一处理同步发送与连接失效；返回值只描述本次发送调用是否成功。 */
     private boolean reply(ClientConnection connection, TextMessage message) {
+        return reply(connection, message, false);
+    }
+
+    private boolean reply(ClientConnection connection, TextMessage message, boolean danmaku) {
         try {
-            connection.send(message);
+            connection.send(message, danmaku);
             return true;
         } catch (IOException | IllegalStateException failure) {
+            if (connection.buffered()) {
+                // 邮箱失败已记录具体原因；先请求异步注销/关闭，不能在房间锁里等待网络关闭。
+                connection.closeAfterFailure();
+                return false;
+            }
             // 网络断开或 Session 状态变化都可能导致发送失败；先注销再尽力关闭底层连接。
             // afterConnectionClosed 随后再次清理也是安全的，因为 Registry.remove 可重复调用。
             metrics.counter("lab.writes.failed").increment();

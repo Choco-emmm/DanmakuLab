@@ -1,0 +1,124 @@
+{
+  "sampleCount": 157,
+  "scope": "全部采样，包括准备/逐档预热/测量/排空；采样最大值不是绝对峰值。",
+  "processes": {
+    "server": {
+      "workingSetBytes": {
+        "first": 353775616,
+        "last": 439877632,
+        "min": 353775616,
+        "max": 439877632
+      },
+      "averageLogicalCores": 1.6297530458006593
+    },
+    "parent": {
+      "workingSetBytes": {
+        "first": 11988992,
+        "last": 33681408,
+        "min": 11988992,
+        "max": 33701888
+      },
+      "averageLogicalCores": 0.0008120245342920843
+    },
+    "0": {
+      "workingSetBytes": {
+        "first": 62750720,
+        "last": 64176128,
+        "min": 58454016,
+        "max": 68481024
+      },
+      "averageLogicalCores": 0.2988938625807081
+    },
+    "1": {
+      "workingSetBytes": {
+        "first": 62541824,
+        "last": 64086016,
+        "min": 62541824,
+        "max": 69181440
+      },
+      "averageLogicalCores": 0.2870736518097604
+    },
+    "2": {
+      "workingSetBytes": {
+        "first": 62283776,
+        "last": 63430656,
+        "min": 62230528,
+        "max": 68902912
+      },
+      "averageLogicalCores": 0.28430297845872887
+    },
+    "3": {
+      "workingSetBytes": {
+        "first": 62738432,
+        "last": 63586304,
+        "min": 49274880,
+        "max": 69578752
+      },
+      "averageLogicalCores": 0.2791004910873674
+    }
+  },
+  "jvm.memory.used": {
+    "first": 107536312.0,
+    "last": 146573360.0,
+    "min": 84706456.0,
+    "max": 189499984.0
+  },
+  "jvm.threads.live": {
+    "first": 81.0,
+    "last": 124.0,
+    "min": 81.0,
+    "max": 124.0
+  },
+  "lab.outbound.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 5719550.0
+  },
+  "lab.outbound.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 11699.0
+  },
+  "lab.outbound.tasks": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 992.0
+  },
+  "lab.outbound.writers.active": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 8.0
+  },
+  "lab.outbound.writes.inflight": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 18.0
+  },
+  "lab.dispatch.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 483.0
+  },
+  "lab.dispatch.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "lifetimeHighwater": {
+    "lab.outbound.bytes.highwater": {
+      "before": 1096172.0,
+      "after": 12380088.0
+    },
+    "lab.dispatch.bytes.highwater": {
+      "before": 964.0,
+      "after": 2898.0
+    }
+  }
+}

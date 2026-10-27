@@ -1,0 +1,70 @@
+[
+  {
+    "path": "config.json",
+    "sha256": "db64b6d2e94530b5b8f8723e94367201d763416c1bf9a9d237ec1ab56596d16f"
+  },
+  {
+    "path": "command.json",
+    "sha256": "021fd90be6a85b70201d71bf3d2b9c224a304de4e5dce14604e10e852c7b96ca"
+  },
+  {
+    "path": "environment.json",
+    "sha256": "aadc059664faec7c4a9f0d9d0ade78891f1c2dde5a20d818af8f9a02a2d7310e"
+  },
+  {
+    "path": "source-sha256.json",
+    "sha256": "c26564e8c91c1020bca33dad0aab39841ef1a5e0f32793877f4cc5d85ae7654c"
+  },
+  {
+    "path": "jar-sha256.json",
+    "sha256": "c7785b8c8a6f36060edff02cf9d7f1e328dc5b4cbe91dc6ce75b08fd8eb1ca63"
+  },
+  {
+    "path": "server-commands.json",
+    "sha256": "f7a5455232b6b689c3576a9dc5f6cacbe86f54bb5e728f60724251610cc1482c"
+  },
+  {
+    "path": "server-before.json",
+    "sha256": "7e20681b119e7685581cf4cd1bc06c838011fea4b03b56ee614408411303d19e"
+  },
+  {
+    "path": "server-after.json",
+    "sha256": "3bc105adbb80e04e1154c02c42a22ea513582e26325c19dd6ad91019661d14e4"
+  },
+  {
+    "path": "counter-delta.json",
+    "sha256": "e68f0f21e147f155f46af708a583dd5993b4535bdd7fe74e7bd59921c32bd46a"
+  },
+  {
+    "path": "run-status.json",
+    "sha256": "9778497da16d76ab0d03b817395922649ebb05180e4cf49e4afb3a7e90f9ce4f"
+  },
+  {
+    "path": "samples.jsonl",
+    "sha256": "df099009affffa8471ac6f29383aa0a3f0ace48c10c16407374ff08f6dcba7dc"
+  },
+  {
+    "path": "python-stdout.txt",
+    "sha256": "55dfb06be522b166e3c1152d3da4eaa169e3168fb247e9d601eea2aa3d794447"
+  },
+  {
+    "path": "python-stderr.txt",
+    "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6"
+  },
+  {
+    "path": "python-status.json",
+    "sha256": "16192776aae43c8fb8725b894ea046957ab3f724c0a73d61d41df9707f49f9b1"
+  },
+  {
+    "path": "client\\config.json",
+    "sha256": "90a70d69e76b3974d56904574ae5da0261b4b283dc1f011357e846145568c780"
+  },
+  {
+    "path": "client\\observations.json",
+    "sha256": "0b8b56dae04e2f05c4e3f954c75ae5358e3c4e11ea58bfb857e113b8647bfbcb"
+  },
+  {
+    "path": "client\\summary.json",
+    "sha256": "0c2eeaa1af42fffd7490d64e2e5b5d4831d758ccaf078f99af0e0debceeef6d7"
+  }
+]

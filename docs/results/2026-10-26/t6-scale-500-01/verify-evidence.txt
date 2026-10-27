@@ -1,0 +1,1 @@
+PASS TOOL T6: docs\results\2026-10-26\t6-scale-500-01; required=550000; joins=1250

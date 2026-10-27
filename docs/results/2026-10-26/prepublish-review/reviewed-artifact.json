@@ -1,0 +1,8 @@
+{
+  "jar": ".lab-artifacts/prepublish-20261026/danmaku-lab-prepublish.jar",
+  "jarSha256": "9b60ac1aab023b57af6e8b800137608caa931c6e437f372b671a6b87da5d38d0",
+  "sourceArchive": ".lab-artifacts/prepublish-20261026/source.zip",
+  "sourceArchiveSha256": "590412b9c72d29770a6394695546619301ce808af62c53b2ec79ce22e64dd56b",
+  "sourceFiles": 74,
+  "note": "提交前审查修订：与首轮Redis实验独立归档；包含本轮运行源码、配置、测试和脚本。"
+}

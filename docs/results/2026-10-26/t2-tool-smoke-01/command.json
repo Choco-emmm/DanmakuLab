@@ -1,0 +1,22 @@
+{
+  "executable": "C:\\Python314\\python.exe",
+  "arguments": [
+    "scripts/load/throughput.py",
+    "--url",
+    "ws://127.0.0.1:8085/ws",
+    "--connections",
+    "100",
+    "--workers",
+    "4",
+    "--seconds",
+    "3",
+    "--warmup-seconds",
+    "1",
+    "--rates",
+    "5,20,50,100",
+    "--latency-sample-every",
+    "1",
+    "--output",
+    "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\t2-tool-smoke-01\\client"
+  ]
+}

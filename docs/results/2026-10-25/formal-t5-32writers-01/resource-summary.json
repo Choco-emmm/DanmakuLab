@@ -1,0 +1,98 @@
+{
+  "sampleCount": 370,
+  "firstElapsedSeconds": 0.0223589,
+  "lastElapsedSeconds": 1864.2640565,
+  "scope": "All collected samples including preparation, warmup and drain; maxima are sampled, not absolute peaks.",
+  "jvm.memory.used": {
+    "first": 154138696.0,
+    "last": 154599336.0,
+    "min": 76981408.0,
+    "max": 217848248.0
+  },
+  "jvm.threads.live": {
+    "first": 89.0,
+    "last": 90.0,
+    "min": 89.0,
+    "max": 90.0
+  },
+  "lab.outbound.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 76956.0
+  },
+  "lab.outbound.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 387.0
+  },
+  "lab.outbound.tasks": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 233.0
+  },
+  "lab.outbound.writers.active": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 27.0
+  },
+  "lab.dispatch.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 485.0
+  },
+  "lab.dispatch.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 1.0
+  },
+  "server": {
+    "workingSetBytes": {
+      "first": 426901504,
+      "last": 468381696,
+      "min": 426901504,
+      "max": 468537344
+    },
+    "threads": {
+      "first": 128,
+      "last": 129,
+      "min": 128,
+      "max": 142
+    },
+    "cpuSecondsDelta": 1765.96875,
+    "averageLogicalCores": 0.9472852968976527
+  },
+  "client": {
+    "workingSetBytes": {
+      "first": 11001856,
+      "last": 143667200,
+      "min": 11001856,
+      "max": 158416896
+    },
+    "threads": {
+      "first": 4,
+      "last": 1,
+      "min": 1,
+      "max": 5
+    },
+    "cpuSecondsDelta": 992.765625,
+    "averageLogicalCores": 0.5325305330730845
+  },
+  "gcCOUNTDelta": 356.0,
+  "gcTOTAL_TIMEDelta": 0.37899999999999995,
+  "lifetimeHighwater": {
+    "lab.outbound.bytes.highwater": {
+      "first": 682146.0,
+      "last": 682146.0
+    },
+    "lab.dispatch.bytes.highwater": {
+      "first": 970.0,
+      "last": 970.0
+    }
+  }
+}

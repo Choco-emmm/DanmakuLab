@@ -1,0 +1,82 @@
+{
+  "sampleCount": 150,
+  "firstElapsedSeconds": 0.0068916,
+  "lastElapsedSeconds": 755.4353664,
+  "scope": "All collected samples including preparation, warmup and drain; maxima are sampled, not absolute peaks.",
+  "jvm.memory.used": {
+    "first": 83250064.0,
+    "last": 119434808.0,
+    "min": 78779328.0,
+    "max": 147734520.0
+  },
+  "jvm.threads.live": {
+    "first": 25.0,
+    "last": 124.0,
+    "min": 25.0,
+    "max": 124.0
+  },
+  "lab.outbound.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 324567.0
+  },
+  "lab.outbound.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 434.0
+  },
+  "lab.outbound.tasks": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 385.0
+  },
+  "lab.outbound.writers.active": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 8.0
+  },
+  "lab.dispatch.bytes": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 489.0
+  },
+  "lab.dispatch.messages": {
+    "first": 0.0,
+    "last": 0.0,
+    "min": 0.0,
+    "max": 7.0
+  },
+  "server": {
+    "workingSetBytes": {
+      "first": 247513088,
+      "last": 367116288,
+      "min": 247513088,
+      "max": 368574464
+    },
+    "threads": {
+      "first": 67,
+      "last": 177,
+      "min": 67,
+      "max": 177
+    },
+    "cpuSecondsDelta": 413.125,
+    "averageLogicalCores": 0.546875069952023
+  },
+  "gcCOUNTDelta": null,
+  "gcTOTAL_TIMEDelta": null,
+  "lifetimeHighwater": {
+    "lab.outbound.bytes.highwater": {
+      "first": 0.0,
+      "last": 5645184.0
+    },
+    "lab.dispatch.bytes.highwater": {
+      "first": 0.0,
+      "last": 13176.0
+    }
+  }
+}

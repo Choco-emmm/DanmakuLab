@@ -1,0 +1,13 @@
+{
+  "scenario": "T3",
+  "url": "ws://127.0.0.1:8084/ws",
+  "connections": 20,
+  "seconds": 20,
+  "warmup_seconds": 2,
+  "rate": 20,
+  "slow_connections": 10,
+  "slow_bytes_per_second": 1024,
+  "latency_sample_every": 10,
+  "drain_seconds": 7,
+  "output": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\writer-fix-after-20\\client"
+}

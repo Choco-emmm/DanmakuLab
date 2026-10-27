@@ -1,0 +1,2 @@
+time="2026-10-25T21:19:29+08:00" level=error msg="T4 normal: joined too late for shared start 1" source=console
+time="2026-10-25T21:19:30+08:00" level=error msg="thresholds on metrics 't4_errors, t4_r0_p0_actual_rate, t4_r0_p0_sent, t4_r0_p1_actual_rate, t4_r0_p1_sent, t4_r0_p2_actual_rate, t4_r0_p2_sent, t4_r0_p3_actual_rate, t4_r0_p3_sent, t4_r1_p0_actual_rate, t4_r1_p0_sent, t4_r1_p1_actual_rate, t4_r1_p1_sent, t4_r1_p2_actual_rate, t4_r1_p2_sent, t4_r1_p3_actual_rate, t4_r1_p3_sent' have been crossed"

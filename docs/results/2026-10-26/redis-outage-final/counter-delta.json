@@ -1,0 +1,30 @@
+{
+  "8088": {
+    "lab.deliveries.submitted": 6000.0,
+    "lab.writes.failed": 0.0,
+    "lab.messages.input": 80.0,
+    "lab.cluster.local.enqueued": 120.0,
+    "lab.cluster.dropped": 0.0,
+    "lab.cluster.received": 120.0,
+    "lab.deliveries.expected": 6000.0,
+    "lab.outbound.dropped": 0.0,
+    "lab.messages.rejected": 20.0,
+    "lab.messages.accepted": 60.0,
+    "lab.messages.unknown": 0.0,
+    "lab.cluster.published": 60.0
+  },
+  "8087": {
+    "lab.deliveries.submitted": 6000.0,
+    "lab.writes.failed": 0.0,
+    "lab.messages.input": 80.0,
+    "lab.cluster.local.enqueued": 120.0,
+    "lab.cluster.dropped": 0.0,
+    "lab.cluster.received": 120.0,
+    "lab.deliveries.expected": 6000.0,
+    "lab.outbound.dropped": 0.0,
+    "lab.messages.rejected": 20.0,
+    "lab.messages.accepted": 60.0,
+    "lab.messages.unknown": 0.0,
+    "lab.cluster.published": 60.0
+  }
+}

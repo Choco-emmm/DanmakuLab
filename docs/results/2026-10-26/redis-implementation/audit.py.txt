@@ -1,0 +1,48 @@
+"""收尾只读复核：原始证据、归档制品、源码ZIP和新文档链接；结果另存派生JSON。"""
+import hashlib
+import json
+from pathlib import Path
+import re
+import zipfile
+
+base=Path('docs/results/2026-10-26')
+stats=dict(rawFiles=0,jsonValues=0,links=0,javaSourceMatches=0)
+for name in ('redis-100-final','redis-1000-final','redis-outage-final','redis-timeout-final','redis-slow-final','redis-node-exit-final'):
+    folder=base/name
+    manifest=json.loads((folder/'raw-sha256.json').read_text())
+    for entry in manifest:
+        assert hashlib.sha256((folder/entry['path']).read_bytes()).hexdigest()==entry['sha256']
+        stats['rawFiles']+=1
+    for path in folder.rglob('*.json'):
+        json.loads(path.read_text(encoding='utf-8-sig'));stats['jsonValues']+=1
+    for line in (folder/'samples.jsonl').read_text(encoding='utf-8-sig').splitlines():
+        json.loads(line);stats['jsonValues']+=1
+    for entry in json.loads((folder/'source-sha256.json').read_text(encoding='utf-8-sig')):
+        normalized=entry['path'].replace('\\','/')
+        if normalized.startswith('src/main/java/'):
+            assert hashlib.sha256(Path(entry['path']).read_bytes()).hexdigest().upper()==entry['sha256']
+            stats['javaSourceMatches']+=1
+index=json.loads((base/'redis-implementation/baseline-archive.json').read_text())
+assert hashlib.sha256(Path(index['path']).read_bytes()).hexdigest()==index['sha256']
+with zipfile.ZipFile(index['path']) as archive:
+    assert hashlib.sha256(archive.read('danmaku-lab-0.1.0-SNAPSHOT.jar')).hexdigest().upper()==index['jarSha256']
+    for entry in json.loads((base/'redis-implementation/baseline-source.json').read_text(encoding='utf-8-sig')):
+        assert hashlib.sha256(archive.read(entry['path'].replace('\\','/'))).hexdigest().upper()==entry['sha256']
+tested=json.loads((base/'redis-implementation/tested-archive.json').read_text())
+assert hashlib.sha256(Path(tested['testedJar']).read_bytes()).hexdigest()==tested['jarSha256']
+assert hashlib.sha256(Path(tested['sourceArchive']).read_bytes()).hexdigest()==tested['sourceArchiveSha256']
+delivery=json.loads((base/'redis-implementation/delivery-diff.json').read_text())
+assert hashlib.sha256(Path('target/danmaku-lab-redis.jar').read_bytes()).hexdigest()==delivery['deliverySha256']
+with zipfile.ZipFile(tested['testedJar']) as a,zipfile.ZipFile('target/danmaku-lab-redis.jar') as b:
+    assert [n for n in a.namelist() if a.read(n)!=b.read(n)]==['BOOT-INF/classes/static/index.html']
+for path in (Path('docs/CLUSTER.md'),base/'redis-report.md',base/'redis-implementation/README.md'):
+    for target in re.findall(r'\]\(([^)]+)\)',path.read_text(encoding='utf-8')):
+        assert (path.parent/target.split('#')[0]).exists(),(path,target)
+        stats['links']+=1
+assert 'redis requires fair+buffered' in (base/'redis-implementation/invalid-mode-startup.txt').read_text(encoding='utf-8-sig')
+smoke=json.loads((base/'redis-implementation/local-smoke.json').read_text(encoding='utf-8-sig'))
+assert smoke['metrics']['lab_received']['values']['count']==30
+assert smoke['metrics']['lab_accepted']['values']['count']==3
+stats.update(baselineArchiveVerified=True,deliveryJavaAndDependenciesUnchanged=True,defaultLocalSmokeReceived=30)
+(base/'redis-implementation/final-audit.json').write_text(json.dumps(stats,indent=2)+'\n',encoding='utf-8')
+print(json.dumps(stats,indent=2))

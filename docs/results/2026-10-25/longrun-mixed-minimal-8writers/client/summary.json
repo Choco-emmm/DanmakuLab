@@ -1,0 +1,236 @@
+{
+  "scenario": "T3",
+  "connections": 20,
+  "normalConnections": 10,
+  "slowConnections": 10,
+  "slowBytesPerSecond": 1024,
+  "warmupSeconds": 2,
+  "measureSeconds": 20,
+  "requestBytes": 256,
+  "joined": 20,
+  "plannedIncludingWarmup": 440,
+  "submittedIncludingWarmup": 440,
+  "acceptedIncludingWarmup": 197,
+  "acceptedMeasured": 157,
+  "rejections": {},
+  "normalExpected": 4000,
+  "normalReceived": 1564,
+  "normalWarmupReceived": 400,
+  "normalExpectedWarmup": 400,
+  "normalMissingAccepted": 6,
+  "normalLatencyMs": {
+    "samples": 157,
+    "p50": 1,
+    "p95": 1,
+    "p99": 2,
+    "max": 2,
+    "avg": 0.8343949044585988,
+    "overflowAbove120000ms": 0
+  },
+  "slowLatencyMs": {
+    "samples": 530,
+    "p50": 12061,
+    "p95": 23288,
+    "p99": 24281,
+    "max": 24282,
+    "avg": 12073.020754716981,
+    "overflowAbove120000ms": 0
+  },
+  "slowReceived": 530,
+  "slowPotentialDemandAtInitialMembership": 4000,
+  "slowPerViewer": [
+    {
+      "viewer": 0,
+      "received": 53,
+      "readBytes": 25829,
+      "receiveBufferBytes": 1024,
+      "alive": true
+    },
+    {
+      "viewer": 1,
+      "received": 53,
+      "readBytes": 25829,
+      "receiveBufferBytes": 1024,
+      "alive": true
+    },
+    {
+      "viewer": 2,
+      "received": 53,
+      "readBytes": 25829,
+      "receiveBufferBytes": 1024,
+      "alive": true
+    },
+    {
+      "viewer": 3,
+      "received": 53,
+      "readBytes": 25829,
+      "receiveBufferBytes": 1024,
+      "alive": true
+    },
+    {
+      "viewer": 4,
+      "received": 53,
+      "readBytes": 25829,
+      "receiveBufferBytes": 1024,
+      "alive": true
+    },
+    {
+      "viewer": 5,
+      "received": 53,
+      "readBytes": 25829,
+      "receiveBufferBytes": 1024,
+      "alive": true
+    },
+    {
+      "viewer": 6,
+      "received": 53,
+      "readBytes": 25829,
+      "receiveBufferBytes": 1024,
+      "alive": true
+    },
+    {
+      "viewer": 7,
+      "received": 53,
+      "readBytes": 25829,
+      "receiveBufferBytes": 1024,
+      "alive": true
+    },
+    {
+      "viewer": 8,
+      "received": 53,
+      "readBytes": 25829,
+      "receiveBufferBytes": 1024,
+      "alive": true
+    },
+    {
+      "viewer": 9,
+      "received": 53,
+      "readBytes": 25829,
+      "receiveBufferBytes": 1024,
+      "alive": true
+    }
+  ],
+  "perViewerMeasured": [
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    53,
+    157,
+    156,
+    157,
+    156,
+    156,
+    157,
+    157,
+    156,
+    156,
+    156
+  ],
+  "duplicates": 0,
+  "orderViolations": 0,
+  "protocolErrors": 0,
+  "failures": {
+    "normal:read": 10
+  },
+  "failureDetails": [
+    {
+      "viewer": 17,
+      "group": "normal",
+      "operation": "read",
+      "error": "EOFError:服务端关闭帧:03f3",
+      "at": 1792938882.7680936
+    },
+    {
+      "viewer": 18,
+      "group": "normal",
+      "operation": "read",
+      "error": "EOFError:服务端关闭帧:03f3",
+      "at": 1792938882.768129
+    },
+    {
+      "viewer": 10,
+      "group": "normal",
+      "operation": "read",
+      "error": "EOFError:服务端关闭帧:03f3",
+      "at": 1792938882.8685877
+    },
+    {
+      "viewer": 19,
+      "group": "normal",
+      "operation": "read",
+      "error": "EOFError:服务端关闭帧:03f3",
+      "at": 1792938882.8686101
+    },
+    {
+      "viewer": 12,
+      "group": "normal",
+      "operation": "read",
+      "error": "EOFError:服务端关闭帧:03f3",
+      "at": 1792938882.9706862
+    },
+    {
+      "viewer": 11,
+      "group": "normal",
+      "operation": "read",
+      "error": "EOFError:服务端关闭帧:03f3",
+      "at": 1792938882.9707131
+    },
+    {
+      "viewer": 14,
+      "group": "normal",
+      "operation": "read",
+      "error": "EOFError:服务端关闭帧:03f3",
+      "at": 1792938883.0723677
+    },
+    {
+      "viewer": 13,
+      "group": "normal",
+      "operation": "read",
+      "error": "EOFError:服务端关闭帧:03f3",
+      "at": 1792938883.0723808
+    },
+    {
+      "viewer": 15,
+      "group": "normal",
+      "operation": "read",
+      "error": "EOFError:服务端关闭帧:03f3",
+      "at": 1792938883.1732993
+    },
+    {
+      "viewer": 16,
+      "group": "normal",
+      "operation": "read",
+      "error": "EOFError:服务端关闭帧:03f3",
+      "at": 1792938883.173425
+    }
+  ],
+  "actualInputPerSecond": 20.01202582669315,
+  "actualMeasureSeconds": 19.987981399986893,
+  "maxSendLagMs": 16.060100053437054,
+  "checks": {
+    "allJoined": true,
+    "scheduleComplete": true,
+    "acceptedAll": false,
+    "noMissingResults": false,
+    "normalComplete": false,
+    "normalWarmupComplete": true,
+    "inputRateValid": true,
+    "noNormalFailures": false,
+    "noDuplicates": true,
+    "noOrderErrors": true,
+    "noProtocolErrors": true,
+    "sendLagValid": true,
+    "latencySlo": true,
+    "noFatal": true
+  },
+  "passed": false,
+  "fatal": null,
+  "formalDurationSatisfied": false,
+  "note": "Same-host asyncio raw TCP client. Normal denominator never shrinks. Slow starts after warmup; read rate is limited before recv. Slow disconnection is reported separately. Backend evidence still required for actual backpressure. Latency histogram is exact to120s then capped; max/overflow retained."
+}

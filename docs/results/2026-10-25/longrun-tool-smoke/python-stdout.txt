@@ -1,0 +1,7 @@
+Joined 60; scenario=T5; warmup=2s; measured=5s; slow=0
+{"at": 1792938586.2718453, "measuring": false, "sent": 0, "accepted": 0, "normalReceived": 0, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 0.0}
+Measurement started; slow recv throttling enabled where configured
+{"at": 1792938591.2883363, "measuring": true, "sent": 101, "accepted": 100, "normalReceived": 3600, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 16.15059992764145}
+{"at": 1792938596.2990725, "measuring": true, "sent": 140, "accepted": 140, "normalReceived": 6000, "slowReceived": 0, "normalFailures": 0, "maxSendLagMs": 16.15059992764145}
+{"scenario": "T5", "passed": true, "normalExpected": 6000, "normalReceived": 6000, "normalLatencyMs": {"samples": 600, "p50": 2, "p95": 3, "p99": 4, "max": 8, "avg": 2.316666666666667, "overflowAbove120000ms": 0}, "failures": {}, "checks": {"allJoined": true, "scheduleComplete": true, "acceptedAll": true, "noMissingResults": true, "normalComplete": true, "normalWarmupComplete": true, "inputRateValid": true, "noNormalFailures": true, "noDuplicates": true, "noOrderErrors": true, "noProtocolErrors": true, "sendLagValid": true, "latencySlo": true, "noFatal": true}}
+

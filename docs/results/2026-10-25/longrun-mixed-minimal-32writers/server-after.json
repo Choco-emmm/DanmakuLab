@@ -1,0 +1,379 @@
+{
+  "startedAt": "2026-10-25T14:37:25.9444636+00:00",
+  "metrics": [
+    {
+      "name": "jvm.gc.pause",
+      "description": "Time spent in GC pause",
+      "baseUnit": "seconds",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 1.0
+        },
+        {
+          "statistic": "TOTAL_TIME",
+          "value": 0.004
+        },
+        {
+          "statistic": "MAX",
+          "value": 0.004
+        }
+      ],
+      "availableTags": [
+        {
+          "tag": "cause",
+          "values": [
+            "G1 Evacuation Pause"
+          ]
+        },
+        {
+          "tag": "action",
+          "values": [
+            "end of minor GC"
+          ]
+        },
+        {
+          "tag": "gc",
+          "values": [
+            "G1 Young Generation"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "jvm.threads.live",
+      "description": "The current number of live threads including both daemon and non-daemon threads",
+      "baseUnit": "threads",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 69.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.connections",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.deliveries.enqueued",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 7620.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.deliveries.expected",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 7620.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.deliveries.submitted",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 6490.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.bytes",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.bytes.highwater",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 482.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.completed",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 440.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.messages",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.mode.fair",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 1.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.ready",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.rooms",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.dispatch.wait",
+      "baseUnit": "seconds",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 440.0
+        },
+        {
+          "statistic": "TOTAL_TIME",
+          "value": 0.0281845
+        },
+        {
+          "statistic": "MAX",
+          "value": 0.0002874
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.messages.accepted",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 440.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.messages.input",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 440.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.bytes",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.bytes.highwater",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 111115.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.closed",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 10.0
+        }
+      ],
+      "availableTags": [
+        {
+          "tag": "reason",
+          "values": [
+            "control_expired"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "lab.outbound.discarded",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 210.0
+        }
+      ],
+      "availableTags": [
+        {
+          "tag": "reason",
+          "values": [
+            "connection_closed"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "lab.outbound.dropped",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 920.0
+        }
+      ],
+      "availableTags": [
+        {
+          "tag": "reason",
+          "values": [
+            "expired"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "lab.outbound.messages",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.mode.buffered",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 1.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.slots",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.tasks",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.outbound.writers.active",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.rooms",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "lab.writes.failed",
+      "measurements": [
+        {
+          "statistic": "COUNT",
+          "value": 10.0
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "process.cpu.usage",
+      "description": "The \"recent cpu usage\" for the Java Virtual Machine process",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 0.0012933381761952257
+        }
+      ],
+      "availableTags": []
+    },
+    {
+      "name": "jvm.memory.used",
+      "description": "The amount of used memory",
+      "baseUnit": "bytes",
+      "measurements": [
+        {
+          "statistic": "VALUE",
+          "value": 39160920.0
+        }
+      ],
+      "availableTags": [
+        {
+          "tag": "id",
+          "values": [
+            "G1 Survivor Space",
+            "G1 Old Gen",
+            "G1 Eden Space"
+          ]
+        }
+      ]
+    }
+  ],
+  "endedAt": "2026-10-25T14:37:26.1623593+00:00"
+}

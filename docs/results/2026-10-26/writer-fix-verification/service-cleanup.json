@@ -1,0 +1,12 @@
+{
+  "resourcesBeforeStop": {
+    "lab.outbound.messages": 0.0,
+    "lab.outbound.slots": 0.0,
+    "lab.outbound.writes.inflight": 0.0,
+    "lab.outbound.bytes": 0.0,
+    "lab.connections": 0.0
+  },
+  "port": 8084,
+  "stoppedAt": "2026-10-26T09:20:28.9269799+08:00",
+  "pid": 77936
+}

@@ -1,0 +1,14 @@
+{
+  "nodeIds": {
+    "8087": 5840,
+    "8088": 25412
+  },
+  "connections": 100,
+  "scenario": "redis-timeout",
+  "normalPhysical": 102,
+  "resourceSampleSeconds": 2,
+  "note": "另有两个隔离探针；slow额外一个限速观众；同机回环",
+  "rate": 20,
+  "seconds": 60,
+  "sampleEvery": 10
+}

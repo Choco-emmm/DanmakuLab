@@ -1,0 +1,18 @@
+{
+  "arguments": [
+    "scripts/load/cluster.py",
+    "--connections",
+    "20",
+    "--seconds",
+    "30",
+    "--scenario",
+    "slow",
+    "--sample-every",
+    "1",
+    "--node-a-pid",
+    "5840",
+    "--output",
+    "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-26\\redis-slow-final/client"
+  ],
+  "executable": "C:\\Python314\\python.exe"
+}

@@ -1,0 +1,37 @@
+"""独立复核用户手动T5；只生成派生验证记录，不改原始数据、命令或历史哈希。"""
+import hashlib
+import json
+import re
+import runpy
+from pathlib import Path
+
+root = Path.cwd()
+folder = root / 'docs/results/2026-10-26/t5-094730'
+runpy.run_path(str(root / 'scripts/tests/longrun-summary.test.py'))['verify'](folder, formal=True)
+read = lambda path: json.loads(path.read_text(encoding='utf-8-sig'))
+report = read(folder / 'client/summary.json')
+counts = report['perViewerMeasured']
+assert len(counts) == 1000 and min(counts) == max(counts) == 36000
+manifest = read(folder / 'source-sha256.json')
+changed = [item['path'] for item in manifest if hashlib.sha256((root / item['path']).read_bytes()).hexdigest() != item['sha256'].lower()]
+assert not changed, changed
+jar = hashlib.sha256((root / 'target/danmaku-lab-0.1.0-SNAPSHOT.jar').read_bytes()).hexdigest()
+assert jar == read(folder / 'jar-sha256.json')['Hash'].lower() == '63c3f3bf6f415e0165fda5ee710acdfca896d8e96981a0539314dd88c4994e28'
+for path in folder.rglob('*.json'):
+    read(path)
+for path in folder.rglob('*.jsonl'):
+    for line in path.read_text(encoding='utf-8-sig').splitlines():
+        json.loads(line)
+for path in (root / 'README.md', root / 'TODOS.md', root / 'docs/PLAN.md', root / 'docs/ASYNC_OUTBOUND.md',
+             root / 'docs/LONGRUN.md', folder / 'notes.md', folder.parent / 'async-writer-report.md'):
+    for link in re.findall(r'\]\(([^)]+)\)', path.read_text(encoding='utf-8-sig')):
+        if '://' not in link:
+            assert (path.parent / link.split('#')[0]).exists(), (path, link)
+result = dict(formalValidation='passed', viewers=len(counts), minReceivedPerViewer=min(counts),
+              maxReceivedPerViewer=max(counts), measuredDeliveries=report['normalReceived'],
+              includingWarmup=report['normalReceived'] + report['normalWarmupReceived'],
+              sourceFilesMatched=len(manifest), sourceMismatches=changed, jarSha256=jar,
+              sameJarAsAsyncFix=True, localLinksChecked=True,
+              limits='One Windows same-host run; not three repeats, maximal capacity or complete P0.')
+(folder / 'verification.json').write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+print(json.dumps(result, ensure_ascii=False))
