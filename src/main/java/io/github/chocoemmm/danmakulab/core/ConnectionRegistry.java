@@ -165,6 +165,9 @@ public class ConnectionRegistry {
         return rooms.size();
     }
 
+    /** Redis接收按名称定位本节点当前房间；返回引用后可能退休，调度入队时必须再检查退休标记。 */
+    public synchronized Room currentRoom(String roomId) { return rooms.get(roomId); }
+
     /** 不可变的成员关系数据；record 自动提供 room() 和 nickname() 访问方法。 */
     public record Membership(Room room, String nickname) {
     }

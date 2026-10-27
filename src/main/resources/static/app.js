@@ -61,7 +61,8 @@ function appendMessage(event) {
   // textContent 不把用户输入解释为 HTML，例如 <img ...> 只显示文字，不创建图片标签。
   nickname.textContent = event.nickname;
   const sequence = document.createElement('span');
-  sequence.textContent = `#${event.roomSeq}`;
+  // 集群序号属于来源节点的消息流；显示节点名，避免把不同节点各自的#1当作全局序号。
+  sequence.textContent = event.originNodeId ? `${event.originNodeId} #${event.roomSeq}` : `#${event.roomSeq}`;
   const body = document.createElement('p');
   body.textContent = event.text;
   meta.append(nickname, sequence);
@@ -118,6 +119,11 @@ function connect() {
       // ?. 表示 activeRoom 不存在时返回 undefined；只展示实际所在房间的弹幕。
       appendMessage(event);
     } else if (event.type === 'send_result') {
+      if (event.status === 'unknown') {
+        // 发布超时可能已经广播；不自动重发，避免给观众制造重复消息。
+        $('feedback').textContent = '发布结果未知，消息可能已经送出；系统不会自动重发。';
+        return;
+      }
       // accepted 只表示服务器接纳，不能当作所有观众均已收到的凭证。
       $('feedback').textContent = event.status === 'accepted'
         ? '服务器已接受。此状态不代表所有观众已经收到。'

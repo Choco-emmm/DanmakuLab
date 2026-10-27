@@ -130,6 +130,31 @@ public class FairRoomDispatcher {
                 "clientMessageId", id, "roomSeq", sequence));
     }
 
+    /**
+     * 跨节点输入已经由来源节点编码、分配身份；这里仅占本地预算，不分配新序号、不回复来源者。
+     * 房间对象绑定本地生命周期，不能把排队期间退休的旧Room改投到同名新Room。
+     */
+    public boolean acceptBroadcast(String roomId, org.springframework.web.socket.TextMessage message) {
+        var room = registry.currentRoom(roomId);
+        if (room == null) return false;
+        synchronized (monitor) {
+            if (stopping) throw new io.github.chocoemmm.danmakulab.protocol.ProtocolException("server_stopping");
+            if (room.retired()) return false;
+            var queue = rooms.get(room);
+            if (queue == null && rooms.size() >= roomLimit) throw new ProtocolException("room_scheduler_full");
+            if (queue != null && queue.entries.size() >= properties.maxMessages()) throw new ProtocolException("room_queue_full");
+            int size = message.getPayloadLength();
+            if (size > properties.maxBytes() - (queue == null ? 0 : queue.bytes)) throw new ProtocolException("room_queue_full");
+            if (messages >= properties.globalMessages() || size > properties.globalBytes() - bytes) throw new ProtocolException("room_global_budget");
+            if (queue == null) { queue = new RoomQueue(room); rooms.put(room, queue); }
+            queue.entries.addLast(new Pending(message, clock.getAsLong()));
+            queue.bytes += size; bytes += size; messages++;
+            highWater = Math.max(highWater, bytes);
+            if (!queue.scheduled) { queue.scheduled=true; ready.addLast(queue); monitor.notifyAll(); }
+            return true;
+        }
+    }
+
     private void run() {
         try {
             while (true) {

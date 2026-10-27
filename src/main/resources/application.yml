@@ -19,6 +19,18 @@ management:
         # health 用于健康检查，metrics 用于观测；发送计数不能代替客户端实际接收数。
         include: health,info,metrics
 lab:
+  cluster:
+    # local不连接Redis；redis模式还要求fair+buffered。节点名在同一命名空间内必须唯一。
+    mode: local
+    node-id: local
+    namespace: danmakulab-dev
+    redis-uri: redis://127.0.0.1:16379/0
+    # 两条桥接队列分别受以下预算约束，均包含正在处理的一条。
+    max-event-bytes: 4096
+    queue-messages: 256
+    queue-bytes: 1048576
+    max-age-millis: 1000
+    timeout-millis: 1000
   # 以下是实验配置上限，不表示已经实测支持这么多连接或房间。
   max-connections: 2000
   max-rooms: 1000

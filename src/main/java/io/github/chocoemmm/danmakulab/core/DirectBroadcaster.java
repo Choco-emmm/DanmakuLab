@@ -75,7 +75,7 @@ public class DirectBroadcaster {
         return encode(event);
     }
 
-    /** 一份观众投递。buffered 的真实发送计数由发送线程增加，不能把入邮箱当成写入完成。 */
+    /** 一份观众投递。buffered 的submitted由异步写完成入口增加，不能把入邮箱当成写入完成或观众收到。 */
     public void deliver(ClientConnection recipient, TextMessage message) {
         if (reply(recipient, message, true) && !recipient.buffered()) {
             metrics.counter("lab.deliveries.submitted").increment();

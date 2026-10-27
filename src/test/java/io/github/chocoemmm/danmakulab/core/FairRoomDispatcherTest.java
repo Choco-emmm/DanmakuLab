@@ -55,6 +55,37 @@ class FairRoomDispatcherTest {
         metrics.close();
     }
 
+    /** 远端事件保留来源序号且不回复发送者；仅占本地预算，不能调用prepare或再次生成accepted。 */
+    @Test
+    void remoteBroadcastPreservesPayloadAndDoesNotAllocateLocalSequence() throws Exception {
+        create(2,1000,3,2000);
+        var room=new Room("remote",50);
+        when(registry.currentRoom("remote")).thenReturn(room);
+        audiences.put(room,List.of(viewer("viewer")));
+        assertThat(dispatcher.acceptBroadcast("remote",new TextMessage("origin-seq-88"))).isTrue();
+        assertThat(room.sequenceCandidate()).isEqualTo(1);
+        drain();
+        assertThat(trace).containsExactly("viewer/origin-seq-88");
+        assertThat(metrics.find("lab.messages.accepted").counter()).isNull();
+        verify(broadcaster,never()).prepare(any(),any(),anyString(),anyString(),anyLong(),anyLong());
+        assertEmpty();
+    }
+
+    /** 没有本地观众/旧房间已退休时忽略；远端队列满仍明确拒绝并保持既有预算不变。 */
+    @Test
+    void remoteBroadcastUsesLocalCapacityAndRoomLifetime() {
+        create(1,1000,2,2000);
+        assertThat(dispatcher.acceptBroadcast("missing",new TextMessage("x"))).isFalse();
+        var room=new Room("remote",50);
+        when(registry.currentRoom("remote")).thenReturn(room);
+        assertThat(dispatcher.acceptBroadcast("remote",new TextMessage("one"))).isTrue();
+        assertThatThrownBy(() -> dispatcher.acceptBroadcast("remote",new TextMessage("two"))).hasMessage("room_queue_full");
+        assertThat(dispatcher.bufferedBytes()).isEqualTo(3);
+        room.retire();
+        assertThat(dispatcher.acceptBroadcast("remote",new TextMessage("late"))).isFalse();
+        drain(); assertEmpty();
+    }
+
     /** 热点的五人广播跨三轮；普通房间能在热点两次轮转之间执行，同房间后一条不能插队。 */
     @Test
     void roundRobinBoundsFanoutAndPreservesPerViewerOrder() throws Exception {
