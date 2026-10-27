@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.github.chocoemmm.danmakulab.config.LabProperties;
 import io.github.chocoemmm.danmakulab.core.ConnectionRegistry;
 import io.github.chocoemmm.danmakulab.core.DirectBroadcaster;
+import io.github.chocoemmm.danmakulab.core.FairRoomDispatcher;
 import io.micrometer.core.instrument.simple.SimpleMeterRegistry;
 import jakarta.websocket.Session;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ class SendTimeoutTest {
         var properties = new LabProperties(2000, 1000, 1024, 200, 5, 50);
         var metrics = new SimpleMeterRegistry();
         var handler = new DanmakuHandler(new ObjectMapper(), properties,
-                mock(ConnectionRegistry.class), mock(DirectBroadcaster.class), metrics);
+                mock(ConnectionRegistry.class), mock(DirectBroadcaster.class), metrics, mock(FairRoomDispatcher.class));
 
         handler.afterConnectionEstablished(springSession);
 

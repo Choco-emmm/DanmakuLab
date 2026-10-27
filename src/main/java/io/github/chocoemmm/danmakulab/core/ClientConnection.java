@@ -3,13 +3,18 @@ package io.github.chocoemmm.danmakulab.core;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.WebSocketSession;
+import org.springframework.web.socket.adapter.NativeWebSocketSession;
+import jakarta.websocket.RemoteEndpoint;
+import jakarta.websocket.Session;
 
 import java.io.IOException;
+import java.util.function.Consumer;
 
 /**
  * 一条物理 WebSocket 连接的业务包装：持有 Session、该连接自己的输入限流器及统一发送入口。
  * 同一用户打开两个页面会建立两个连接；当前没有账号系统，所以按连接 ID 管理。
- * direct 模式直接写，buffered 模式只入有界邮箱；两者共用 writeNow 作为实际网络写入口。
+ * direct 模式保留同步 writeNow 基线；buffered 模式只入邮箱，由原生异步端点写网络。
+ * 异步仅改变等待方式，不表示可靠送达，也不允许同连接同时提交多条在途消息。
  */
 public final class ClientConnection {
     // Spring 提供的真实连接对象，最终由它把消息交给 WebSocket 容器。
@@ -22,8 +27,11 @@ public final class ClientConnection {
     private final OutboundService outbound;
     private final OutboundMailbox mailbox;
     private final Runnable invalidate;
+    // 只有 buffered 模式持有此端点。容器通过完成回调通知结果，不占共享线程等网络可写。
+    private final RemoteEndpoint.Async asyncRemote;
     private boolean disposed;
     private boolean closeRequested;
+    private boolean closeFinished;
 
     public ClientConnection(WebSocketSession session, int inputRate) {
         this(session, inputRate, null, () -> { });
@@ -34,6 +42,18 @@ public final class ClientConnection {
         this.inputLimiter = new TokenBucket(inputRate);
         this.outbound = outbound;
         this.invalidate = invalidate;
+        if (outbound == null) {
+            asyncRemote = null;
+        } else {
+            if (!(session instanceof NativeWebSocketSession nativeSession)
+                    || !(nativeSession.getNativeSession() instanceof Session jakartaSession)) {
+                // 本项目使用 Jakarta/Tomcat。禁止悄悄回退成同步写，再次引入共享线程饥饿。
+                throw new IllegalArgumentException("buffered output requires a native Jakarta WebSocket session");
+            }
+            asyncRemote = jakartaSession.getAsyncRemote();
+            // 单次传输等待最多5秒，单位毫秒；邮箱年龄1秒是另一层排队限制，二者不能混用。
+            asyncRemote.setSendTimeout(5_000L);
+        }
         this.mailbox = outbound == null ? null : new OutboundMailbox(this, outbound);
     }
 
@@ -62,11 +82,23 @@ public final class ClientConnection {
 
     public boolean buffered() { return mailbox != null; }
 
-    /** 每连接一把实际写锁；邮箱调度也保证单写者，锁仍为直接模式和底层调用提供保护。 */
+    /** 直接模式的同步网络写入口；保留逐连接写锁，作为优化前基线，不用于buffered邮箱。 */
     void writeNow(TextMessage message) throws IOException {
         synchronized (writeLock) {
             if (!session.isOpen()) throw new IOException("Connection is closed");
             session.sendMessage(message);
+        }
+    }
+
+    /**
+     * 邮箱一次只提交一条。此锁仅保护发起调用，不跨异步等待；单写者由邮箱的 inFlight 保证。
+     * completion 为“容器完成或失败”的回调，可能在 sendText 返回前就被调用，邮箱必须兼容。
+     * 不能调用 Future.get/join 等待结果，否则会把异步写重新变成共享线程阻塞。
+     */
+    void writeAsync(TextMessage message, Consumer<Throwable> completion) throws IOException {
+        synchronized (writeLock) {
+            if (!session.isOpen()) throw new IOException("Connection is closed");
+            asyncRemote.sendText(message.getPayload(), result -> completion.accept(result.getException()));
         }
     }
 
@@ -76,13 +108,31 @@ public final class ClientConnection {
             if (disposed) return;
             disposed = true;
             if (mailbox != null) mailbox.cancel();
-            // 若已请求异步关闭，名额由关闭任务 finally 归还；正常断开则立即归还。
-            if (outbound != null && !closeRequested) outbound.retire(this);
+            retireIfFinished();
         }
     }
 
     void expirePending() {
         if (mailbox != null) mailbox.expire();
+    }
+
+    /** 关闭任务结束与写完成可能以任意顺序发生；两者都结束后才能复用连接名额。 */
+    void closeFinished() {
+        synchronized (lifecycleLock) {
+            closeFinished = true;
+            retireIfFinished();
+        }
+    }
+
+    void writeFinished() {
+        synchronized (lifecycleLock) { retireIfFinished(); }
+    }
+
+    /** 调用方持有生命周期锁；在途消息仍保留预算和名额，避免断开/重连制造超上限在途写。 */
+    private void retireIfFinished() {
+        if (outbound != null && disposed && (!closeRequested || closeFinished) && !mailbox.hasInFlight()) {
+            outbound.retire(this);
+        }
     }
 
     /**

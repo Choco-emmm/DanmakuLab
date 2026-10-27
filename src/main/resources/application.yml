@@ -28,6 +28,20 @@ lab:
   # 令牌桶每秒补充量，也作为桶容量；连接桶与房间桶都通过后才允许广播。
   connection-messages-per-second: 5
   room-messages-per-second: 50
+  dispatch:
+    # direct 保留原广播路径。fair 需要同时设置 outbound.mode=buffered，避免调度线程写网络。
+    mode: direct
+    # 每房间预算包括排队和正在分发的输入；按完整广播 JSON 计算字节。
+    max-messages: 64
+    max-bytes: 65536
+    # 所有房间共享的入口预算；房间状态名额另外受 max-rooms 限制，含待回收旧实例。
+    global-messages: 4096
+    global-bytes: 4194304
+    # 一轮最多完成 4 条输入或尝试 64 份观众投递，先到者让出调度机会。
+    batch-messages: 4
+    batch-recipients: 64
+    # 首次开始分发前等待超过 1 秒则丢弃；已经开始的成员快照继续分批处理。
+    max-age-millis: 1000
   outbound:
     # direct 为修复超时后的同步基线；启动参数 --lab.outbound.mode=buffered 启用有界邮箱。
     mode: direct
@@ -35,7 +49,7 @@ lab:
     max-messages: 256
     max-bytes: 65536
     global-bytes: 134217728
-    # 固定线程共享所有连接，执行队列有界；拒绝不会回退到调用者线程发送。
+    # 固定线程为所有连接提交异步写，不等待网络完成；任务队列有界，拒绝不回退到调用者发送。
     workers: 8
     task-capacity: 2000
     # 未写出的普通弹幕超过 1 秒丢弃，控制回复超龄则关闭连接；已进传输层无法撤回。

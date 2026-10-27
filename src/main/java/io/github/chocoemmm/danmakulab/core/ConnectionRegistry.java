@@ -146,6 +146,8 @@ public class ConnectionRegistry {
         var roomMembers = members.get(previous.room());
         roomMembers.remove(id);
         if (roomMembers.isEmpty()) {
+            // 先标记这一代房间结束；调度器下一轮会取消它的待处理输入，不影响同名新实例。
+            previous.room().retire();
             // 空房间及时回收，防止不断创建新房间让内存中的房间表永久增长。
             members.remove(previous.room());
             // 同时指定 key 和 value，表达“删除的必须是这一代 Room”，避免误删同名的新实例。

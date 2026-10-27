@@ -15,7 +15,7 @@ import java.util.UUID;
  * 房间串行分发：direct 模式逐个同步发送；buffered 模式逐个快速投递到连接邮箱。
  * 它同时负责把响应转换成 JSON，确保控制响应和弹幕最终都进入 ClientConnection.send。
  *
- * 保留同一份消息构造与序号逻辑用于对照；尚无房间入口队列或房间公平调度。
+ * 保留直接广播路径用于对照；FairRoomDispatcher 复用本类编码和统一输出入口。
  */
 @Component
 public class DirectBroadcaster {
@@ -44,35 +44,41 @@ public class DirectBroadcaster {
         synchronized (room) {
             var recipients = registry.snapshot(room);
             long sequence = room.nextSequence();
-            // 使用 Map 组装协议对象；LinkedHashMap 让输出字段顺序稳定，方便阅读抓包和日志。
-            var event = new LinkedHashMap<String, Object>();
-            event.put("type", "danmaku");
-            event.put("runId", runId);
-            event.put("roomId", room.id());
-            event.put("roomInstanceId", room.instanceId());
-            event.put("roomSeq", sequence);
-            event.put("clientMessageId", clientMessageId);
-            event.put("clientSentAt", clientSentAt);
-            event.put("senderId", sender.id());
-            event.put("nickname", membership.nickname());
-            event.put("text", text);
-            // 同一条广播只序列化一次，并复用只读 TextMessage，避免每位观众重复做 JSON 编码。
-            var message = encode(event);
-            // accepted 统计输入条数；expected 统计投递次数，两者口径不同。
-            // 例如 10 位观众的一条弹幕：accepted 加 1，expected 加 10。
+            var message = prepare(sender, membership, clientMessageId, text, clientSentAt, sequence);
             metrics.counter("lab.messages.accepted").increment();
             metrics.counter("lab.deliveries.expected").increment(recipients.size());
-            // 两种模式当前都没有房间入口队列；accepted 仅表示通过输入准入。
-            // buffered 后续仍可能丢弃过期输出或断开慢连接，不把它解释为可靠交付。
+            // direct 调度路径没有入口队列；确认通过准入，不表示所有观众已收到。
             reply(sender, Map.of("type", "send_result", "status", "accepted",
                     "clientMessageId", clientMessageId, "roomSeq", sequence));
-            for (var recipient : recipients) {
-                // 一个接收者失败会返回 false 并清理，循环仍尝试给其余成员发送。
-                if (reply(recipient, message, true) && !recipient.buffered()) {
-                    // 仅说明服务端发送调用正常返回；真实接收量必须由客户端另外统计。
-                    metrics.counter("lab.deliveries.submitted").increment();
-                }
-            }
+            for (var recipient : recipients) deliver(recipient, message);
+        }
+    }
+
+    /** 构造一条只读广播；调用一次编码后复用，fair 也按这个完整 JSON 的 UTF-8 大小计预算。 */
+    public TextMessage prepare(ClientConnection sender, ConnectionRegistry.Membership membership,
+                               String clientMessageId, String text, long clientSentAt, long sequence)
+            throws JsonProcessingException {
+        var room = membership.room();
+        // LinkedHashMap 保持协议字段顺序稳定，方便阅读抓包和日志。
+        var event = new LinkedHashMap<String, Object>();
+        event.put("type", "danmaku");
+        event.put("runId", runId);
+        event.put("roomId", room.id());
+        event.put("roomInstanceId", room.instanceId());
+        event.put("roomSeq", sequence);
+        event.put("clientMessageId", clientMessageId);
+        event.put("clientSentAt", clientSentAt);
+        event.put("senderId", sender.id());
+        event.put("nickname", membership.nickname());
+        event.put("text", text);
+        // 同一条广播只序列化一次，并复用只读 TextMessage，避免每位观众重复做 JSON 编码。
+        return encode(event);
+    }
+
+    /** 一份观众投递。buffered 的真实发送计数由发送线程增加，不能把入邮箱当成写入完成。 */
+    public void deliver(ClientConnection recipient, TextMessage message) {
+        if (reply(recipient, message, true) && !recipient.buffered()) {
+            metrics.counter("lab.deliveries.submitted").increment();
         }
     }
 

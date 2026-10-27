@@ -9,7 +9,7 @@ import org.springframework.validation.annotation.Validated;
  * 输出侧实验参数，独立于输入限流：输入每秒几条与为观众缓存几字节是两个问题。
  * mode=direct 保留同步基线，buffered 启用每连接邮箱；默认配置不声称已经通过容量验收。
  * bytes 包含完整 UTF-8 JSON；messages/bytes 同时包含正在发送但尚未返回的那一条。
- * workers 是所有连接共享的发送线程数，绝不按连接数创建线程。
+ * workers是所有连接共享的异步提交线程数，网络等待交给容器；绝不按连接数创建线程。
  */
 @Validated
 @ConfigurationProperties("lab.outbound")

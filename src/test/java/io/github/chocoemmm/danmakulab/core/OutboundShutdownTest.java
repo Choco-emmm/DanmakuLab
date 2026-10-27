@@ -18,7 +18,7 @@ import static org.mockito.Mockito.*;
 
 /**
  * 强制停机的资源归还测试：两个关闭线程都被底层传输卡住时，第三个关闭任务尚在队列。
- * 停机丢弃未启动任务也必须归还其连接名额；已经进入网络发送的一条预算仍属于发送者。
+ * 停机取消未启动关闭任务后，若其写仍在途，名额和预算都必须等完成回调，不能提前复用。
  */
 class OutboundShutdownTest {
     @Test
@@ -69,8 +69,8 @@ class OutboundShutdownTest {
             shutdown.join(2000);
             assertThat(shutdown.isAlive()).isFalse();
             assertThat(shutdownError.get()).isNull();
-            // 仅两个实际关闭尚未完成的连接继续占名额；被丢弃的第三个名额已明确归还。
-            assertThat(metrics.get("lab.outbound.slots").gauge().value()).isEqualTo(2);
+            // 两个关闭尚未完成，第三个关闭被取消但写仍在途：三个名额都不能复用。
+            assertThat(metrics.get("lab.outbound.slots").gauge().value()).isEqualTo(3);
             assertThat(metrics.get("lab.outbound.close.abandoned").counter().count()).isEqualTo(1);
             assertThat(service.bufferedBytes()).isEqualTo(5);
             assertThat(service.bufferedMessages()).isEqualTo(1);
@@ -105,9 +105,7 @@ class OutboundShutdownTest {
     }
 
     private static WebSocketSession socket() {
-        var socket = mock(WebSocketSession.class);
-        when(socket.isOpen()).thenReturn(true);
-        return socket;
+        return OutboundSessionFixture.bridgedSession();
     }
 
     /** 用注销回调连接 dispose；真实项目中该回调由 Registry.remove 提供。 */

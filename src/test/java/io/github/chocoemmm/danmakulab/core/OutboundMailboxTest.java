@@ -22,7 +22,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 /**
- * 用可控阻塞的 Session 逼出真实并发交错；不依赖“网络碰巧慢”验证预算和单写者。
+ * 用可控阻塞的提交替身逼出预算/停机交错；异步网络等待的隔离由OutboundAsyncTest单独验证。
  * CountDownLatch 是闸门：测试明确知道发送线程何时进入、何时允许返回。
  */
 class OutboundMailboxTest {
@@ -51,9 +51,7 @@ class OutboundMailboxTest {
     }
 
     private WebSocketSession session() {
-        var session = mock(WebSocketSession.class);
-        when(session.isOpen()).thenReturn(true);
-        return session;
+        return OutboundSessionFixture.bridgedSession();
     }
 
     private CountDownLatch gate() {

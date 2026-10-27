@@ -14,11 +14,12 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * 连接邮箱共享的资源所有者：全局预算、有界发送池、独立关闭池以及定时过期检查。
+ * 连接邮箱共享的资源所有者：全局预算、有界发送任务池、独立关闭池以及定时过期检查。
+ * 发送线程只发起容器异步写，不等网络完成；等待中的连接仍各占一条在途消息和连接名额。
  * 不依赖 Registry；连接失效时调用登记时传入的注销回调，避免 Spring 组件循环依赖。
- * active 包含仍在异步关闭中的连接。正常运行时，关闭任务完成之前不归还连接名额，因此关闭池
- * 队列最多接纳 maxConnections 个一次性任务。仅强制停机时放弃未启动的关闭任务并归还名额，
- * 底层传输的最终销毁交给容器退出；该阶段已停止准入，归还不会被新连接重复占用。
+ * active包含仍在关闭或等待写完成回调的连接。两项都结束才归还名额，因此关闭任务和在途写
+ * 分别最多maxConnections份。强制停机可以放弃未启动关闭任务，但仍须保留其未完成写的名额，
+ * 不提前归还在途预算；底层传输最终由容器退出清理。
  */
 @Component
 public class OutboundService {
@@ -30,6 +31,7 @@ public class OutboundService {
     private final AtomicLong bytes = new AtomicLong();
     private final AtomicLong messages = new AtomicLong();
     private final AtomicLong highWater = new AtomicLong();
+    private final AtomicLong inFlight = new AtomicLong();
     private final ThreadPoolExecutor writers;
     private final ThreadPoolExecutor closers;
     private final ScheduledExecutorService maintenance;
@@ -45,7 +47,7 @@ public class OutboundService {
         this.properties = properties;
         this.metrics = metrics;
         this.connectionLimit = lab.maxConnections();
-        // 为所有连接共享固定发送池和独立关闭池；任务排队有上限，不按连接创建线程。
+        // 为所有连接共享固定提交池和独立关闭池；不按连接创建线程，不在提交池内等网络。
         writers = pool(properties.workers(), properties.taskCapacity(), "lab-send-");
         closers = pool(2, connectionLimit, "lab-close-");
         maintenance = Executors.newSingleThreadScheduledExecutor(factory("lab-expiry-"));
@@ -55,6 +57,7 @@ public class OutboundService {
         metrics.gauge("lab.outbound.messages", messages);
         metrics.gauge("lab.outbound.bytes.highwater", highWater);
         metrics.gauge("lab.outbound.slots", slots);
+        metrics.gauge("lab.outbound.writes.inflight", inFlight);
         metrics.gauge("lab.outbound.tasks", writers, executor -> executor.getQueue().size());
         metrics.gauge("lab.outbound.writers.active", writers, ThreadPoolExecutor::getActiveCount);
         metrics.gauge("lab.outbound.mode.buffered", properties.buffered() ? 1 : 0);
@@ -80,7 +83,7 @@ public class OutboundService {
                 new ArrayBlockingQueue<>(capacity), factory(name), new ThreadPoolExecutor.AbortPolicy());
     }
 
-    /** 登记一条连接，同时占用关闭完成前不可复用的名额；直发模式不启用邮箱。 */
+    /** 登记连接，占用关闭与在途写都结束前不可复用的名额；直发模式不启用邮箱。 */
     synchronized ClientConnection connection(WebSocketSession session, int inputRate, Runnable invalidate) {
         if (!properties.buffered()) return new ClientConnection(session, inputRate);
         if (stopping) throw new ProtocolException("connection_limit");
@@ -88,7 +91,13 @@ public class OutboundService {
             slots.decrementAndGet();
             throw new ProtocolException("connection_limit");
         }
-        var connection = new ClientConnection(session, inputRate, this, invalidate);
+        ClientConnection connection;
+        try {
+            connection = new ClientConnection(session, inputRate, this, invalidate);
+        } catch (RuntimeException invalidTransport) {
+            slots.decrementAndGet();
+            throw invalidTransport;
+        }
         active.add(connection);
         return connection;
     }
@@ -115,6 +124,10 @@ public class OutboundService {
         writers.execute(task);
     }
 
+    /** 计量容器尚未通知完成的应用写；与当前活跃提交线程数不同。 */
+    void writeStarted() { inFlight.incrementAndGet(); }
+    void writeFinished() { inFlight.decrementAndGet(); }
+
     void closeLater(ClientConnection connection, Runnable close) {
         // 每条仍占名额的连接最多提交一次关闭任务，队列容量就是名额上限。
         // 关闭也可能等待容器，必须与广播线程和发送池隔离。
@@ -140,20 +153,20 @@ public class OutboundService {
         public void run() {
             if (!claimed.compareAndSet(false, true)) return;
             try { close.run(); }
-            finally { retire(connection); }
+            finally { connection.closeFinished(); }
         }
 
         /** 只取消未开始的关闭任务；此方法绝不在停机线程里调用可能阻塞的 Session.close。 */
         private void abandon() {
             if (!claimed.compareAndSet(false, true)) return;
             try { metrics.counter("lab.outbound.close.abandoned").increment(); }
-            finally { retire(connection); }
+            finally { connection.closeFinished(); }
         }
     }
 
     /**
      * shutdownNow 只中断正在运行的关闭者，并返回没有开始的任务；逐个取消后者的资源归属。
-     * 已在运行的任务仍由自身 finally 归还名额；在途消息也仍由发送者 finally 释放预算。
+     * 正在关闭的任务在finally标记关闭结束；在途写在完成回调中释放预算，二者都结束才还名额。
      */
     private void stopClosersNow() {
         for (var task : closers.shutdownNow()) {

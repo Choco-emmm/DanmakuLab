@@ -38,7 +38,8 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
         container.setMaxBinaryMessageBufferSize(properties.maxFrameBytes());
         // 60 秒没有通信时由容器关闭空闲连接；浏览器正常情况下每 15 秒发送应用心跳。
         container.setMaxSessionIdleTimeout(60_000L);
-        // 这是容器异步发送的超时配置；当前同步广播另在连接建立时设置阻塞发送超时。
+        // buffered使用容器异步写，ClientConnection另显式设置相同的5秒有限期限。
+        // direct同步基线另在连接建立时设置Tomcat原生阻塞发送超时。
         container.setAsyncSendTimeout(5_000L);
         return container;
     }

@@ -7,6 +7,7 @@ import io.github.chocoemmm.danmakulab.config.LabProperties;
 import io.github.chocoemmm.danmakulab.core.ClientConnection;
 import io.github.chocoemmm.danmakulab.core.ConnectionRegistry;
 import io.github.chocoemmm.danmakulab.core.DirectBroadcaster;
+import io.github.chocoemmm.danmakulab.core.FairRoomDispatcher;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
@@ -33,14 +34,16 @@ public class DanmakuHandler extends TextWebSocketHandler {
     private final ConnectionRegistry registry;
     private final DirectBroadcaster broadcaster;
     private final MeterRegistry metrics;
+    private final FairRoomDispatcher dispatcher;
 
     public DanmakuHandler(ObjectMapper json, LabProperties properties, ConnectionRegistry registry,
-                          DirectBroadcaster broadcaster, MeterRegistry metrics) {
+                          DirectBroadcaster broadcaster, MeterRegistry metrics, FairRoomDispatcher dispatcher) {
         this.json = json;
         this.properties = properties;
         this.registry = registry;
         this.broadcaster = broadcaster;
         this.metrics = metrics;
+        this.dispatcher = dispatcher;
     }
 
     /** WebSocket 握手成功后登记连接；此时还没有加入任何业务房间。 */
@@ -139,7 +142,10 @@ public class DanmakuHandler extends TextWebSocketHandler {
         if (!membership.room().admitMessage()) {
             throw new ProtocolException("room_rate_limit");
         }
-        broadcaster.broadcast(connection, membership, id, content, timestamp.longValue());
+        // fair 的队列满/全局预算不足仍由上面的统一异常路径返回 send_result/rejected。
+        // 默认 direct 保持旧路径，便于同一 JAR 对照；心跳/加入控制消息不占房间输入队列。
+        if (dispatcher.enabled()) dispatcher.submit(connection, membership, id, content, timestamp.longValue());
+        else broadcaster.broadcast(connection, membership, id, content, timestamp.longValue());
     }
 
     /** 通用文本校验：要求字段为字符串、非空白且长度不超限，不把其他 JSON 类型自动转成文字。 */
