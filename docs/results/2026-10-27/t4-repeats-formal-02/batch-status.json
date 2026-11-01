@@ -1,0 +1,40 @@
+{
+  "runs": [
+    {
+      "round": 1,
+      "mode": "direct",
+      "directory": "round-01-direct",
+      "startedAt": "2026-10-27T06:44:10.4578925+00:00",
+      "processId": 45328,
+      "passed": true,
+      "stopped": true,
+      "error": null,
+      "endedAt": "2026-10-27T06:56:59.6828414+00:00"
+    },
+    {
+      "round": 1,
+      "mode": "fair",
+      "directory": "round-01-fair",
+      "startedAt": "2026-10-27T06:57:01.6003684+00:00",
+      "processId": 13688,
+      "passed": true,
+      "stopped": true,
+      "error": null,
+      "endedAt": "2026-10-27T07:09:51.1791563+00:00"
+    },
+    {
+      "round": 2,
+      "mode": "fair",
+      "directory": "round-02-fair",
+      "startedAt": "2026-10-27T07:09:52.9504672+00:00",
+      "processId": 59512,
+      "passed": false,
+      "stopped": true,
+      "error": "子进程退出码为 1。",
+      "endedAt": "2026-10-27T07:22:41.1938624+00:00"
+    }
+  ],
+  "passed": false,
+  "error": "子进程退出码为 1。",
+  "completed": 3
+}

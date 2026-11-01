@@ -1,0 +1,11 @@
+{
+  "started": true,
+  "processId": 30312,
+  "exitCode": -1,
+  "timedOut": true,
+  "elapsedSeconds": 8085.1316536,
+  "error": "子进程超过 815 秒截止时间；保存证据后停止实验。",
+  "captureComplete": true,
+  "captureErrors": [],
+  "cleanupErrors": []
+}

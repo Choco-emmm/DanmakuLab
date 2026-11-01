@@ -1,0 +1,2 @@
+PASS: docs\results\2026-10-27\t4-diagnostic-resume-smoke\all-01\load; 60 connections; 20690 actual deliveries
+

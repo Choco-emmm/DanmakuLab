@@ -1,0 +1,1160 @@
+{
+  "cases": [
+    {
+      "case": "direct-normal",
+      "startedAtEpochSeconds": 1793343655.4804618,
+      "collectionErrors": [],
+      "completed": true,
+      "serverPid": 2073,
+      "clientPid": 2223,
+      "clientExitCode": 0,
+      "clientSummary": {
+        "normalReceived": 36000,
+        "normalExpected": 36000,
+        "accepted": 3600,
+        "inputScheduleCompleted": true,
+        "maxSendLagMs": 15.925541000115118,
+        "normalLatencyMs": {
+          "samples": 36000,
+          "p50": 5,
+          "p95": 6,
+          "p99": 7,
+          "max": 89
+        },
+        "duplicates": 0,
+        "orderViolations": 0,
+        "failures": [],
+        "rejections": []
+      },
+      "normalDeliveryComplete": true,
+      "cleanupGauges": {
+        "lab.connections": 0.0,
+        "lab.rooms": 0.0,
+        "lab.outbound.bytes": 0.0,
+        "lab.outbound.messages": 0.0,
+        "lab.outbound.slots": 0.0,
+        "lab.outbound.writes.inflight": 0.0,
+        "lab.outbound.tasks": 0.0,
+        "lab.outbound.writers.active": 0.0,
+        "lab.dispatch.bytes": 0.0,
+        "lab.dispatch.messages": 0.0,
+        "lab.dispatch.rooms": 0.0,
+        "lab.dispatch.ready": 0.0
+      },
+      "cleanupPassed": true,
+      "clientFinalExitCode": 0,
+      "serverFinalExitCode": 143,
+      "endedAtEpochSeconds": 1793343766.1752787,
+      "serverStillRunning": false,
+      "clientStillRunning": false,
+      "ssAfterStop": {
+        "arguments": [
+          "ss",
+          "-ltn",
+          "sport = :18081"
+        ],
+        "exitCode": 0,
+        "stdout": "State Recv-Q Send-Q Local Address:Port Peer Address:Port\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "direct-paused",
+      "startedAtEpochSeconds": 1793343766.1992297,
+      "collectionErrors": [],
+      "completed": true,
+      "serverPid": 2524,
+      "clientPid": 2676,
+      "clientExitCode": 0,
+      "clientSummary": {
+        "normalReceived": 34490,
+        "normalExpected": 36000,
+        "accepted": 3449,
+        "inputScheduleCompleted": true,
+        "maxSendLagMs": 5.51631999996971,
+        "normalLatencyMs": {
+          "samples": 34490,
+          "p50": 3,
+          "p95": 5,
+          "p99": 4322,
+          "max": 5087
+        },
+        "duplicates": 0,
+        "orderViolations": 0,
+        "failures": [
+          {
+            "client": "probe",
+            "operation": "heartbeat",
+            "error": "[Errno 104] Connection reset by peer",
+            "seconds": 50.00450289199989
+          }
+        ],
+        "rejections": [
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1119",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1129",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1122",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1132",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1139",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1142",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1149",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1152",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1159",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1169",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1162",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1172",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1182",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1192",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1120",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1179",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1202",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1212",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1222",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1130",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1189",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1232",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1199",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1121",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1116",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1131",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1209",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1141",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1140",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1242",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1151",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1150",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1160",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1126",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1123",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1133",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1161",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1143",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1153",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1170",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1180",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1163",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1219",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1173",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1252",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1136",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1190",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1171",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1118",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1183",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1146",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1124",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1156",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1229",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1166",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1193",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1200",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1128",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1176",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1117",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1186",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1203",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1138",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1196",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1181",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1134",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1148",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1213",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1158",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1223",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1191",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1144",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1168",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1178",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1210",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1206",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1216",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1154",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1127",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1188",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1239",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1233",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1226",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1198",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1164",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1243",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1236",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1137",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1174",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1208",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1147",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1115",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1184",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1246",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1253",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1157",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1194",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1256",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1218",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1228",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1238",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1125",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1249",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1263",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1167",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1248",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1204",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1177",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1135",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1259",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1201",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1187",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1214",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1258",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1145",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1197",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1211",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1220",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1224",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1155",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1234",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1207",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1221",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1165",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1244",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1254",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1230",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1217",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1231",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1227",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1237",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1175",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1240",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1264",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1247",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1250",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1185",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1241",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1195",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1260",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1257",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1251",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1205",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1262",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1261",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1215",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1225",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1235",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1245",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1255",
+            "type": "send_result",
+            "status": "rejected"
+          },
+          {
+            "reason": "connection_rate_limit",
+            "clientMessageId": "slow-1793343779574849941:1265",
+            "type": "send_result",
+            "status": "rejected"
+          }
+        ]
+      },
+      "normalDeliveryComplete": false,
+      "cleanupGauges": {
+        "lab.connections": 0.0,
+        "lab.rooms": 0.0,
+        "lab.outbound.bytes": 0.0,
+        "lab.outbound.messages": 0.0,
+        "lab.outbound.slots": 0.0,
+        "lab.outbound.writes.inflight": 0.0,
+        "lab.outbound.tasks": 0.0,
+        "lab.outbound.writers.active": 0.0,
+        "lab.dispatch.bytes": 0.0,
+        "lab.dispatch.messages": 0.0,
+        "lab.dispatch.rooms": 0.0,
+        "lab.dispatch.ready": 0.0
+      },
+      "cleanupPassed": true,
+      "clientFinalExitCode": 0,
+      "serverFinalExitCode": 143,
+      "endedAtEpochSeconds": 1793343877.0589747,
+      "serverStillRunning": false,
+      "clientStillRunning": false,
+      "ssAfterStop": {
+        "arguments": [
+          "ss",
+          "-ltn",
+          "sport = :18081"
+        ],
+        "exitCode": 0,
+        "stdout": "State Recv-Q Send-Q Local Address:Port Peer Address:Port\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "buffered-normal",
+      "startedAtEpochSeconds": 1793343877.081548,
+      "collectionErrors": [],
+      "completed": true,
+      "serverPid": 2945,
+      "clientPid": 3095,
+      "clientExitCode": 0,
+      "clientSummary": {
+        "normalReceived": 36000,
+        "normalExpected": 36000,
+        "accepted": 3600,
+        "inputScheduleCompleted": true,
+        "maxSendLagMs": 2.196304000335658,
+        "normalLatencyMs": {
+          "samples": 36000,
+          "p50": 5,
+          "p95": 6,
+          "p99": 7,
+          "max": 33
+        },
+        "duplicates": 0,
+        "orderViolations": 0,
+        "failures": [],
+        "rejections": []
+      },
+      "normalDeliveryComplete": true,
+      "cleanupGauges": {
+        "lab.connections": 0.0,
+        "lab.rooms": 0.0,
+        "lab.outbound.bytes": 0.0,
+        "lab.outbound.messages": 0.0,
+        "lab.outbound.slots": 0.0,
+        "lab.outbound.writes.inflight": 0.0,
+        "lab.outbound.tasks": 0.0,
+        "lab.outbound.writers.active": 0.0,
+        "lab.dispatch.bytes": 0.0,
+        "lab.dispatch.messages": 0.0,
+        "lab.dispatch.rooms": 0.0,
+        "lab.dispatch.ready": 0.0
+      },
+      "cleanupPassed": true,
+      "clientFinalExitCode": 0,
+      "serverFinalExitCode": 143,
+      "endedAtEpochSeconds": 1793343986.5162559,
+      "serverStillRunning": false,
+      "clientStillRunning": false,
+      "ssAfterStop": {
+        "arguments": [
+          "ss",
+          "-ltn",
+          "sport = :18081"
+        ],
+        "exitCode": 0,
+        "stdout": "State Recv-Q Send-Q Local Address:Port Peer Address:Port\n",
+        "stderr": ""
+      }
+    },
+    {
+      "case": "buffered-paused",
+      "startedAtEpochSeconds": 1793343986.540909,
+      "collectionErrors": [],
+      "completed": true,
+      "serverPid": 3377,
+      "clientPid": 3525,
+      "clientExitCode": 0,
+      "clientSummary": {
+        "normalReceived": 36000,
+        "normalExpected": 36000,
+        "accepted": 3600,
+        "inputScheduleCompleted": true,
+        "maxSendLagMs": 2.757796999958373,
+        "normalLatencyMs": {
+          "samples": 36000,
+          "p50": 5,
+          "p95": 6,
+          "p99": 7,
+          "max": 22
+        },
+        "duplicates": 0,
+        "orderViolations": 0,
+        "failures": [
+          {
+            "client": "probe",
+            "operation": "heartbeat",
+            "error": "[Errno 104] Connection reset by peer",
+            "seconds": 50.00568190700005
+          }
+        ],
+        "rejections": []
+      },
+      "normalDeliveryComplete": true,
+      "cleanupGauges": {
+        "lab.connections": 0.0,
+        "lab.rooms": 0.0,
+        "lab.outbound.bytes": 0.0,
+        "lab.outbound.messages": 0.0,
+        "lab.outbound.slots": 0.0,
+        "lab.outbound.writes.inflight": 0.0,
+        "lab.outbound.tasks": 0.0,
+        "lab.outbound.writers.active": 0.0,
+        "lab.dispatch.bytes": 0.0,
+        "lab.dispatch.messages": 0.0,
+        "lab.dispatch.rooms": 0.0,
+        "lab.dispatch.ready": 0.0
+      },
+      "cleanupPassed": true,
+      "clientFinalExitCode": 0,
+      "serverFinalExitCode": 143,
+      "endedAtEpochSeconds": 1793344096.1530466,
+      "serverStillRunning": false,
+      "clientStillRunning": false,
+      "ssAfterStop": {
+        "arguments": [
+          "ss",
+          "-ltn",
+          "sport = :18081"
+        ],
+        "exitCode": 0,
+        "stdout": "State Recv-Q Send-Q Local Address:Port Peer Address:Port\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "jarUnchanged": true,
+  "allCasesCompleted": true,
+  "note": "Completed means collection and cleanup, not proof of backpressure or performance success. Inspect client counters and Linux evidence."
+}

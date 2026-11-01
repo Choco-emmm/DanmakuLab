@@ -1,0 +1,32 @@
+{
+  "VM.version": {
+    "arguments": [
+      "/home/renpe/.local/share/danmakulab/temurin21-61312483/bin/jcmd",
+      "2524",
+      "VM.version"
+    ],
+    "exitCode": 0,
+    "stdout": "2524:\nOpenJDK 64-Bit Server VM version 21.0.12+8-LTS\nJDK 21.0.12\n",
+    "stderr": ""
+  },
+  "VM.command_line": {
+    "arguments": [
+      "/home/renpe/.local/share/danmakulab/temurin21-61312483/bin/jcmd",
+      "2524",
+      "VM.command_line"
+    ],
+    "exitCode": 0,
+    "stdout": "2524:\nVM Arguments:\njvm_args: -Xms128m -Xmx256m \njava_command: /mnt/d/coding/DanmakuLab/.lab-artifacts/ship-20261027/danmaku-lab-release.jar --server.address=127.0.0.1 --server.port=18081 --lab.cluster.mode=local --lab.dispatch.mode=direct --lab.outbound.mode=direct --lab.outbound.workers=8\njava_class_path (initial): /mnt/d/coding/DanmakuLab/.lab-artifacts/ship-20261027/danmaku-lab-release.jar\nLauncher Type: SUN_STANDARD\n",
+    "stderr": ""
+  },
+  "VM.flags": {
+    "arguments": [
+      "/home/renpe/.local/share/danmakulab/temurin21-61312483/bin/jcmd",
+      "2524",
+      "VM.flags"
+    ],
+    "exitCode": 0,
+    "stdout": "2524:\n-XX:CICompilerCount=15 -XX:ConcGCThreads=6 -XX:G1ConcRefinementThreads=23 -XX:G1EagerReclaimRemSetThreshold=12 -XX:G1HeapRegionSize=1048576 -XX:G1RemSetArrayOfCardsEntries=12 -XX:G1RemSetHowlMaxNumBuckets=8 -XX:G1RemSetHowlNumBuckets=4 -XX:GCDrainStackTargetSize=64 -XX:InitialHeapSize=134217728 -XX:MarkStackSize=4194304 -XX:MaxHeapSize=268435456 -XX:MaxNewSize=160432128 -XX:MinHeapDeltaBytes=1048576 -XX:MinHeapSize=134217728 -XX:NonNMethodCodeHeapSize=8192380 -XX:NonProfiledCodeHeapSize=121732930 -XX:ProfiledCodeHeapSize=121732930 -XX:ReservedCodeCacheSize=251658240 -XX:+SegmentedCodeCache -XX:SoftMaxHeapSize=268435456 -XX:-THPStackMitigation -XX:+UseCompressedOops -XX:+UseG1GC \n",
+    "stderr": ""
+  }
+}

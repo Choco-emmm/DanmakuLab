@@ -1,0 +1,21 @@
+test_handshake_and_join_share_total_deadline (test_slow_consumer.ClientInitializationTest.test_handshake_and_join_share_total_deadline)
+握手花两秒后 joined 不回复：总耗时三秒，不能给 joined 再等完整三秒。 ... ok
+test_handshake_timeout_closes_socket (test_slow_consumer.ClientInitializationTest.test_handshake_timeout_closes_socket)
+对端一直不回复握手：必须超时退出并关闭尚未登记到 clients 的连接。 ... ok
+test_join_success_leaves_reading_under_caller_control (test_slow_consumer.ClientInitializationTest.test_join_success_leaves_reading_under_caller_control)
+成功加入后不自动开读线程，保持 paused 探针原有的停止读取行为。 ... ok
+test_failed_final_send_does_not_complete_schedule (test_slow_consumer.InputAccountingTest.test_failed_final_send_does_not_complete_schedule)
+失败的最后一次尝试仍归档，但不能算成功提交，更不能标记输入计划完成。 ... ok
+test_successful_send_counts_once_and_preserves_early_receive (test_slow_consumer.InputAccountingTest.test_successful_send_counts_once_and_preserves_early_receive)
+正常写入只计一次，且立即到达的回复可以查到发送时间，不会误报未知消息。 ... ok
+test_blocked_send_exposes_next_input_lag_without_changing_denominator (test_slow_consumer.SchedulingAccountingTest.test_blocked_send_exposes_next_input_lag_without_changing_denominator)
+首条阻塞1.5秒，第二条计划在0.25秒：应记录1250ms滞后，并保留全员计划分母。 ... ok
+test_on_time_input_has_zero_plan_lag (test_slow_consumer.SchedulingAccountingTest.test_on_time_input_has_zero_plan_lag)
+假时钟准确按计划醒来：正常调度不能凭空报告发送滞后。 ... ok
+test_zero_duration_window_has_unknown_rate_instead_of_division_error (test_slow_consumer.SchedulingAccountingTest.test_zero_duration_window_has_unknown_rate_instead_of_division_error)
+只有一条立即完成的输入且时钟没有推进时，实际速率应为null。 ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.019s
+
+OK

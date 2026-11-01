@@ -43,7 +43,8 @@ namespace DanmakuLab {
 function Invoke-ProcessWithEvidence {
     <#
     StartInfo 必须重定向 stdout/stderr；Prefix 是归档文件前缀，调用方负责准备父目录。
-    OnTick 接收进程和已运行秒数，用于采样；其异常同样触发终止和归档，不会被吞掉。
+    OnTick接收进程、已运行秒数及只读捕获器，用于采样/就绪检查；旧的双参数回调仍兼容。
+    捕获器只读取自己启动的子进程输出；异常同样触发终止和归档，不会被吞掉。
     TimeoutSeconds 是压测运行截止；CleanupTimeoutSeconds 是整段退出/管道排空的额外等待预算。
     返回状态对象；失败时先写三个证据文件，再抛最初的 ErrorRecord，不继续下一组实验。
     #>
@@ -78,7 +79,7 @@ function Invoke-ProcessWithEvidence {
                 $status.timedOut = $true
                 throw "子进程超过 $TimeoutSeconds 秒截止时间；保存证据后停止实验。"
             }
-            if ($OnTick) { & $OnTick $process $clock.Elapsed.TotalSeconds | Out-Null }
+            if ($OnTick) { & $OnTick $process $clock.Elapsed.TotalSeconds $capture | Out-Null }
             Start-Sleep -Milliseconds $PollMilliseconds
         }
         $status.exitCode = $process.ExitCode

@@ -1,0 +1,60 @@
+{
+  "case": "buffered-normal",
+  "startedAtEpochSeconds": 1793344863.796955,
+  "collectionErrors": [],
+  "completed": true,
+  "serverPid": 3928,
+  "clientPid": 4070,
+  "clientExitCode": 0,
+  "clientSummary": {
+    "normalReceived": 300,
+    "normalExpected": 300,
+    "accepted": 30,
+    "inputScheduleCompleted": true,
+    "maxSendLagMs": 1.6820119999465533,
+    "normalLatencyMs": {
+      "samples": 300,
+      "p50": 4,
+      "p95": 5,
+      "p99": 14,
+      "max": 14
+    },
+    "duplicates": 0,
+    "orderViolations": 0,
+    "failures": [],
+    "rejections": []
+  },
+  "normalDeliveryComplete": true,
+  "cleanupGauges": {
+    "lab.connections": 0.0,
+    "lab.rooms": 0.0,
+    "lab.outbound.bytes": 0.0,
+    "lab.outbound.messages": 0.0,
+    "lab.outbound.slots": 0.0,
+    "lab.outbound.writes.inflight": 0.0,
+    "lab.outbound.tasks": 0.0,
+    "lab.outbound.writers.active": 0.0,
+    "lab.dispatch.bytes": 0.0,
+    "lab.dispatch.messages": 0.0,
+    "lab.dispatch.rooms": 0.0,
+    "lab.dispatch.ready": 0.0
+  },
+  "cleanupPassed": true,
+  "cleanupErrors": [],
+  "clientFinalExitCode": 0,
+  "metricsClosed": null,
+  "serverFinalExitCode": 143,
+  "serverStillRunning": false,
+  "clientStillRunning": false,
+  "endedAtEpochSeconds": 1793344881.3689938,
+  "ssAfterStop": {
+    "arguments": [
+      "ss",
+      "-ltn",
+      "sport = :18081"
+    ],
+    "exitCode": 0,
+    "stdout": "State Recv-Q Send-Q Local Address:Port Peer Address:Port\n",
+    "stderr": ""
+  }
+}

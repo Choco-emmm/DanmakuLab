@@ -1,0 +1,29 @@
+{
+  "note": "Fixed sequential short diagnostics; fresh JVM per case; no automatic retries.",
+  "jar": "D:\\coding\\DanmakuLab\\target\\danmaku-lab-release.jar",
+  "normalRooms": 2,
+  "hotConnections": 50,
+  "phaseSeconds": 3,
+  "command": {
+    "Suite": "smoke",
+    "OutputDirectory": "docs/results/2026-10-27/t4-diagnostic-resume-smoke"
+  },
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "formalEligible": false,
+  "port": 8085,
+  "cases": [
+    {
+      "name": "all-01",
+      "batch": 0,
+      "stall": 0
+    },
+    {
+      "name": "batched-01",
+      "batch": 10,
+      "stall": 0
+    }
+  ],
+  "normalConnections": 5,
+  "startDelaySeconds": 10,
+  "suite": "smoke"
+}

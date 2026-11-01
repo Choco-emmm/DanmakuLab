@@ -1,0 +1,8 @@
+test_no_formal_request_does_not_generate_default_long_command (test_hotspot_workers_report.WorkerReportTest.test_no_formal_request_does_not_generate_default_long_command) ... ok
+test_passed_prerequisites_are_reported_as_decided (test_hotspot_workers_report.WorkerReportTest.test_passed_prerequisites_are_reported_as_decided) ... ok
+test_unpassed_gate_is_not_reported_as_success (test_hotspot_workers_report.WorkerReportTest.test_unpassed_gate_is_not_reported_as_success) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.040s
+
+OK

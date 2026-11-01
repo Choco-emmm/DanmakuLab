@@ -1,0 +1,11 @@
+{
+  "java": "java version \"25.0.1\" 2025-10-21 LTS\r\nJava(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)\r\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)",
+  "sourceCommit": "2f06090fe7ee287760e1b7a20df875c0d2e53916",
+  "capturedAt": "2026-10-27T11:53:11.3663932+00:00",
+  "os": "Microsoft Windows NT 10.0.26200.0",
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics        ",
+  "note": "Same-host loopback; server and k6 share CPU/RAM. CPU is cumulative seconds; resource maxima are sampled. No backend scheduler change.",
+  "k6": "k6.exe v2.0.0-rc1 (commit/fb943a6a80, go1.26.2, windows/amd64)",
+  "sourceStatus": " M README.md\r\n M TODOS.md\r\n M docs/PLAN.md\r\n M scripts/load/hotspot.js\r\n M scripts/run/hotspot.ps1\r\n M scripts/tests/hotspot-summary.test.py\r\n M scripts/tests/process-evidence.test.ps1\r\n?? docs/performance-report.md\r\n?? docs/results/2026-10-27/analyze-t4-repeats.py.txt\r\n?? docs/results/2026-10-27/audit-t4-attempts.py.txt\r\n?? docs/results/2026-10-27/process-evidence-fixture-failure/\r\n?? docs/results/2026-10-27/t4-counter-after/\r\n?? docs/results/2026-10-27/t4-counter-before/\r\n?? docs/results/2026-10-27/t4-diagnostic-batch-60/\r\n?? docs/results/2026-10-27/t4-diagnostic-resume-1000/\r\n?? docs/results/2026-10-27/t4-diagnostic-resume-injected/\r\n?? docs/results/2026-10-27/t4-diagnostic-resume-smoke/\r\n?? docs/results/2026-10-27/t4-diagnostic-smoke-60-run2/\r\n?? docs/results/2026-10-27/t4-diagnostic-smoke-60-run3/\r\n?? docs/results/2026-10-27/t4-heartbeat-stagger/\r\n?? docs/results/2026-10-27/t4-repeat-final-tool/\r\n?? docs/results/2026-10-27/t4-repeat-report.md\r\n?? docs/results/2026-10-27/t4-repeat-tool-01/\r\n?? docs/results/2026-10-27/t4-repeat-tool-02/\r\n?? docs/results/2026-10-27/t4-repeat-tool-03/\r\n?? docs/results/2026-10-27/t4-repeats-formal-01/\r\n?? docs/results/2026-10-27/t4-repeats-formal-02/\r\n?? docs/results/2026-10-27/t4-tool-verification/\r\n?? scripts/run/ExperimentAwake.psm1\r\n?? scripts/run/diagnose-hotspot.ps1\r\n?? scripts/run/repeat-hotspot.ps1\r\n?? scripts/tests/hotspot-diagnostic-summary.py\r\n?? scripts/tests/hotspot-diagnostic.test.cjs\r\n?? scripts/tests/repeat-hotspot-summary.test.py\r\n?? scripts/tests/test_hotspot_diagnostic.py\r\n",
+  "logicalProcessors": 32
+}

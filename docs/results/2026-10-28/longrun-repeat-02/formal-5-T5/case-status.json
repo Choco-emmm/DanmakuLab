@@ -1,0 +1,16 @@
+{
+  "name": "formal-5-T5",
+  "scenario": "T5",
+  "connections": 1000,
+  "slowConnections": 0,
+  "seconds": 1800,
+  "warmupSeconds": 60,
+  "formal": true,
+  "directory": "D:\\coding\\DanmakuLab\\.lab-artifacts\\longrun-b6afd81b9d9640bc809e045228dd2bc1\\formal-5-T5",
+  "pid": 67496,
+  "startedAt": "2026-10-28T02:15:20.7537759+00:00",
+  "passed": true,
+  "stopped": true,
+  "error": null,
+  "endedAt": "2026-10-28T02:46:38.6026903+00:00"
+}

@@ -1,0 +1,10 @@
+{
+  "executable": "C:\\Python314\\python.exe",
+  "arguments": [
+    "-X",
+    "utf8",
+    "scripts/tests/longrun-summary.test.py",
+    "docs/results/2026-10-26/writer-fix-formal-t3-8writers-01",
+    "--formal"
+  ]
+}

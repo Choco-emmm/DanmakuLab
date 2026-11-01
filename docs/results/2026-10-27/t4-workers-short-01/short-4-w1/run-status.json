@@ -1,0 +1,13 @@
+{
+  "processIds": {
+    "hot-0": 50976,
+    "normal": 21796
+  },
+  "readiness": {
+    "hot-0": 1793107573809,
+    "normal": 1793107573763
+  },
+  "error": "子进程退出码为 99。",
+  "allReadyBeforeStart": true,
+  "collectorErrors": 0
+}

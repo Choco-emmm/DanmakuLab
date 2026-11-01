@@ -1,0 +1,15 @@
+{
+  "directory": "D:\\coding\\DanmakuLab\\.lab-artifacts\\t4-workers-321cc19e582b443187a9c5097036e970\\short-1-w1",
+  "workers": 1,
+  "phaseSeconds": 10,
+  "dispatch": "fair",
+  "diagnostic": true,
+  "stallMs": 0,
+  "startedAt": "2026-10-27T13:21:45.1515950+00:00",
+  "pid": 20640,
+  "stopped": true,
+  "passed": false,
+  "evidenceComplete": true,
+  "error": "子进程退出码为 99。",
+  "endedAt": "2026-10-27T13:23:09.0198148+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "started": true,
+  "processId": 42772,
+  "exitCode": 0,
+  "timedOut": false,
+  "elapsedSeconds": 0.2240541,
+  "error": null,
+  "captureComplete": true,
+  "captureErrors": [],
+  "cleanupErrors": []
+}

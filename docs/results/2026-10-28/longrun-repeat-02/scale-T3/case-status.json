@@ -1,0 +1,16 @@
+{
+  "name": "scale-T3",
+  "scenario": "T3",
+  "connections": 1000,
+  "slowConnections": 10,
+  "seconds": 20,
+  "warmupSeconds": 5,
+  "formal": false,
+  "directory": "D:\\coding\\DanmakuLab\\.lab-artifacts\\longrun-b6afd81b9d9640bc809e045228dd2bc1\\scale-T3",
+  "pid": 33160,
+  "startedAt": "2026-10-28T00:53:42.3151092+00:00",
+  "passed": true,
+  "stopped": true,
+  "error": null,
+  "endedAt": "2026-10-28T00:54:23.8437678+00:00"
+}

@@ -1,0 +1,32 @@
+{
+  "port": 8085,
+  "latencySampleEvery": 10,
+  "sourceStatus": [
+    " M scripts/load/hotspot.js",
+    " M scripts/run/hotspot.ps1",
+    "?? docs/performance-report.md",
+    "?? docs/results/2026-10-27/analyze-t4-repeats.py.txt",
+    "?? docs/results/2026-10-27/t4-counter-after/",
+    "?? docs/results/2026-10-27/t4-counter-before/",
+    "?? docs/results/2026-10-27/t4-repeat-report.md",
+    "?? docs/results/2026-10-27/t4-repeat-tool-01/",
+    "?? docs/results/2026-10-27/t4-repeat-tool-02/",
+    "?? docs/results/2026-10-27/t4-repeat-tool-03/",
+    "?? docs/results/2026-10-27/t4-repeats-formal-01/",
+    "?? docs/results/2026-10-27/t4-repeats-formal-02/",
+    "?? scripts/run/ExperimentAwake.psm1",
+    "?? scripts/run/repeat-hotspot.ps1",
+    "?? scripts/tests/repeat-hotspot-summary.test.py"
+  ],
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "hotConnections": 500,
+  "phaseSeconds": 10,
+  "startDelaySeconds": 30,
+  "normalConnections": 50,
+  "sourceCommit": "2f06090fe7ee287760e1b7a20df875c0d2e53916",
+  "normalRooms": 10,
+  "formal": false,
+  "jar": "D:\\coding\\DanmakuLab\\target\\danmaku-lab-release.jar",
+  "rounds": 1,
+  "note": "Fresh JVM per run; sequential; same-host loopback; alternating pair order is recorded, not a claim of fully balanced randomization."
+}

@@ -1,0 +1,1 @@
+PASS TOOL CHECK: D:\coding\DanmakuLab\.lab-artifacts\longrun-b6afd81b9d9640bc809e045228dd2bc1\scale-T3\load; normal=396000/396000; p99=35ms

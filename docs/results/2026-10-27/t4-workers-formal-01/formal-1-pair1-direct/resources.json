@@ -1,0 +1,83 @@
+{
+  "preparation": {
+    "samples": 6,
+    "completeClientSamples": 5,
+    "clientWorkingSetPeakBytes": 353873920,
+    "clientCpuPeakCores": 0.04682817182817183,
+    "serverWorkingSetPeakBytes": 318218240,
+    "serverCpuPeakCores": 0.8818829891838742,
+    "gaugePeaks": {
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.bytes.highwater": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.dispatch.mode.fair": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 0.0,
+      "lab.outbound.bytes.highwater": 6960.0,
+      "lab.outbound.messages": 0.0,
+      "lab.outbound.mode.buffered": 1.0,
+      "lab.outbound.slots": 1000.0,
+      "lab.outbound.tasks": 0.0,
+      "lab.outbound.writers.active": 0.0,
+      "lab.outbound.writes.inflight": 0.0
+    }
+  },
+  "input": {
+    "samples": 143,
+    "completeClientSamples": 143,
+    "clientWorkingSetPeakBytes": 450990080,
+    "clientCpuPeakCores": 3.8764895487399884,
+    "serverWorkingSetPeakBytes": 359100416,
+    "serverCpuPeakCores": 1.4923978065802592,
+    "gaugePeaks": {
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.bytes.highwater": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.dispatch.mode.fair": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 205176.0,
+      "lab.outbound.bytes.highwater": 459838.0,
+      "lab.outbound.messages": 413.0,
+      "lab.outbound.mode.buffered": 1.0,
+      "lab.outbound.slots": 1000.0,
+      "lab.outbound.tasks": 429.0,
+      "lab.outbound.writers.active": 8.0,
+      "lab.outbound.writes.inflight": 20.0
+    }
+  },
+  "drain": {
+    "samples": 1,
+    "completeClientSamples": 1,
+    "clientWorkingSetPeakBytes": 443871232,
+    "clientCpuPeakCores": 1.4416849342367477,
+    "serverWorkingSetPeakBytes": 359100416,
+    "serverCpuPeakCores": 0.6507821841371064,
+    "gaugePeaks": {
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.bytes.highwater": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.dispatch.mode.fair": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 0.0,
+      "lab.outbound.bytes.highwater": 459838.0,
+      "lab.outbound.messages": 0.0,
+      "lab.outbound.mode.buffered": 1.0,
+      "lab.outbound.slots": 1000.0,
+      "lab.outbound.tasks": 0.0,
+      "lab.outbound.writers.active": 0.0,
+      "lab.outbound.writes.inflight": 0.0
+    }
+  },
+  "closing": {
+    "samples": 0,
+    "completeClientSamples": 0,
+    "clientWorkingSetPeakBytes": null,
+    "clientCpuPeakCores": null,
+    "serverWorkingSetPeakBytes": null,
+    "serverCpuPeakCores": null,
+    "gaugePeaks": {}
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "passed": true,
+  "verifiedAtUtc": "2026-10-28T00:33:35.155025+00:00",
+  "formalCompleted": 6,
+  "pairs": 3,
+  "actualDeliveries": 69267000,
+  "expectedDeliveries": 69267000,
+  "indexedFilesVerified": 617,
+  "compressedProofsVerified": 66,
+  "frozenSourceFiles": 89,
+  "runtimeFilesIdentical": 27,
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "allCases": 13,
+  "allOwnedJvmsStopped": true,
+  "freshJvmPidsUnique": true,
+  "noOverlappingCases": true,
+  "allTwelveGaugesZero": true,
+  "awakeReleased": true,
+  "formal": [
+    {
+      "name": "formal-1-pair1-direct",
+      "pid": 62304,
+      "mode": "direct",
+      "received": 11544500,
+      "demand": 11544500,
+      "hotAccepted": 21649,
+      "hotViewerRows": 500,
+      "hotBitmapReceipts": 10824500,
+      "maxHotLagMs": 15
+    },
+    {
+      "name": "formal-2-pair1-fair",
+      "pid": 41344,
+      "mode": "fair",
+      "received": 11544500,
+      "demand": 11544500,
+      "hotAccepted": 21649,
+      "hotViewerRows": 500,
+      "hotBitmapReceipts": 10824500,
+      "maxHotLagMs": 15
+    },
+    {
+      "name": "formal-3-pair2-fair",
+      "pid": 4916,
+      "mode": "fair",
+      "received": 11544500,
+      "demand": 11544500,
+      "hotAccepted": 21649,
+      "hotViewerRows": 500,
+      "hotBitmapReceipts": 10824500,
+      "maxHotLagMs": 13
+    },
+    {
+      "name": "formal-4-pair2-direct",
+      "pid": 55432,
+      "mode": "direct",
+      "received": 11544500,
+      "demand": 11544500,
+      "hotAccepted": 21649,
+      "hotViewerRows": 500,
+      "hotBitmapReceipts": 10824500,
+      "maxHotLagMs": 15
+    },
+    {
+      "name": "formal-5-pair3-direct",
+      "pid": 17708,
+      "mode": "direct",
+      "received": 11544500,
+      "demand": 11544500,
+      "hotAccepted": 21649,
+      "hotViewerRows": 500,
+      "hotBitmapReceipts": 10824500,
+      "maxHotLagMs": 15
+    },
+    {
+      "name": "formal-6-pair3-fair",
+      "pid": 29232,
+      "mode": "fair",
+      "received": 11544500,
+      "demand": 11544500,
+      "hotAccepted": 21649,
+      "hotViewerRows": 500,
+      "hotBitmapReceipts": 10824500,
+      "maxHotLagMs": 14
+    }
+  ],
+  "note": "Raw evidence is read-only. Baseline failures from earlier batches are retained separately; no retries selected into these six formal runs."
+}

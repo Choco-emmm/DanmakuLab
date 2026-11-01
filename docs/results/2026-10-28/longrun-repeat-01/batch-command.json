@@ -1,0 +1,13 @@
+{
+  "jar": "D:\\coding\\DanmakuLab\\target\\danmaku-lab-release.jar",
+  "parameters": {
+    "RunFormal": {
+      "IsPresent": true
+    },
+    "OutputDirectory": "docs/results/2026-10-28/longrun-repeat-01"
+  },
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "port": 8085,
+  "java": "D:\\coding\\jdk\\bin\\java.exe",
+  "script": "D:\\coding\\DanmakuLab\\scripts\\run\\repeat-longrun.ps1"
+}

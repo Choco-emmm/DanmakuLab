@@ -1,0 +1,98 @@
+"""从已复核的六轮派生逐轮表格和静态曲线，不平均多个P99，不改变原始文件。
+
+图1：每个普通房间P99散点、热点合并直方图P99；图2：服务器/全部客户端采样资源。
+英文图注避免不同机器缺少中文字体；报告正文说明中文含义。
+"""
+from pathlib import Path
+from datetime import datetime
+import hashlib
+import json
+import sys
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+out=Path(__file__).resolve().parent
+root=out.parents[3]
+sys.path.insert(0,str(root/'scripts/tests'))
+from hotspot_workers_audit import tagged
+
+read=lambda p:json.loads(p.read_text(encoding='utf-8-sig'))
+state=read(out/'batch-status.json')
+analysis=read(out/'analysis.json')
+by_name={r['name']:r for r in analysis['rows']}
+rows=[]
+gauges=('lab.outbound.bytes','lab.outbound.messages','lab.outbound.tasks','lab.outbound.writes.inflight',
+        'lab.dispatch.bytes','lab.dispatch.messages','lab.dispatch.rooms','lab.dispatch.ready')
+for case in state['rows']:
+    if not case['name'].startswith('formal-'):continue
+    raw=Path(case['directory']);a=read(raw/'audit.json');cfg=read(raw/'config.json');r=by_name[case['name']]
+    normal=read(raw/'normal/k6-summary.json')['report']
+    samples=[json.loads(line) for line in (raw/'samples.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+    selected=[s for s in samples if cfg['startAtMs']<=s['atMs']<cfg['startAtMs']+720000 and
+              len(s['clients'])==6 and all(s['clients'].values()) and s.get('server')]
+    first,last=selected[0],selected[-1];dt=(last['atMs']-first['atMs'])/1000
+    client_avg=sum(last['clients'][k]['cpuSeconds']-first['clients'][k]['cpuSeconds'] for k in first['clients'])/dt
+    java_avg=(last['server']['cpuSeconds']-first['server']['cpuSeconds'])/dt
+    hot_close=[]
+    for w in range(5):
+        events=tagged(raw/f'hot-{w}/k6-stderr.txt','HW_EVENT')
+        closing=next(e for e in events if e['type']=='closing_started')
+        settled=next(e for e in events if e['type']=='settled')
+        hot_close.append(settled['atMs']-closing['atMs'])
+    g=r['resources']['input']['gaugePeaks']
+    # 原resources保留按指标前缀的聚合，可能含同前缀Counter/Timer；本表只引用明确的队列Gauge。
+    queue={k:g.get(k) for k in gauges}
+    row=dict(name=case['name'],mode=case['dispatch'],pid=case['pid'],passed=case['passed'],
+        inputSeconds=720,hotTargetRates=[20,100,200],hotActualRates=[p['aggregateActualRate'] for p in r['phases'][1:]],
+        received=a['client']['received'],demand=a['client']['acceptedDeliveryDemand'],accepted=a['client']['accepted'],rejected=a['client']['rejected'],
+        maxAllSendLagMs=r['maxSendLagMs'],maxHotSendLagMs=r['maxHotLagMs'],maxHotTickDriftMs=r['maxHotTimerDriftMs'],normalTickDriftMs=None,
+        normalP99ByRoomByPhase=r['phases'],normalP99RangeByPhase=[[min(p),max(p)] for p in a['normalP99ByPhase']],
+        hotLatency=a['hotLatency'],sampledInputCpuAverageCores=dict(java=java_avg,allK6=client_avg),
+        cpuSamplingWindowSeconds=dt,javaWorkingSetPeakMiB=r['resources']['input']['serverWorkingSetPeakBytes']/1048576,
+        allK6WorkingSetPeakMiB=r['resources']['input']['clientWorkingSetPeakBytes']/1048576,
+        queueGaugeSamplePeaks=queue,hotCloseDurationMs=hot_close,cleanupAllZero=r['cleanupAllZero'],
+        allNormalInputsAccepted=all(p['rejected']==0 for room in normal['rooms'] for p in room['phases']))
+    rows.append(row)
+formal_cases=[r for r in state['rows'] if r['name'].startswith('formal-')]
+wall=(datetime.fromisoformat(formal_cases[-1]['endedAt'])-datetime.fromisoformat(formal_cases[0]['startedAt'])).total_seconds()
+summary=dict(formalRows=rows,pairs=3,totalInputMinutes=72,formalWallSeconds=wall,
+    actualDeliveries=sum(r['received'] for r in rows),expectedDeliveries=sum(r['demand'] for r in rows),
+    note='No P99 averaging. CPU averages cover endpoints of sampled input windows. Ordinary client timer drift is unavailable in non-diagnostic mode, retained null.')
+(out/'formal-summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+plt.rcParams.update({'font.family':'DejaVu Sans','font.size':9,'axes.spines.top':False,'axes.spines.right':False})
+colors={'direct':'#2563eb','fair':'#d97706'};labels=['Normal only','Hot 20/s','Hot 100/s','Hot 200/s']
+fig,axes=plt.subplots(2,3,figsize=(13,7),sharex=True)
+for pair in range(3):
+    for r in rows[pair*2:pair*2+2]:
+        color=colors[r['mode']];shift=-.12 if r['mode']=='direct' else .12
+        values=[r['normalP99ByRoomByPhase'][p]['normalP99'] for p in range(4)]
+        for p,points in enumerate(values):
+            axes[0,pair].scatter([p+shift+(j-4.5)*.008 for j in range(len(points))],points,s=17,color=color,alpha=.75,
+                label=r['mode'] if p==0 else None)
+        axes[1,pair].plot(range(1,4),[r['hotLatency'][p]['p99'] for p in range(1,4)],'-o' if r['mode']=='direct' else '--s',color=color,label=r['mode'],markersize=5,
+            markerfacecolor=color if r['mode']=='direct' else 'none',markeredgewidth=1.5)
+    axes[0,pair].set_title(f'Pair {pair+1}: '+('direct -> fair' if pair!=1 else 'fair -> direct'))
+    axes[0,pair].set_ylim(0,32);axes[1,pair].set_ylim(0,12)
+    for ax in axes[:,pair]:ax.grid(axis='y',alpha=.2);ax.set_xticks(range(4),labels,rotation=15)
+    axes[0,pair].legend(frameon=False)
+axes[0,0].set_ylabel('Normal-room P99 (ms)\nEach dot = one room')
+axes[1,0].set_ylabel('Hot-room pooled P99 (ms)')
+fig.suptitle('T4: six fixed runs, 1,000 viewers, five hot workers; sampled every 10th viewer',fontsize=13)
+fig.text(.5,.01,'Same-host loopback. Dots are per-room percentiles; no percentile averaging. Hot P99 is from merged histogram bins.',ha='center',fontsize=9)
+fig.tight_layout(rect=(0,.035,1,.94));fig.savefig(out/'formal-latency.png',dpi=170);plt.close(fig)
+
+fig,axes=plt.subplots(1,2,figsize=(11,3.8))
+x=list(range(6));width=.36
+axes[0].bar([n-width/2 for n in x],[r['sampledInputCpuAverageCores']['java'] for r in rows],width,label='Java',color='#475569')
+axes[0].bar([n+width/2 for n in x],[r['sampledInputCpuAverageCores']['allK6'] for r in rows],width,label='All six k6 clients',color='#0d9488')
+axes[1].bar([n-width/2 for n in x],[r['javaWorkingSetPeakMiB'] for r in rows],width,label='Java',color='#475569')
+axes[1].bar([n+width/2 for n in x],[r['allK6WorkingSetPeakMiB'] for r in rows],width,label='All six k6 clients',color='#0d9488')
+for ax in axes:
+    ax.set_xticks(x,[f"{i+1} {r['mode']}" for i,r in enumerate(rows)],rotation=20);ax.grid(axis='y',alpha=.2);ax.set_axisbelow(True)
+axes[0].set_ylabel('CPU cores (sample-window average)');axes[1].set_ylabel('Working set MiB (sampled peak)')
+axes[0].legend(frameon=False);fig.suptitle('Client resources are summed, not measured one worker at a time')
+fig.tight_layout();fig.savefig(out/'formal-resources.png',dpi=170);plt.close(fig)
+print(json.dumps(dict(pairs=3,deliveries=summary['actualDeliveries'],formalWallMinutes=wall/60,
+    maxAllLag=max(r['maxAllSendLagMs'] for r in rows)),ensure_ascii=False))

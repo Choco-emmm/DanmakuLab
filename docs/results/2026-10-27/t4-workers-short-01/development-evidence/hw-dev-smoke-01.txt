@@ -1,0 +1,17 @@
+HW started: workers=5 mode=fair phase=3s; D:\coding\DanmakuLab\.lab-artifacts\hw-dev-smoke-01
+HW running: 0s; ready=0/6
+{
+  "directory": "D:\\coding\\DanmakuLab\\.lab-artifacts\\hw-dev-smoke-01",
+  "workers": 5,
+  "phaseSeconds": 3,
+  "dispatch": "fair",
+  "diagnostic": true,
+  "stallMs": 0,
+  "startedAt": "2026-10-27T13:03:14.7892451+00:00",
+  "pid": 48584,
+  "stopped": true,
+  "passed": false,
+  "evidenceComplete": false,
+  "error": "未能在共同起点前全部就绪，整轮无效",
+  "endedAt": "2026-10-27T13:03:52.9571999+00:00"
+}

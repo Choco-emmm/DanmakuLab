@@ -1,0 +1,232 @@
+{
+  "passed": true,
+  "formal": false,
+  "rounds": 1,
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "received": 29220.0,
+  "runs": [
+    {
+      "round": 1,
+      "mode": "direct",
+      "pid": 53636,
+      "directory": "round-01-direct",
+      "actual": {
+        "acceptedDeliveryDemand": 14610.0,
+        "received": 14610.0,
+        "rejected": 351.0,
+        "accepted": 321.0,
+        "sent": 672.0
+      },
+      "phases": [
+        {
+          "name": "normal-only",
+          "normalP99ByRoom": [
+            5.809999999999999,
+            5
+          ],
+          "normalP95ByRoom": [
+            5.050000000000001,
+            5
+          ],
+          "normalInputPerSecond": [
+            1.9940179461615155,
+            1.9940179461615155
+          ],
+          "normalLagByRoomMs": [
+            30,
+            30
+          ],
+          "hotInputPerSecond": 0,
+          "hotAccepted": 0,
+          "hotRejected": 0,
+          "hotP99Ms": null,
+          "hotMaxLagMs": 0
+        },
+        {
+          "name": "hot-20-0",
+          "normalP99ByRoom": [
+            2,
+            2
+          ],
+          "normalP95ByRoom": [
+            2,
+            2
+          ],
+          "normalInputPerSecond": [
+            1.9930244145490783,
+            1.9930244145490783
+          ],
+          "normalLagByRoomMs": [
+            16,
+            16
+          ],
+          "hotInputPerSecond": 19.950124688279303,
+          "hotAccepted": 40,
+          "hotRejected": 0,
+          "hotP99Ms": 5,
+          "hotMaxLagMs": 15
+        },
+        {
+          "name": "hot-100-1",
+          "normalP99ByRoom": [
+            1.8099999999999987,
+            2
+          ],
+          "normalP95ByRoom": [
+            1.0500000000000007,
+            2
+          ],
+          "normalInputPerSecond": [
+            1.996007984031936,
+            1.996007984031936
+          ],
+          "normalLagByRoomMs": [
+            18,
+            18
+          ],
+          "hotInputPerSecond": 99.70089730807577,
+          "hotAccepted": 149,
+          "hotRejected": 51,
+          "hotP99Ms": 4,
+          "hotMaxLagMs": 15
+        },
+        {
+          "name": "hot-200-2",
+          "normalP99ByRoom": [
+            1,
+            1
+          ],
+          "normalP95ByRoom": [
+            1,
+            1
+          ],
+          "normalInputPerSecond": [
+            1.9970044932601099,
+            1.9970044932601099
+          ],
+          "normalLagByRoomMs": [
+            14,
+            14
+          ],
+          "hotInputPerSecond": 199.9000499750125,
+          "hotAccepted": 100,
+          "hotRejected": 300,
+          "hotP99Ms": 3,
+          "hotMaxLagMs": 16
+        }
+      ]
+    },
+    {
+      "round": 1,
+      "mode": "fair",
+      "pid": 67580,
+      "directory": "round-01-fair",
+      "actual": {
+        "received": 14610.0,
+        "sent": 672.0,
+        "accepted": 321.0,
+        "acceptedDeliveryDemand": 14610.0,
+        "rejected": 351.0
+      },
+      "phases": [
+        {
+          "name": "normal-only",
+          "normalP99ByRoom": [
+            4,
+            4
+          ],
+          "normalP95ByRoom": [
+            4,
+            4
+          ],
+          "normalInputPerSecond": [
+            2,
+            2
+          ],
+          "normalLagByRoomMs": [
+            7,
+            7
+          ],
+          "hotInputPerSecond": 0,
+          "hotAccepted": 0,
+          "hotRejected": 0,
+          "hotP99Ms": null,
+          "hotMaxLagMs": 0
+        },
+        {
+          "name": "hot-20-0",
+          "normalP99ByRoom": [
+            1.8099999999999987,
+            2
+          ],
+          "normalP95ByRoom": [
+            1.0500000000000007,
+            2
+          ],
+          "normalInputPerSecond": [
+            1.9950124688279303,
+            1.9950124688279303
+          ],
+          "normalLagByRoomMs": [
+            10,
+            10
+          ],
+          "hotInputPerSecond": 20,
+          "hotAccepted": 40,
+          "hotRejected": 0,
+          "hotP99Ms": 4,
+          "hotMaxLagMs": 18
+        },
+        {
+          "name": "hot-100-1",
+          "normalP99ByRoom": [
+            1,
+            1
+          ],
+          "normalP95ByRoom": [
+            1,
+            1
+          ],
+          "normalInputPerSecond": [
+            1.998001998001998,
+            1.998001998001998
+          ],
+          "normalLagByRoomMs": [
+            15,
+            15
+          ],
+          "hotInputPerSecond": 99.65122072745392,
+          "hotAccepted": 149,
+          "hotRejected": 51,
+          "hotP99Ms": 4,
+          "hotMaxLagMs": 11
+        },
+        {
+          "name": "hot-200-2",
+          "normalP99ByRoom": [
+            1,
+            1
+          ],
+          "normalP95ByRoom": [
+            1,
+            1
+          ],
+          "normalInputPerSecond": [
+            1.9940179461615155,
+            1.9940179461615155
+          ],
+          "normalLagByRoomMs": [
+            12,
+            12
+          ],
+          "hotInputPerSecond": 199.50124688279303,
+          "hotAccepted": 100,
+          "hotRejected": 300,
+          "hotP99Ms": 4,
+          "hotMaxLagMs": 17
+        }
+      ]
+    }
+  ],
+  "note": "Individual room/run quantiles; no averaged P99 advertised as a pooled percentile."
+}

@@ -1,0 +1,65 @@
+{
+  "cases": [
+    {
+      "case": "buffered-normal",
+      "startedAtEpochSeconds": 1793343526.4564483,
+      "collectionErrors": [],
+      "completed": true,
+      "serverPid": 1721,
+      "clientPid": 1872,
+      "clientExitCode": 0,
+      "clientSummary": {
+        "normalReceived": 300,
+        "normalExpected": 300,
+        "accepted": 30,
+        "inputScheduleCompleted": true,
+        "maxSendLagMs": 2.350887999909901,
+        "normalLatencyMs": {
+          "samples": 300,
+          "p50": 7,
+          "p95": 14,
+          "p99": 23,
+          "max": 23
+        },
+        "duplicates": 0,
+        "orderViolations": 0,
+        "failures": [],
+        "rejections": []
+      },
+      "normalDeliveryComplete": true,
+      "cleanupGauges": {
+        "lab.connections": 0.0,
+        "lab.rooms": 0.0,
+        "lab.outbound.bytes": 0.0,
+        "lab.outbound.messages": 0.0,
+        "lab.outbound.slots": 0.0,
+        "lab.outbound.writes.inflight": 0.0,
+        "lab.outbound.tasks": 0.0,
+        "lab.outbound.writers.active": 0.0,
+        "lab.dispatch.bytes": 0.0,
+        "lab.dispatch.messages": 0.0,
+        "lab.dispatch.rooms": 0.0,
+        "lab.dispatch.ready": 0.0
+      },
+      "cleanupPassed": true,
+      "clientFinalExitCode": 0,
+      "serverFinalExitCode": 143,
+      "endedAtEpochSeconds": 1793343549.7161689,
+      "serverStillRunning": false,
+      "clientStillRunning": false,
+      "ssAfterStop": {
+        "arguments": [
+          "ss",
+          "-ltn",
+          "sport = :18081"
+        ],
+        "exitCode": 0,
+        "stdout": "State Recv-Q Send-Q Local Address:Port Peer Address:Port\n",
+        "stderr": ""
+      }
+    }
+  ],
+  "jarUnchanged": true,
+  "allCasesCompleted": true,
+  "note": "Completed means collection and cleanup, not proof of backpressure or performance success. Inspect client counters and Linux evidence."
+}

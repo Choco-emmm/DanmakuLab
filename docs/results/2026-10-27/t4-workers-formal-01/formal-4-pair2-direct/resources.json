@@ -1,0 +1,98 @@
+{
+  "preparation": {
+    "samples": 6,
+    "completeClientSamples": 5,
+    "clientWorkingSetPeakBytes": 351895552,
+    "clientCpuPeakCores": 0.03672869735553379,
+    "serverWorkingSetPeakBytes": 328314880,
+    "serverCpuPeakCores": 0.4242081447963801,
+    "gaugePeaks": {
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.bytes.highwater": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.dispatch.mode.fair": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 0.0,
+      "lab.outbound.bytes.highwater": 6960.0,
+      "lab.outbound.messages": 0.0,
+      "lab.outbound.mode.buffered": 1.0,
+      "lab.outbound.slots": 1000.0,
+      "lab.outbound.tasks": 0.0,
+      "lab.outbound.writers.active": 0.0,
+      "lab.outbound.writes.inflight": 0.0
+    }
+  },
+  "input": {
+    "samples": 142,
+    "completeClientSamples": 142,
+    "clientWorkingSetPeakBytes": 453042176,
+    "clientCpuPeakCores": 3.595595472440945,
+    "serverWorkingSetPeakBytes": 352006144,
+    "serverCpuPeakCores": 1.3241525423728815,
+    "gaugePeaks": {
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.bytes.highwater": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.dispatch.mode.fair": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 207000.0,
+      "lab.outbound.bytes.highwater": 462822.0,
+      "lab.outbound.messages": 377.0,
+      "lab.outbound.mode.buffered": 1.0,
+      "lab.outbound.slots": 1000.0,
+      "lab.outbound.tasks": 372.0,
+      "lab.outbound.writers.active": 8.0,
+      "lab.outbound.writes.inflight": 11.0
+    }
+  },
+  "drain": {
+    "samples": 1,
+    "completeClientSamples": 1,
+    "clientWorkingSetPeakBytes": 450805760,
+    "clientCpuPeakCores": 3.1231261243254047,
+    "serverWorkingSetPeakBytes": 343453696,
+    "serverCpuPeakCores": 1.258619828103138,
+    "gaugePeaks": {
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.bytes.highwater": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.dispatch.mode.fair": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 0.0,
+      "lab.outbound.bytes.highwater": 462822.0,
+      "lab.outbound.messages": 0.0,
+      "lab.outbound.mode.buffered": 1.0,
+      "lab.outbound.slots": 1000.0,
+      "lab.outbound.tasks": 0.0,
+      "lab.outbound.writers.active": 0.0,
+      "lab.outbound.writes.inflight": 0.0
+    }
+  },
+  "closing": {
+    "samples": 1,
+    "completeClientSamples": 0,
+    "clientWorkingSetPeakBytes": null,
+    "clientCpuPeakCores": null,
+    "serverWorkingSetPeakBytes": 354758656,
+    "serverCpuPeakCores": 0.16711229946524062,
+    "gaugePeaks": {
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.bytes.highwater": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.dispatch.mode.fair": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 0.0,
+      "lab.outbound.bytes.highwater": 462822.0,
+      "lab.outbound.messages": 0.0,
+      "lab.outbound.mode.buffered": 1.0,
+      "lab.outbound.slots": 0.0,
+      "lab.outbound.tasks": 0.0,
+      "lab.outbound.writers.active": 0.0,
+      "lab.outbound.writes.inflight": 0.0
+    }
+  }
+}

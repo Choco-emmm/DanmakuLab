@@ -1,0 +1,20 @@
+Joined 11; mode=paused; probe SO_RCVBUF=2304; input=40/s
+{"seconds": 0.0029711130000578123, "atEpochSeconds": 1793343998.935686, "sent": 1, "accepted": 0, "normalReceived": 0, "probeReceived": 0}
+{"seconds": 5.000370028999896, "atEpochSeconds": 1793344003.933085, "sent": 201, "accepted": 200, "normalReceived": 2000, "probeReceived": 0}
+{"seconds": 10.000447864000307, "atEpochSeconds": 1793344008.9308543, "sent": 401, "accepted": 400, "normalReceived": 4000, "probeReceived": 0}
+{"seconds": 15.000455870000224, "atEpochSeconds": 1793344013.930863, "sent": 601, "accepted": 600, "normalReceived": 6000, "probeReceived": 0}
+{"seconds": 20.000441286000296, "atEpochSeconds": 1793344018.9308476, "sent": 801, "accepted": 800, "normalReceived": 8000, "probeReceived": 0}
+{"seconds": 25.000342032999924, "atEpochSeconds": 1793344023.9307487, "sent": 1001, "accepted": 1000, "normalReceived": 10000, "probeReceived": 0}
+{"seconds": 30.000365179000255, "atEpochSeconds": 1793344028.930772, "sent": 1201, "accepted": 1200, "normalReceived": 12000, "probeReceived": 0}
+{"seconds": 35.00043043799997, "atEpochSeconds": 1793344033.9308372, "sent": 1401, "accepted": 1400, "normalReceived": 14000, "probeReceived": 0}
+{"seconds": 40.000355184, "atEpochSeconds": 1793344038.927598, "sent": 1601, "accepted": 1600, "normalReceived": 16000, "probeReceived": 0}
+{"seconds": 45.000363105999895, "atEpochSeconds": 1793344043.9276059, "sent": 1801, "accepted": 1800, "normalReceived": 18000, "probeReceived": 0}
+{"seconds": 50.000477846000194, "atEpochSeconds": 1793344048.9277208, "sent": 2001, "accepted": 2000, "normalReceived": 20000, "probeReceived": 0}
+{"seconds": 55.00042638500008, "atEpochSeconds": 1793344053.927669, "sent": 2201, "accepted": 2200, "normalReceived": 22000, "probeReceived": 0}
+{"seconds": 60.000421994000135, "atEpochSeconds": 1793344058.9276648, "sent": 2401, "accepted": 2400, "normalReceived": 24000, "probeReceived": 0}
+{"seconds": 65.00050658999999, "atEpochSeconds": 1793344063.9277496, "sent": 2601, "accepted": 2600, "normalReceived": 26000, "probeReceived": 0}
+{"seconds": 70.00045333900016, "atEpochSeconds": 1793344068.9249861, "sent": 2801, "accepted": 2800, "normalReceived": 28000, "probeReceived": 0}
+{"seconds": 75.00046563500018, "atEpochSeconds": 1793344073.924999, "sent": 3001, "accepted": 3000, "normalReceived": 30000, "probeReceived": 0}
+{"seconds": 80.00037449000001, "atEpochSeconds": 1793344078.9249072, "sent": 3201, "accepted": 3200, "normalReceived": 32000, "probeReceived": 0}
+{"seconds": 85.00039776599988, "atEpochSeconds": 1793344083.9249306, "sent": 3401, "accepted": 3400, "normalReceived": 34000, "probeReceived": 0}
+{"samples": 36000, "p50": 5, "p95": 6, "p99": 7, "max": 22}

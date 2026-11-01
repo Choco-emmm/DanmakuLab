@@ -1,0 +1,1 @@
+PASS TOOL CHECK: D:\coding\DanmakuLab\.lab-artifacts\longrun-b6afd81b9d9640bc809e045228dd2bc1\smoke-T5\load; normal=4000/4000; p99=2ms

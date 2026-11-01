@@ -1,0 +1,16 @@
+{
+  "name": "formal-3-T3",
+  "scenario": "T3",
+  "connections": 1000,
+  "slowConnections": 10,
+  "seconds": 900,
+  "warmupSeconds": 60,
+  "formal": true,
+  "directory": "D:\\coding\\DanmakuLab\\.lab-artifacts\\longrun-b6afd81b9d9640bc809e045228dd2bc1\\formal-3-T3",
+  "pid": 45028,
+  "startedAt": "2026-10-28T01:27:43.3565159+00:00",
+  "passed": true,
+  "stopped": true,
+  "error": null,
+  "endedAt": "2026-10-28T01:44:01.1298279+00:00"
+}

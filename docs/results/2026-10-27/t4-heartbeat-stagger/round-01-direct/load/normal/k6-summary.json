@@ -1,0 +1,7471 @@
+{
+  "report": {
+    "scenario": "T4-initial",
+    "role": "normal",
+    "totalConnections": 500,
+    "configuredConnections": 1000,
+    "normalRooms": 10,
+    "normalConnections": 50,
+    "hotConnections": 500,
+    "plannedStartAtMs": 1793086919949,
+    "readyAtMs": 1793086892615,
+    "startedAtMs": 1793086919968,
+    "startLagMs": 19,
+    "phaseSeconds": 10,
+    "hotRates": [
+      20,
+      100,
+      200
+    ],
+    "requestBytes": 256,
+    "latencySampleEvery": 10,
+    "dedupBytes": 40000,
+    "joined": 500,
+    "errors": 0,
+    "duplicates": 0,
+    "orderViolations": 0,
+    "isolationFailures": 0,
+    "unexpectedCloses": 0,
+    "missingAccepted": 0,
+    "missingResults": 0,
+    "rooms": [
+      {
+        "name": "normal-0",
+        "connections": 50,
+        "phases": [
+          {
+            "name": "normal-only",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9986009793144799,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "med": 8,
+              "p(95)": 18,
+              "p(99)": 28.030000000000015,
+              "max": 31,
+              "avg": 7.98,
+              "min": 0
+            },
+            "maxSendLagMs": 19,
+            "broadcastBytes": {
+              "avg": 487.05,
+              "min": 486,
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-20-0",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.999000499750125,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "max": 32,
+              "avg": 5.29,
+              "min": 0,
+              "med": 3.5,
+              "p(95)": 16,
+              "p(99)": 30.02000000000001
+            },
+            "maxSendLagMs": 17,
+            "broadcastBytes": {
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488
+            }
+          },
+          {
+            "name": "hot-100-1",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9994001799460162,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "p(95)": 51.05,
+              "p(99)": 65,
+              "max": 65,
+              "avg": 14.07,
+              "min": 0,
+              "med": 8
+            },
+            "maxSendLagMs": 15,
+            "broadcastBytes": {
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 487.5,
+              "min": 487
+            }
+          },
+          {
+            "name": "hot-200-2",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.998800719568259,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "max": 9921,
+              "avg": 4805.45,
+              "min": 1,
+              "med": 5196,
+              "p(95)": 9348.849999999999,
+              "p(99)": 9903.18
+            },
+            "maxSendLagMs": 14,
+            "broadcastBytes": {
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488,
+              "min": 488,
+              "med": 488,
+              "p(95)": 488
+            }
+          }
+        ]
+      },
+      {
+        "name": "normal-1",
+        "connections": 50,
+        "phases": [
+          {
+            "name": "normal-only",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9986009793144799,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 8.42,
+              "min": 1,
+              "med": 8,
+              "p(95)": 18.049999999999997,
+              "p(99)": 28.02000000000001,
+              "max": 30
+            },
+            "maxSendLagMs": 19,
+            "broadcastBytes": {
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 487.05,
+              "min": 486,
+              "med": 487.5
+            }
+          },
+          {
+            "name": "hot-20-0",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.999000499750125,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 6.57,
+              "min": 1,
+              "med": 5,
+              "p(95)": 15,
+              "p(99)": 19.010000000000005,
+              "max": 20
+            },
+            "maxSendLagMs": 17,
+            "broadcastBytes": {
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488,
+              "min": 488,
+              "med": 488
+            }
+          },
+          {
+            "name": "hot-100-1",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9994001799460162,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "p(95)": 45.05,
+              "p(99)": 62.02000000000001,
+              "max": 64,
+              "avg": 16.52,
+              "min": 1,
+              "med": 14
+            },
+            "maxSendLagMs": 15,
+            "broadcastBytes": {
+              "avg": 487.5,
+              "min": 487,
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-200-2",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.998800719568259,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "p(95)": 9267.249999999998,
+              "p(99)": 10001,
+              "max": 10001,
+              "avg": 4803.64,
+              "min": 1,
+              "med": 5231
+            },
+            "maxSendLagMs": 14,
+            "broadcastBytes": {
+              "avg": 488,
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          }
+        ]
+      },
+      {
+        "name": "normal-2",
+        "connections": 50,
+        "phases": [
+          {
+            "name": "normal-only",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9986009793144799,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "med": 9,
+              "p(95)": 17.049999999999997,
+              "p(99)": 28.030000000000015,
+              "max": 31,
+              "avg": 9.17,
+              "min": 0
+            },
+            "maxSendLagMs": 19,
+            "broadcastBytes": {
+              "avg": 487.05,
+              "min": 486,
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-20-0",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.999000499750125,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "p(99)": 28.010000000000005,
+              "max": 29,
+              "avg": 8.17,
+              "min": 1,
+              "med": 6,
+              "p(95)": 21
+            },
+            "maxSendLagMs": 17,
+            "broadcastBytes": {
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488
+            }
+          },
+          {
+            "name": "hot-100-1",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9994001799460162,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 22.41,
+              "min": 0,
+              "med": 17,
+              "p(95)": 63.05,
+              "p(99)": 86.16000000000008,
+              "max": 102
+            },
+            "maxSendLagMs": 15,
+            "broadcastBytes": {
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 487.5,
+              "min": 487,
+              "med": 487.5
+            }
+          },
+          {
+            "name": "hot-200-2",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.998800719568259,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "p(99)": 9764.62,
+              "max": 9826,
+              "avg": 4809.67,
+              "min": 1,
+              "med": 5243.5,
+              "p(95)": 9340.199999999999
+            },
+            "maxSendLagMs": 14,
+            "broadcastBytes": {
+              "avg": 488,
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          }
+        ]
+      },
+      {
+        "name": "normal-3",
+        "connections": 50,
+        "phases": [
+          {
+            "name": "normal-only",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9986009793144799,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "p(95)": 19,
+              "p(99)": 27.030000000000015,
+              "max": 30,
+              "avg": 9.17,
+              "min": 1,
+              "med": 8
+            },
+            "maxSendLagMs": 19,
+            "broadcastBytes": {
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 487.05,
+              "min": 486,
+              "med": 487.5
+            }
+          },
+          {
+            "name": "hot-20-0",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.999000499750125,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "med": 8,
+              "p(95)": 21,
+              "p(99)": 29.050000000000026,
+              "max": 34,
+              "avg": 9.2,
+              "min": 3
+            },
+            "maxSendLagMs": 17,
+            "broadcastBytes": {
+              "avg": 488,
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-100-1",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9994001799460162,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 20.83,
+              "min": 1,
+              "med": 13,
+              "p(95)": 58.599999999999966,
+              "p(99)": 71.01,
+              "max": 72
+            },
+            "maxSendLagMs": 15,
+            "broadcastBytes": {
+              "avg": 487.5,
+              "min": 487,
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-200-2",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.998800719568259,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 4813.92,
+              "min": 3,
+              "med": 5304,
+              "p(95)": 9340.599999999999,
+              "p(99)": 9765.03,
+              "max": 9768
+            },
+            "maxSendLagMs": 14,
+            "broadcastBytes": {
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488
+            }
+          }
+        ]
+      },
+      {
+        "name": "normal-4",
+        "connections": 50,
+        "phases": [
+          {
+            "name": "normal-only",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9986009793144799,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 7.21,
+              "min": 1,
+              "med": 7,
+              "p(95)": 16,
+              "p(99)": 23.050000000000026,
+              "max": 28
+            },
+            "maxSendLagMs": 19,
+            "broadcastBytes": {
+              "min": 486,
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 487.05
+            }
+          },
+          {
+            "name": "hot-20-0",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.999000499750125,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "min": 1,
+              "med": 9,
+              "p(95)": 27.19999999999999,
+              "p(99)": 32.02000000000001,
+              "max": 34,
+              "avg": 10.46
+            },
+            "maxSendLagMs": 17,
+            "broadcastBytes": {
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488
+            }
+          },
+          {
+            "name": "hot-100-1",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9994001799460162,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 24.44,
+              "min": 1,
+              "med": 19,
+              "p(95)": 60,
+              "p(99)": 72.03000000000002,
+              "max": 75
+            },
+            "maxSendLagMs": 15,
+            "broadcastBytes": {
+              "avg": 487.5,
+              "min": 487,
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-200-2",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.998800719568259,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 4778.45,
+              "min": 1,
+              "med": 5181.5,
+              "p(95)": 9230.699999999999,
+              "p(99)": 9702.05,
+              "max": 9707
+            },
+            "maxSendLagMs": 14,
+            "broadcastBytes": {
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488,
+              "min": 488,
+              "med": 488
+            }
+          }
+        ]
+      },
+      {
+        "name": "normal-5",
+        "connections": 50,
+        "phases": [
+          {
+            "name": "normal-only",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9986009793144799,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 9.83,
+              "min": 0,
+              "med": 9,
+              "p(95)": 20.049999999999997,
+              "p(99)": 28.02000000000001,
+              "max": 30
+            },
+            "maxSendLagMs": 19,
+            "broadcastBytes": {
+              "p(99)": 488,
+              "max": 488,
+              "avg": 487.05,
+              "min": 486,
+              "med": 487.5,
+              "p(95)": 488
+            }
+          },
+          {
+            "name": "hot-20-0",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.999000499750125,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 10.39,
+              "min": 2,
+              "med": 10,
+              "p(95)": 18,
+              "p(99)": 29.050000000000026,
+              "max": 34
+            },
+            "maxSendLagMs": 17,
+            "broadcastBytes": {
+              "avg": 488,
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-100-1",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9994001799460162,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 20.7,
+              "min": 1,
+              "med": 16,
+              "p(95)": 49.599999999999966,
+              "p(99)": 64.06000000000003,
+              "max": 70
+            },
+            "maxSendLagMs": 15,
+            "broadcastBytes": {
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 487.5,
+              "min": 487
+            }
+          },
+          {
+            "name": "hot-200-2",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.998800719568259,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "max": 9956,
+              "avg": 4808.5,
+              "min": 7,
+              "med": 5138.5,
+              "p(95)": 9481.449999999999,
+              "p(99)": 9837.2
+            },
+            "maxSendLagMs": 14,
+            "broadcastBytes": {
+              "avg": 488,
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          }
+        ]
+      },
+      {
+        "name": "normal-6",
+        "connections": 50,
+        "phases": [
+          {
+            "name": "normal-only",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9986009793144799,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "p(95)": 18.049999999999997,
+              "p(99)": 25.02000000000001,
+              "max": 27,
+              "avg": 9.89,
+              "min": 1,
+              "med": 10
+            },
+            "maxSendLagMs": 19,
+            "broadcastBytes": {
+              "p(99)": 488,
+              "max": 488,
+              "avg": 487.05,
+              "min": 486,
+              "med": 487.5,
+              "p(95)": 488
+            }
+          },
+          {
+            "name": "hot-20-0",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.999000499750125,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 12.29,
+              "min": 5,
+              "med": 11,
+              "p(95)": 25.099999999999994,
+              "p(99)": 30.04000000000002,
+              "max": 34
+            },
+            "maxSendLagMs": 17,
+            "broadcastBytes": {
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488,
+              "min": 488
+            }
+          },
+          {
+            "name": "hot-100-1",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9994001799460162,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "min": 3,
+              "med": 21,
+              "p(95)": 68.1,
+              "p(99)": 102,
+              "max": 102,
+              "avg": 28.34
+            },
+            "maxSendLagMs": 15,
+            "broadcastBytes": {
+              "avg": 487.5,
+              "min": 487,
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-200-2",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.998800719568259,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 4799.78,
+              "min": 5,
+              "med": 5255.5,
+              "p(95)": 9264.4,
+              "p(99)": 9634.01,
+              "max": 9635
+            },
+            "maxSendLagMs": 14,
+            "broadcastBytes": {
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488
+            }
+          }
+        ]
+      },
+      {
+        "name": "normal-7",
+        "connections": 50,
+        "phases": [
+          {
+            "name": "normal-only",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9986009793144799,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "med": 10,
+              "p(95)": 20,
+              "p(99)": 28.010000000000005,
+              "max": 29,
+              "avg": 9.96,
+              "min": 0
+            },
+            "maxSendLagMs": 19,
+            "broadcastBytes": {
+              "max": 488,
+              "avg": 487.05,
+              "min": 486,
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488
+            }
+          },
+          {
+            "name": "hot-20-0",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.999000499750125,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "med": 12,
+              "p(95)": 24.099999999999994,
+              "p(99)": 33.010000000000005,
+              "max": 34,
+              "avg": 12.69,
+              "min": 2
+            },
+            "maxSendLagMs": 17,
+            "broadcastBytes": {
+              "avg": 488,
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-100-1",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9994001799460162,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 24.52,
+              "min": 1,
+              "med": 19.5,
+              "p(95)": 66.05,
+              "p(99)": 71,
+              "max": 71
+            },
+            "maxSendLagMs": 15,
+            "broadcastBytes": {
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 487.5,
+              "min": 487
+            }
+          },
+          {
+            "name": "hot-200-2",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.998800719568259,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "med": 5326,
+              "p(95)": 9386.249999999998,
+              "p(99)": 9797.7,
+              "max": 9867,
+              "avg": 4819.95,
+              "min": 8
+            },
+            "maxSendLagMs": 14,
+            "broadcastBytes": {
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488,
+              "min": 488,
+              "med": 488
+            }
+          }
+        ]
+      },
+      {
+        "name": "normal-8",
+        "connections": 50,
+        "phases": [
+          {
+            "name": "normal-only",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9986009793144799,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "max": 26,
+              "avg": 10.4,
+              "min": 0,
+              "med": 10,
+              "p(95)": 19.049999999999997,
+              "p(99)": 26
+            },
+            "maxSendLagMs": 19,
+            "broadcastBytes": {
+              "avg": 487.05,
+              "min": 486,
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-20-0",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.999000499750125,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 12.33,
+              "min": 3,
+              "med": 12,
+              "p(95)": 20.049999999999997,
+              "p(99)": 34,
+              "max": 34
+            },
+            "maxSendLagMs": 17,
+            "broadcastBytes": {
+              "avg": 488,
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-100-1",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9994001799460162,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "min": 4,
+              "med": 18.5,
+              "p(95)": 62,
+              "p(99)": 92,
+              "max": 92,
+              "avg": 23.08
+            },
+            "maxSendLagMs": 15,
+            "broadcastBytes": {
+              "min": 487,
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 487.5
+            }
+          },
+          {
+            "name": "hot-200-2",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.998800719568259,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 4813.73,
+              "min": 2,
+              "med": 5271.5,
+              "p(95)": 9275.949999999999,
+              "p(99)": 9637,
+              "max": 9637
+            },
+            "maxSendLagMs": 14,
+            "broadcastBytes": {
+              "avg": 488,
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          }
+        ]
+      },
+      {
+        "name": "normal-9",
+        "connections": 50,
+        "phases": [
+          {
+            "name": "normal-only",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9986009793144799,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 9.55,
+              "min": 2,
+              "med": 9,
+              "p(95)": 17,
+              "p(99)": 26.030000000000015,
+              "max": 29
+            },
+            "maxSendLagMs": 19,
+            "broadcastBytes": {
+              "avg": 487.05,
+              "min": 486,
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488
+            }
+          },
+          {
+            "name": "hot-20-0",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.999000499750125,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "avg": 12.53,
+              "min": 6,
+              "med": 12,
+              "p(95)": 19.049999999999997,
+              "p(99)": 27.070000000000036,
+              "max": 34
+            },
+            "maxSendLagMs": 17,
+            "broadcastBytes": {
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488
+            }
+          },
+          {
+            "name": "hot-100-1",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.9994001799460162,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "max": 73,
+              "avg": 26.93,
+              "min": 3,
+              "med": 20,
+              "p(95)": 67,
+              "p(99)": 72.01
+            },
+            "maxSendLagMs": 15,
+            "broadcastBytes": {
+              "med": 487.5,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 487.5,
+              "min": 487
+            }
+          },
+          {
+            "name": "hot-200-2",
+            "targetInputPerSecond": 2,
+            "plannedInputMessages": 20,
+            "sent": 20,
+            "accepted": 20,
+            "rejected": 0,
+            "roomRateRejected": 0,
+            "rejectionReasons": {
+              "room_rate_limit": 0,
+              "connection_rate_limit": 0,
+              "other": 0
+            },
+            "actualInputPerSecond": 1.998800719568259,
+            "allInputDeliveryDemand": 1000,
+            "acceptedDeliveryDemand": 1000,
+            "received": 1000,
+            "missingAccepted": 0,
+            "latencySamples": 100,
+            "latencyMs": {
+              "min": 3,
+              "med": 5237,
+              "p(95)": 9407.8,
+              "p(99)": 9617.02,
+              "max": 9619,
+              "avg": 4770.28
+            },
+            "maxSendLagMs": 14,
+            "broadcastBytes": {
+              "min": 488,
+              "med": 488,
+              "p(95)": 488,
+              "p(99)": 488,
+              "max": 488,
+              "avg": 488
+            }
+          }
+        ]
+      }
+    ],
+    "note": "Same-host, all readers normal; one VU per process handles only its ROLE. Split roles share absolute phase boundaries. Finite drain, sampled latency; processes still share host CPU/RAM. Server dispatch mode is recorded by the runner; this tool does not change it. Not formal 15/30-minute validation."
+  },
+  "metrics": {
+    "options": {
+      "summaryTrendStats": [
+        "avg",
+        "min",
+        "med",
+        "p(95)",
+        "p(99)",
+        "max"
+      ],
+      "summaryTimeUnit": "",
+      "noColor": true
+    },
+    "state": {
+      "isStdOutTTY": false,
+      "isStdErrTTY": false,
+      "testRunDurationMs": 74820.348
+    },
+    "metrics": {
+      "t4_r8_p2_other_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r7_p0_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r3_p0_connection_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "vus_max": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "t4_r7_p3_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 4819.95,
+          "min": 8,
+          "med": 5326,
+          "p(95)": 9386.249999999998,
+          "p(99)": 9797.7,
+          "max": 9867
+        }
+      },
+      "t4_r2_p0_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 9.17,
+          "min": 0,
+          "med": 9,
+          "p(95)": 17.049999999999997,
+          "p(99)": 28.030000000000015,
+          "max": 31
+        }
+      },
+      "t4_r5_p2_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9994001799460162,
+          "min": 0,
+          "max": 1.9994001799460162
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p3_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 5,
+          "p(95)": 9.250000000000004,
+          "p(99)": 13.049999999999994,
+          "max": 14,
+          "avg": 5.25,
+          "min": 0
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p1_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r2_p2_rejected": {
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r9_p3_sent": {
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r8_p1_actual_rate": {
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "max": 1.999000499750125,
+          "value": 1.999000499750125
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge"
+      },
+      "t4_r0_p0_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p0_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r1_p0_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r1_p2_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r4_p1_send_lag_ms": {
+        "values": {
+          "avg": 4.85,
+          "min": 1,
+          "med": 4,
+          "p(95)": 10.350000000000005,
+          "p(99)": 15.669999999999991,
+          "max": 17
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend",
+        "contains": "default"
+      },
+      "t4_r6_p0_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r6_p0_other_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r5_p2_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r8_p3_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p0_send_lag_ms": {
+        "values": {
+          "avg": 6.3,
+          "min": 0,
+          "med": 6,
+          "p(95)": 9.500000000000007,
+          "p(99)": 17.099999999999987,
+          "max": 19
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend",
+        "contains": "default"
+      },
+      "t4_r8_p1_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r0_p0_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 9.500000000000007,
+          "p(99)": 17.099999999999987,
+          "max": 19,
+          "avg": 6.3,
+          "min": 0,
+          "med": 6
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p2_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r1_p2_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r9_p2_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p0_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r0_p2_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r3_p3_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r9_p3_actual_rate": {
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "max": 1.998800719568259,
+          "value": 1.998800719568259,
+          "min": 0
+        }
+      },
+      "t4_r0_p3_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 14,
+          "avg": 5.25,
+          "min": 0,
+          "med": 5,
+          "p(95)": 9.250000000000004,
+          "p(99)": 13.049999999999994
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r4_p0_actual_rate": {
+        "contains": "default",
+        "values": {
+          "value": 1.9986009793144799,
+          "min": 0,
+          "max": 1.9986009793144799
+        },
+        "thresholds": {
+          "value<=2.1": {
+            "ok": true
+          },
+          "value>=1.9": {
+            "ok": true
+          }
+        },
+        "type": "gauge"
+      },
+      "t4_r9_p3_received": {
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r3_p2_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 58.599999999999966,
+          "p(99)": 71.01,
+          "max": 72,
+          "avg": 20.83,
+          "min": 1,
+          "med": 13
+        }
+      },
+      "t4_r5_p1_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p2_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p0_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p0_actual_rate": {
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9986009793144799,
+          "min": 0,
+          "max": 1.9986009793144799
+        }
+      },
+      "t4_r8_p1_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r6_p0_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r9_p1_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.999000499750125,
+          "min": 0,
+          "max": 1.999000499750125
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p3_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.998800719568259,
+          "min": 0,
+          "max": 1.998800719568259
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p2_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p0_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 487.05,
+          "min": 486,
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r9_p2_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9994001799460162,
+          "min": 0,
+          "max": 1.9994001799460162
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r2_p1_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r6_p1_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_started_at_ms": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1793086919968,
+          "min": 1793086919968,
+          "max": 1793086919968
+        }
+      },
+      "t4_r4_p3_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r0_p0_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r1_p2_other_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r8_p1_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p0_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r7_p1_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        }
+      },
+      "t4_r3_p1_missing": {
+        "values": {
+          "rate": 0,
+          "count": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r8_p0_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r0_p1_latency_ms": {
+        "contains": "default",
+        "values": {
+          "avg": 5.29,
+          "min": 0,
+          "med": 3.5,
+          "p(95)": 16,
+          "p(99)": 30.02000000000001,
+          "max": 32
+        },
+        "type": "trend"
+      },
+      "t4_ready_at_ms": {
+        "contains": "default",
+        "values": {
+          "value": 1793086892615,
+          "min": 1793086892615,
+          "max": 1793086892615
+        },
+        "type": "gauge"
+      },
+      "ws_session_duration": {
+        "type": "trend",
+        "contains": "time",
+        "values": {
+          "max": 74786.3219,
+          "avg": 73583.13769359999,
+          "min": 72379.4233,
+          "med": 73582.5036,
+          "p(95)": 74686.197405,
+          "p(99)": 74785.274535
+        }
+      },
+      "t4_r4_p1_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r3_p2_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 14.049999999999994,
+          "max": 15,
+          "avg": 5.9,
+          "min": 0,
+          "med": 5.5,
+          "p(95)": 10.250000000000004
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p1_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 4.85,
+          "min": 1,
+          "med": 4,
+          "p(95)": 10.350000000000005,
+          "p(99)": 15.669999999999991,
+          "max": 17
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p2_send_lag_ms": {
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 15,
+          "avg": 5.9,
+          "min": 0,
+          "med": 5.5,
+          "p(95)": 10.250000000000004,
+          "p(99)": 14.049999999999994
+        }
+      },
+      "t4_r0_p2_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p2_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r2_p3_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p3_other_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r3_p3_actual_rate": {
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.998800719568259,
+          "min": 0,
+          "max": 1.998800719568259
+        }
+      },
+      "t4_r6_p1_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r2_p0_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r4_p3_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 488,
+          "max": 488,
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488
+        }
+      },
+      "t4_r8_p2_send_lag_ms": {
+        "contains": "default",
+        "values": {
+          "avg": 5.9,
+          "min": 0,
+          "med": 5.5,
+          "p(95)": 10.250000000000004,
+          "p(99)": 14.049999999999994,
+          "max": 15
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend"
+      },
+      "t4_r3_p1_sent": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r5_p2_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r6_p1_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r8_p0_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r1_p2_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t4_r6_p2_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "min": 487,
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.5
+        }
+      },
+      "t4_r6_p0_connection_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r8_p0_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p3_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r5_p0_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.05,
+          "min": 486,
+          "med": 487.5
+        }
+      },
+      "t4_r4_p3_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p2_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 5.9,
+          "min": 0,
+          "med": 5.5,
+          "p(95)": 10.250000000000004,
+          "p(99)": 14.049999999999994,
+          "max": 15
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p2_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r3_p2_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r4_p3_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 4778.45,
+          "min": 1,
+          "med": 5181.5,
+          "p(95)": 9230.699999999999,
+          "p(99)": 9702.05,
+          "max": 9707
+        }
+      },
+      "t4_r2_p0_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r2_p0_accepted": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r4_p2_missing": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r9_p0_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r8_p3_send_lag_ms": {
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 13.049999999999994,
+          "max": 14,
+          "avg": 5.25,
+          "min": 0,
+          "med": 5,
+          "p(95)": 9.250000000000004
+        }
+      },
+      "t4_r1_p2_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 488,
+          "avg": 487.5,
+          "min": 487,
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488
+        }
+      },
+      "t4_r7_p2_latency_ms": {
+        "values": {
+          "avg": 24.52,
+          "min": 1,
+          "med": 19.5,
+          "p(95)": 66.05,
+          "p(99)": 71,
+          "max": 71
+        },
+        "type": "trend",
+        "contains": "default"
+      },
+      "t4_r7_p0_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p3_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r1_p3_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r7_p0_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9986009793144799,
+          "min": 0,
+          "max": 1.9986009793144799
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r4_p2_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r8_p0_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r2_p0_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r5_p1_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r8_p1_other_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r6_p0_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 6,
+          "p(95)": 9.500000000000007,
+          "p(99)": 17.099999999999987,
+          "max": 19,
+          "avg": 6.3,
+          "min": 0
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p3_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 5.25,
+          "min": 0,
+          "med": 5,
+          "p(95)": 9.250000000000004,
+          "p(99)": 13.049999999999994,
+          "max": 14
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p0_missing": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r0_p2_room_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r7_p1_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p3_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r3_p1_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r3_p3_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r1_p2_actual_rate": {
+        "contains": "default",
+        "values": {
+          "value": 1.9994001799460162,
+          "min": 0,
+          "max": 1.9994001799460162
+        },
+        "thresholds": {
+          "value<=2.1": {
+            "ok": true
+          },
+          "value>=1.9": {
+            "ok": true
+          }
+        },
+        "type": "gauge"
+      },
+      "t4_r6_p1_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r2_p1_connection_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r2_p1_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p1_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p3_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "ws_sessions": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 500,
+          "rate": 6.682674076843375
+        }
+      },
+      "t4_r4_p2_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r0_p2_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r3_p1_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 15.669999999999991,
+          "max": 17,
+          "avg": 4.85,
+          "min": 1,
+          "med": 4,
+          "p(95)": 10.350000000000005
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p1_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p0_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "iterations": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1,
+          "rate": 0.01336534815368675
+        },
+        "thresholds": {
+          "count==1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r3_p1_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r3_p0_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9986009793144799,
+          "min": 0,
+          "max": 1.9986009793144799
+        },
+        "thresholds": {
+          "value<=2.1": {
+            "ok": true
+          },
+          "value>=1.9": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r5_p3_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r8_p1_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r7_p3_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.998800719568259,
+          "min": 0,
+          "max": 1.998800719568259
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r3_p3_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p1_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p3_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        }
+      },
+      "t4_r1_p0_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p3_latency_samples": {
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r3_p2_sent": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r5_p2_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r3_p3_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 488,
+          "max": 488,
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488
+        }
+      },
+      "t4_r3_p1_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r1_p1_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r5_p2_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r1_p0_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 487.05,
+          "min": 486,
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r1_p3_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r8_p2_sent": {
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        }
+      },
+      "t4_r2_p1_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r2_p3_actual_rate": {
+        "contains": "default",
+        "values": {
+          "value": 1.998800719568259,
+          "min": 0,
+          "max": 1.998800719568259
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge"
+      },
+      "t4_r1_p1_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p2_connection_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r5_p2_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p2_other_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r6_p3_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r0_p1_send_lag_ms": {
+        "values": {
+          "min": 1,
+          "med": 4,
+          "p(95)": 10.350000000000005,
+          "p(99)": 15.669999999999991,
+          "max": 17,
+          "avg": 4.85
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend",
+        "contains": "default"
+      },
+      "t4_r3_p0_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p2_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r0_p1_received": {
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r6_p2_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9994001799460162,
+          "min": 0,
+          "max": 1.9994001799460162
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p0_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p2_broadcast_bytes": {
+        "contains": "default",
+        "values": {
+          "min": 487,
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.5
+        },
+        "type": "trend"
+      },
+      "t4_r0_p2_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p1_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 25.099999999999994,
+          "p(99)": 30.04000000000002,
+          "max": 34,
+          "avg": 12.29,
+          "min": 5,
+          "med": 11
+        }
+      },
+      "t4_r9_p1_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r3_p2_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r7_p1_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 15.669999999999991,
+          "max": 17,
+          "avg": 4.85,
+          "min": 1,
+          "med": 4,
+          "p(95)": 10.350000000000005
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r2_p1_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r1_p0_sent": {
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t4_r3_p0_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 30,
+          "avg": 9.17,
+          "min": 1,
+          "med": 8,
+          "p(95)": 19,
+          "p(99)": 27.030000000000015
+        }
+      },
+      "t4_r4_p0_send_lag_ms": {
+        "values": {
+          "med": 6,
+          "p(95)": 9.500000000000007,
+          "p(99)": 17.099999999999987,
+          "max": 19,
+          "avg": 6.3,
+          "min": 0
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend",
+        "contains": "default"
+      },
+      "t4_r1_p0_actual_rate": {
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9986009793144799,
+          "min": 0,
+          "max": 1.9986009793144799
+        }
+      },
+      "t4_r9_p2_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r6_p0_latency_ms": {
+        "values": {
+          "p(95)": 18.049999999999997,
+          "p(99)": 25.02000000000001,
+          "max": 27,
+          "avg": 9.89,
+          "min": 1,
+          "med": 10
+        },
+        "type": "trend",
+        "contains": "default"
+      },
+      "t4_r8_p2_broadcast_bytes": {
+        "values": {
+          "min": 487,
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.5
+        },
+        "type": "trend",
+        "contains": "default"
+      },
+      "t4_r1_p2_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p0_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r6_p1_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p3_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r2_p3_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r2_p2_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "med": 5.5,
+          "p(95)": 10.250000000000004,
+          "p(99)": 14.049999999999994,
+          "max": 15,
+          "avg": 5.9
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p1_received": {
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r2_p2_actual_rate": {
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "max": 1.9994001799460162,
+          "value": 1.9994001799460162
+        }
+      },
+      "t4_r1_p3_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r3_p1_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r1_p1_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r9_p2_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.5,
+          "min": 487
+        }
+      },
+      "t4_r3_p0_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 6,
+          "p(95)": 9.500000000000007,
+          "p(99)": 17.099999999999987,
+          "max": 19,
+          "avg": 6.3,
+          "min": 0
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r5_p3_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 9.250000000000004,
+          "p(99)": 13.049999999999994,
+          "max": 14,
+          "avg": 5.25,
+          "min": 0,
+          "med": 5
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r4_p2_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_unexpected_closes": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p3_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "iteration_duration": {
+        "type": "trend",
+        "contains": "time",
+        "values": {
+          "p(95)": 74820.348,
+          "p(99)": 74820.348,
+          "max": 74820.348,
+          "avg": 74820.348,
+          "min": 74820.348,
+          "med": 74820.348
+        }
+      },
+      "t4_r0_p0_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r2_p0_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 487.05,
+          "min": 486,
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r7_p1_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r1_p2_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p3_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p2_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.5,
+          "min": 487,
+          "med": 487.5
+        }
+      },
+      "t4_r4_p2_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 24.44,
+          "min": 1,
+          "med": 19,
+          "p(95)": 60,
+          "p(99)": 72.03000000000002,
+          "max": 75
+        }
+      },
+      "t4_r8_p3_connection_rejected": {
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        },
+        "type": "counter"
+      },
+      "t4_r9_p1_accepted": {
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "type": "counter"
+      },
+      "t4_r7_p1_sent": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r0_p2_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r9_p1_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 34,
+          "avg": 12.53,
+          "min": 6,
+          "med": 12,
+          "p(95)": 19.049999999999997,
+          "p(99)": 27.070000000000036
+        }
+      },
+      "t4_r1_p0_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 18.049999999999997,
+          "p(99)": 28.02000000000001,
+          "max": 30,
+          "avg": 8.42,
+          "min": 1,
+          "med": 8
+        }
+      },
+      "t4_r4_p2_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p0_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r6_p0_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r3_p0_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r8_p2_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 18.5,
+          "p(95)": 62,
+          "p(99)": 92,
+          "max": 92,
+          "avg": 23.08,
+          "min": 4
+        }
+      },
+      "t4_r9_p0_broadcast_bytes": {
+        "contains": "default",
+        "values": {
+          "min": 486,
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.05
+        },
+        "type": "trend"
+      },
+      "t4_r1_p3_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p3_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 4799.78,
+          "min": 5,
+          "med": 5255.5,
+          "p(95)": 9264.4,
+          "p(99)": 9634.01,
+          "max": 9635
+        }
+      },
+      "t4_r5_p3_accepted": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r1_p1_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 488,
+          "min": 488
+        }
+      },
+      "t4_r9_p0_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r1_p0_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p2_connection_rejected": {
+        "values": {
+          "rate": 0,
+          "count": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r2_p3_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r4_p0_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p3_accepted": {
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "type": "counter"
+      },
+      "t4_r9_p3_send_lag_ms": {
+        "contains": "default",
+        "values": {
+          "med": 5,
+          "p(95)": 9.250000000000004,
+          "p(99)": 13.049999999999994,
+          "max": 14,
+          "avg": 5.25,
+          "min": 0
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend"
+      },
+      "t4_r2_p0_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r3_p3_accepted": {
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r7_p0_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r6_p3_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r5_p0_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        }
+      },
+      "t4_r1_p3_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 488,
+          "max": 488,
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488
+        }
+      },
+      "t4_r8_p1_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r8_p0_sent": {
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t4_r5_p1_connection_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r4_p2_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 15,
+          "avg": 5.9,
+          "min": 0,
+          "med": 5.5,
+          "p(95)": 10.250000000000004,
+          "p(99)": 14.049999999999994
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p3_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p3_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.998800719568259,
+          "min": 0,
+          "max": 1.998800719568259
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p2_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p1_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r7_p3_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p2_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r3_p0_other_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r6_p0_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "max": 1.9986009793144799,
+          "value": 1.9986009793144799
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p2_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r4_p1_sent": {
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r5_p0_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 9.83,
+          "min": 0,
+          "med": 9,
+          "p(95)": 20.049999999999997,
+          "p(99)": 28.02000000000001,
+          "max": 30
+        }
+      },
+      "t4_r7_p3_room_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r7_p2_send_lag_ms": {
+        "contains": "default",
+        "values": {
+          "avg": 5.9,
+          "min": 0,
+          "med": 5.5,
+          "p(95)": 10.250000000000004,
+          "p(99)": 14.049999999999994,
+          "max": 15
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend"
+      },
+      "t4_r1_p3_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r1_p3_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r3_p3_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p1_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 488,
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488
+        }
+      },
+      "t4_r0_p0_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p1_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r7_p3_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p3_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r2_p2_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r3_p1_latency_samples": {
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r5_p1_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r6_p1_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r8_p2_latency_samples": {
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r4_p3_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.998800719568259,
+          "min": 0,
+          "max": 1.998800719568259
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p1_other_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r9_p2_sent": {
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t4_r8_p2_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p2_accepted": {
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "type": "counter"
+      },
+      "t4_r0_p0_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "med": 8,
+          "p(95)": 18,
+          "p(99)": 28.030000000000015,
+          "max": 31,
+          "avg": 7.98
+        }
+      },
+      "t4_r2_p2_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "ws_connecting": {
+        "type": "trend",
+        "contains": "time",
+        "values": {
+          "p(95)": 26.100364999999954,
+          "p(99)": 67.5497,
+          "max": 68.5046,
+          "avg": 5.744350999999972,
+          "min": 0.5582,
+          "med": 1.80295
+        }
+      },
+      "t4_r5_p3_actual_rate": {
+        "contains": "default",
+        "values": {
+          "max": 1.998800719568259,
+          "value": 1.998800719568259,
+          "min": 0
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge"
+      },
+      "t4_r8_p3_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r4_p3_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p1_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r7_p2_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r2_p3_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "min": 1,
+          "med": 5243.5,
+          "p(95)": 9340.199999999999,
+          "p(99)": 9764.62,
+          "max": 9826,
+          "avg": 4809.67
+        }
+      },
+      "t4_r0_p3_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r3_p2_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.5,
+          "min": 487,
+          "med": 487.5,
+          "p(95)": 488
+        }
+      },
+      "t4_r7_p1_actual_rate": {
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "max": 1.999000499750125,
+          "value": 1.999000499750125
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge"
+      },
+      "t4_r5_p2_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r4_p3_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r4_p3_connection_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r4_p0_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 487.05,
+          "min": 486,
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r7_p0_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p2_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p1_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r4_p1_actual_rate": {
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.999000499750125,
+          "min": 0,
+          "max": 1.999000499750125
+        }
+      },
+      "t4_r3_p3_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p2_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r2_p2_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r2_p3_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r4_p2_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r4_p0_latency_ms": {
+        "contains": "default",
+        "values": {
+          "min": 1,
+          "med": 7,
+          "p(95)": 16,
+          "p(99)": 23.050000000000026,
+          "max": 28,
+          "avg": 7.21
+        },
+        "type": "trend"
+      },
+      "t4_r0_p0_missing": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r2_p1_sent": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r2_p1_other_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r7_p0_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "med": 10,
+          "p(95)": 20,
+          "p(99)": 28.010000000000005,
+          "max": 29,
+          "avg": 9.96
+        }
+      },
+      "t4_r2_p1_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 488,
+          "max": 488,
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488
+        }
+      },
+      "ws_msgs_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 4200,
+          "rate": 56.13446224548434
+        }
+      },
+      "t4_r5_p1_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 488,
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488
+        }
+      },
+      "t4_r3_p2_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p0_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 1.336534815368675,
+          "count": 100
+        }
+      },
+      "t4_r8_p3_accepted": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r5_p1_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.999000499750125,
+          "min": 0,
+          "max": 1.999000499750125
+        },
+        "thresholds": {
+          "value<=2.1": {
+            "ok": true
+          },
+          "value>=1.9": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r2_p3_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 13.36534815368675,
+          "count": 1000
+        }
+      },
+      "t4_joined": {
+        "contains": "default",
+        "values": {
+          "count": 500,
+          "rate": 6.682674076843375
+        },
+        "thresholds": {
+          "count==500": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t4_r1_p0_connection_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r1_p3_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r7_p1_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r8_p0_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.05,
+          "min": 486,
+          "med": 487.5,
+          "p(95)": 488
+        }
+      },
+      "t4_r1_p0_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "med": 6,
+          "p(95)": 9.500000000000007,
+          "p(99)": 17.099999999999987,
+          "max": 19,
+          "avg": 6.3
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p3_connection_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r9_p3_missing": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r3_p2_rejected": {
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r1_p0_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r0_p1_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r8_p1_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r3_p0_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.05,
+          "min": 486
+        }
+      },
+      "t4_r0_p3_connection_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r6_p2_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 102,
+          "avg": 28.34,
+          "min": 3,
+          "med": 21,
+          "p(95)": 68.1,
+          "p(99)": 102
+        }
+      },
+      "t4_r0_p0_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r4_p1_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t4_r4_p3_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r3_p0_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "data_sent": {
+        "contains": "data",
+        "values": {
+          "count": 402000,
+          "rate": 5372.8699577820735
+        },
+        "type": "counter"
+      },
+      "t4_r8_p3_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 13.36534815368675,
+          "count": 1000
+        }
+      },
+      "t4_r3_p2_missing": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r8_p3_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 9637,
+          "avg": 4813.73,
+          "min": 2,
+          "med": 5271.5,
+          "p(95)": 9275.949999999999,
+          "p(99)": 9637
+        }
+      },
+      "t4_r9_p0_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9986009793144799,
+          "min": 0,
+          "max": 1.9986009793144799
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r4_p1_missing": {
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        },
+        "type": "counter"
+      },
+      "t4_r3_p1_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r8_p2_received": {
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        },
+        "type": "counter"
+      },
+      "t4_r0_p3_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r8_p3_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 488,
+          "max": 488,
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488
+        }
+      },
+      "t4_r4_p0_sent": {
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r1_p1_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r1_p2_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r2_p1_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r7_p3_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r6_p1_broadcast_bytes": {
+        "contains": "default",
+        "values": {
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        },
+        "type": "trend"
+      },
+      "t4_r7_p2_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r2_p2_accepted": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r0_p1_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r1_p3_latency_ms": {
+        "values": {
+          "max": 10001,
+          "avg": 4803.64,
+          "min": 1,
+          "med": 5231,
+          "p(95)": 9267.249999999998,
+          "p(99)": 10001
+        },
+        "type": "trend",
+        "contains": "default"
+      },
+      "t4_missing_accepted": {
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p1_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r9_p3_accepted": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "vus": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1,
+          "min": 1,
+          "max": 1
+        }
+      },
+      "t4_r0_p2_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9994001799460162,
+          "min": 0,
+          "max": 1.9994001799460162
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p2_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9994001799460162,
+          "min": 0,
+          "max": 1.9994001799460162
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p2_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r1_p2_latency_ms": {
+        "values": {
+          "avg": 16.52,
+          "min": 1,
+          "med": 14,
+          "p(95)": 45.05,
+          "p(99)": 62.02000000000001,
+          "max": 64
+        },
+        "type": "trend",
+        "contains": "default"
+      },
+      "t4_r2_p0_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9986009793144799,
+          "min": 0,
+          "max": 1.9986009793144799
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p2_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        }
+      },
+      "t4_r2_p0_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p1_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r9_p0_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p3_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p0_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r1_p3_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.998800719568259,
+          "min": 0,
+          "max": 1.998800719568259
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r3_p1_other_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r7_p1_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r9_p0_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 9.55,
+          "min": 2,
+          "med": 9,
+          "p(95)": 17,
+          "p(99)": 26.030000000000015,
+          "max": 29
+        }
+      },
+      "t4_r0_p2_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r4_p0_latency_samples": {
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        },
+        "type": "counter"
+      },
+      "t4_r5_p0_actual_rate": {
+        "values": {
+          "min": 0,
+          "max": 1.9986009793144799,
+          "value": 1.9986009793144799
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge",
+        "contains": "default"
+      },
+      "t4_r4_p2_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p1_sent": {
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        }
+      },
+      "t4_r1_p1_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "checks": {
+        "values": {
+          "fails": 0,
+          "rate": 1,
+          "passes": 1
+        },
+        "thresholds": {
+          "rate==1": {
+            "ok": true
+          }
+        },
+        "type": "rate",
+        "contains": "default"
+      },
+      "t4_r8_p1_rejected": {
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r0_p3_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r3_p0_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r0_p2_latency_ms": {
+        "contains": "default",
+        "values": {
+          "med": 8,
+          "p(95)": 51.05,
+          "p(99)": 65,
+          "max": 65,
+          "avg": 14.07,
+          "min": 0
+        },
+        "type": "trend"
+      },
+      "t4_r9_p0_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 17.099999999999987,
+          "max": 19,
+          "avg": 6.3,
+          "min": 0,
+          "med": 6,
+          "p(95)": 9.500000000000007
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p3_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p1_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 488,
+          "min": 488,
+          "med": 488
+        }
+      },
+      "t4_r1_p0_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p2_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p1_other_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r3_p1_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 9.2,
+          "min": 3,
+          "med": 8,
+          "p(95)": 21,
+          "p(99)": 29.050000000000026,
+          "max": 34
+        }
+      },
+      "t4_r0_p1_sent": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "ws_msgs_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 43700,
+          "rate": 584.065714316111
+        }
+      },
+      "t4_r4_p0_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r9_p1_rejected": {
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p3_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r3_p1_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.999000499750125,
+          "min": 0,
+          "max": 1.999000499750125
+        },
+        "thresholds": {
+          "value<=2.1": {
+            "ok": true
+          },
+          "value>=1.9": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r1_p3_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r8_p1_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r3_p3_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 4813.92,
+          "min": 3,
+          "med": 5304,
+          "p(95)": 9340.599999999999,
+          "p(99)": 9765.03,
+          "max": 9768
+        }
+      },
+      "t4_r7_p2_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 488,
+          "avg": 487.5,
+          "min": 487,
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488
+        }
+      },
+      "t4_errors": {
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r2_p3_accepted": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r1_p1_latency_samples": {
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        },
+        "type": "counter"
+      },
+      "t4_r2_p2_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r8_p0_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 6,
+          "p(95)": 9.500000000000007,
+          "p(99)": 17.099999999999987,
+          "max": 19,
+          "avg": 6.3,
+          "min": 0
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r4_p3_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_missing_results": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p1_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.999000499750125,
+          "min": 0,
+          "max": 1.999000499750125
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p1_received": {
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r9_p0_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r1_p1_room_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r1_p1_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 4,
+          "p(95)": 10.350000000000005,
+          "p(99)": 15.669999999999991,
+          "max": 17,
+          "avg": 4.85,
+          "min": 1
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r1_p3_send_lag_ms": {
+        "contains": "default",
+        "values": {
+          "avg": 5.25,
+          "min": 0,
+          "med": 5,
+          "p(95)": 9.250000000000004,
+          "p(99)": 13.049999999999994,
+          "max": 14
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend"
+      },
+      "t4_r0_p3_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r2_p1_send_lag_ms": {
+        "contains": "default",
+        "values": {
+          "avg": 4.85,
+          "min": 1,
+          "med": 4,
+          "p(95)": 10.350000000000005,
+          "p(99)": 15.669999999999991,
+          "max": 17
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend"
+      },
+      "t4_r3_p3_send_lag_ms": {
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 5,
+          "p(95)": 9.250000000000004,
+          "p(99)": 13.049999999999994,
+          "max": 14,
+          "avg": 5.25,
+          "min": 0
+        }
+      },
+      "t4_r5_p3_connection_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r7_p2_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_start_lag_ms": {
+        "thresholds": {
+          "value>=0": {
+            "ok": true
+          },
+          "value<1000": {
+            "ok": true
+          }
+        },
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 19,
+          "min": 19,
+          "max": 19
+        }
+      },
+      "t4_r9_p1_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r1_p2_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "med": 5.5,
+          "p(95)": 10.250000000000004,
+          "p(99)": 14.049999999999994,
+          "max": 15,
+          "avg": 5.9
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r4_p2_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9994001799460162,
+          "min": 0,
+          "max": 1.9994001799460162
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p2_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 73,
+          "avg": 26.93,
+          "min": 3,
+          "med": 20,
+          "p(95)": 67,
+          "p(99)": 72.01
+        }
+      },
+      "t4_r2_p3_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r6_p2_received": {
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        },
+        "type": "counter"
+      },
+      "t4_r9_p1_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r4_p2_connection_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r3_p0_sent": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r0_p0_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r2_p3_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r7_p0_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.05,
+          "min": 486
+        }
+      },
+      "t4_r2_p2_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r0_p0_other_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r2_p3_send_lag_ms": {
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 13.049999999999994,
+          "max": 14,
+          "avg": 5.25,
+          "min": 0,
+          "med": 5,
+          "p(95)": 9.250000000000004
+        }
+      },
+      "t4_r8_p2_room_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r3_p3_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r5_p0_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r9_p0_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r1_p1_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.999000499750125,
+          "min": 0,
+          "max": 1.999000499750125
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p1_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p0_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 19.049999999999997,
+          "p(99)": 26,
+          "max": 26,
+          "avg": 10.4,
+          "min": 0,
+          "med": 10
+        }
+      },
+      "t4_r5_p0_other_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r6_p3_other_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r3_p1_accepted": {
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "type": "counter"
+      },
+      "t4_r8_p0_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "max": 1.9986009793144799,
+          "value": 1.9986009793144799
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r5_p3_latency_ms": {
+        "contains": "default",
+        "values": {
+          "min": 7,
+          "med": 5138.5,
+          "p(95)": 9481.449999999999,
+          "p(99)": 9837.2,
+          "max": 9956,
+          "avg": 4808.5
+        },
+        "type": "trend"
+      },
+      "t4_r7_p1_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 24.099999999999994,
+          "p(99)": 33.010000000000005,
+          "max": 34,
+          "avg": 12.69,
+          "min": 2,
+          "med": 12
+        }
+      },
+      "t4_r6_p0_sent": {
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r3_p3_latency_samples": {
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        },
+        "type": "counter"
+      },
+      "t4_r2_p3_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r7_p3_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 13.36534815368675,
+          "count": 1000
+        }
+      },
+      "t4_r1_p2_sent": {
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r8_p1_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r3_p3_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p3_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r5_p2_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.5,
+          "min": 487,
+          "med": 487.5,
+          "p(95)": 488
+        }
+      },
+      "t4_r7_p3_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p1_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r0_p3_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_order_violations": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p3_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 9348.849999999999,
+          "p(99)": 9903.18,
+          "max": 9921,
+          "avg": 4805.45,
+          "min": 1,
+          "med": 5196
+        }
+      },
+      "t4_r4_p3_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 13.049999999999994,
+          "max": 14,
+          "avg": 5.25,
+          "min": 0,
+          "med": 5,
+          "p(95)": 9.250000000000004
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p2_latency_samples": {
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        },
+        "type": "counter"
+      },
+      "t4_r2_p3_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r2_p0_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p0_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r9_p3_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p2_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r4_p1_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r9_p1_connection_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r1_p1_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r5_p2_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 64.06000000000003,
+          "max": 70,
+          "avg": 20.7,
+          "min": 1,
+          "med": 16,
+          "p(95)": 49.599999999999966
+        }
+      },
+      "t4_r0_p3_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p0_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r9_p0_latency_samples": {
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r1_p2_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p3_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r7_p0_room_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r2_p1_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        }
+      },
+      "t4_r3_p0_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r2_p1_actual_rate": {
+        "values": {
+          "value": 1.999000499750125,
+          "min": 0,
+          "max": 1.999000499750125
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge",
+        "contains": "default"
+      },
+      "t4_r4_p1_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "min": 1,
+          "med": 9,
+          "p(95)": 27.19999999999999,
+          "p(99)": 32.02000000000001,
+          "max": 34,
+          "avg": 10.46
+        }
+      },
+      "t4_r6_p3_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.998800719568259,
+          "min": 0,
+          "max": 1.998800719568259
+        },
+        "thresholds": {
+          "value<=2.1": {
+            "ok": true
+          },
+          "value>=1.9": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r4_p0_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r3_p2_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r5_p1_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(95)": 18,
+          "p(99)": 29.050000000000026,
+          "max": 34,
+          "avg": 10.39,
+          "min": 2,
+          "med": 10
+        }
+      },
+      "t4_r5_p1_other_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_duplicates": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p3_other_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r9_p1_send_lag_ms": {
+        "values": {
+          "min": 1,
+          "med": 4,
+          "p(95)": 10.350000000000005,
+          "p(99)": 15.669999999999991,
+          "max": 17,
+          "avg": 4.85
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend",
+        "contains": "default"
+      },
+      "t4_r2_p2_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "med": 17,
+          "p(95)": 63.05,
+          "p(99)": 86.16000000000008,
+          "max": 102,
+          "avg": 22.41
+        }
+      },
+      "t4_r7_p0_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0.26730696307373497,
+          "count": 20
+        }
+      },
+      "t4_r8_p1_latency_ms": {
+        "contains": "default",
+        "values": {
+          "p(95)": 20.049999999999997,
+          "p(99)": 34,
+          "max": 34,
+          "avg": 12.33,
+          "min": 3,
+          "med": 12
+        },
+        "type": "trend"
+      },
+      "t4_r2_p2_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488,
+          "avg": 487.5,
+          "min": 487
+        }
+      },
+      "t4_r1_p0_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r6_p2_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 14.049999999999994,
+          "max": 15,
+          "avg": 5.9,
+          "min": 0,
+          "med": 5.5,
+          "p(95)": 10.250000000000004
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r5_p3_sent": {
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r9_p1_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "data_received": {
+        "type": "counter",
+        "contains": "data",
+        "values": {
+          "count": 19961510,
+          "rate": 266792.5308232996
+        }
+      },
+      "t4_r8_p3_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_isolation_failures": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r4_p2_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p2_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p3_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r2_p0_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r7_p2_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p0_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r3_p2_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r9_p0_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r0_p0_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 487.05,
+          "min": 486,
+          "med": 487.5,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r7_p0_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 17.099999999999987,
+          "max": 19,
+          "avg": 6.3,
+          "min": 0,
+          "med": 6,
+          "p(95)": 9.500000000000007
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r5_p3_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 488,
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488
+        }
+      },
+      "t4_r9_p0_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r0_p3_missing": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r5_p3_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r6_p1_actual_rate": {
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        },
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.999000499750125,
+          "min": 0,
+          "max": 1.999000499750125
+        }
+      },
+      "t4_r1_p3_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 13.36534815368675,
+          "count": 1000
+        }
+      },
+      "t4_r3_p2_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9994001799460162,
+          "min": 0,
+          "max": 1.9994001799460162
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r2_p0_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "min": 0,
+          "med": 6,
+          "p(95)": 9.500000000000007,
+          "p(99)": 17.099999999999987,
+          "max": 19,
+          "avg": 6.3
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p0_latency_samples": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 100,
+          "rate": 1.336534815368675
+        }
+      },
+      "t4_r5_p2_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 5.5,
+          "p(95)": 10.250000000000004,
+          "p(99)": 14.049999999999994,
+          "max": 15,
+          "avg": 5.9,
+          "min": 0
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r0_p1_missing": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r9_p2_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p0_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 0,
+          "count": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r8_p1_send_lag_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 15.669999999999991,
+          "max": 17,
+          "avg": 4.85,
+          "min": 1,
+          "med": 4,
+          "p(95)": 10.350000000000005
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r5_p2_rejected": {
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r6_p2_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r9_p1_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r3_p2_other_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter"
+      },
+      "t4_r2_p0_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r1_p1_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "p(99)": 19.010000000000005,
+          "max": 20,
+          "avg": 6.57,
+          "min": 1,
+          "med": 5,
+          "p(95)": 15
+        }
+      },
+      "t4_r9_p3_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r9_p2_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 13.36534815368675,
+          "count": 1000
+        }
+      },
+      "t4_r7_p3_sent": {
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r9_p3_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "max": 9619,
+          "avg": 4770.28,
+          "min": 3,
+          "med": 5237,
+          "p(95)": 9407.8,
+          "p(99)": 9617.02
+        }
+      },
+      "t4_r5_p0_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p0_rejected": {
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t4_r8_p2_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r4_p0_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p1_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r2_p2_sent": {
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter"
+      },
+      "t4_r5_p1_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "rate": 13.36534815368675,
+          "count": 1000
+        }
+      },
+      "t4_r1_p1_missing": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r7_p2_actual_rate": {
+        "type": "gauge",
+        "contains": "default",
+        "values": {
+          "value": 1.9994001799460162,
+          "min": 0,
+          "max": 1.9994001799460162
+        },
+        "thresholds": {
+          "value>=1.9": {
+            "ok": true
+          },
+          "value<=2.1": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r6_p1_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r7_p0_received": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 1000,
+          "rate": 13.36534815368675
+        }
+      },
+      "t4_r1_p0_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r9_p3_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r2_p2_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r5_p1_accepted": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        }
+      },
+      "t4_r7_p2_room_rejected": {
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "type": "counter",
+        "contains": "default"
+      },
+      "t4_r3_p0_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        },
+        "thresholds": {
+          "count==0": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r5_p1_send_lag_ms": {
+        "values": {
+          "med": 4,
+          "p(95)": 10.350000000000005,
+          "p(99)": 15.669999999999991,
+          "max": 17,
+          "avg": 4.85,
+          "min": 1
+        },
+        "thresholds": {
+          "max<1000": {
+            "ok": true
+          }
+        },
+        "type": "trend",
+        "contains": "default"
+      },
+      "t4_r6_p3_sent": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        }
+      },
+      "t4_r5_p3_other_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r8_p0_room_rejected": {
+        "type": "counter",
+        "contains": "default",
+        "values": {
+          "count": 0,
+          "rate": 0
+        }
+      },
+      "t4_r7_p3_broadcast_bytes": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "avg": 488,
+          "min": 488,
+          "med": 488,
+          "p(95)": 488,
+          "p(99)": 488,
+          "max": 488
+        }
+      },
+      "t4_r2_p1_latency_ms": {
+        "type": "trend",
+        "contains": "default",
+        "values": {
+          "med": 6,
+          "p(95)": 21,
+          "p(99)": 28.010000000000005,
+          "max": 29,
+          "avg": 8.17,
+          "min": 1
+        }
+      },
+      "t4_r7_p0_sent": {
+        "values": {
+          "count": 20,
+          "rate": 0.26730696307373497
+        },
+        "thresholds": {
+          "count==20": {
+            "ok": true
+          }
+        },
+        "type": "counter",
+        "contains": "default"
+      }
+    },
+    "root_group": {
+      "groups": [],
+      "checks": [
+          {
+            "name": "各观众收齐全部已接受输入且发送结果齐全",
+            "path": "::各观众收齐全部已接受输入且发送结果齐全",
+            "id": "f3d7af9c0f6b540cabe6af2960f86542",
+            "passes": 1,
+            "fails": 0
+          }
+        ],
+      "name": "",
+      "path": "",
+      "id": "d41d8cd98f00b204e9800998ecf8427e"
+    }
+  }
+}

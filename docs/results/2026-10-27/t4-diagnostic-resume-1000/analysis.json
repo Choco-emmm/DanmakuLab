@@ -1,0 +1,299 @@
+{
+  "formalEligible": false,
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "runs": [
+    {
+      "name": "all-01",
+      "loadPassed": true,
+      "client": {
+        "sent": 4000,
+        "accepted": 2048,
+        "rejected": 1952,
+        "acceptedDeliveryDemand": 664000,
+        "received": 664000
+      },
+      "roles": [
+        {
+          "role": "normal",
+          "exitCode": 0,
+          "failedThresholds": [],
+          "eventCount": 85,
+          "inputStoppedAtMs": 1793101973929,
+          "closingAtMs": 1793101978930,
+          "settledAtMs": 1793101978983,
+          "closeDurationMs": 53,
+          "firstFailure": null,
+          "closeRequested": 500,
+          "closeCompleted": 500,
+          "maxSendLagMs": 20,
+          "maxTickDriftMs": 17,
+          "maxObservedDemandMinusReceipts": 0,
+          "demandMinusReceiptsAtClose": 0,
+          "injectionObserved": false
+        },
+        {
+          "role": "hot",
+          "exitCode": 0,
+          "failedThresholds": [],
+          "eventCount": 85,
+          "inputStoppedAtMs": 1793101973928,
+          "closingAtMs": 1793101978928,
+          "settledAtMs": 1793101978987,
+          "closeDurationMs": 59,
+          "firstFailure": null,
+          "closeRequested": 500,
+          "closeCompleted": 500,
+          "maxSendLagMs": 248,
+          "maxTickDriftMs": 241,
+          "maxObservedDemandMinusReceipts": 313,
+          "demandMinusReceiptsAtClose": 0,
+          "injectionObserved": false
+        }
+      ],
+      "maximumObservedDifferenceBeforeClose": {
+        "normal": 0,
+        "hot": 313
+      },
+      "sampledMaxima": {
+        "lab.outbound.bytes": 211358.0,
+        "lab.outbound.messages": 346.0,
+        "lab.outbound.writes.inflight": 0,
+        "lab.dispatch.bytes": 0
+      },
+      "sampledMaximaDefinitelyBeforeClose": {
+        "lab.outbound.bytes": 211358.0,
+        "lab.outbound.messages": 346.0,
+        "lab.outbound.writes.inflight": 0,
+        "lab.dispatch.bytes": 0
+      },
+      "normalWorstRoomP99Ms": [
+        20.010000000000005,
+        20.010000000000005,
+        27,
+        24.010000000000005
+      ],
+      "collectorErrors": [],
+      "cleanupZero": true
+    },
+    {
+      "name": "batched-01",
+      "loadPassed": true,
+      "client": {
+        "sent": 4000,
+        "accepted": 2049,
+        "rejected": 1951,
+        "acceptedDeliveryDemand": 664500,
+        "received": 664500
+      },
+      "roles": [
+        {
+          "role": "normal",
+          "exitCode": 0,
+          "failedThresholds": [],
+          "eventCount": 106,
+          "inputStoppedAtMs": 1793102063055,
+          "closingAtMs": 1793102068056,
+          "settledAtMs": 1793102069970,
+          "closeDurationMs": 1914,
+          "firstFailure": null,
+          "closeRequested": 500,
+          "closeCompleted": 500,
+          "maxSendLagMs": 17,
+          "maxTickDriftMs": 19,
+          "maxObservedDemandMinusReceipts": 0,
+          "demandMinusReceiptsAtClose": 0,
+          "injectionObserved": false
+        },
+        {
+          "role": "hot",
+          "exitCode": 0,
+          "failedThresholds": [],
+          "eventCount": 106,
+          "inputStoppedAtMs": 1793102063050,
+          "closingAtMs": 1793102068051,
+          "settledAtMs": 1793102069967,
+          "closeDurationMs": 1916,
+          "firstFailure": null,
+          "closeRequested": 500,
+          "closeCompleted": 500,
+          "maxSendLagMs": 115,
+          "maxTickDriftMs": 109,
+          "maxObservedDemandMinusReceipts": 94,
+          "demandMinusReceiptsAtClose": 0,
+          "injectionObserved": false
+        }
+      ],
+      "maximumObservedDifferenceBeforeClose": {
+        "normal": 0,
+        "hot": 94
+      },
+      "sampledMaxima": {
+        "lab.outbound.bytes": 125904.0,
+        "lab.outbound.messages": 426.0,
+        "lab.outbound.writes.inflight": 7.0,
+        "lab.dispatch.bytes": 488.0
+      },
+      "sampledMaximaDefinitelyBeforeClose": {
+        "lab.outbound.bytes": 125904.0,
+        "lab.outbound.messages": 426.0,
+        "lab.outbound.writes.inflight": 7.0,
+        "lab.dispatch.bytes": 488.0
+      },
+      "normalWorstRoomP99Ms": [
+        24,
+        27,
+        23.010000000000005,
+        21
+      ],
+      "collectorErrors": [],
+      "cleanupZero": true
+    },
+    {
+      "name": "batched-02",
+      "loadPassed": true,
+      "client": {
+        "sent": 4000,
+        "accepted": 2049,
+        "rejected": 1951,
+        "acceptedDeliveryDemand": 664500,
+        "received": 664500
+      },
+      "roles": [
+        {
+          "role": "normal",
+          "exitCode": 0,
+          "failedThresholds": [],
+          "eventCount": 106,
+          "inputStoppedAtMs": 1793102154599,
+          "closingAtMs": 1793102159599,
+          "settledAtMs": 1793102161515,
+          "closeDurationMs": 1916,
+          "firstFailure": null,
+          "closeRequested": 500,
+          "closeCompleted": 500,
+          "maxSendLagMs": 16,
+          "maxTickDriftMs": 23,
+          "maxObservedDemandMinusReceipts": 0,
+          "demandMinusReceiptsAtClose": 0,
+          "injectionObserved": false
+        },
+        {
+          "role": "hot",
+          "exitCode": 0,
+          "failedThresholds": [],
+          "eventCount": 106,
+          "inputStoppedAtMs": 1793102154597,
+          "closingAtMs": 1793102159598,
+          "settledAtMs": 1793102161514,
+          "closeDurationMs": 1916,
+          "firstFailure": null,
+          "closeRequested": 500,
+          "closeCompleted": 500,
+          "maxSendLagMs": 159,
+          "maxTickDriftMs": 157,
+          "maxObservedDemandMinusReceipts": 419,
+          "demandMinusReceiptsAtClose": 0,
+          "injectionObserved": false
+        }
+      ],
+      "maximumObservedDifferenceBeforeClose": {
+        "normal": 0,
+        "hot": 419
+      },
+      "sampledMaxima": {
+        "lab.outbound.bytes": 469955.0,
+        "lab.outbound.messages": 782.0,
+        "lab.outbound.writes.inflight": 11.0,
+        "lab.dispatch.bytes": 487.0
+      },
+      "sampledMaximaDefinitelyBeforeClose": {
+        "lab.outbound.bytes": 469955.0,
+        "lab.outbound.messages": 782.0,
+        "lab.outbound.writes.inflight": 11.0,
+        "lab.dispatch.bytes": 487.0
+      },
+      "normalWorstRoomP99Ms": [
+        22,
+        18,
+        26.010000000000005,
+        31.02000000000001
+      ],
+      "collectorErrors": [],
+      "cleanupZero": true
+    },
+    {
+      "name": "all-02",
+      "loadPassed": true,
+      "client": {
+        "sent": 4000,
+        "accepted": 2050,
+        "rejected": 1950,
+        "acceptedDeliveryDemand": 665000,
+        "received": 665000
+      },
+      "roles": [
+        {
+          "role": "normal",
+          "exitCode": 0,
+          "failedThresholds": [],
+          "eventCount": 85,
+          "inputStoppedAtMs": 1793102246601,
+          "closingAtMs": 1793102251601,
+          "settledAtMs": 1793102251650,
+          "closeDurationMs": 49,
+          "firstFailure": null,
+          "closeRequested": 500,
+          "closeCompleted": 500,
+          "maxSendLagMs": 20,
+          "maxTickDriftMs": 18,
+          "maxObservedDemandMinusReceipts": 0,
+          "demandMinusReceiptsAtClose": 0,
+          "injectionObserved": false
+        },
+        {
+          "role": "hot",
+          "exitCode": 0,
+          "failedThresholds": [],
+          "eventCount": 85,
+          "inputStoppedAtMs": 1793102246604,
+          "closingAtMs": 1793102251605,
+          "settledAtMs": 1793102251652,
+          "closeDurationMs": 47,
+          "firstFailure": null,
+          "closeRequested": 500,
+          "closeCompleted": 500,
+          "maxSendLagMs": 121,
+          "maxTickDriftMs": 115,
+          "maxObservedDemandMinusReceipts": 0,
+          "demandMinusReceiptsAtClose": 0,
+          "injectionObserved": false
+        }
+      ],
+      "maximumObservedDifferenceBeforeClose": {
+        "normal": 0,
+        "hot": 0
+      },
+      "sampledMaxima": {
+        "lab.outbound.bytes": 1561809.0,
+        "lab.outbound.messages": 3000.0,
+        "lab.outbound.writes.inflight": 14.0,
+        "lab.dispatch.bytes": 0
+      },
+      "sampledMaximaDefinitelyBeforeClose": {
+        "lab.outbound.bytes": 1561809.0,
+        "lab.outbound.messages": 3000.0,
+        "lab.outbound.writes.inflight": 14.0,
+        "lab.dispatch.bytes": 0
+      },
+      "normalWorstRoomP99Ms": [
+        23,
+        21,
+        27,
+        22
+      ],
+      "collectorErrors": [],
+      "cleanupZero": true
+    }
+  ],
+  "note": "All fixed attempts retained; sequential metric snapshots are not atomic. Observed differences are not exact server backlog."
+}

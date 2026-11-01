@@ -1,0 +1,5 @@
+{
+  "evidenceComplete": false,
+  "passed": false,
+  "error": "FileNotFoundError: [Errno 2] No such file or directory: 'D:\\\\coding\\\\DanmakuLab\\\\.lab-artifacts\\\\hw-dev-smoke-01\\\\normal\\\\k6-summary.json'"
+}

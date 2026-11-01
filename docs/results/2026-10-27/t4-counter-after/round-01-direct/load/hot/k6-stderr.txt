@@ -1,0 +1,7 @@
+time="2026-10-27T15:33:01+08:00" level=warning msg="Error from API server" error="listen tcp 127.0.0.1:6565: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted."
+time="2026-10-27T15:33:03+08:00" level=info msg="T4 hot: all 500 joined; shared start=1793086411034" source=console
+time="2026-10-27T15:33:31+08:00" level=info msg="T4 phase 1/4: normal-only; ordinary 2/s/room; hot 0/s" source=console
+time="2026-10-27T15:33:41+08:00" level=info msg="T4 phase 2/4: hot-20-0; ordinary 2/s/room; hot 20/s" source=console
+time="2026-10-27T15:33:51+08:00" level=info msg="T4 phase 3/4: hot-100-1; ordinary 2/s/room; hot 100/s" source=console
+time="2026-10-27T15:34:18+08:00" level=error msg="thresholds on metrics 'checks, t4_errors, t4_missing_results, t4_r0_p2_actual_rate, t4_r0_p2_send_lag_ms, t4_r0_p2_sent, t4_r0_p3_actual_rate, t4_r0_p3_sent' have been crossed"
+

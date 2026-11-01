@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "D:\coding\DanmakuLab\scripts\tests\hotspot-diagnostic-summary.py", line 75, in <module>
+    result = audit(args.directory)
+  File "D:\coding\DanmakuLab\scripts\tests\hotspot-diagnostic-summary.py", line 49, in audit
+    gauges = read(directory / 'cleanup-gauges.json')
+  File "D:\coding\DanmakuLab\scripts\tests\hotspot-diagnostic-summary.py", line 14, in read
+    return json.loads(path.read_text(encoding='utf-8-sig'))
+                      ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 787, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python314\Lib\pathlib\__init__.py", line 771, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'docs\\results\\2026-10-27\\t4-diagnostic-smoke-60-run3\\cleanup-gauges.json'
+

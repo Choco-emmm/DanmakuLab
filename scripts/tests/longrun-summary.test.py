@@ -2,6 +2,7 @@
 import argparse
 import json
 import math
+import re
 from pathlib import Path
 
 
@@ -9,10 +10,29 @@ def read(folder, name):
     return json.loads((folder / name).read_text(encoding='utf-8-sig'))
 
 
+GAUGES = ('lab.connections','lab.rooms','lab.outbound.bytes','lab.outbound.messages','lab.outbound.slots',
+          'lab.outbound.tasks','lab.outbound.writers.active','lab.outbound.writes.inflight',
+          'lab.dispatch.bytes','lab.dispatch.messages','lab.dispatch.rooms','lab.dispatch.ready')
+
+
+def verify_strict_evidence(folder, config, status):
+    """新版归档必须有实际JAR身份及全部12项Gauge；旧历史格式单独保留兼容。"""
+    identity, artifact = read(folder,'artifact-identity.json'), read(folder,'jar-sha256.json')
+    assert status['artifactIdentityVerified'] and identity['verified']
+    assert identity['sha256']==artifact['Hash']==config['jarSha256']
+    assert identity['path'].lower()==artifact['Path'].lower()
+    command=(folder/'server-command.txt').read_text(encoding='utf-8-sig')
+    assert re.search(r'-jar\s+"?'+re.escape(identity['path'])+r'"?(?:\s|$)',command,re.I)
+    cleanup=read(folder,'cleanup-gauges.json')
+    assert set(cleanup)==set(GAUGES) and all(v==0 for v in cleanup.values()), '12项Gauge缺失、未知或非零'
+
+
 def verify(folder, formal=False, expect_failure=False):
     report = read(folder, 'client/summary.json')
     config = read(folder, 'config.json')
     status = read(folder, 'run-status.json')
+    if config.get('evidenceSchemaVersion',1)>=2:
+        verify_strict_evidence(folder,config,status)
     process = read(folder, 'python-status.json')
     delta = read(folder, 'counter-delta.json')
     assert len(report['perViewerMeasured']) == config['connections']

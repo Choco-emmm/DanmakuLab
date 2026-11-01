@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-10-27T13:14:16.6871621+00:00",
+  "runFormal": true,
+  "testsPassed": false,
+  "prerequisitesPassed": false,
+  "formalCompleted": 0,
+  "gateReasons": [],
+  "notExecuted": [],
+  "rows": [],
+  "error": "子进程退出码为 1。",
+  "rawRoot": "D:\\coding\\DanmakuLab\\.lab-artifacts\\t4-workers-5b807a25a96a4d7caade9697fe637051",
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "port": 8085,
+  "endedAt": "2026-10-27T13:14:36.4620376+00:00",
+  "awakeReleased": true
+}

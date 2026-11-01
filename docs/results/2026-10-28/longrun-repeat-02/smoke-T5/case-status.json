@@ -1,0 +1,16 @@
+{
+  "name": "smoke-T5",
+  "scenario": "T5",
+  "connections": 20,
+  "slowConnections": 0,
+  "seconds": 10,
+  "warmupSeconds": 2,
+  "formal": false,
+  "directory": "D:\\coding\\DanmakuLab\\.lab-artifacts\\longrun-b6afd81b9d9640bc809e045228dd2bc1\\smoke-T5",
+  "pid": 47244,
+  "startedAt": "2026-10-28T00:53:12.7705123+00:00",
+  "passed": true,
+  "stopped": true,
+  "error": null,
+  "endedAt": "2026-10-28T00:53:41.6838933+00:00"
+}

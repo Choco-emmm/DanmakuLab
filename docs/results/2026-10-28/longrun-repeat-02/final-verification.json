@@ -1,0 +1,458 @@
+{
+  "passed": true,
+  "verifiedAtUtc": "2026-10-28T05:44:53.775056+00:00",
+  "formalPassed": 6,
+  "t3MeasuredNormal": 53460000,
+  "t5MeasuredNormal": 108000000,
+  "totalMeasuredNormal": 161460000,
+  "frozenFiles": 93,
+  "indexedFiles": 310,
+  "sourceArchive": {
+    "path": "D:\\coding\\DanmakuLab\\.lab-artifacts\\longrun-repeat-02-source.zip",
+    "sha256": "523AC949305B9FE8F79D41D1356140C8144525FD6EEADB9204A003729617263F",
+    "files": 93
+  },
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "runtimeFilesIdentical": 27,
+  "allTwelveGaugesZero": true,
+  "allOwnedJvmsStopped": true,
+  "noOverlappingCases": true,
+  "awakeReleased": true,
+  "rows": [
+    {
+      "name": "formal-1-T3",
+      "scenario": "T3",
+      "normalReceived": 17820000,
+      "normalExpected": 17820000,
+      "normalWarmupReceived": 1188000,
+      "normalLatencyMs": {
+        "samples": 1782000,
+        "p50": 13,
+        "p95": 24,
+        "p99": 31,
+        "max": 77,
+        "avg": 12.867047699214366,
+        "overflowAbove120000ms": 0
+      },
+      "maxSendLagMs": 75.27850000769831,
+      "actualInputPerSecond": 20.00004896011981,
+      "actualMeasureSeconds": 899.9977968000021,
+      "slowReceived": 590,
+      "slowPotentialDemand": 180000,
+      "failures": {
+        "slow:read": 10
+      },
+      "server": {
+        "lab.deliveries.submitted": 19021730.0,
+        "lab.outbound.dropped": 1300.0,
+        "lab.messages.rejected": 0.0,
+        "lab.dispatch.discarded": 0.0,
+        "lab.outbound.closed": 10.0,
+        "lab.deliveries.expected": 19023250.0,
+        "lab.deliveries.enqueued": 19023250.0,
+        "lab.messages.accepted": 19200.0,
+        "lab.writes.failed": 10.0,
+        "lab.deliveries.cancelled": 0.0,
+        "lab.messages.input": 19200.0
+      },
+      "slowPerViewer": [
+        {
+          "viewer": 0,
+          "received": 59,
+          "readBytes": 29288,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 1,
+          "received": 59,
+          "readBytes": 29288,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 2,
+          "received": 59,
+          "readBytes": 29288,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 3,
+          "received": 59,
+          "readBytes": 29288,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 4,
+          "received": 59,
+          "readBytes": 29288,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 5,
+          "received": 59,
+          "readBytes": 29288,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 6,
+          "received": 59,
+          "readBytes": 29288,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 7,
+          "received": 59,
+          "readBytes": 29288,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 8,
+          "received": 59,
+          "readBytes": 29288,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 9,
+          "received": 59,
+          "readBytes": 29288,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        }
+      ]
+    },
+    {
+      "name": "formal-2-T3",
+      "scenario": "T3",
+      "normalReceived": 17820000,
+      "normalExpected": 17820000,
+      "normalWarmupReceived": 1188000,
+      "normalLatencyMs": {
+        "samples": 1782000,
+        "p50": 13,
+        "p95": 23,
+        "p99": 30,
+        "max": 80,
+        "avg": 12.586465207631875,
+        "overflowAbove120000ms": 0
+      },
+      "maxSendLagMs": 58.330100000603124,
+      "actualInputPerSecond": 19.999951517895433,
+      "actualMeasureSeconds": 900.0021816999943,
+      "slowReceived": 1180,
+      "slowPotentialDemand": 180000,
+      "failures": {
+        "slow:read": 10
+      },
+      "server": {
+        "lab.messages.input": 19200.0,
+        "lab.deliveries.expected": 19023240.0,
+        "lab.deliveries.enqueued": 19023240.0,
+        "lab.dispatch.discarded": 0.0,
+        "lab.outbound.dropped": 1320.0,
+        "lab.writes.failed": 0.0,
+        "lab.deliveries.submitted": 19021720.0,
+        "lab.messages.accepted": 19200.0,
+        "lab.outbound.closed": 10.0,
+        "lab.deliveries.cancelled": 0.0,
+        "lab.messages.rejected": 0.0
+      },
+      "slowPerViewer": [
+        {
+          "viewer": 0,
+          "received": 118,
+          "readBytes": 57704,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 1,
+          "received": 118,
+          "readBytes": 57704,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 2,
+          "received": 118,
+          "readBytes": 57704,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 3,
+          "received": 118,
+          "readBytes": 57704,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 4,
+          "received": 118,
+          "readBytes": 57704,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 5,
+          "received": 118,
+          "readBytes": 57704,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 6,
+          "received": 118,
+          "readBytes": 57704,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 7,
+          "received": 118,
+          "readBytes": 57704,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 8,
+          "received": 118,
+          "readBytes": 57704,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 9,
+          "received": 118,
+          "readBytes": 57704,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        }
+      ]
+    },
+    {
+      "name": "formal-3-T3",
+      "scenario": "T3",
+      "normalReceived": 17820000,
+      "normalExpected": 17820000,
+      "normalWarmupReceived": 1188000,
+      "normalLatencyMs": {
+        "samples": 1782000,
+        "p50": 13,
+        "p95": 23,
+        "p99": 29,
+        "max": 140,
+        "avg": 12.421071268237935,
+        "overflowAbove120000ms": 0
+      },
+      "maxSendLagMs": 127.65059998491779,
+      "actualInputPerSecond": 20.00002423780706,
+      "actualMeasureSeconds": 899.998909300004,
+      "slowReceived": 948,
+      "slowPotentialDemand": 180000,
+      "failures": {
+        "slow:read": 10
+      },
+      "server": {
+        "lab.outbound.closed": 10.0,
+        "lab.deliveries.submitted": 19022019.0,
+        "lab.messages.accepted": 19200.0,
+        "lab.deliveries.cancelled": 0.0,
+        "lab.deliveries.expected": 19026269.0,
+        "lab.writes.failed": 9.0,
+        "lab.messages.rejected": 0.0,
+        "lab.dispatch.discarded": 0.0,
+        "lab.messages.input": 19200.0,
+        "lab.outbound.dropped": 4040.0,
+        "lab.deliveries.enqueued": 19026269.0
+      },
+      "slowPerViewer": [
+        {
+          "viewer": 0,
+          "received": 89,
+          "readBytes": 43496,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 1,
+          "received": 89,
+          "readBytes": 43496,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 2,
+          "received": 147,
+          "readBytes": 71784,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 3,
+          "received": 89,
+          "readBytes": 43496,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 4,
+          "received": 89,
+          "readBytes": 43496,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 5,
+          "received": 89,
+          "readBytes": 43496,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 6,
+          "received": 89,
+          "readBytes": 43496,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 7,
+          "received": 89,
+          "readBytes": 43496,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 8,
+          "received": 89,
+          "readBytes": 43496,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        },
+        {
+          "viewer": 9,
+          "received": 89,
+          "readBytes": 43496,
+          "receiveBufferBytes": 1024,
+          "alive": false
+        }
+      ]
+    },
+    {
+      "name": "formal-4-T5",
+      "scenario": "T5",
+      "normalReceived": 36000000,
+      "normalExpected": 36000000,
+      "normalWarmupReceived": 1200000,
+      "normalLatencyMs": {
+        "samples": 3600000,
+        "p50": 15,
+        "p95": 28,
+        "p99": 36,
+        "max": 105,
+        "avg": 15.175483055555556,
+        "overflowAbove120000ms": 0
+      },
+      "maxSendLagMs": 89.24640000623185,
+      "actualInputPerSecond": 20.00009664380038,
+      "actualMeasureSeconds": 1799.9913020999957,
+      "slowReceived": 0,
+      "slowPotentialDemand": 0,
+      "failures": {},
+      "server": {
+        "lab.dispatch.discarded": 0.0,
+        "lab.messages.rejected": 0.0,
+        "lab.writes.failed": 0.0,
+        "lab.outbound.closed": 0.0,
+        "lab.deliveries.enqueued": 37200000.0,
+        "lab.outbound.dropped": 0.0,
+        "lab.messages.accepted": 37200.0,
+        "lab.deliveries.submitted": 37200000.0,
+        "lab.deliveries.cancelled": 0.0,
+        "lab.messages.input": 37200.0,
+        "lab.deliveries.expected": 37200000.0
+      },
+      "slowPerViewer": []
+    },
+    {
+      "name": "formal-5-T5",
+      "scenario": "T5",
+      "normalReceived": 36000000,
+      "normalExpected": 36000000,
+      "normalWarmupReceived": 1200000,
+      "normalLatencyMs": {
+        "samples": 3600000,
+        "p50": 18,
+        "p95": 29,
+        "p99": 39,
+        "max": 125,
+        "avg": 17.607704166666668,
+        "overflowAbove120000ms": 0
+      },
+      "maxSendLagMs": 93.04970000812318,
+      "actualInputPerSecond": 20.00010066161783,
+      "actualMeasureSeconds": 1799.9909404999926,
+      "slowReceived": 0,
+      "slowPotentialDemand": 0,
+      "failures": {},
+      "server": {
+        "lab.outbound.dropped": 0.0,
+        "lab.dispatch.discarded": 0.0,
+        "lab.deliveries.submitted": 37200000.0,
+        "lab.deliveries.enqueued": 37200000.0,
+        "lab.messages.rejected": 0.0,
+        "lab.deliveries.cancelled": 0.0,
+        "lab.outbound.closed": 0.0,
+        "lab.messages.accepted": 37200.0,
+        "lab.messages.input": 37200.0,
+        "lab.deliveries.expected": 37200000.0,
+        "lab.writes.failed": 0.0
+      },
+      "slowPerViewer": []
+    },
+    {
+      "name": "formal-6-T5",
+      "scenario": "T5",
+      "normalReceived": 36000000,
+      "normalExpected": 36000000,
+      "normalWarmupReceived": 1200000,
+      "normalLatencyMs": {
+        "samples": 3600000,
+        "p50": 17,
+        "p95": 28,
+        "p99": 37,
+        "max": 109,
+        "avg": 17.225907222222222,
+        "overflowAbove120000ms": 0
+      },
+      "maxSendLagMs": 88.80979999958072,
+      "actualInputPerSecond": 19.99990004605522,
+      "actualMeasureSeconds": 1800.0089958999888,
+      "slowReceived": 0,
+      "slowPotentialDemand": 0,
+      "failures": {},
+      "server": {
+        "lab.deliveries.expected": 37200000.0,
+        "lab.outbound.closed": 0.0,
+        "lab.messages.accepted": 37200.0,
+        "lab.deliveries.submitted": 37200000.0,
+        "lab.messages.input": 37200.0,
+        "lab.deliveries.cancelled": 0.0,
+        "lab.dispatch.discarded": 0.0,
+        "lab.messages.rejected": 0.0,
+        "lab.outbound.dropped": 0.0,
+        "lab.deliveries.enqueued": 37200000.0,
+        "lab.writes.failed": 0.0
+      },
+      "slowPerViewer": []
+    }
+  ]
+}

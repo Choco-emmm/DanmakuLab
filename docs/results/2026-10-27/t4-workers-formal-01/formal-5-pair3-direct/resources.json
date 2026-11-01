@@ -1,0 +1,83 @@
+{
+  "preparation": {
+    "samples": 6,
+    "completeClientSamples": 5,
+    "clientWorkingSetPeakBytes": 349679616,
+    "clientCpuPeakCores": 0.04918355301987015,
+    "serverWorkingSetPeakBytes": 332890112,
+    "serverCpuPeakCores": 0.8638012154479514,
+    "gaugePeaks": {
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.bytes.highwater": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.dispatch.mode.fair": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 0.0,
+      "lab.outbound.bytes.highwater": 10360.0,
+      "lab.outbound.messages": 0.0,
+      "lab.outbound.mode.buffered": 1.0,
+      "lab.outbound.slots": 1000.0,
+      "lab.outbound.tasks": 0.0,
+      "lab.outbound.writers.active": 0.0,
+      "lab.outbound.writes.inflight": 0.0
+    }
+  },
+  "input": {
+    "samples": 143,
+    "completeClientSamples": 143,
+    "clientWorkingSetPeakBytes": 443555840,
+    "clientCpuPeakCores": 3.705508898220356,
+    "serverWorkingSetPeakBytes": 348147712,
+    "serverCpuPeakCores": 1.4705518129581931,
+    "gaugePeaks": {
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.bytes.highwater": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.dispatch.mode.fair": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 158183.0,
+      "lab.outbound.bytes.highwater": 466333.0,
+      "lab.outbound.messages": 432.0,
+      "lab.outbound.mode.buffered": 1.0,
+      "lab.outbound.slots": 1000.0,
+      "lab.outbound.tasks": 415.0,
+      "lab.outbound.writers.active": 8.0,
+      "lab.outbound.writes.inflight": 15.0
+    }
+  },
+  "drain": {
+    "samples": 0,
+    "completeClientSamples": 0,
+    "clientWorkingSetPeakBytes": null,
+    "clientCpuPeakCores": null,
+    "serverWorkingSetPeakBytes": null,
+    "serverCpuPeakCores": null,
+    "gaugePeaks": {}
+  },
+  "closing": {
+    "samples": 1,
+    "completeClientSamples": 1,
+    "clientWorkingSetPeakBytes": 493576192,
+    "clientCpuPeakCores": 0.14204545454545456,
+    "serverWorkingSetPeakBytes": 349110272,
+    "serverCpuPeakCores": 0.12042984189723321,
+    "gaugePeaks": {
+      "lab.dispatch.bytes": 0.0,
+      "lab.dispatch.bytes.highwater": 0.0,
+      "lab.dispatch.messages": 0.0,
+      "lab.dispatch.mode.fair": 0.0,
+      "lab.dispatch.ready": 0.0,
+      "lab.dispatch.rooms": 0.0,
+      "lab.outbound.bytes": 0.0,
+      "lab.outbound.bytes.highwater": 466333.0,
+      "lab.outbound.messages": 0.0,
+      "lab.outbound.mode.buffered": 1.0,
+      "lab.outbound.slots": 0.0,
+      "lab.outbound.tasks": 0.0,
+      "lab.outbound.writers.active": 0.0,
+      "lab.outbound.writes.inflight": 0.0
+    }
+  }
+}

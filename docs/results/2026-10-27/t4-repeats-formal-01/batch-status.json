@@ -1,0 +1,29 @@
+{
+  "passed": false,
+  "completed": 2,
+  "error": "子进程超过 850 秒截止时间；保存证据后停止实验。",
+  "runs": [
+    {
+      "round": 1,
+      "mode": "direct",
+      "directory": "round-01-direct",
+      "startedAt": "2026-10-27T03:29:17.5083837+00:00",
+      "processId": 79116,
+      "passed": true,
+      "stopped": true,
+      "error": null,
+      "endedAt": "2026-10-27T03:42:05.4864801+00:00"
+    },
+    {
+      "round": 1,
+      "mode": "fair",
+      "directory": "round-01-fair",
+      "startedAt": "2026-10-27T03:42:07.4093648+00:00",
+      "processId": 32780,
+      "passed": false,
+      "stopped": true,
+      "error": "子进程超过 850 秒截止时间；保存证据后停止实验。",
+      "endedAt": "2026-10-27T05:57:08.9310198+00:00"
+    }
+  ]
+}

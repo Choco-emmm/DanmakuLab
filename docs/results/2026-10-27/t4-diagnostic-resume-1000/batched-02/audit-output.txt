@@ -1,0 +1,67 @@
+PASS: D:\coding\DanmakuLab\docs\results\2026-10-27\t4-diagnostic-resume-1000\batched-02\load; 1000 connections; 664500 actual deliveries
+{
+  "evidenceComplete": true,
+  "passed": true,
+  "formalEligible": false,
+  "roles": [
+    {
+      "role": "normal",
+      "exitCode": 0,
+      "failedThresholds": [],
+      "eventCount": 106,
+      "inputStoppedAtMs": 1793102154599,
+      "closingAtMs": 1793102159599,
+      "settledAtMs": 1793102161515,
+      "closeDurationMs": 1916,
+      "firstFailure": null,
+      "closeRequested": 500,
+      "closeCompleted": 500,
+      "maxSendLagMs": 16,
+      "maxTickDriftMs": 23,
+      "maxObservedDemandMinusReceipts": 0,
+      "demandMinusReceiptsAtClose": 0,
+      "injectionObserved": false
+    },
+    {
+      "role": "hot",
+      "exitCode": 0,
+      "failedThresholds": [],
+      "eventCount": 106,
+      "inputStoppedAtMs": 1793102154597,
+      "closingAtMs": 1793102159598,
+      "settledAtMs": 1793102161514,
+      "closeDurationMs": 1916,
+      "firstFailure": null,
+      "closeRequested": 500,
+      "closeCompleted": 500,
+      "maxSendLagMs": 159,
+      "maxTickDriftMs": 157,
+      "maxObservedDemandMinusReceipts": 419,
+      "demandMinusReceiptsAtClose": 0,
+      "injectionObserved": false
+    }
+  ],
+  "client": {
+    "sent": 4000,
+    "accepted": 2049,
+    "rejected": 1951,
+    "acceptedDeliveryDemand": 664500,
+    "received": 664500
+  },
+  "cleanupGauges": {
+    "lab.outbound.bytes": 0.0,
+    "lab.outbound.writes.inflight": 0.0,
+    "lab.outbound.slots": 0.0,
+    "lab.outbound.messages": 0.0,
+    "lab.dispatch.rooms": 0.0,
+    "lab.dispatch.ready": 0.0,
+    "lab.dispatch.bytes": 0.0,
+    "lab.connections": 0.0,
+    "lab.outbound.tasks": 0.0,
+    "lab.outbound.writers.active": 0.0,
+    "lab.dispatch.messages": 0.0,
+    "lab.rooms": 0.0
+  },
+  "errors": [],
+  "note": "Diagnostic only. Demand minus receipts is observed difference, not exact server backlog."
+}

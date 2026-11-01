@@ -1,0 +1,115 @@
+"""汇总固定四轮短诊断，保留失败与缺测；时间线只支持观察先后，不将差值当精确服务端积压。"""
+import argparse
+from datetime import datetime
+import json
+import math
+from pathlib import Path
+import runpy
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator
+
+
+def read(path):
+    return json.loads(path.read_text(encoding='utf-8-sig'))
+
+
+def millis(text):
+    return datetime.fromisoformat(text).timestamp()*1000
+
+
+def analyze(folder):
+    rules = runpy.run_path(str(Path('scripts/tests/hotspot-summary.test.py')))
+    status = read(folder/'suite-status.json')
+    assert status['completed'] == 4 and not status['formalEligible']
+    config = read(folder/'suite-config.json')
+    assert [r['name'] for r in status['runs']] == ['all-01','batched-01','batched-02','all-02']
+    reference = None
+    table = []
+    fig, axes = plt.subplots(2, 2, figsize=(13, 8))
+    for row, ax in zip(status['runs'], axes.flat):
+        assert row['stopped'], '自建JVM未停止'
+        base = folder/row['name']/'load'
+        audit = read(base/'diagnostic-audit.json')
+        assert audit['evidenceComplete']
+        launch = read(folder/row['name']/'server-launch.json')
+        assert launch['pid'] == row['pid'] and launch['jarSha256'] == config['jarSha256']
+        assert read(base/'jar-sha256.json')['Hash'] == config['jarSha256']
+        sources = read(base/'source-sha256.json')
+        manifest = {item['path']: item['sha256'] for item in sources}
+        if reference is None: reference = manifest
+        assert manifest == reference, '四轮中途修改了运行源码或工具'
+        schedule = read(base/'schedule.json')
+        origin = schedule['plannedStartAtMs']
+        traces = {role: rules['diagnostic_events'](base/role) for role in schedule['roles']}
+        closing = min(e['atMs'] for events in traces.values() for e in events if e['type']=='closing_started')
+        # 全轮及关连接前的观测差值分别报告；accepted结果可能迟到，差值可为负，不能裁成0。
+        gaps_before = {}
+        all_gaps = []
+        for role, events in traces.items():
+            before = [e['acceptedDeliveryDemand']-e['received'] for e in events if e['atMs'] < closing]
+            gaps_before[role] = max(before) if before else None
+            gaps = [e['acceptedDeliveryDemand']-e['received'] for e in events]
+            all_gaps.extend(gaps)
+            ax.plot([(e['atMs']-origin)/1000 for e in events], gaps,
+                    label=f'{role} observed demand - receipts', linewidth=1.4,
+                    marker='.', markersize=2.5, color='#176b99' if role=='hot' else '#35824b')
+        samples = [json.loads(line) for line in (base/'samples.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+        assert samples and all(s['server'] and s['server']['pid']==row['pid'] for s in samples)
+        maxima, pre_close_maxima = {}, {}
+        times, inflight = [], []
+        errors = []
+        for sample in samples:
+            if sample.get('error') or not sample.get('snapshot'):
+                errors.append(dict(atMs=sample['atMs'], error=sample.get('error')))
+                times.append((sample['atMs']-origin)/1000); inflight.append(math.nan)
+                continue
+            snapshot = sample['snapshot']
+            values = {m['name']: m['measurements'][0]['value'] for m in snapshot['metrics']}
+            times.append((millis(snapshot['endedAt'])-origin)/1000)
+            inflight.append(values['lab.outbound.writes.inflight'])
+            for name in ('lab.outbound.bytes','lab.outbound.messages','lab.outbound.writes.inflight','lab.dispatch.bytes'):
+                maxima[name] = max(maxima.get(name, 0), values[name])
+                # 只有整个快照已在第一份关闭请求之前完成，才列入“关闭前”；重叠快照不强行归类。
+                if millis(snapshot['endedAt']) < closing:
+                    pre_close_maxima[name] = max(pre_close_maxima.get(name, 0), values[name])
+        right = ax.twinx()
+        right.plot(times, inflight, color='#c46d1a', alpha=.6, linewidth=1, label='server writes in flight')
+        right.set_ylim(0, max(1, max(v for v in inflight if not math.isnan(v))*1.1))
+        right.yaxis.set_major_locator(MaxNLocator(integer=True))
+        if all(value == 0 for value in all_gaps):
+            ax.set_ylim(-1, 1)
+            ax.set_yticks((-1, 0, 1))
+        right.set_ylabel('Sampled writes in flight', fontsize=9)
+        ax.axvline((closing-origin)/1000, color='#555555', linestyle=':', label='first client closing starts')
+        ax.set_title(row['name']+(' | load PASS' if audit['passed'] else ' | load FAIL'))
+        ax.set_xlabel('Seconds from shared input start')
+        ax.set_ylabel('Observed delivery difference')
+        ax.grid(alpha=.2)
+        handles, labels = ax.get_legend_handles_labels()
+        extra, names = right.get_legend_handles_labels()
+        ax.legend(handles+extra, labels+names, fontsize=7, loc='upper left')
+        normal = read(base/'normal/k6-summary.json')['report']
+        table.append(dict(name=row['name'], loadPassed=audit['passed'], client=audit['client'],
+            roles=audit['roles'], maximumObservedDifferenceBeforeClose=gaps_before,
+            sampledMaxima=maxima, sampledMaximaDefinitelyBeforeClose=pre_close_maxima,
+            normalWorstRoomP99Ms=[max((room['phases'][i]['latencyMs']['p(99)'] for room in normal['rooms']
+                                      if room['phases'][i]['latencyMs']), default=None) for i in range(4)],
+            collectorErrors=errors, cleanupZero=all(v==0 for v in audit['cleanupGauges'].values())))
+    fig.suptitle('T4 short diagnostics: observed client differences and server in-flight writes\n'
+                 'Fresh JVM each | same JAR | 1,000 viewers | 10 s/phase | NOT formal repetitions', fontsize=12)
+    fig.tight_layout()
+    fig.savefig(folder/'diagnostic-timeline.png', dpi=160)
+    fig.savefig(folder/'diagnostic-timeline.svg')
+    plt.close(fig)
+    result = dict(formalEligible=False, jarSha256=config['jarSha256'], runs=table,
+                  note='All fixed attempts retained; sequential metric snapshots are not atomic. Observed differences are not exact server backlog.')
+    (folder/'analysis.json').write_text(json.dumps(result, indent=2)+'\n', encoding='utf-8')
+    print(json.dumps(result, indent=2))
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('directory', type=Path)
+    analyze(parser.parse_args().directory)

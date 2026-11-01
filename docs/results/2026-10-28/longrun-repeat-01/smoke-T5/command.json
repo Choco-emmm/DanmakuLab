@@ -1,0 +1,32 @@
+{
+  "executable": "C:\\Users\\renpe\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+  "arguments": [
+    "-NoProfile",
+    "-File",
+    "scripts/run/longrun.ps1",
+    "-Scenario",
+    "T5",
+    "-Connections",
+    "20",
+    "-SlowConnections",
+    "0",
+    "-Seconds",
+    "10",
+    "-WarmupSeconds",
+    "2",
+    "-Rate",
+    "20",
+    "-SlowBytesPerSecond",
+    "1024",
+    "-HttpUrl",
+    "http://127.0.0.1:8085",
+    "-DispatchMode",
+    "fair",
+    "-JarPath",
+    "D:\\coding\\DanmakuLab\\target\\danmaku-lab-release.jar",
+    "-ExpectedJarHash",
+    "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+    "-OutputDirectory",
+    "D:\\coding\\DanmakuLab\\.lab-artifacts\\longrun-edcb4c5e014a4856b95497849218c8e7\\smoke-T5\\load"
+  ]
+}

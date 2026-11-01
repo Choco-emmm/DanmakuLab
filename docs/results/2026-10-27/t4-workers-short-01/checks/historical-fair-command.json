@@ -1,0 +1,9 @@
+{
+  "executable": "C:\\Python314\\python.exe",
+  "arguments": [
+    "-X",
+    "utf8",
+    "scripts/tests/hotspot-summary.test.py",
+    "docs/results/2026-10-27/t4-diagnostic-default-regression/round-01-fair/load"
+  ]
+}

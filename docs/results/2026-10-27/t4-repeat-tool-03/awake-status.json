@@ -1,0 +1,6 @@
+{
+  "requested": true,
+  "note": "SystemRequired only; manual sleep/reboot still invalidates a run.",
+  "released": true,
+  "error": null
+}

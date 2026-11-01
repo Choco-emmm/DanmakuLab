@@ -1,0 +1,46 @@
+{
+  "runs": [
+    {
+      "name": "all-01",
+      "startedAt": "2026-10-27T11:51:35.8009968+00:00",
+      "pid": 60872,
+      "loadPassed": true,
+      "evidenceComplete": true,
+      "error": null,
+      "stopped": true,
+      "endedAt": "2026-10-27T11:53:03.2197323+00:00"
+    },
+    {
+      "name": "batched-01",
+      "startedAt": "2026-10-27T11:53:04.4517466+00:00",
+      "pid": 30096,
+      "loadPassed": true,
+      "evidenceComplete": true,
+      "error": null,
+      "stopped": true,
+      "endedAt": "2026-10-27T11:54:33.7923058+00:00"
+    },
+    {
+      "name": "batched-02",
+      "startedAt": "2026-10-27T11:54:35.2766510+00:00",
+      "pid": 55044,
+      "loadPassed": true,
+      "evidenceComplete": true,
+      "error": null,
+      "stopped": true,
+      "endedAt": "2026-10-27T11:56:05.2024859+00:00"
+    },
+    {
+      "name": "all-02",
+      "startedAt": "2026-10-27T11:56:07.1020987+00:00",
+      "pid": 56236,
+      "loadPassed": true,
+      "evidenceComplete": true,
+      "error": null,
+      "stopped": true,
+      "endedAt": "2026-10-27T11:57:35.3220834+00:00"
+    }
+  ],
+  "formalEligible": false,
+  "completed": 4
+}

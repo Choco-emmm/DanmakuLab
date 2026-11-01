@@ -1,0 +1,10 @@
+{
+  "name": "batched-01",
+  "startedAt": "2026-10-27T11:47:56.5381635+00:00",
+  "pid": 45964,
+  "loadPassed": true,
+  "evidenceComplete": true,
+  "error": null,
+  "stopped": true,
+  "endedAt": "2026-10-27T11:48:35.4365807+00:00"
+}

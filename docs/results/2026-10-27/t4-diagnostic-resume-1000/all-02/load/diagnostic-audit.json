@@ -1,0 +1,66 @@
+{
+  "evidenceComplete": true,
+  "passed": true,
+  "formalEligible": false,
+  "roles": [
+    {
+      "role": "normal",
+      "exitCode": 0,
+      "failedThresholds": [],
+      "eventCount": 85,
+      "inputStoppedAtMs": 1793102246601,
+      "closingAtMs": 1793102251601,
+      "settledAtMs": 1793102251650,
+      "closeDurationMs": 49,
+      "firstFailure": null,
+      "closeRequested": 500,
+      "closeCompleted": 500,
+      "maxSendLagMs": 20,
+      "maxTickDriftMs": 18,
+      "maxObservedDemandMinusReceipts": 0,
+      "demandMinusReceiptsAtClose": 0,
+      "injectionObserved": false
+    },
+    {
+      "role": "hot",
+      "exitCode": 0,
+      "failedThresholds": [],
+      "eventCount": 85,
+      "inputStoppedAtMs": 1793102246604,
+      "closingAtMs": 1793102251605,
+      "settledAtMs": 1793102251652,
+      "closeDurationMs": 47,
+      "firstFailure": null,
+      "closeRequested": 500,
+      "closeCompleted": 500,
+      "maxSendLagMs": 121,
+      "maxTickDriftMs": 115,
+      "maxObservedDemandMinusReceipts": 0,
+      "demandMinusReceiptsAtClose": 0,
+      "injectionObserved": false
+    }
+  ],
+  "client": {
+    "sent": 4000,
+    "accepted": 2050,
+    "rejected": 1950,
+    "acceptedDeliveryDemand": 665000,
+    "received": 665000
+  },
+  "cleanupGauges": {
+    "lab.outbound.tasks": 0.0,
+    "lab.dispatch.rooms": 0.0,
+    "lab.outbound.bytes": 0.0,
+    "lab.dispatch.bytes": 0.0,
+    "lab.connections": 0.0,
+    "lab.outbound.slots": 0.0,
+    "lab.outbound.writes.inflight": 0.0,
+    "lab.rooms": 0.0,
+    "lab.dispatch.ready": 0.0,
+    "lab.outbound.writers.active": 0.0,
+    "lab.outbound.messages": 0.0,
+    "lab.dispatch.messages": 0.0
+  },
+  "errors": [],
+  "note": "Diagnostic only. Demand minus receipts is observed difference, not exact server backlog."
+}

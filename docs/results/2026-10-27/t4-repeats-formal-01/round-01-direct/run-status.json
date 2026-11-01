@@ -1,0 +1,11 @@
+{
+  "round": 1,
+  "mode": "direct",
+  "directory": "round-01-direct",
+  "startedAt": "2026-10-27T03:29:17.5083837+00:00",
+  "processId": 79116,
+  "passed": true,
+  "stopped": true,
+  "error": null,
+  "endedAt": "2026-10-27T03:42:05.4864801+00:00"
+}

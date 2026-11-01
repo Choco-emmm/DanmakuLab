@@ -1,0 +1,13 @@
+{
+  "script": "D:\\coding\\DanmakuLab\\scripts\\run\\repeat-hotspot.ps1",
+  "parameters": {
+    "Rounds": 1,
+    "PhaseSeconds": 2,
+    "NormalRooms": 2,
+    "NormalConnections": 5,
+    "HotConnections": 50,
+    "StartDelaySeconds": 10,
+    "LatencySampleEvery": 1,
+    "OutputDirectory": "docs/results/2026-10-27/t4-repeat-tool-03"
+  }
+}

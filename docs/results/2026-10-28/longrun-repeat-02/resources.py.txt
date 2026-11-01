@@ -1,0 +1,51 @@
+"""只读生成六轮资源曲线。横轴相对首条客户端进度，预热线为近似测量边界。
+
+CPU按两个采样端点的累计处理器秒/墙钟秒计算；工作集和堆只报告采样峰值。
+连接数右轴放大为985..1005，显示T3慢组退出，不把这些连接从初始慢组分母删除。
+"""
+from pathlib import Path
+from datetime import datetime
+import json
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+
+OUT=Path(__file__).resolve().parent
+read=lambda p:json.loads(p.read_text(encoding='utf-8-sig'))
+state=read(OUT/'batch-status.json');details=[]
+fig,axes=plt.subplots(2,3,figsize=(13,7))
+plt.rcParams.update({'font.family':'DejaVu Sans','font.size':9})
+for i,case in enumerate(r for r in state['rows'] if r['formal']):
+    load=Path(case['directory'])/'load'
+    progress=[json.loads(line) for line in (load/'client/progress.jsonl').read_text(encoding='utf-8-sig').splitlines()]
+    first=progress[0]['at'];samples=[]
+    for line in (load/'samples.jsonl').read_text(encoding='utf-8-sig').splitlines():
+        row=json.loads(line);assert 'error' not in row
+        row['t']=datetime.fromisoformat(row['snapshot']['startedAt']).timestamp()-first
+        row['metrics']={m['name']:m['measurements'][0]['value'] for m in row['snapshot']['metrics']}
+        samples.append(row)
+    selected=[r for r in samples if 60<=r['t']<=60+case['seconds'] and r.get('client') and r.get('server')]
+    a,b=selected[0],selected[-1];dt=b['t']-a['t']
+    values=dict(name=case['name'],samples=len(samples),measureCpuWindowSeconds=dt,
+        javaAverageCores=(b['server']['cpuSeconds']-a['server']['cpuSeconds'])/dt,
+        pythonAverageCores=(b['client']['cpuSeconds']-a['client']['cpuSeconds'])/dt,
+        javaWorkingSetPeakMiB=max(r['server']['workingSetBytes'] for r in selected)/1048576,
+        pythonWorkingSetPeakMiB=max(r['client']['workingSetBytes'] for r in selected)/1048576,
+        heapPeakMiB=max(r['metrics']['jvm.memory.used'] for r in selected)/1048576,
+        outboundBytesSamplePeak=max(r['metrics'].get('lab.outbound.bytes',0) for r in selected),
+        inflightSamplePeak=max(r['metrics']['lab.outbound.writes.inflight'] for r in selected))
+    details.append(values)
+    ax=axes.flat[i];other=ax.twinx()
+    heap=ax.plot([r['t']/60 for r in samples],[r['metrics']['jvm.memory.used']/1048576 for r in samples],color='#2563eb',linewidth=1,label='Java heap')
+    conns=other.plot([r['t']/60 for r in samples],[r['metrics']['lab.connections'] for r in samples],color='#c2410c',linewidth=1,label='Connections')
+    ax.axvspan(0,1,color='#64748b',alpha=.1);ax.axvline(1,color='#64748b',linestyle='--',linewidth=.8)
+    ax.set_ylim(0,270);other.set_ylim(985,1005);ax.set_title(case['name']);ax.set_xlabel('Minutes from first client progress')
+    if i%3==0:ax.set_ylabel('Heap used MiB')
+    if i%3==2:other.set_ylabel('Connections (zoomed axis)')
+    ax.grid(axis='y',alpha=.2)
+    if i==0:ax.legend(heap+conns,['Java heap','Connections'],loc='upper right',fontsize=8)
+fig.suptitle('T3/T5 fixed repetitions: sampled heap and connections',fontsize=13)
+fig.text(.5,.01,'Gray = warmup. Sequential ~5s samples, not absolute peaks. T3 starts with 10 slow viewers; disconnected slow viewers are not replaced.',ha='center',fontsize=9)
+fig.tight_layout(rect=(0,.04,1,.94));fig.savefig(OUT/'resources.png',dpi=160);plt.close(fig)
+(OUT/'resource-summary.json').write_text(json.dumps(details,indent=2)+'\n',encoding='utf-8')
+print(json.dumps(details))

@@ -1,0 +1,8 @@
+{
+  "executable": "D:\\Environment\\nodejs\\node.exe",
+  "arguments": [
+    "--test",
+    "scripts/tests/hotspot-diagnostic.test.cjs",
+    "scripts/tests/hotspot-workers.test.cjs"
+  ]
+}

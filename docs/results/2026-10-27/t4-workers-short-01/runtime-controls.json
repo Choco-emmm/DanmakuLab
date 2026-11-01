@@ -1,0 +1,14 @@
+{
+  "archive": ".lab-artifacts/ship-20261027/source.zip",
+  "sha256": "2257BCF5F0882335477272DCDE876BFCC9DCA4D4BA7CEC3364D0C3B7AA0727AB",
+  "expectedWorkers": 8,
+  "jarConfigWorkers": 8,
+  "externalOverrides": {
+    "LAB_OUTBOUND_WORKERS": null,
+    "JAVA_TOOL_OPTIONS": false,
+    "SPRING_APPLICATION_JSON": false,
+    "SPRING_CONFIG_LOCATION": false,
+    "SPRING_PROFILES_ACTIVE": false
+  },
+  "note": "Runtime config read from the pinned JAR; named override variables checked absent in the launcher environment; no root application.yml/config override."
+}

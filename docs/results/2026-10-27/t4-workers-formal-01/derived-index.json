@@ -1,0 +1,55 @@
+{
+  "files": [
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-27\\t4-workers-formal-01\\notes.md",
+      "bytes": 7939,
+      "sha256": "90187963573A404308D241EB4ED4092AD072AF54C3B2AE7ED6C61142ECE10046"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-27\\t4-workers-formal-01\\formal-summary.json",
+      "bytes": 40518,
+      "sha256": "E00AD5548C521F2BC5BA7081CD4EFC11B42B3C1FC950F712626A6F5BF08A4531"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-27\\t4-workers-formal-01\\final-verification.json",
+      "bytes": 2398,
+      "sha256": "4B33E2E03DEF34C4B89A867F9201FE2C4059848FC73B703125E63C9AF109B6EA"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-27\\t4-workers-formal-01\\formal-latency.png",
+      "bytes": 127626,
+      "sha256": "69A435E3CE2BD8521431542A580B0CC03236F0022AD8C87F244B4CABA96AB620"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-27\\t4-workers-formal-01\\formal-resources.png",
+      "bytes": 60736,
+      "sha256": "61A231F7432F446EFE3BAEFB5F7EAB941358BFDDF92DE4F0A0BBB6A612F85A62"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-27\\t4-workers-formal-01\\verify-final.py.txt",
+      "bytes": 5883,
+      "sha256": "E554A9BEFF86BAF145FFDCAF51C0BB6697EE3AC84703CDCF1D8A2867C152B6BA"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-27\\t4-workers-formal-01\\summarize-formal.py.txt",
+      "bytes": 7180,
+      "sha256": "43B1AEC8A2CAE67F380E1EEFDB7F4BE2241426036B7D012011939822FA2CA9B8"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-27\\t4-workers-formal-01\\analysis.json",
+      "bytes": 114785,
+      "sha256": "16265292ADFD66E8C3287C3B0268602F9A08BD8ACFFA92CFF15AD8E9EC7E94B3"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-27\\t4-workers-formal-01\\analysis.md",
+      "bytes": 1351,
+      "sha256": "AE7C9DE8E09502888FA3E84C56A490C498463F9C7786112CB0984E50525FD940"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-27\\analyze-hotspot-workers.py.txt",
+      "bytes": 5485,
+      "sha256": "9D35929EB38C16CFE4EA17F5489B80AEEBEE799A32BB694275225E86D5A2F8DE"
+    }
+  ],
+  "note": "Final derived artifacts; original evidence index remains per run."
+}

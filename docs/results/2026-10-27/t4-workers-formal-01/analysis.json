@@ -1,0 +1,3824 @@
+{
+  "rows": [
+    {
+      "name": "smoke-1",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 36248,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 1,
+      "phaseSeconds": 3,
+      "client": {
+        "sent": 1008,
+        "accepted": 457,
+        "rejected": 551,
+        "received": 20690,
+        "acceptedDeliveryDemand": 20690
+      },
+      "hot": {
+        "accepted": 409,
+        "rejected": 551,
+        "unknown": 0,
+        "received": 20450,
+        "demand": 20450,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            2,
+            2
+          ],
+          "normalP99": [
+            4.8500000000000005,
+            4.8500000000000005
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 60,
+          "accepted": 60,
+          "rejected": 0,
+          "workerActualRates": [
+            19.99333555481506
+          ],
+          "aggregateActualRate": 19.99333555481506,
+          "hotLatency": {
+            "samples": 300,
+            "overflowAbove120000ms": 0,
+            "p50": 2,
+            "p95": 3,
+            "p99": 4
+          },
+          "normalActualRates": [
+            1.9993335554815062,
+            1.9993335554815062
+          ],
+          "normalP99": [
+            1,
+            1
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 300,
+          "accepted": 199,
+          "rejected": 101,
+          "workerActualRates": [
+            99.96667777407531
+          ],
+          "aggregateActualRate": 99.96667777407531,
+          "hotLatency": {
+            "samples": 995,
+            "overflowAbove120000ms": 0,
+            "p50": 1,
+            "p95": 2,
+            "p99": 3
+          },
+          "normalActualRates": [
+            1.9986675549633577,
+            1.9986675549633577
+          ],
+          "normalP99": [
+            1,
+            1
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 600,
+          "accepted": 150,
+          "rejected": 450,
+          "workerActualRates": [
+            199.93335554815062
+          ],
+          "aggregateActualRate": 199.93335554815062,
+          "hotLatency": {
+            "samples": 750,
+            "overflowAbove120000ms": 0,
+            "p50": 1,
+            "p95": 2,
+            "p99": 3
+          },
+          "normalActualRates": [
+            1.9953441968739607,
+            1.9953441968739607
+          ],
+          "normalP99": [
+            1,
+            1.9500000000000002
+          ]
+        }
+      ],
+      "maxSendLagMs": 14,
+      "maxHotLagMs": 14,
+      "normalTimerDriftMs": 1,
+      "maxHotTimerDriftMs": 16,
+      "maxTimerDriftMs": 16,
+      "resources": {
+        "preparation": {
+          "samples": 29,
+          "completeClientSamples": 28,
+          "clientWorkingSetPeakBytes": 78811136,
+          "clientCpuPeakCores": 0.21636993076162217,
+          "serverWorkingSetPeakBytes": 274509824,
+          "serverCpuPeakCores": 0.8714530332681018,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 5260.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 60.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 12,
+          "completeClientSamples": 12,
+          "clientWorkingSetPeakBytes": 51761152,
+          "clientCpuPeakCores": 0.6237524950099801,
+          "serverWorkingSetPeakBytes": 178675712,
+          "serverCpuPeakCores": 0.5769710578842315,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 994.0,
+            "lab.dispatch.completed": 444.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 444.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 37275.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 60.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "drain": {
+          "samples": 5,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 51945472,
+          "clientCpuPeakCores": 0.3090999010880317,
+          "serverWorkingSetPeakBytes": 185966592,
+          "serverCpuPeakCores": 0.32455489614243327,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 994.0,
+            "lab.dispatch.completed": 457.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 457.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 37275.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 60.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 1,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": 187686912,
+          "serverCpuPeakCores": 0.09137426900584796,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 994.0,
+            "lab.dispatch.completed": 457.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 457.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 37275.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 0.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    },
+    {
+      "name": "smoke-5",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 48276,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 5,
+      "phaseSeconds": 3,
+      "client": {
+        "sent": 1008,
+        "accepted": 457,
+        "rejected": 551,
+        "received": 20690,
+        "acceptedDeliveryDemand": 20690
+      },
+      "hot": {
+        "accepted": 409,
+        "rejected": 551,
+        "unknown": 0,
+        "received": 20450,
+        "demand": 20450,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.9940179461615155,
+            1.9940179461615155
+          ],
+          "normalP99": [
+            2.9000000000000004,
+            2.95
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 60,
+          "accepted": 60,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "aggregateActualRate": 20.0,
+          "hotLatency": {
+            "samples": 300,
+            "overflowAbove120000ms": 0,
+            "p50": 1,
+            "p95": 2,
+            "p99": 3
+          },
+          "normalActualRates": [
+            2,
+            2
+          ],
+          "normalP99": [
+            1,
+            1.9500000000000002
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 300,
+          "accepted": 199,
+          "rejected": 101,
+          "workerActualRates": [
+            20.0,
+            20.0,
+            20.0,
+            19.99333555481506,
+            19.99333555481506
+          ],
+          "aggregateActualRate": 99.98667110963012,
+          "hotLatency": {
+            "samples": 995,
+            "overflowAbove120000ms": 0,
+            "p50": 0,
+            "p95": 1,
+            "p99": 1
+          },
+          "normalActualRates": [
+            1.9953441968739607,
+            1.9953441968739607
+          ],
+          "normalP99": [
+            1,
+            1
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 600,
+          "accepted": 150,
+          "rejected": 450,
+          "workerActualRates": [
+            39.98667110963012,
+            39.98667110963012,
+            39.98667110963012,
+            39.98667110963012,
+            40.0
+          ],
+          "aggregateActualRate": 199.9466844385205,
+          "hotLatency": {
+            "samples": 750,
+            "overflowAbove120000ms": 0,
+            "p50": 0,
+            "p95": 1,
+            "p99": 1
+          },
+          "normalActualRates": [
+            1.9973368841544608,
+            1.9973368841544608
+          ],
+          "normalP99": [
+            0.9500000000000002,
+            0.9500000000000002
+          ]
+        }
+      ],
+      "maxSendLagMs": 20,
+      "maxHotLagMs": 6,
+      "normalTimerDriftMs": 1,
+      "maxHotTimerDriftMs": 15,
+      "maxTimerDriftMs": 15,
+      "resources": {
+        "preparation": {
+          "samples": 29,
+          "completeClientSamples": 28,
+          "clientWorkingSetPeakBytes": 226439168,
+          "clientCpuPeakCores": 0.07570251937984496,
+          "serverWorkingSetPeakBytes": 298344448,
+          "serverCpuPeakCores": 0.8915618955512572,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 3470.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 60.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 12,
+          "completeClientSamples": 12,
+          "clientWorkingSetPeakBytes": 241852416,
+          "clientCpuPeakCores": 0.6213627546071776,
+          "serverWorkingSetPeakBytes": 289005568,
+          "serverCpuPeakCores": 0.447280534351145,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 1468.0,
+            "lab.dispatch.completed": 439.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 439.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 25256.0,
+            "lab.outbound.messages": 24.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 60.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "drain": {
+          "samples": 5,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 241266688,
+          "clientCpuPeakCores": 0.2888170055452865,
+          "serverWorkingSetPeakBytes": 291315712,
+          "serverCpuPeakCores": 0.20853193517635846,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 1468.0,
+            "lab.dispatch.completed": 457.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 457.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 25256.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 60.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 1,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": 289677312,
+          "serverCpuPeakCores": 0.09040501446480233,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 1468.0,
+            "lab.dispatch.completed": 457.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 457.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 25256.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 0.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    },
+    {
+      "name": "injected-5",
+      "passed": false,
+      "evidenceComplete": true,
+      "jvmPid": 23048,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 5,
+      "phaseSeconds": 3,
+      "client": {
+        "sent": 1008,
+        "accepted": 457,
+        "rejected": 551,
+        "received": 20690,
+        "acceptedDeliveryDemand": 20690
+      },
+      "hot": {
+        "accepted": 409,
+        "rejected": 551,
+        "unknown": 0,
+        "received": 20450,
+        "demand": 20450,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.9993335554815062,
+            1.9993335554815062
+          ],
+          "normalP99": [
+            3.8500000000000005,
+            3.8500000000000005
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 60,
+          "accepted": 60,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            3.9986671109630123,
+            4.0,
+            4.0,
+            3.9986671109630123
+          ],
+          "aggregateActualRate": 19.997334221926025,
+          "hotLatency": {
+            "samples": 300,
+            "overflowAbove120000ms": 0,
+            "p50": 1,
+            "p95": 606,
+            "p99": 1356
+          },
+          "normalActualRates": [
+            1.9973368841544608,
+            1.9973368841544608
+          ],
+          "normalP99": [
+            1,
+            1
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 300,
+          "accepted": 199,
+          "rejected": 101,
+          "workerActualRates": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "aggregateActualRate": 100.0,
+          "hotLatency": {
+            "samples": 995,
+            "overflowAbove120000ms": 0,
+            "p50": 0,
+            "p95": 1,
+            "p99": 1
+          },
+          "normalActualRates": [
+            1.9940179461615155,
+            1.9940179461615155
+          ],
+          "normalP99": [
+            1,
+            1
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 600,
+          "accepted": 150,
+          "rejected": 450,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ],
+          "aggregateActualRate": 200.0,
+          "hotLatency": {
+            "samples": 750,
+            "overflowAbove120000ms": 0,
+            "p50": 0,
+            "p95": 1,
+            "p99": 1
+          },
+          "normalActualRates": [
+            1.9973368841544608,
+            1.9973368841544608
+          ],
+          "normalP99": [
+            1,
+            1
+          ]
+        }
+      ],
+      "maxSendLagMs": 1252,
+      "maxHotLagMs": 1252,
+      "normalTimerDriftMs": 2,
+      "maxHotTimerDriftMs": 1500,
+      "maxTimerDriftMs": 1500,
+      "resources": {
+        "preparation": {
+          "samples": 29,
+          "completeClientSamples": 28,
+          "clientWorkingSetPeakBytes": 226529280,
+          "clientCpuPeakCores": 0.030310378273520858,
+          "serverWorkingSetPeakBytes": 276979712,
+          "serverCpuPeakCores": 1.1105626850937809,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 3480.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 60.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 12,
+          "completeClientSamples": 12,
+          "clientWorkingSetPeakBytes": 243761152,
+          "clientCpuPeakCores": 0.9765625,
+          "serverWorkingSetPeakBytes": 292716544,
+          "serverCpuPeakCores": 0.5362249761677789,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 2976.0,
+            "lab.dispatch.completed": 444.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 444.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 117056.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 60.0,
+            "lab.outbound.tasks": 11.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "drain": {
+          "samples": 5,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 246140928,
+          "clientCpuPeakCores": 0.2782333645735708,
+          "serverWorkingSetPeakBytes": 296140800,
+          "serverCpuPeakCores": 0.24061597690086622,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 2976.0,
+            "lab.dispatch.completed": 457.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 457.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 117056.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 60.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 1,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": 299659264,
+          "serverCpuPeakCores": 0.12948895027624308,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 2976.0,
+            "lab.dispatch.completed": 457.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 457.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 117056.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 0.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": [
+        "hot-0: thresholds",
+        "hot-0: independent send-lag check",
+        "hot-0: process failure"
+      ]
+    },
+    {
+      "name": "short-1-w1",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 58736,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 1,
+      "phaseSeconds": 10,
+      "client": {
+        "sent": 4000,
+        "accepted": 2049,
+        "rejected": 1951,
+        "received": 664500,
+        "acceptedDeliveryDemand": 664500
+      },
+      "hot": {
+        "accepted": 1249,
+        "rejected": 1951,
+        "unknown": 0,
+        "received": 624500,
+        "demand": 624500,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "normalP99": [
+            13.010000000000005,
+            18,
+            21,
+            14.010000000000005,
+            20,
+            17,
+            14,
+            23.010000000000005,
+            25.010000000000005,
+            28
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 200,
+          "accepted": 200,
+          "rejected": 0,
+          "workerActualRates": [
+            20.0
+          ],
+          "aggregateActualRate": 20.0,
+          "hotLatency": {
+            "samples": 10000,
+            "overflowAbove120000ms": 0,
+            "p50": 8,
+            "p95": 16,
+            "p99": 20
+          },
+          "normalActualRates": [
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125
+          ],
+          "normalP99": [
+            8,
+            11.02000000000001,
+            12,
+            10,
+            16,
+            18,
+            16.010000000000005,
+            21,
+            15.010000000000005,
+            21
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 1000,
+          "accepted": 549,
+          "rejected": 451,
+          "workerActualRates": [
+            100.0
+          ],
+          "aggregateActualRate": 100.0,
+          "hotLatency": {
+            "samples": 27450,
+            "overflowAbove120000ms": 0,
+            "p50": 11,
+            "p95": 402,
+            "p99": 519
+          },
+          "normalActualRates": [
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032
+          ],
+          "normalP99": [
+            8.02000000000001,
+            11,
+            11.050000000000026,
+            14,
+            15,
+            17.010000000000005,
+            18,
+            19,
+            20,
+            22
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 2000,
+          "accepted": 500,
+          "rejected": 1500,
+          "workerActualRates": [
+            199.9800019998
+          ],
+          "aggregateActualRate": 199.9800019998,
+          "hotLatency": {
+            "samples": 25000,
+            "overflowAbove120000ms": 0,
+            "p50": 8,
+            "p95": 16,
+            "p99": 20
+          },
+          "normalActualRates": [
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512
+          ],
+          "normalP99": [
+            7.030000000000015,
+            8,
+            11,
+            15.010000000000005,
+            22.010000000000005,
+            20,
+            19,
+            18,
+            24.010000000000005,
+            26
+          ]
+        }
+      ],
+      "maxSendLagMs": 544,
+      "maxHotLagMs": 544,
+      "normalTimerDriftMs": 18,
+      "maxHotTimerDriftMs": 548,
+      "maxTimerDriftMs": 548,
+      "resources": {
+        "preparation": {
+          "samples": 29,
+          "completeClientSamples": 28,
+          "clientWorkingSetPeakBytes": 172515328,
+          "clientCpuPeakCores": 0.3409629981024668,
+          "serverWorkingSetPeakBytes": 340123648,
+          "serverCpuPeakCores": 2.1016081871345027,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 6960.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 38,
+          "completeClientSamples": 38,
+          "clientWorkingSetPeakBytes": 241496064,
+          "clientCpuPeakCores": 5.832514734774067,
+          "serverWorkingSetPeakBytes": 353591296,
+          "serverCpuPeakCores": 1.6968325791855203,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 17465.0,
+            "lab.dispatch.completed": 2013.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 1.0,
+            "lab.dispatch.rooms": 10.0,
+            "lab.dispatch.wait": 2013.0,
+            "lab.outbound.bytes": 210000.0,
+            "lab.outbound.bytes.highwater": 7564341.0,
+            "lab.outbound.messages": 338.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 7.0,
+            "lab.outbound.writers.active": 8.0,
+            "lab.outbound.writes.inflight": 9.0
+          }
+        },
+        "drain": {
+          "samples": 5,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 240365568,
+          "clientCpuPeakCores": 2.197502424830262,
+          "serverWorkingSetPeakBytes": 344125440,
+          "serverCpuPeakCores": 0.8183802133850631,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 17465.0,
+            "lab.dispatch.completed": 2049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 2049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 7564341.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 2,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": 349691904,
+          "serverCpuPeakCores": 0.1547029702970297,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 17465.0,
+            "lab.dispatch.completed": 2049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 2049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 7564341.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 0.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    },
+    {
+      "name": "short-2-w5",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 13528,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 5,
+      "phaseSeconds": 10,
+      "client": {
+        "sent": 4000,
+        "accepted": 2049,
+        "rejected": 1951,
+        "received": 664500,
+        "acceptedDeliveryDemand": 664500
+      },
+      "hot": {
+        "accepted": 1249,
+        "rejected": 1951,
+        "unknown": 0,
+        "received": 624500,
+        "demand": 624500,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799
+          ],
+          "normalP99": [
+            15,
+            15,
+            17,
+            16.010000000000005,
+            16,
+            18.010000000000005,
+            20,
+            21,
+            18,
+            23
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 200,
+          "accepted": 200,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "aggregateActualRate": 20.0,
+          "hotLatency": {
+            "samples": 10000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 6,
+            "p99": 8
+          },
+          "normalActualRates": [
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032
+          ],
+          "normalP99": [
+            6,
+            22,
+            12,
+            21,
+            19,
+            21,
+            18.010000000000005,
+            23.010000000000005,
+            22,
+            20
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 1000,
+          "accepted": 549,
+          "rejected": 451,
+          "workerActualRates": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "aggregateActualRate": 100.0,
+          "hotLatency": {
+            "samples": 27450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 6,
+            "p99": 8
+          },
+          "normalActualRates": [
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032
+          ],
+          "normalP99": [
+            17.06000000000003,
+            9.130000000000067,
+            10.140000000000072,
+            24.010000000000005,
+            24.010000000000005,
+            21.04000000000002,
+            20.050000000000026,
+            21.030000000000015,
+            21.04000000000002,
+            21.04000000000002
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 2000,
+          "accepted": 500,
+          "rejected": 1500,
+          "workerActualRates": [
+            40.0,
+            39.99600039996,
+            39.99600039996,
+            39.99600039996,
+            40.0
+          ],
+          "aggregateActualRate": 199.98800119988002,
+          "hotLatency": {
+            "samples": 25000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799,
+            1.9986009793144799
+          ],
+          "normalP99": [
+            4.02000000000001,
+            7.010000000000005,
+            12,
+            14,
+            12,
+            15,
+            13.010000000000005,
+            19,
+            22.010000000000005,
+            25
+          ]
+        }
+      ],
+      "maxSendLagMs": 17,
+      "maxHotLagMs": 11,
+      "normalTimerDriftMs": 16,
+      "maxHotTimerDriftMs": 15,
+      "maxTimerDriftMs": 16,
+      "resources": {
+        "preparation": {
+          "samples": 29,
+          "completeClientSamples": 28,
+          "clientWorkingSetPeakBytes": 333418496,
+          "clientCpuPeakCores": 0.6121735074626865,
+          "serverWorkingSetPeakBytes": 337588224,
+          "serverCpuPeakCores": 2.74658203125,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 10360.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 38,
+          "completeClientSamples": 38,
+          "clientWorkingSetPeakBytes": 399441920,
+          "clientCpuPeakCores": 4.81562205466541,
+          "serverWorkingSetPeakBytes": 348315648,
+          "serverCpuPeakCores": 1.9051275992438563,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 4890.0,
+            "lab.dispatch.completed": 2006.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 2006.0,
+            "lab.outbound.bytes": 232566.0,
+            "lab.outbound.bytes.highwater": 433376.0,
+            "lab.outbound.messages": 449.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 330.0,
+            "lab.outbound.writers.active": 8.0,
+            "lab.outbound.writes.inflight": 8.0
+          }
+        },
+        "drain": {
+          "samples": 5,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 393105408,
+          "clientCpuPeakCores": 2.3716517857142856,
+          "serverWorkingSetPeakBytes": 338644992,
+          "serverCpuPeakCores": 1.0184151785714284,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 4890.0,
+            "lab.dispatch.completed": 2049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 2049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 433376.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 2,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": 328597504,
+          "serverCpuPeakCores": 0.26785714285714285,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 4890.0,
+            "lab.dispatch.completed": 2049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 2049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 433376.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 0.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    },
+    {
+      "name": "short-3-w5",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 63608,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 5,
+      "phaseSeconds": 10,
+      "client": {
+        "sent": 4000,
+        "accepted": 2049,
+        "rejected": 1951,
+        "received": 664500,
+        "acceptedDeliveryDemand": 664500
+      },
+      "hot": {
+        "accepted": 1249,
+        "rejected": 1951,
+        "unknown": 0,
+        "received": 624500,
+        "demand": 624500,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.9998000199980002,
+            1.9998000199980002,
+            1.9998000199980002,
+            1.9998000199980002,
+            1.9998000199980002,
+            1.9998000199980002,
+            1.9998000199980002,
+            1.9998000199980002,
+            1.9998000199980002,
+            1.9998000199980002
+          ],
+          "normalP99": [
+            14.010000000000005,
+            21,
+            17,
+            22.010000000000005,
+            19.010000000000005,
+            16,
+            19.010000000000005,
+            18,
+            21,
+            20
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 200,
+          "accepted": 200,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "aggregateActualRate": 20.0,
+          "hotLatency": {
+            "samples": 10000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 6,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032
+          ],
+          "normalP99": [
+            11.030000000000015,
+            10.04000000000002,
+            14.010000000000005,
+            14.010000000000005,
+            15.010000000000005,
+            17.010000000000005,
+            18.010000000000005,
+            20,
+            23.010000000000005,
+            22
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 1000,
+          "accepted": 549,
+          "rejected": 451,
+          "workerActualRates": [
+            19.99800019998,
+            20.0,
+            19.99800019998,
+            19.99800019998,
+            19.99800019998
+          ],
+          "aggregateActualRate": 99.99200079992,
+          "hotLatency": {
+            "samples": 27450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.9982016185433111,
+            1.9982016185433111,
+            1.9982016185433111,
+            1.9982016185433111,
+            1.9982016185433111,
+            1.9982016185433111,
+            1.9982016185433111,
+            1.9982016185433111,
+            1.9982016185433111,
+            1.9982016185433111
+          ],
+          "normalP99": [
+            7.010000000000005,
+            10.190000000000097,
+            11.180000000000092,
+            12.170000000000087,
+            21.04000000000002,
+            23.04000000000002,
+            21.06000000000003,
+            25.02000000000001,
+            23.04000000000002,
+            27.02000000000001
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 2000,
+          "accepted": 500,
+          "rejected": 1500,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ],
+          "aggregateActualRate": 200.0,
+          "hotLatency": {
+            "samples": 25000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 6,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.9984012789768186,
+            1.9984012789768186,
+            1.9984012789768186,
+            1.9984012789768186,
+            1.9984012789768186,
+            1.9984012789768186,
+            1.9984012789768186,
+            1.9984012789768186,
+            1.9984012789768186,
+            1.9984012789768186
+          ],
+          "normalP99": [
+            10.02000000000001,
+            10.02000000000001,
+            10.010000000000005,
+            13.02000000000001,
+            18,
+            21.010000000000005,
+            26,
+            23,
+            27,
+            29
+          ]
+        }
+      ],
+      "maxSendLagMs": 20,
+      "maxHotLagMs": 11,
+      "normalTimerDriftMs": 21,
+      "maxHotTimerDriftMs": 15,
+      "maxTimerDriftMs": 21,
+      "resources": {
+        "preparation": {
+          "samples": 29,
+          "completeClientSamples": 28,
+          "clientWorkingSetPeakBytes": 333701120,
+          "clientCpuPeakCores": 0.5716463414634146,
+          "serverWorkingSetPeakBytes": 340340736,
+          "serverCpuPeakCores": 3.0752982107355864,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 6900.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 38,
+          "completeClientSamples": 38,
+          "clientWorkingSetPeakBytes": 400015360,
+          "clientCpuPeakCores": 6.109130634774609,
+          "serverWorkingSetPeakBytes": 353038336,
+          "serverCpuPeakCores": 1.8686752529898805,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 498.0,
+            "lab.dispatch.bytes.highwater": 5349.0,
+            "lab.dispatch.completed": 2014.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 2014.0,
+            "lab.outbound.bytes": 158183.0,
+            "lab.outbound.bytes.highwater": 451868.0,
+            "lab.outbound.messages": 277.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 292.0,
+            "lab.outbound.writers.active": 8.0,
+            "lab.outbound.writes.inflight": 6.0
+          }
+        },
+        "drain": {
+          "samples": 5,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 397828096,
+          "clientCpuPeakCores": 1.8597703842549205,
+          "serverWorkingSetPeakBytes": 338587648,
+          "serverCpuPeakCores": 0.6589737582005624,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 5349.0,
+            "lab.dispatch.completed": 2049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 2049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 451868.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 1,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": 337973248,
+          "serverCpuPeakCores": 0.2399232245681382,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 5349.0,
+            "lab.dispatch.completed": 2049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 2049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 451868.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 0.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    },
+    {
+      "name": "short-4-w1",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 22192,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 1,
+      "phaseSeconds": 10,
+      "client": {
+        "sent": 4000,
+        "accepted": 2049,
+        "rejected": 1951,
+        "received": 664500,
+        "acceptedDeliveryDemand": 664500
+      },
+      "hot": {
+        "accepted": 1249,
+        "rejected": 1951,
+        "unknown": 0,
+        "received": 624500,
+        "demand": 624500,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125,
+            1.999000499750125
+          ],
+          "normalP99": [
+            15,
+            20,
+            19,
+            14.010000000000005,
+            17,
+            15.010000000000005,
+            16.010000000000005,
+            19,
+            14.010000000000005,
+            18
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 200,
+          "accepted": 200,
+          "rejected": 0,
+          "workerActualRates": [
+            20.0
+          ],
+          "aggregateActualRate": 20.0,
+          "hotLatency": {
+            "samples": 10000,
+            "overflowAbove120000ms": 0,
+            "p50": 8,
+            "p95": 16,
+            "p99": 18
+          },
+          "normalActualRates": [
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032,
+            1.9996000799840032
+          ],
+          "normalP99": [
+            8,
+            9,
+            12.010000000000005,
+            13.010000000000005,
+            14.010000000000005,
+            16,
+            18,
+            16,
+            17.010000000000005,
+            15.030000000000015
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 1000,
+          "accepted": 549,
+          "rejected": 451,
+          "workerActualRates": [
+            99.9900009999
+          ],
+          "aggregateActualRate": 99.9900009999,
+          "hotLatency": {
+            "samples": 27450,
+            "overflowAbove120000ms": 0,
+            "p50": 12,
+            "p95": 300,
+            "p99": 427
+          },
+          "normalActualRates": [
+            1.998800719568259,
+            1.998800719568259,
+            1.998800719568259,
+            1.998800719568259,
+            1.998800719568259,
+            1.998800719568259,
+            1.998800719568259,
+            1.998800719568259,
+            1.998800719568259,
+            1.998800719568259
+          ],
+          "normalP99": [
+            14,
+            27.010000000000005,
+            14.010000000000005,
+            19,
+            18.010000000000005,
+            20,
+            20.010000000000005,
+            26.02000000000001,
+            21.070000000000036,
+            24.04000000000002
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 2000,
+          "accepted": 500,
+          "rejected": 1500,
+          "workerActualRates": [
+            199.9000499750125
+          ],
+          "aggregateActualRate": 199.9000499750125,
+          "hotLatency": {
+            "samples": 25000,
+            "overflowAbove120000ms": 0,
+            "p50": 8,
+            "p95": 17,
+            "p99": 24
+          },
+          "normalActualRates": [
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512,
+            1.9992003198720512
+          ],
+          "normalP99": [
+            5.02000000000001,
+            9.050000000000026,
+            13.02000000000001,
+            16,
+            17.010000000000005,
+            18.02000000000001,
+            16,
+            19,
+            20,
+            22
+          ]
+        }
+      ],
+      "maxSendLagMs": 392,
+      "maxHotLagMs": 392,
+      "normalTimerDriftMs": 18,
+      "maxHotTimerDriftMs": 401,
+      "maxTimerDriftMs": 401,
+      "resources": {
+        "preparation": {
+          "samples": 29,
+          "completeClientSamples": 28,
+          "clientWorkingSetPeakBytes": 176873472,
+          "clientCpuPeakCores": 0.6968533201189298,
+          "serverWorkingSetPeakBytes": 338579456,
+          "serverCpuPeakCores": 1.6357178464606184,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 6960.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 38,
+          "completeClientSamples": 38,
+          "clientWorkingSetPeakBytes": 241430528,
+          "clientCpuPeakCores": 5.090775269872425,
+          "serverWorkingSetPeakBytes": 344801280,
+          "serverCpuPeakCores": 1.6829298418972332,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 16467.0,
+            "lab.dispatch.completed": 2008.0,
+            "lab.dispatch.messages": 1.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 2008.0,
+            "lab.outbound.bytes": 155500.0,
+            "lab.outbound.bytes.highwater": 7529411.0,
+            "lab.outbound.messages": 315.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 139.0,
+            "lab.outbound.writers.active": 8.0,
+            "lab.outbound.writes.inflight": 6.0
+          }
+        },
+        "drain": {
+          "samples": 5,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 240594944,
+          "clientCpuPeakCores": 1.4556491575817643,
+          "serverWorkingSetPeakBytes": 334614528,
+          "serverCpuPeakCores": 0.7742814667988108,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 16467.0,
+            "lab.dispatch.completed": 2049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 2049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 7529411.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 1,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": 326811648,
+          "serverCpuPeakCores": 0.36728697355533796,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 16467.0,
+            "lab.dispatch.completed": 2049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 2049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 7529411.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 0.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    },
+    {
+      "name": "formal-1-pair1-direct",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 62304,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 5,
+      "phaseSeconds": 180,
+      "client": {
+        "sent": 72000,
+        "accepted": 36049,
+        "rejected": 35951,
+        "received": 11544500,
+        "acceptedDeliveryDemand": 11544500
+      },
+      "hot": {
+        "accepted": 21649,
+        "rejected": 35951,
+        "unknown": 0,
+        "received": 10824500,
+        "demand": 10824500,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959
+          ],
+          "normalP99": [
+            16,
+            16.00999999999999,
+            16.00999999999999,
+            17,
+            17,
+            17,
+            17,
+            19,
+            18,
+            18
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            3.999977777901234
+          ],
+          "aggregateActualRate": 19.999977777901233,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886
+          ],
+          "normalP99": [
+            16,
+            18,
+            17.00999999999999,
+            18,
+            18,
+            20.00999999999999,
+            21,
+            21,
+            22,
+            22.00999999999999
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "aggregateActualRate": 100.0,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "normalP99": [
+            19,
+            20,
+            23,
+            20,
+            22,
+            22,
+            24,
+            24,
+            24,
+            25.00999999999999
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ],
+          "aggregateActualRate": 200.0,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "normalP99": [
+            18,
+            19,
+            19,
+            19,
+            21.00999999999999,
+            21,
+            22,
+            25,
+            26,
+            27
+          ]
+        }
+      ],
+      "maxSendLagMs": 24,
+      "maxHotLagMs": 15,
+      "normalTimerDriftMs": null,
+      "maxHotTimerDriftMs": 22,
+      "maxTimerDriftMs": null,
+      "resources": {
+        "preparation": {
+          "samples": 6,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 353873920,
+          "clientCpuPeakCores": 0.04682817182817183,
+          "serverWorkingSetPeakBytes": 318218240,
+          "serverCpuPeakCores": 0.8818829891838742,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 0.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 6960.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 143,
+          "completeClientSamples": 143,
+          "clientWorkingSetPeakBytes": 450990080,
+          "clientCpuPeakCores": 3.8764895487399884,
+          "serverWorkingSetPeakBytes": 359100416,
+          "serverCpuPeakCores": 1.4923978065802592,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 0.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 205176.0,
+            "lab.outbound.bytes.highwater": 459838.0,
+            "lab.outbound.messages": 413.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 429.0,
+            "lab.outbound.writers.active": 8.0,
+            "lab.outbound.writes.inflight": 20.0
+          }
+        },
+        "drain": {
+          "samples": 1,
+          "completeClientSamples": 1,
+          "clientWorkingSetPeakBytes": 443871232,
+          "clientCpuPeakCores": 1.4416849342367477,
+          "serverWorkingSetPeakBytes": 359100416,
+          "serverCpuPeakCores": 0.6507821841371064,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 0.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 459838.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 0,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": null,
+          "serverCpuPeakCores": null,
+          "gaugePeaks": {}
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    },
+    {
+      "name": "formal-2-pair1-fair",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 41344,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 5,
+      "phaseSeconds": 180,
+      "client": {
+        "sent": 72000,
+        "accepted": 36049,
+        "rejected": 35951,
+        "received": 11544500,
+        "acceptedDeliveryDemand": 11544500
+      },
+      "hot": {
+        "accepted": 21649,
+        "rejected": 35951,
+        "unknown": 0,
+        "received": 10824500,
+        "demand": 10824500,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "normalP99": [
+            13,
+            14,
+            16.00999999999999,
+            17,
+            17,
+            16.00999999999999,
+            19,
+            20,
+            19,
+            18
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "aggregateActualRate": 20.0,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816
+          ],
+          "normalP99": [
+            10.009999999999991,
+            15,
+            15,
+            16.00999999999999,
+            17,
+            18,
+            19,
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "aggregateActualRate": 100.0,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617
+          ],
+          "normalP99": [
+            11,
+            16,
+            17.00999999999999,
+            20,
+            17,
+            19,
+            20,
+            22,
+            24,
+            26
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            39.99977777901234,
+            39.99977777901234,
+            39.99977777901234,
+            40.0
+          ],
+          "aggregateActualRate": 199.99933333703703,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188
+          ],
+          "normalP99": [
+            9,
+            16.00999999999999,
+            17,
+            15,
+            17.00999999999999,
+            19,
+            20,
+            22,
+            25,
+            25
+          ]
+        }
+      ],
+      "maxSendLagMs": 28,
+      "maxHotLagMs": 15,
+      "normalTimerDriftMs": null,
+      "maxHotTimerDriftMs": 16,
+      "maxTimerDriftMs": null,
+      "resources": {
+        "preparation": {
+          "samples": 6,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 350347264,
+          "clientCpuPeakCores": 0.07675869522499508,
+          "serverWorkingSetPeakBytes": 319623168,
+          "serverCpuPeakCores": 0.8898556456397073,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 6960.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 143,
+          "completeClientSamples": 143,
+          "clientWorkingSetPeakBytes": 450260992,
+          "clientCpuPeakCores": 3.820892928088995,
+          "serverWorkingSetPeakBytes": 356630528,
+          "serverCpuPeakCores": 1.525,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 498.0,
+            "lab.dispatch.bytes.highwater": 5400.0,
+            "lab.dispatch.completed": 35891.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 1.0,
+            "lab.dispatch.wait": 35891.0,
+            "lab.outbound.bytes": 195608.0,
+            "lab.outbound.bytes.highwater": 455920.0,
+            "lab.outbound.messages": 245.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 440.0,
+            "lab.outbound.writers.active": 8.0,
+            "lab.outbound.writes.inflight": 17.0
+          }
+        },
+        "drain": {
+          "samples": 1,
+          "completeClientSamples": 1,
+          "clientWorkingSetPeakBytes": 446963712,
+          "clientCpuPeakCores": 1.6922493145319233,
+          "serverWorkingSetPeakBytes": 347189248,
+          "serverCpuPeakCores": 0.5416421856639249,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 5400.0,
+            "lab.dispatch.completed": 36049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 36049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 455920.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 0,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": null,
+          "serverCpuPeakCores": null,
+          "gaugePeaks": {}
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    },
+    {
+      "name": "formal-3-pair2-fair",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 4916,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 5,
+      "phaseSeconds": 180,
+      "client": {
+        "sent": 72000,
+        "accepted": 36049,
+        "rejected": 35951,
+        "received": 11544500,
+        "acceptedDeliveryDemand": 11544500
+      },
+      "hot": {
+        "accepted": 21649,
+        "rejected": 35951,
+        "unknown": 0,
+        "received": 10824500,
+        "demand": 10824500,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617
+          ],
+          "normalP99": [
+            13,
+            15,
+            15,
+            17,
+            16.00999999999999,
+            16,
+            17,
+            17,
+            19.00999999999999,
+            20
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            4.0,
+            3.999955556049377,
+            3.999977777901234,
+            4.0
+          ],
+          "aggregateActualRate": 19.99993333395061,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213
+          ],
+          "normalP99": [
+            12.009999999999991,
+            15,
+            17,
+            17,
+            19,
+            19.00999999999999,
+            21,
+            21.00999999999999,
+            22,
+            22
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            20.0,
+            19.99988888950617,
+            19.99988888950617,
+            20.0,
+            19.99988888950617
+          ],
+          "aggregateActualRate": 99.99966666851851,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959
+          ],
+          "normalP99": [
+            9.009999999999991,
+            14,
+            14,
+            16,
+            17,
+            18,
+            18,
+            20,
+            22,
+            23
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ],
+          "aggregateActualRate": 200.0,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886
+          ],
+          "normalP99": [
+            11,
+            14,
+            14,
+            14,
+            17,
+            21,
+            19,
+            19.00999999999999,
+            21,
+            22
+          ]
+        }
+      ],
+      "maxSendLagMs": 28,
+      "maxHotLagMs": 13,
+      "normalTimerDriftMs": null,
+      "maxHotTimerDriftMs": 16,
+      "maxTimerDriftMs": null,
+      "resources": {
+        "preparation": {
+          "samples": 6,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 352333824,
+          "clientCpuPeakCores": 0.059079601990049746,
+          "serverWorkingSetPeakBytes": 336420864,
+          "serverCpuPeakCores": 0.7807870827572586,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 6960.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 143,
+          "completeClientSamples": 143,
+          "clientWorkingSetPeakBytes": 445849600,
+          "clientCpuPeakCores": 3.677013588026782,
+          "serverWorkingSetPeakBytes": 352641024,
+          "serverCpuPeakCores": 1.482755183413078,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 500.0,
+            "lab.dispatch.bytes.highwater": 5400.0,
+            "lab.dispatch.completed": 36014.0,
+            "lab.dispatch.messages": 5.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 3.0,
+            "lab.dispatch.wait": 36014.0,
+            "lab.outbound.bytes": 184131.0,
+            "lab.outbound.bytes.highwater": 465068.0,
+            "lab.outbound.messages": 195.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 443.0,
+            "lab.outbound.writers.active": 8.0,
+            "lab.outbound.writes.inflight": 14.0
+          }
+        },
+        "drain": {
+          "samples": 1,
+          "completeClientSamples": 1,
+          "clientWorkingSetPeakBytes": 446320640,
+          "clientCpuPeakCores": 0.512144259077527,
+          "serverWorkingSetPeakBytes": 351244288,
+          "serverCpuPeakCores": 0.10120215897939157,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 5400.0,
+            "lab.dispatch.completed": 36049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 36049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 465068.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 0,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": null,
+          "serverCpuPeakCores": null,
+          "gaugePeaks": {}
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    },
+    {
+      "name": "formal-4-pair2-direct",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 55432,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 5,
+      "phaseSeconds": 180,
+      "client": {
+        "sent": 72000,
+        "accepted": 36049,
+        "rejected": 35951,
+        "received": 11544500,
+        "acceptedDeliveryDemand": 11544500
+      },
+      "hot": {
+        "accepted": 21649,
+        "rejected": 35951,
+        "unknown": 0,
+        "received": 10824500,
+        "demand": 10824500,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975
+          ],
+          "normalP99": [
+            15,
+            15,
+            16,
+            15,
+            16,
+            16,
+            17,
+            16,
+            16,
+            16
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            3.999977777901234,
+            4.0,
+            4.0,
+            3.999977777901234
+          ],
+          "aggregateActualRate": 19.99995555580247,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115
+          ],
+          "normalP99": [
+            17,
+            16,
+            16,
+            16,
+            17,
+            17,
+            17,
+            17,
+            19,
+            19
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            19.99988888950617,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "aggregateActualRate": 99.99988888950617,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 2,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975
+          ],
+          "normalP99": [
+            15,
+            17,
+            17,
+            17,
+            17,
+            19,
+            18,
+            19,
+            20,
+            21
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ],
+          "aggregateActualRate": 200.0,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 2,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115
+          ],
+          "normalP99": [
+            14,
+            16,
+            16.00999999999999,
+            17,
+            17,
+            19,
+            18,
+            20,
+            21,
+            22
+          ]
+        }
+      ],
+      "maxSendLagMs": 22,
+      "maxHotLagMs": 15,
+      "normalTimerDriftMs": null,
+      "maxHotTimerDriftMs": 28,
+      "maxTimerDriftMs": null,
+      "resources": {
+        "preparation": {
+          "samples": 6,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 351895552,
+          "clientCpuPeakCores": 0.03672869735553379,
+          "serverWorkingSetPeakBytes": 328314880,
+          "serverCpuPeakCores": 0.4242081447963801,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 0.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 6960.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 142,
+          "completeClientSamples": 142,
+          "clientWorkingSetPeakBytes": 453042176,
+          "clientCpuPeakCores": 3.595595472440945,
+          "serverWorkingSetPeakBytes": 352006144,
+          "serverCpuPeakCores": 1.3241525423728815,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 0.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 207000.0,
+            "lab.outbound.bytes.highwater": 462822.0,
+            "lab.outbound.messages": 377.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 372.0,
+            "lab.outbound.writers.active": 8.0,
+            "lab.outbound.writes.inflight": 11.0
+          }
+        },
+        "drain": {
+          "samples": 1,
+          "completeClientSamples": 1,
+          "clientWorkingSetPeakBytes": 450805760,
+          "clientCpuPeakCores": 3.1231261243254047,
+          "serverWorkingSetPeakBytes": 343453696,
+          "serverCpuPeakCores": 1.258619828103138,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 0.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 462822.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 1,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": 354758656,
+          "serverCpuPeakCores": 0.16711229946524062,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 0.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 462822.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 0.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    },
+    {
+      "name": "formal-5-pair3-direct",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 17708,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 5,
+      "phaseSeconds": 180,
+      "client": {
+        "sent": 72000,
+        "accepted": 36049,
+        "rejected": 35951,
+        "received": 11544500,
+        "acceptedDeliveryDemand": 11544500
+      },
+      "hot": {
+        "accepted": 21649,
+        "rejected": 35951,
+        "unknown": 0,
+        "received": 10824500,
+        "demand": 10824500,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188
+          ],
+          "normalP99": [
+            16,
+            15,
+            18,
+            17,
+            17,
+            16.00999999999999,
+            16.00999999999999,
+            16,
+            17,
+            17
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "aggregateActualRate": 20.0,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213
+          ],
+          "normalP99": [
+            15,
+            16,
+            15,
+            16,
+            17,
+            17,
+            17,
+            18,
+            18,
+            19
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "aggregateActualRate": 100.0,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617
+          ],
+          "normalP99": [
+            16,
+            15.009999999999991,
+            15,
+            16,
+            18,
+            17,
+            18,
+            19,
+            21,
+            21
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            39.99977777901234,
+            39.99977777901234,
+            40.0
+          ],
+          "aggregateActualRate": 199.99955555802467,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617
+          ],
+          "normalP99": [
+            15,
+            15,
+            16,
+            17,
+            18,
+            19,
+            18,
+            19.00999999999999,
+            20,
+            22
+          ]
+        }
+      ],
+      "maxSendLagMs": 21,
+      "maxHotLagMs": 15,
+      "normalTimerDriftMs": null,
+      "maxHotTimerDriftMs": 20,
+      "maxTimerDriftMs": null,
+      "resources": {
+        "preparation": {
+          "samples": 6,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 349679616,
+          "clientCpuPeakCores": 0.04918355301987015,
+          "serverWorkingSetPeakBytes": 332890112,
+          "serverCpuPeakCores": 0.8638012154479514,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 0.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 10360.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 143,
+          "completeClientSamples": 143,
+          "clientWorkingSetPeakBytes": 443555840,
+          "clientCpuPeakCores": 3.705508898220356,
+          "serverWorkingSetPeakBytes": 348147712,
+          "serverCpuPeakCores": 1.4705518129581931,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 0.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 158183.0,
+            "lab.outbound.bytes.highwater": 466333.0,
+            "lab.outbound.messages": 432.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 415.0,
+            "lab.outbound.writers.active": 8.0,
+            "lab.outbound.writes.inflight": 15.0
+          }
+        },
+        "drain": {
+          "samples": 0,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": null,
+          "serverCpuPeakCores": null,
+          "gaugePeaks": {}
+        },
+        "closing": {
+          "samples": 1,
+          "completeClientSamples": 1,
+          "clientWorkingSetPeakBytes": 493576192,
+          "clientCpuPeakCores": 0.14204545454545456,
+          "serverWorkingSetPeakBytes": 349110272,
+          "serverCpuPeakCores": 0.12042984189723321,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 0.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 466333.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 0.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    },
+    {
+      "name": "formal-6-pair3-fair",
+      "passed": true,
+      "evidenceComplete": true,
+      "jvmPid": 29232,
+      "jarHash": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+      "hotWorkers": 5,
+      "phaseSeconds": 180,
+      "client": {
+        "sent": 72000,
+        "accepted": 36049,
+        "rejected": 35951,
+        "received": 11544500,
+        "acceptedDeliveryDemand": 11544500
+      },
+      "hot": {
+        "accepted": 21649,
+        "rejected": 35951,
+        "unknown": 0,
+        "received": 10824500,
+        "demand": 10824500,
+        "missing": 0,
+        "unexpected": 0
+      },
+      "phases": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959
+          ],
+          "normalP99": [
+            11.009999999999991,
+            16.00999999999999,
+            15,
+            15,
+            15,
+            17,
+            16,
+            18,
+            17,
+            19
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            3.999977777901234,
+            3.999977777901234,
+            4.0,
+            4.0
+          ],
+          "aggregateActualRate": 19.99995555580247,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617
+          ],
+          "normalP99": [
+            12,
+            11,
+            15,
+            14,
+            15,
+            16,
+            17,
+            17,
+            19,
+            20
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            19.99988888950617,
+            20.0,
+            19.99988888950617,
+            20.0,
+            19.99988888950617
+          ],
+          "aggregateActualRate": 99.99966666851851,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816
+          ],
+          "normalP99": [
+            11.009999999999991,
+            14,
+            15.009999999999991,
+            15,
+            16,
+            17,
+            18,
+            20,
+            21,
+            23
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            40.0,
+            39.99977777901234,
+            40.0
+          ],
+          "aggregateActualRate": 199.99977777901233,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886
+          ],
+          "normalP99": [
+            10,
+            12.009999999999991,
+            13,
+            16,
+            16,
+            16,
+            18,
+            18,
+            20,
+            21
+          ]
+        }
+      ],
+      "maxSendLagMs": 22,
+      "maxHotLagMs": 14,
+      "normalTimerDriftMs": null,
+      "maxHotTimerDriftMs": 16,
+      "maxTimerDriftMs": null,
+      "resources": {
+        "preparation": {
+          "samples": 6,
+          "completeClientSamples": 5,
+          "clientWorkingSetPeakBytes": 341495808,
+          "clientCpuPeakCores": 0.09585889570552147,
+          "serverWorkingSetPeakBytes": 339656704,
+          "serverCpuPeakCores": 0.7612893642305406,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 0.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 6764.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "input": {
+          "samples": 142,
+          "completeClientSamples": 142,
+          "clientWorkingSetPeakBytes": 445353984,
+          "clientCpuPeakCores": 3.5939998001598723,
+          "serverWorkingSetPeakBytes": 356470784,
+          "serverCpuPeakCores": 1.3881263725294468,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 3904.0,
+            "lab.dispatch.bytes.highwater": 5400.0,
+            "lab.dispatch.completed": 35727.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 1.0,
+            "lab.dispatch.wait": 35727.0,
+            "lab.outbound.bytes": 163500.0,
+            "lab.outbound.bytes.highwater": 453871.0,
+            "lab.outbound.messages": 432.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 413.0,
+            "lab.outbound.writers.active": 8.0,
+            "lab.outbound.writes.inflight": 8.0
+          }
+        },
+        "drain": {
+          "samples": 1,
+          "completeClientSamples": 1,
+          "clientWorkingSetPeakBytes": 449224704,
+          "clientCpuPeakCores": 2.653590295441205,
+          "serverWorkingSetPeakBytes": 351289344,
+          "serverCpuPeakCores": 1.0577675601643515,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 5400.0,
+            "lab.dispatch.completed": 36049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 36049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 453871.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 1000.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        },
+        "closing": {
+          "samples": 1,
+          "completeClientSamples": 0,
+          "clientWorkingSetPeakBytes": null,
+          "clientCpuPeakCores": null,
+          "serverWorkingSetPeakBytes": 354705408,
+          "serverCpuPeakCores": 0.08890033352952717,
+          "gaugePeaks": {
+            "lab.dispatch.bytes": 0.0,
+            "lab.dispatch.bytes.highwater": 5400.0,
+            "lab.dispatch.completed": 36049.0,
+            "lab.dispatch.messages": 0.0,
+            "lab.dispatch.mode.fair": 1.0,
+            "lab.dispatch.ready": 0.0,
+            "lab.dispatch.rooms": 0.0,
+            "lab.dispatch.wait": 36049.0,
+            "lab.outbound.bytes": 0.0,
+            "lab.outbound.bytes.highwater": 453871.0,
+            "lab.outbound.messages": 0.0,
+            "lab.outbound.mode.buffered": 1.0,
+            "lab.outbound.slots": 0.0,
+            "lab.outbound.tasks": 0.0,
+            "lab.outbound.writers.active": 0.0,
+            "lab.outbound.writes.inflight": 0.0
+          }
+        }
+      },
+      "cleanupAllZero": true,
+      "errors": []
+    }
+  ],
+  "shortSourceIdentical": true,
+  "freshJvmPidsUnique": true,
+  "formalExecuted": 6,
+  "scope": "New client 1/5 process comparison; different instrumentation from historical client, no service optimization or old root cause claim."
+}

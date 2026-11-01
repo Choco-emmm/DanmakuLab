@@ -1,0 +1,8 @@
+{
+  "mode": "normal",
+  "url": "ws://127.0.0.1:18081/ws",
+  "seconds": 90,
+  "rate": 40,
+  "viewers": 10,
+  "output": "/mnt/d/coding/DanmakuLab/docs/results/2026-10-30/linux-io-01/direct-normal/client"
+}

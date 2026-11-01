@@ -1,0 +1,5 @@
+Exception: D:\coding\DanmakuLab\scripts\tests\repeat-longrun.test.ps1:12
+Line |
+  12 |  if($collisions.Count){throw '轮次函数中的循环变量覆盖了参数，可能破坏日志或后续控制'}
+     |                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | 轮次函数中的循环变量覆盖了参数，可能破坏日志或后续控制

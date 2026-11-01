@@ -14,28 +14,44 @@ param(
     [ValidateRange(1,1048576)][int]$SlowBytesPerSecond=1024,
     [string]$HttpUrl='http://127.0.0.1:8083',
     [ValidateSet('direct','fair')][string]$DispatchMode='fair',
-    [string]$OutputDirectory
+    [string]$OutputDirectory,
+    # 记录真正运行的JAR；可用ExpectedJarHash固定候选，禁止拿旧文件的哈希冒充新服务。
+    [string]$JarPath='target/danmaku-lab-release.jar',
+    [string]$ExpectedJarHash
 )
 $ErrorActionPreference='Stop'
 Import-Module (Join-Path $PSScriptRoot 'ProcessEvidence.psm1') -Force
 $root=(Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
 Push-Location $root
+$http=[Net.Http.HttpClient]::new()
 try {
+    $artifact=(Resolve-Path -LiteralPath $JarPath).Path
+    $artifactHash=(Get-FileHash -LiteralPath $artifact).Hash
+    if($ExpectedJarHash -and $artifactHash -ne $ExpectedJarHash){throw 'JAR哈希与固定候选不符'}
+    function Get-Json([string]$Path,[DateTimeOffset]$Deadline=[DateTimeOffset]::UtcNow.AddSeconds(3)) {
+        # 复用HTTP连接；取消令牌同时受单请求3秒及调用方总截止约束，不把超时重试成成功。
+        $seconds=($Deadline-[DateTimeOffset]::UtcNow).TotalSeconds
+        if($seconds -le 0){throw '指标采集总截止已到'}
+        $cts=[Threading.CancellationTokenSource]::new([TimeSpan]::FromSeconds([Math]::Min(3,$seconds)))
+        try { $http.GetStringAsync("$url$Path",$cts.Token).GetAwaiter().GetResult()|ConvertFrom-Json }
+        finally {$cts.Dispose()}
+    }
     if (-not $PSBoundParameters.ContainsKey('Seconds')) { $Seconds=if ($Scenario -eq 'T3') {900} else {1800} }
     if ($Scenario -eq 'T3' -and -not $PSBoundParameters.ContainsKey('SlowConnections')) { $SlowConnections=[Math]::Max(1,[int]($Connections/100)) }
     if (($Scenario -eq 'T5' -and $SlowConnections) -or $SlowConnections -ge $Connections) { throw '慢观众数与场景不符。' }
     $url=$HttpUrl.TrimEnd('/'); $uri=[Uri]$url
     if (-not $uri.IsLoopback) { throw '本入口只支持同机回环资源采集。' }
-    if ((Invoke-RestMethod "$url/actuator/health" -TimeoutSec 5).status -ne 'UP') { throw '请先启动服务。' }
-    if ((Invoke-RestMethod "$url/actuator/metrics/lab.outbound.mode.buffered" -TimeoutSec 3).measurements[0].value -ne 1) { throw '本轮要求 buffered 输出。' }
+    if ((Get-Json '/actuator/health').status -ne 'UP') { throw '请先启动服务。' }
+    if ((Get-Json '/actuator/metrics/lab.outbound.mode.buffered').measurements[0].value -ne 1) { throw '本轮要求 buffered 输出。' }
     $expectedMode=if ($DispatchMode -eq 'fair') {1} else {0}
-    if ((Invoke-RestMethod "$url/actuator/metrics/lab.dispatch.mode.fair" -TimeoutSec 3).measurements[0].value -ne $expectedMode) { throw '调度模式不符。' }
+    if ((Get-Json '/actuator/metrics/lab.dispatch.mode.fair').measurements[0].value -ne $expectedMode) { throw '调度模式不符。' }
     function Snapshot {
+        $deadline=[DateTimeOffset]::UtcNow.AddSeconds(10)
         $began=[DateTimeOffset]::UtcNow
-        $index=Invoke-RestMethod "$url/actuator/metrics" -TimeoutSec 3
+        $index=Get-Json '/actuator/metrics' $deadline
         $entries=@($index.names | Where-Object {$_ -like 'lab.*' -or $_ -in @('jvm.threads.live','jvm.gc.pause','process.cpu.usage')} |
-            ForEach-Object {Invoke-RestMethod "$url/actuator/metrics/$_" -TimeoutSec 3})
-        $entries+=Invoke-RestMethod "$url/actuator/metrics/jvm.memory.used?tag=area:heap" -TimeoutSec 3
+            ForEach-Object {Get-Json "/actuator/metrics/$_" $deadline})
+        $entries+=Get-Json '/actuator/metrics/jvm.memory.used?tag=area:heap' $deadline
         @{startedAt=$began.ToString('o');endedAt=[DateTimeOffset]::UtcNow.ToString('o');metrics=$entries}
     }
     function Metric($snapshot,[string]$name,[switch]$Required) {
@@ -47,8 +63,11 @@ try {
         try {$item.Refresh(); @{pid=$item.Id;cpuSeconds=$item.TotalProcessorTime.TotalSeconds;workingSetBytes=$item.WorkingSet64;threads=$item.Threads.Count}}
         catch {$null}
     }
+    $gaugeNames=@('lab.connections','lab.rooms','lab.outbound.bytes','lab.outbound.messages','lab.outbound.slots',
+        'lab.outbound.tasks','lab.outbound.writers.active','lab.outbound.writes.inflight',
+        'lab.dispatch.bytes','lab.dispatch.messages','lab.dispatch.rooms','lab.dispatch.ready')
     $before=Snapshot
-    if ((Metric $before 'lab.connections' -Required) -ne 0) { throw '运行前仍有其他连接。' }
+    foreach($name in $gaugeNames){if((Metric $before $name -Required) -ne 0){throw "运行前$name非零"}}
     if (-not $OutputDirectory) {
         $now=[TimeZoneInfo]::ConvertTimeBySystemTimeZoneId([DateTimeOffset]::UtcNow,'China Standard Time')
         $OutputDirectory="docs/results/$($now.ToString('yyyy-MM-dd'))/$($Scenario.ToLower())-$($now.ToString('HHmmss'))"
@@ -59,13 +78,17 @@ try {
     $before | ConvertTo-Json -Depth 14 | Set-Content (Join-Path $output 'server-before.json') -Encoding utf8
     $listener=Get-NetTCPConnection -State Listen -LocalPort $uri.Port | Select-Object -First 1
     $server=Get-Process -Id $listener.OwningProcess
-    (Get-CimInstance Win32_Process -Filter "ProcessId=$($server.Id)").CommandLine | Set-Content (Join-Path $output 'server-command.txt') -Encoding utf8
+    $serverCommand=(Get-CimInstance Win32_Process -Filter "ProcessId=$($server.Id)").CommandLine
+    $serverCommand|Set-Content (Join-Path $output 'server-command.txt') -Encoding utf8
+    # JVM必须确实以本次制品启动；开发态spring-boot:run不能用磁盘上某个JAR替代身份。
+    if($serverCommand -notmatch ('(?i)-jar\s+"?'+[regex]::Escape($artifact)+'"?(?:\s|$)')){throw '服务进程并非指定JAR，不能确认制品身份'}
+    @{path=$artifact;sha256=$artifactHash;serverPid=$server.Id;verified=$true}|ConvertTo-Json|Set-Content (Join-Path $output 'artifact-identity.json') -Encoding utf8
     Copy-Item src/main/resources/application.yml (Join-Path $output 'application.yml')
     $manifest=@(Get-Item pom.xml)+@(Get-ChildItem src,scripts -Recurse -File | Where-Object FullName -notmatch '__pycache__')
     @($manifest | Sort-Object FullName | ForEach-Object {@{path=[IO.Path]::GetRelativePath($root,$_.FullName);sha256=(Get-FileHash -LiteralPath $_.FullName).Hash}}) |
         ConvertTo-Json -Depth 4 | Set-Content (Join-Path $output 'source-sha256.json') -Encoding utf8
-    Get-FileHash target/danmaku-lab-0.1.0-SNAPSHOT.jar | ConvertTo-Json | Set-Content (Join-Path $output 'jar-sha256.json') -Encoding utf8
-    @{scenario=$Scenario;connections=$Connections;seconds=$Seconds;warmupSeconds=$WarmupSeconds;rate=$Rate;slowConnections=$SlowConnections;
+    Get-FileHash -LiteralPath $artifact | ConvertTo-Json | Set-Content (Join-Path $output 'jar-sha256.json') -Encoding utf8
+    @{evidenceSchemaVersion=2;jarSha256=$artifactHash;scenario=$Scenario;connections=$Connections;seconds=$Seconds;warmupSeconds=$WarmupSeconds;rate=$Rate;slowConnections=$SlowConnections;
       slowBytesPerSecond=$SlowBytesPerSecond;dispatchMode=$DispatchMode;outboundMode='buffered';sampleSeconds=5;inputBytes=256} |
         ConvertTo-Json | Set-Content (Join-Path $output 'config.json') -Encoding utf8
     @{capturedAt=[DateTimeOffset]::UtcNow.ToString('o');os=[Environment]::OSVersion.VersionString;
@@ -86,7 +109,7 @@ try {
     @{executable=$info.FileName;arguments=$cliArguments} | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $output 'command.json') -Encoding utf8
     $sampling=[pscustomobject]@{Next=0.0;Progress=0.0;Errors=0}
     $failure=$null
-    $status=[ordered]@{processPassed=$false;collectorErrors=0;cleanupReturnedToZero=$false;serverCountersMatch=$false;backpressureObserved=$null}
+    $status=[ordered]@{artifactIdentityVerified=$true;processPassed=$false;collectorErrors=0;cleanupReturnedToZero=$false;serverCountersMatch=$false;backpressureObserved=$null}
     try {
         Write-Output "$Scenario started: $Connections connections, slow=$SlowConnections, measured=$Seconds seconds; $output"
         $null=Invoke-ProcessWithEvidence -StartInfo $info -Prefix (Join-Path $output 'python') -TimeoutSeconds ($WarmupSeconds+$Seconds+100) -OnTick {
@@ -102,16 +125,25 @@ try {
         $status.processPassed=$true
     } catch {$failure=$_}
     finally {
-        Start-Sleep -Seconds 2
+        # 清理Gauge保留完整12项，缺失为null；总10秒预算内轮询，不能把缺失当0。
+        $gauges=@{};foreach($name in $gaugeNames){$gauges[$name]=$null}
+        $cleanupDeadline=[DateTimeOffset]::UtcNow.AddSeconds(10)
+        try {
+            do {
+                foreach($name in $gaugeNames){
+                    $item=Get-Json "/actuator/metrics/$name" $cleanupDeadline
+                    if($null -eq $item.measurements[0].value){throw "缺少Gauge $name"}
+                    $gauges[$name]=$item.measurements[0].value
+                }
+                if(@($gauges.Values|Where-Object {$_ -ne 0}).Count -eq 0){break}
+                Start-Sleep -Milliseconds 100
+            }while([DateTimeOffset]::UtcNow -lt $cleanupDeadline)
+            $status.cleanupReturnedToZero=@($gaugeNames|Where-Object { $null -eq $gauges[$_] -or $gauges[$_] -ne 0 }).Count -eq 0
+        }catch{$status.cleanupError=$_.Exception.Message;if(-not $failure){$failure=$_}}
+        $gauges|ConvertTo-Json|Set-Content (Join-Path $output 'cleanup-gauges.json') -Encoding utf8
         try {
             $after=Snapshot
             $after | ConvertTo-Json -Depth 14 | Set-Content (Join-Path $output 'server-after.json') -Encoding utf8
-            $status.cleanupReturnedToZero=$true
-            foreach ($name in 'lab.connections','lab.rooms','lab.outbound.bytes','lab.outbound.messages','lab.outbound.slots','lab.dispatch.bytes','lab.dispatch.messages','lab.dispatch.rooms','lab.dispatch.ready') {
-                if ((Metric $after $name -Required) -ne 0) {$status.cleanupReturnedToZero=$false}
-            }
-            # 新异步输出还要等所有容器完成回调；旧制品没有该指标时仍可用同一入口保留历史对照。
-            if ((Metric $after 'lab.outbound.writes.inflight') -ne 0) {$status.cleanupReturnedToZero=$false}
             $delta=@{}
             foreach ($name in 'lab.messages.input','lab.messages.accepted','lab.messages.rejected','lab.deliveries.expected','lab.deliveries.enqueued','lab.deliveries.submitted','lab.writes.failed','lab.outbound.dropped','lab.outbound.closed','lab.dispatch.discarded','lab.deliveries.cancelled') {
                 $delta[$name]=(Metric $after $name)-(Metric $before $name)
@@ -129,6 +161,14 @@ try {
                 } else {
                     # 接收限速本身还不够：需见到服务端写失败或明确过载/过期降级，才能声称实际形成背压。
                     $status.backpressureObserved=$delta['lab.writes.failed'] -gt 0 -or $delta['lab.outbound.dropped'] -gt 0
+                    $normalTotal=$report.normalReceived+$report.normalWarmupReceived
+                    $status.serverCountersMatch=$status.serverCountersMatch -and
+                        $delta['lab.deliveries.expected'] -ge $normalTotal -and
+                        $delta['lab.deliveries.expected'] -le $Connections*$report.acceptedIncludingWarmup -and
+                        $delta['lab.deliveries.enqueued'] -ge $normalTotal -and
+                        $delta['lab.deliveries.submitted'] -ge $normalTotal -and
+                        $delta['lab.deliveries.submitted'] -le $delta['lab.deliveries.enqueued'] -and
+                        $delta['lab.deliveries.enqueued'] -le $delta['lab.deliveries.expected']
                 }
                 @{client=$report;server=$delta} | ConvertTo-Json -Depth 12 | Set-Content (Join-Path $output 'counter-delta.json') -Encoding utf8
             }
@@ -142,4 +182,4 @@ try {
     if (-not $status.cleanupReturnedToZero -or -not $status.serverCountersMatch -or $status.collectorErrors -or
         ($Scenario -eq 'T3' -and $Seconds -ge 900 -and -not $status.backpressureObserved)) {throw "长测的采集/回收/计数/背压证据不通过：$output"}
     Write-Output "$Scenario passed; normal=$($report.normalReceived)/$($report.normalExpected); latency=$($report.normalLatencyMs | ConvertTo-Json -Compress); $output"
-} finally {Pop-Location}
+} finally {$http.Dispose();Pop-Location}

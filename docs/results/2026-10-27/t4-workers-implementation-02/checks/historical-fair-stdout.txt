@@ -1,0 +1,2 @@
+PASS: docs\results\2026-10-27\t4-diagnostic-default-regression\round-01-fair\load; 60 connections; 14610 actual deliveries
+

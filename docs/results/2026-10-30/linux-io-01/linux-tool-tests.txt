@@ -1,0 +1,17 @@
+test_client_stop_error_does_not_skip_server_cleanup (test_linux_io.DiagnosticSafetyTest.test_client_stop_error_does_not_skip_server_cleanup)
+注入第一个回收失败，验证真实的另一个自建进程仍退出，且失败进入状态证据。 ... ok
+test_closed_server_time_wait_does_not_block_next_case (test_linux_io.DiagnosticSafetyTest.test_closed_server_time_wait_does_not_block_next_case)
+服务已退出、旧连接留在 TIME_WAIT 时应允许下一组；与仍监听的端口区别处理。 ... ok
+test_failed_collector_command_is_detected (test_linux_io.DiagnosticSafetyTest.test_failed_collector_command_is_detected)
+采集命令非零退出或超时都必须成为失败证据，不能只看是否生成了文件。 ... ok
+test_missing_gauge_cannot_pass_cleanup (test_linux_io.DiagnosticSafetyTest.test_missing_gauge_cannot_pass_cleanup)
+指标接口返回成功但字段缺失时，未知连接/预算不能被当成已经回收。 ... ok
+test_occupied_port_is_rejected_without_touching_listener (test_linux_io.DiagnosticSafetyTest.test_occupied_port_is_rejected_without_touching_listener)
+占用端口时预检应拒绝；测试自己的监听器继续可用，证明没有接管已有服务。 ... ok
+test_only_owned_child_is_stopped (test_linux_io.DiagnosticSafetyTest.test_only_owned_child_is_stopped)
+模拟实验异常后的清理：停止目标子进程，同时另一自建对照进程仍存活。 ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.117s
+
+OK

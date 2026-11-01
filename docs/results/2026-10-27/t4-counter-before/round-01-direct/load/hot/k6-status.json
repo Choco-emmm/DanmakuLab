@@ -1,0 +1,11 @@
+{
+  "started": true,
+  "processId": 58880,
+  "exitCode": 99,
+  "timedOut": false,
+  "elapsedSeconds": 85.9102657,
+  "error": "子进程退出码为 99。",
+  "captureComplete": true,
+  "captureErrors": [],
+  "cleanupErrors": []
+}

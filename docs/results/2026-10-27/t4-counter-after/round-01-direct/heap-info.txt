@@ -1,0 +1,3 @@
+60212:
+garbage-first heap   total reserved 262144K, committed 143360K, used 100852K [0x00000000f0000000, 0x0000000100000000)
+ region size 1024K, 22 young (22528K), 2 survivors (2048K)

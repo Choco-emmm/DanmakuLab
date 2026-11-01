@@ -1,0 +1,114 @@
+{
+  "sourceArchive": ".lab-artifacts/ship-20261027/source.zip",
+  "files": [
+    {
+      "path": "pom.xml",
+      "matched": true
+    },
+    {
+      "path": "src/main/resources/application.yml",
+      "matched": true
+    },
+    {
+      "path": "src/main/resources/static/app.js",
+      "matched": true
+    },
+    {
+      "path": "src/main/resources/static/index.html",
+      "matched": true
+    },
+    {
+      "path": "src/main/resources/static/style.css",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/DanmakuLabApplication.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/cluster/BudgetQueue.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/cluster/ClusterTransport.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/cluster/RedisBroadcastIngress.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/cluster/RedisPubSubTransport.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/config/ClusterProperties.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/config/DispatchProperties.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/config/LabProperties.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/config/OutboundProperties.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/config/WebSocketConfiguration.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/core/BroadcastIngress.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/core/ClientConnection.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/core/ConnectionRegistry.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/core/DirectBroadcaster.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/core/FairRoomDispatcher.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/core/LocalBroadcastIngress.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/core/OutboundMailbox.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/core/OutboundService.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/core/Room.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/core/TokenBucket.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/protocol/DanmakuHandler.java",
+      "matched": true
+    },
+    {
+      "path": "src/main/java/io/github/chocoemmm/danmakulab/protocol/ProtocolException.java",
+      "matched": true
+    }
+  ],
+  "allMatch": true
+}

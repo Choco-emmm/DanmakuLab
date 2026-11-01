@@ -1,0 +1,18 @@
+{
+  "error": "子进程退出码为 1。",
+  "passed": false,
+  "completed": 1,
+  "runs": [
+    {
+      "round": 1,
+      "mode": "direct",
+      "directory": "round-01-direct",
+      "startedAt": "2026-10-27T07:28:11.2234850+00:00",
+      "processId": 52732,
+      "passed": false,
+      "stopped": true,
+      "error": "子进程退出码为 1。",
+      "endedAt": "2026-10-27T07:29:58.8723542+00:00"
+    }
+  ]
+}

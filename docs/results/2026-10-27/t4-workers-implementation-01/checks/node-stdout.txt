@@ -1,0 +1,28 @@
+✔ default path preserves delivery and simultaneous close without diagnostics (175.172ms)
+✔ diagnostics reject long phases and batching without opt-in (1.3797ms)
+✔ diagnostics reject a batch schedule exceeding its bounded budget (0.5982ms)
+✔ diagnostics emit periodic samples, drain before close and preserve terminal evidence (172.0689ms)
+✔ drain counts delayed receipts before requesting close (5913.1869ms)
+✔ batch close respects configured size and interval (173.8808ms)
+✔ early failure preserves first reason and closes created sockets (1.7831ms)
+✔ socket creation failure preserves bounded diagnostic settlement (0.8543ms)
+✔ connecting sockets are included in bounded close settlement (1.189ms)
+✔ missing close callbacks retain timeout evidence and stop diagnostic timers (173.2839ms)
+✔ explicit short diagnostic stall makes the original send-lag gate red-capable (188.4447ms)
+✔ late close callbacks cannot append events after the terminal cutoff (170.1432ms)
+✔ 1 hot workers share input plan and receive foreign producers (165.6029ms)
+✔ 5 hot workers share input plan and receive foreign producers (247.5847ms)
+✔ duplicate deliveries are classified and cannot hide in deduplicated proof (236.2272ms)
+✔ foreign run identities cannot set a receipt bitmap bit (236.5462ms)
+✔ late join is a failure without reducing local observer count (208.1817ms)
+✔ constructor failure has a finite terminal proof (185.1239ms)
+✔ missing close callbacks fail and late callbacks cannot rewrite terminal evidence (236.2099ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7057.0458
+

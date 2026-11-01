@@ -1,0 +1,15 @@
+{
+  "date": "2026-10-30",
+  "runtimeDirectory": "/home/renpe/.local/share/danmakulab/temurin21-61312483",
+  "runtimeVersion": "Temurin 21.0.12+8-LTS",
+  "source": "Previously cached official Maven container image; extracted /opt/java/openjdk into WSL Linux filesystem without starting the container",
+  "image": "maven:3.9-eclipse-temurin-21",
+  "imageIdAndRepoDigest": "sha256:613124833fa6718ded9d655a2ebfab6425818c178f899116b93560b6f1c9ffe9",
+  "temporaryContainerRemoved": "danmakulab-jdk21-extract-20261030",
+  "execution": "Native WSL Ubuntu JVM and Python; no container or Windows java.exe in measured path",
+  "setupNotes": [
+    "Ubuntu originally had no native JDK. An initial OpenJDK 25 apt install completed before the experiment was changed to JDK 21.",
+    "Ubuntu apt JDK 21 download failed on the WSL network path. A partial Windows download was stopped and retained with .partial suffix under ignored .lab-artifacts/linux-runtime.",
+    "The experiment uses explicit Temurin 21 paths for both java and jcmd. The WSL system java command may still resolve to OpenJDK 25."
+  ]
+}

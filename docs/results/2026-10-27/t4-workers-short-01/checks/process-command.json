@@ -1,0 +1,8 @@
+{
+  "executable": "C:\\Users\\renpe\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe",
+  "arguments": [
+    "-NoProfile",
+    "-File",
+    "scripts/tests/process-evidence.test.ps1"
+  ]
+}

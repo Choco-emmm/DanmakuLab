@@ -1,0 +1,5 @@
+用户提供的终端摘要：
+Tests run: 82, Failures: 0, Errors: 0, Skipped: 0
+BUILD SUCCESS
+Total time: 23.801 s
+Finished at: 2026-10-28T13:42:45+08:00

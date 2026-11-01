@@ -1,0 +1,70 @@
+{
+  "createdAtUtc": "2026-10-30T07:00:55.325211+00:00",
+  "platform": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "osRelease": "PRETTY_NAME=\"Ubuntu 26.04 LTS\"\nNAME=\"Ubuntu\"\nVERSION_ID=\"26.04\"\nVERSION=\"26.04 (Resolute Raccoon)\"\nVERSION_CODENAME=resolute\nID=ubuntu\nID_LIKE=debian\nHOME_URL=\"https://www.ubuntu.com/\"\nSUPPORT_URL=\"https://help.ubuntu.com/\"\nBUG_REPORT_URL=\"https://bugs.launchpad.net/ubuntu/\"\nPRIVACY_POLICY_URL=\"https://www.ubuntu.com/legal/terms-and-policies/privacy-policy\"\nUBUNTU_CODENAME=resolute\nLOGO=ubuntu-logo\n",
+  "procVersion": "Linux version 6.18.33.2-microsoft-standard-WSL2 (root@f1bbfb02316b) (gcc (GCC) 13.2.0, GNU ld (GNU Binutils) 2.41) #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026\n",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "java": {
+    "arguments": [
+      "/home/renpe/.local/share/danmakulab/temurin21-61312483/bin/java",
+      "-version"
+    ],
+    "exitCode": 0,
+    "stdout": "",
+    "stderr": "openjdk version \"21.0.12\" 2026-07-21 LTS\nOpenJDK Runtime Environment Temurin-21.0.12+8 (build 21.0.12+8-LTS)\nOpenJDK 64-Bit Server VM Temurin-21.0.12+8 (build 21.0.12+8-LTS, mixed mode, sharing)\n"
+  },
+  "jcmd": "/home/renpe/.local/share/danmakulab/temurin21-61312483/bin/jcmd",
+  "cpu": {
+    "arguments": [
+      "lscpu"
+    ],
+    "exitCode": 0,
+    "stdout": "Architecture:                            x86_64\nCPU op-mode(s):                          32-bit, 64-bit\nAddress sizes:                           48 bits physical, 48 bits virtual\nByte Order:                              Little Endian\nCPU(s):                                  32\nOn-line CPU(s) list:                     0-31\nVendor ID:                               AuthenticAMD\nModel name:                              AMD Ryzen 9 8945HX with Radeon Graphics\nCPU family:                              25\nModel:                                   97\nThread(s) per core:                      2\nCore(s) per socket:                      16\nSocket(s):                               1\nStepping:                                2\nBogoMIPS:                                4990.47\nFlags:                                   fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx mmxext fxsr_opt pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology tsc_reliable nonstop_tsc cpuid extd_apicid tsc_known_freq pni pclmulqdq ssse3 fma cx16 sse4_1 sse4_2 movbe popcnt aes xsave avx f16c rdrand hypervisor lahf_lm cmp_legacy cr8_legacy abm sse4a misalignsse 3dnowprefetch osvw topoext perfctr_core ssbd ibrs ibpb stibp vmmcall fsgsbase bmi1 avx2 smep bmi2 erms invpcid avx512f avx512dq rdseed adx smap avx512ifma clflushopt clwb avx512cd sha_ni avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves avx512_bf16 clzero xsaveerptr arat avx512vbmi umip avx512_vbmi2 gfni vaes vpclmulqdq avx512_vnni avx512_bitalg avx512_vpopcntdq rdpid fsrm\nHypervisor vendor:                       Microsoft\nVirtualization type:                     full\nL1d cache:                               512 KiB (16 instances)\nL1i cache:                               512 KiB (16 instances)\nL2 cache:                                16 MiB (16 instances)\nL3 cache:                                32 MiB (1 instance)\nNUMA node(s):                            1\nNUMA node0 CPU(s):                       0-31\nVulnerability Gather data sampling:      Not affected\nVulnerability Ghostwrite:                Not affected\nVulnerability Indirect target selection: Not affected\nVulnerability Itlb multihit:             Not affected\nVulnerability L1tf:                      Not affected\nVulnerability Mds:                       Not affected\nVulnerability Meltdown:                  Not affected\nVulnerability Mmio stale data:           Not affected\nVulnerability Old microcode:             Not affected\nVulnerability Reg file data sampling:    Not affected\nVulnerability Retbleed:                  Not affected\nVulnerability Spec rstack overflow:      Vulnerable: Safe RET, no microcode\nVulnerability Spec store bypass:         Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:                Mitigation; usercopy/swapgs barriers and __user pointer sanitization\nVulnerability Spectre v2:                Mitigation; Retpolines; IBPB conditional; IBRS_FW; STIBP always-on; RSB filling; PBRSB-eIBRS Not affected; BHI Not affected\nVulnerability Srbds:                     Not affected\nVulnerability Tsa:                       Mitigation; Clear CPU buffers\nVulnerability Tsx async abort:           Not affected\nVulnerability Vmscape:                   Not affected\n",
+    "stderr": ""
+  },
+  "memory": {
+    "arguments": [
+      "free",
+      "-b"
+    ],
+    "exitCode": 0,
+    "stdout": "               total        used        free      shared  buff/cache   available\nMem:     16391028736  2839441408  8550899712    85934080  5338886144 13551587328\nSwap:     4294967296           0  4294967296\n",
+    "stderr": ""
+  },
+  "tcp": {
+    "arguments": [
+      "sysctl",
+      "net.ipv4.tcp_wmem",
+      "net.ipv4.tcp_rmem",
+      "net.core.wmem_default",
+      "net.core.rmem_default"
+    ],
+    "exitCode": 0,
+    "stdout": "net.ipv4.tcp_wmem = 4096\t16384\t4194304\nnet.ipv4.tcp_rmem = 4096\t131072\t33554432\nnet.core.wmem_default = 212992\nnet.core.rmem_default = 212992\n",
+    "stderr": ""
+  },
+  "jar": "/mnt/d/coding/DanmakuLab/.lab-artifacts/ship-20261027/danmaku-lab-release.jar",
+  "jarSha256": "bc5652880ad8fa34b903b7f6350e292d090fa914c85456879243082a38f43f65",
+  "configuration": {
+    "jar": "/mnt/d/coding/DanmakuLab/.lab-artifacts/ship-20261027/danmaku-lab-release.jar",
+    "output": "/mnt/d/coding/DanmakuLab/docs/results/2026-10-30/linux-io-01",
+    "java_home": "/home/renpe/.local/share/danmakulab/temurin21-61312483",
+    "seconds": 90,
+    "rate": 40,
+    "viewers": 10,
+    "port": 18081,
+    "cases": [
+      "direct-normal",
+      "direct-paused",
+      "buffered-normal",
+      "buffered-paused"
+    ]
+  },
+  "network": "Same WSL2 Linux instance, IPv4 loopback; shared Windows physical host; no remote/public-network claim.",
+  "timing": "No excluded warm-up; per case fresh JVM; client 7-second drain; samples approximately 1s, thread dumps approximately 20s.",
+  "sourceSha256": {
+    "scripts/run/linux-io.py": "c0571d4580420c39020531709d8b26dd5ee74a6b27bfc0dd6116bbd03b1b7bd5",
+    "scripts/load/slow-consumer.py": "85fc6788ed1cba7f562b5917fb4ce7870dba207af3ab6e135c569315dc208af6",
+    "pom.xml": "1d9215a51032a78a09d9ae3d0d236b349a22e08439edfa22ffedc0e216385b9a"
+  }
+}

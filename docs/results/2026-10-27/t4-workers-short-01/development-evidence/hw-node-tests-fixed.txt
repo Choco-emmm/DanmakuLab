@@ -1,0 +1,14 @@
+✔ 1 hot workers share input plan and receive foreign producers (148.9293ms)
+✔ 5 hot workers share input plan and receive foreign producers (251.1915ms)
+✔ duplicate deliveries are classified and cannot hide in deduplicated proof (246.4928ms)
+✔ late join is a failure without reducing local observer count (212.0726ms)
+✔ constructor failure has a finite terminal proof (193.2405ms)
+✔ missing close callbacks fail and late callbacks cannot rewrite terminal evidence (249.0244ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1407.4772

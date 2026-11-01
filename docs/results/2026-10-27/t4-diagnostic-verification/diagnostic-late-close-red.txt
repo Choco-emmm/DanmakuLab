@@ -1,0 +1,30 @@
+✖ late close callbacks cannot append events after the terminal cutoff (186.2213ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 262.2454
+
+✖ failing tests:
+
+test at scripts\tests\hotspot-diagnostic.test.cjs:209:1
+✖ late close callbacks cannot append events after the terminal cutoff (186.2213ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  26 !== 24
+  
+      at TestContext.<anonymous> (D:\coding\DanmakuLab\scripts\tests\hotspot-diagnostic.test.cjs:215:10)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.start (node:internal/test_runner/test:1015:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 26,
+    expected: 24,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

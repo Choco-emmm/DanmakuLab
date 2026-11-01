@@ -1,0 +1,11 @@
+{
+  "started": true,
+  "processId": 56436,
+  "exitCode": 1,
+  "timedOut": false,
+  "elapsedSeconds": 13.5032411,
+  "error": "子进程退出码为 1。",
+  "captureComplete": true,
+  "captureErrors": [],
+  "cleanupErrors": []
+}

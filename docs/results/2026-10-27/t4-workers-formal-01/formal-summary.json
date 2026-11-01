@@ -1,0 +1,1696 @@
+{
+  "formalRows": [
+    {
+      "name": "formal-1-pair1-direct",
+      "mode": "direct",
+      "pid": 62304,
+      "passed": true,
+      "inputSeconds": 720,
+      "hotTargetRates": [
+        20,
+        100,
+        200
+      ],
+      "hotActualRates": [
+        19.999977777901233,
+        100.0,
+        200.0
+      ],
+      "received": 11544500,
+      "demand": 11544500,
+      "accepted": 36049,
+      "rejected": 35951,
+      "maxAllSendLagMs": 24,
+      "maxHotSendLagMs": 15,
+      "maxHotTickDriftMs": 22,
+      "normalTickDriftMs": null,
+      "normalP99ByRoomByPhase": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959
+          ],
+          "normalP99": [
+            16,
+            16.00999999999999,
+            16.00999999999999,
+            17,
+            17,
+            17,
+            17,
+            19,
+            18,
+            18
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            3.999977777901234
+          ],
+          "aggregateActualRate": 19.999977777901233,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886
+          ],
+          "normalP99": [
+            16,
+            18,
+            17.00999999999999,
+            18,
+            18,
+            20.00999999999999,
+            21,
+            21,
+            22,
+            22.00999999999999
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "aggregateActualRate": 100.0,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "normalP99": [
+            19,
+            20,
+            23,
+            20,
+            22,
+            22,
+            24,
+            24,
+            24,
+            25.00999999999999
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ],
+          "aggregateActualRate": 200.0,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "normalP99": [
+            18,
+            19,
+            19,
+            19,
+            21.00999999999999,
+            21,
+            22,
+            25,
+            26,
+            27
+          ]
+        }
+      ],
+      "normalP99RangeByPhase": [
+        [
+          16,
+          19
+        ],
+        [
+          16,
+          22.00999999999999
+        ],
+        [
+          19,
+          25.00999999999999
+        ],
+        [
+          18,
+          27
+        ]
+      ],
+      "hotLatency": [
+        {
+          "samples": 0,
+          "overflowAbove120000ms": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        {
+          "samples": 180000,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 7
+        },
+        {
+          "samples": 452450,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 7
+        },
+        {
+          "samples": 450000,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 7
+        }
+      ],
+      "sampledInputCpuAverageCores": {
+        "java": 0.741684562439641,
+        "allK6": 2.038184539445721
+      },
+      "cpuSamplingWindowSeconds": 717.581,
+      "javaWorkingSetPeakMiB": 342.46484375,
+      "allK6WorkingSetPeakMiB": 430.09765625,
+      "queueGaugeSamplePeaks": {
+        "lab.outbound.bytes": 205176.0,
+        "lab.outbound.messages": 413.0,
+        "lab.outbound.tasks": 429.0,
+        "lab.outbound.writes.inflight": 20.0,
+        "lab.dispatch.bytes": 0.0,
+        "lab.dispatch.messages": 0.0,
+        "lab.dispatch.rooms": 0.0,
+        "lab.dispatch.ready": 0.0
+      },
+      "hotCloseDurationMs": [
+        80,
+        83,
+        77,
+        99,
+        80
+      ],
+      "cleanupAllZero": true,
+      "allNormalInputsAccepted": true
+    },
+    {
+      "name": "formal-2-pair1-fair",
+      "mode": "fair",
+      "pid": 41344,
+      "passed": true,
+      "inputSeconds": 720,
+      "hotTargetRates": [
+        20,
+        100,
+        200
+      ],
+      "hotActualRates": [
+        20.0,
+        100.0,
+        199.99933333703703
+      ],
+      "received": 11544500,
+      "demand": 11544500,
+      "accepted": 36049,
+      "rejected": 35951,
+      "maxAllSendLagMs": 28,
+      "maxHotSendLagMs": 15,
+      "maxHotTickDriftMs": 16,
+      "normalTickDriftMs": null,
+      "normalP99ByRoomByPhase": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ],
+          "normalP99": [
+            13,
+            14,
+            16.00999999999999,
+            17,
+            17,
+            16.00999999999999,
+            19,
+            20,
+            19,
+            18
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "aggregateActualRate": 20.0,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816
+          ],
+          "normalP99": [
+            10.009999999999991,
+            15,
+            15,
+            16.00999999999999,
+            17,
+            18,
+            19,
+            21,
+            22,
+            23
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "aggregateActualRate": 100.0,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617
+          ],
+          "normalP99": [
+            11,
+            16,
+            17.00999999999999,
+            20,
+            17,
+            19,
+            20,
+            22,
+            24,
+            26
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            39.99977777901234,
+            39.99977777901234,
+            39.99977777901234,
+            40.0
+          ],
+          "aggregateActualRate": 199.99933333703703,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188
+          ],
+          "normalP99": [
+            9,
+            16.00999999999999,
+            17,
+            15,
+            17.00999999999999,
+            19,
+            20,
+            22,
+            25,
+            25
+          ]
+        }
+      ],
+      "normalP99RangeByPhase": [
+        [
+          13,
+          20
+        ],
+        [
+          10.009999999999991,
+          23
+        ],
+        [
+          11,
+          26
+        ],
+        [
+          9,
+          25
+        ]
+      ],
+      "hotLatency": [
+        {
+          "samples": 0,
+          "overflowAbove120000ms": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        {
+          "samples": 180000,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 7
+        },
+        {
+          "samples": 452450,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 7
+        },
+        {
+          "samples": 450000,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 7
+        }
+      ],
+      "sampledInputCpuAverageCores": {
+        "java": 0.7168232773406886,
+        "allK6": 1.964395155330085
+      },
+      "cpuSamplingWindowSeconds": 717.118,
+      "javaWorkingSetPeakMiB": 340.109375,
+      "allK6WorkingSetPeakMiB": 429.40234375,
+      "queueGaugeSamplePeaks": {
+        "lab.outbound.bytes": 195608.0,
+        "lab.outbound.messages": 245.0,
+        "lab.outbound.tasks": 440.0,
+        "lab.outbound.writes.inflight": 17.0,
+        "lab.dispatch.bytes": 498.0,
+        "lab.dispatch.messages": 0.0,
+        "lab.dispatch.rooms": 1.0,
+        "lab.dispatch.ready": 0.0
+      },
+      "hotCloseDurationMs": [
+        86,
+        84,
+        91,
+        87,
+        85
+      ],
+      "cleanupAllZero": true,
+      "allNormalInputsAccepted": true
+    },
+    {
+      "name": "formal-3-pair2-fair",
+      "mode": "fair",
+      "pid": 4916,
+      "passed": true,
+      "inputSeconds": 720,
+      "hotTargetRates": [
+        20,
+        100,
+        200
+      ],
+      "hotActualRates": [
+        19.99993333395061,
+        99.99966666851851,
+        200.0
+      ],
+      "received": 11544500,
+      "demand": 11544500,
+      "accepted": 36049,
+      "rejected": 35951,
+      "maxAllSendLagMs": 28,
+      "maxHotSendLagMs": 13,
+      "maxHotTickDriftMs": 16,
+      "normalTickDriftMs": null,
+      "normalP99ByRoomByPhase": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617
+          ],
+          "normalP99": [
+            13,
+            15,
+            15,
+            17,
+            16.00999999999999,
+            16,
+            17,
+            17,
+            19.00999999999999,
+            20
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            4.0,
+            3.999955556049377,
+            3.999977777901234,
+            4.0
+          ],
+          "aggregateActualRate": 19.99993333395061,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 7
+          },
+          "normalActualRates": [
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213
+          ],
+          "normalP99": [
+            12.009999999999991,
+            15,
+            17,
+            17,
+            19,
+            19.00999999999999,
+            21,
+            21.00999999999999,
+            22,
+            22
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            20.0,
+            19.99988888950617,
+            19.99988888950617,
+            20.0,
+            19.99988888950617
+          ],
+          "aggregateActualRate": 99.99966666851851,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959
+          ],
+          "normalP99": [
+            9.009999999999991,
+            14,
+            14,
+            16,
+            17,
+            18,
+            18,
+            20,
+            22,
+            23
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ],
+          "aggregateActualRate": 200.0,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886
+          ],
+          "normalP99": [
+            11,
+            14,
+            14,
+            14,
+            17,
+            21,
+            19,
+            19.00999999999999,
+            21,
+            22
+          ]
+        }
+      ],
+      "normalP99RangeByPhase": [
+        [
+          13,
+          20
+        ],
+        [
+          12.009999999999991,
+          22
+        ],
+        [
+          9.009999999999991,
+          23
+        ],
+        [
+          11,
+          22
+        ]
+      ],
+      "hotLatency": [
+        {
+          "samples": 0,
+          "overflowAbove120000ms": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        {
+          "samples": 180000,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 7
+        },
+        {
+          "samples": 452450,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 6
+        },
+        {
+          "samples": 450000,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 6
+        }
+      ],
+      "sampledInputCpuAverageCores": {
+        "java": 0.7640359911652865,
+        "allK6": 2.0569230175442503
+      },
+      "cpuSamplingWindowSeconds": 718.982,
+      "javaWorkingSetPeakMiB": 336.3046875,
+      "allK6WorkingSetPeakMiB": 425.1953125,
+      "queueGaugeSamplePeaks": {
+        "lab.outbound.bytes": 184131.0,
+        "lab.outbound.messages": 195.0,
+        "lab.outbound.tasks": 443.0,
+        "lab.outbound.writes.inflight": 14.0,
+        "lab.dispatch.bytes": 500.0,
+        "lab.dispatch.messages": 5.0,
+        "lab.dispatch.rooms": 3.0,
+        "lab.dispatch.ready": 0.0
+      },
+      "hotCloseDurationMs": [
+        72,
+        72,
+        72,
+        70,
+        71
+      ],
+      "cleanupAllZero": true,
+      "allNormalInputsAccepted": true
+    },
+    {
+      "name": "formal-4-pair2-direct",
+      "mode": "direct",
+      "pid": 55432,
+      "passed": true,
+      "inputSeconds": 720,
+      "hotTargetRates": [
+        20,
+        100,
+        200
+      ],
+      "hotActualRates": [
+        19.99995555580247,
+        99.99988888950617,
+        200.0
+      ],
+      "received": 11544500,
+      "demand": 11544500,
+      "accepted": 36049,
+      "rejected": 35951,
+      "maxAllSendLagMs": 22,
+      "maxHotSendLagMs": 15,
+      "maxHotTickDriftMs": 28,
+      "normalTickDriftMs": null,
+      "normalP99ByRoomByPhase": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975
+          ],
+          "normalP99": [
+            15,
+            15,
+            16,
+            15,
+            16,
+            16,
+            17,
+            16,
+            16,
+            16
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            3.999977777901234,
+            4.0,
+            4.0,
+            3.999977777901234
+          ],
+          "aggregateActualRate": 19.99995555580247,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115
+          ],
+          "normalP99": [
+            17,
+            16,
+            16,
+            16,
+            17,
+            17,
+            17,
+            17,
+            19,
+            19
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            19.99988888950617,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "aggregateActualRate": 99.99988888950617,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 2,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975,
+            1.99990000499975
+          ],
+          "normalP99": [
+            15,
+            17,
+            17,
+            17,
+            17,
+            19,
+            18,
+            19,
+            20,
+            21
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            40.0,
+            40.0,
+            40.0
+          ],
+          "aggregateActualRate": 200.0,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 2,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115,
+            1.9999444459876115
+          ],
+          "normalP99": [
+            14,
+            16,
+            16.00999999999999,
+            17,
+            17,
+            19,
+            18,
+            20,
+            21,
+            22
+          ]
+        }
+      ],
+      "normalP99RangeByPhase": [
+        [
+          15,
+          17
+        ],
+        [
+          16,
+          19
+        ],
+        [
+          15,
+          21
+        ],
+        [
+          14,
+          22
+        ]
+      ],
+      "hotLatency": [
+        {
+          "samples": 0,
+          "overflowAbove120000ms": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        {
+          "samples": 180000,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 6
+        },
+        {
+          "samples": 452450,
+          "overflowAbove120000ms": 0,
+          "p50": 2,
+          "p95": 5,
+          "p99": 6
+        },
+        {
+          "samples": 450000,
+          "overflowAbove120000ms": 0,
+          "p50": 2,
+          "p95": 5,
+          "p99": 6
+        }
+      ],
+      "sampledInputCpuAverageCores": {
+        "java": 0.7264452298599684,
+        "allK6": 1.8989935930801347
+      },
+      "cpuSamplingWindowSeconds": 714.696,
+      "javaWorkingSetPeakMiB": 335.69921875,
+      "allK6WorkingSetPeakMiB": 432.0546875,
+      "queueGaugeSamplePeaks": {
+        "lab.outbound.bytes": 207000.0,
+        "lab.outbound.messages": 377.0,
+        "lab.outbound.tasks": 372.0,
+        "lab.outbound.writes.inflight": 11.0,
+        "lab.dispatch.bytes": 0.0,
+        "lab.dispatch.messages": 0.0,
+        "lab.dispatch.rooms": 0.0,
+        "lab.dispatch.ready": 0.0
+      },
+      "hotCloseDurationMs": [
+        85,
+        81,
+        83,
+        87,
+        84
+      ],
+      "cleanupAllZero": true,
+      "allNormalInputsAccepted": true
+    },
+    {
+      "name": "formal-5-pair3-direct",
+      "mode": "direct",
+      "pid": 17708,
+      "passed": true,
+      "inputSeconds": 720,
+      "hotTargetRates": [
+        20,
+        100,
+        200
+      ],
+      "hotActualRates": [
+        20.0,
+        100.0,
+        199.99955555802467
+      ],
+      "received": 11544500,
+      "demand": 11544500,
+      "accepted": 36049,
+      "rejected": 35951,
+      "maxAllSendLagMs": 21,
+      "maxHotSendLagMs": 15,
+      "maxHotTickDriftMs": 20,
+      "normalTickDriftMs": null,
+      "normalP99ByRoomByPhase": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188,
+            1.999955556543188
+          ],
+          "normalP99": [
+            16,
+            15,
+            18,
+            17,
+            17,
+            16.00999999999999,
+            16.00999999999999,
+            16,
+            17,
+            17
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            4.0,
+            4.0,
+            4.0,
+            4.0
+          ],
+          "aggregateActualRate": 20.0,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213,
+            1.999966667222213
+          ],
+          "normalP99": [
+            15,
+            16,
+            15,
+            16,
+            17,
+            17,
+            17,
+            18,
+            18,
+            19
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            20.0,
+            20.0,
+            20.0,
+            20.0,
+            20.0
+          ],
+          "aggregateActualRate": 100.0,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617
+          ],
+          "normalP99": [
+            16,
+            15.009999999999991,
+            15,
+            16,
+            18,
+            17,
+            18,
+            19,
+            21,
+            21
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            39.99977777901234,
+            39.99977777901234,
+            40.0
+          ],
+          "aggregateActualRate": 199.99955555802467,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617
+          ],
+          "normalP99": [
+            15,
+            15,
+            16,
+            17,
+            18,
+            19,
+            18,
+            19.00999999999999,
+            20,
+            22
+          ]
+        }
+      ],
+      "normalP99RangeByPhase": [
+        [
+          15,
+          18
+        ],
+        [
+          15,
+          19
+        ],
+        [
+          15,
+          21
+        ],
+        [
+          15,
+          22
+        ]
+      ],
+      "hotLatency": [
+        {
+          "samples": 0,
+          "overflowAbove120000ms": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        {
+          "samples": 180000,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 6
+        },
+        {
+          "samples": 452450,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 6
+        },
+        {
+          "samples": 450000,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 6
+        }
+      ],
+      "sampledInputCpuAverageCores": {
+        "java": 0.7363894672611933,
+        "allK6": 1.9367171124689346
+      },
+      "cpuSamplingWindowSeconds": 719.452,
+      "javaWorkingSetPeakMiB": 332.01953125,
+      "allK6WorkingSetPeakMiB": 423.0078125,
+      "queueGaugeSamplePeaks": {
+        "lab.outbound.bytes": 158183.0,
+        "lab.outbound.messages": 432.0,
+        "lab.outbound.tasks": 415.0,
+        "lab.outbound.writes.inflight": 15.0,
+        "lab.dispatch.bytes": 0.0,
+        "lab.dispatch.messages": 0.0,
+        "lab.dispatch.rooms": 0.0,
+        "lab.dispatch.ready": 0.0
+      },
+      "hotCloseDurationMs": [
+        77,
+        75,
+        79,
+        79,
+        76
+      ],
+      "cleanupAllZero": true,
+      "allNormalInputsAccepted": true
+    },
+    {
+      "name": "formal-6-pair3-fair",
+      "mode": "fair",
+      "pid": 29232,
+      "passed": true,
+      "inputSeconds": 720,
+      "hotTargetRates": [
+        20,
+        100,
+        200
+      ],
+      "hotActualRates": [
+        19.99995555580247,
+        99.99966666851851,
+        199.99977777901233
+      ],
+      "received": 11544500,
+      "demand": 11544500,
+      "accepted": 36049,
+      "rejected": 35951,
+      "maxAllSendLagMs": 22,
+      "maxHotSendLagMs": 14,
+      "maxHotTickDriftMs": 16,
+      "normalTickDriftMs": null,
+      "normalP99ByRoomByPhase": [
+        {
+          "targetHotRate": 0,
+          "sent": 0,
+          "accepted": 0,
+          "rejected": 0,
+          "workerActualRates": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "aggregateActualRate": 0.0,
+          "hotLatency": {
+            "samples": 0,
+            "overflowAbove120000ms": 0,
+            "p50": null,
+            "p95": null,
+            "p99": null
+          },
+          "normalActualRates": [
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959,
+            1.9999222252467959
+          ],
+          "normalP99": [
+            11.009999999999991,
+            16.00999999999999,
+            15,
+            15,
+            15,
+            17,
+            16,
+            18,
+            17,
+            19
+          ]
+        },
+        {
+          "targetHotRate": 20,
+          "sent": 3600,
+          "accepted": 3600,
+          "rejected": 0,
+          "workerActualRates": [
+            4.0,
+            3.999977777901234,
+            3.999977777901234,
+            4.0,
+            4.0
+          ],
+          "aggregateActualRate": 19.99995555580247,
+          "hotLatency": {
+            "samples": 180000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617,
+            1.999988888950617
+          ],
+          "normalP99": [
+            12,
+            11,
+            15,
+            14,
+            15,
+            16,
+            17,
+            17,
+            19,
+            20
+          ]
+        },
+        {
+          "targetHotRate": 100,
+          "sent": 18000,
+          "accepted": 9049,
+          "rejected": 8951,
+          "workerActualRates": [
+            19.99988888950617,
+            20.0,
+            19.99988888950617,
+            20.0,
+            19.99988888950617
+          ],
+          "aggregateActualRate": 99.99966666851851,
+          "hotLatency": {
+            "samples": 452450,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816,
+            1.9999333355554816
+          ],
+          "normalP99": [
+            11.009999999999991,
+            14,
+            15.009999999999991,
+            15,
+            16,
+            17,
+            18,
+            20,
+            21,
+            23
+          ]
+        },
+        {
+          "targetHotRate": 200,
+          "sent": 36000,
+          "accepted": 9000,
+          "rejected": 27000,
+          "workerActualRates": [
+            40.0,
+            40.0,
+            40.0,
+            39.99977777901234,
+            40.0
+          ],
+          "aggregateActualRate": 199.99977777901233,
+          "hotLatency": {
+            "samples": 450000,
+            "overflowAbove120000ms": 0,
+            "p50": 3,
+            "p95": 5,
+            "p99": 6
+          },
+          "normalActualRates": [
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886,
+            1.9999777780246886
+          ],
+          "normalP99": [
+            10,
+            12.009999999999991,
+            13,
+            16,
+            16,
+            16,
+            18,
+            18,
+            20,
+            21
+          ]
+        }
+      ],
+      "normalP99RangeByPhase": [
+        [
+          11.009999999999991,
+          19
+        ],
+        [
+          11,
+          20
+        ],
+        [
+          11.009999999999991,
+          23
+        ],
+        [
+          10,
+          21
+        ]
+      ],
+      "hotLatency": [
+        {
+          "samples": 0,
+          "overflowAbove120000ms": 0,
+          "p50": null,
+          "p95": null,
+          "p99": null
+        },
+        {
+          "samples": 180000,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 6
+        },
+        {
+          "samples": 452450,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 6
+        },
+        {
+          "samples": 450000,
+          "overflowAbove120000ms": 0,
+          "p50": 3,
+          "p95": 5,
+          "p99": 6
+        }
+      ],
+      "sampledInputCpuAverageCores": {
+        "java": 0.7142697278326346,
+        "allK6": 1.8550030703981446
+      },
+      "cpuSamplingWindowSeconds": 714.891,
+      "javaWorkingSetPeakMiB": 339.95703125,
+      "allK6WorkingSetPeakMiB": 424.72265625,
+      "queueGaugeSamplePeaks": {
+        "lab.outbound.bytes": 163500.0,
+        "lab.outbound.messages": 432.0,
+        "lab.outbound.tasks": 413.0,
+        "lab.outbound.writes.inflight": 8.0,
+        "lab.dispatch.bytes": 3904.0,
+        "lab.dispatch.messages": 0.0,
+        "lab.dispatch.rooms": 1.0,
+        "lab.dispatch.ready": 0.0
+      },
+      "hotCloseDurationMs": [
+        64,
+        67,
+        68,
+        65,
+        70
+      ],
+      "cleanupAllZero": true,
+      "allNormalInputsAccepted": true
+    }
+  ],
+  "pairs": 3,
+  "totalInputMinutes": 72,
+  "formalWallSeconds": 4594.521027,
+  "actualDeliveries": 69267000,
+  "expectedDeliveries": 69267000,
+  "note": "No P99 averaging. CPU averages cover endpoints of sampled input windows. Ordinary client timer drift is unavailable in non-diagnostic mode, retained null."
+}

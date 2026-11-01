@@ -1,0 +1,20 @@
+{
+  "allReadyBeforeStart": false,
+  "error": "未能在共同起点前全部就绪，整轮无效",
+  "readiness": {
+    "hot-3": 1793106203649,
+    "hot-0": 1793106203465,
+    "hot-1": 1793106203526,
+    "normal": 1793106203418,
+    "hot-2": 1793106203572
+  },
+  "collectorErrors": 0,
+  "processIds": {
+    "hot-3": 47084,
+    "hot-0": 13344,
+    "hot-1": 56200,
+    "normal": 24024,
+    "hot-4": 23664,
+    "hot-2": 45392
+  }
+}

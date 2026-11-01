@@ -1,0 +1,11 @@
+{
+  "started": true,
+  "processId": 51964,
+  "exitCode": -1,
+  "timedOut": false,
+  "elapsedSeconds": 1.0933981,
+  "error": "deliberate-collector-failure",
+  "captureComplete": true,
+  "captureErrors": [],
+  "cleanupErrors": []
+}

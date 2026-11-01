@@ -1,0 +1,10 @@
+{
+  "os": "Microsoft Windows NT 10.0.26200.0",
+  "capturedAt": "2026-10-27T13:16:49.8788654+00:00",
+  "sourceCommit": "2f06090fe7ee287760e1b7a20df875c0d2e53916",
+  "k6": "k6.exe v2.0.0-rc1 (commit/fb943a6a80, go1.26.2, windows/amd64)",
+  "java": "java version \"25.0.1\" 2025-10-21 LTS\r\nJava(TM) SE Runtime Environment (build 25.0.1+8-LTS-27)\r\nJava HotSpot(TM) 64-Bit Server VM (build 25.0.1+8-LTS-27, mixed mode, sharing)",
+  "note": "Same-host loopback; Java and all load clients share resources; sequential metric snapshots.",
+  "logicalProcessors": 32,
+  "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics        "
+}

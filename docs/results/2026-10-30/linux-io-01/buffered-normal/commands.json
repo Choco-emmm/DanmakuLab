@@ -1,0 +1,36 @@
+{
+  "server": [
+    "/home/renpe/.local/share/danmakulab/temurin21-61312483/bin/java",
+    "-Xms128m",
+    "-Xmx256m",
+    "-jar",
+    "/mnt/d/coding/DanmakuLab/.lab-artifacts/ship-20261027/danmaku-lab-release.jar",
+    "--server.address=127.0.0.1",
+    "--server.port=18081",
+    "--lab.cluster.mode=local",
+    "--lab.dispatch.mode=direct",
+    "--lab.outbound.mode=buffered",
+    "--lab.outbound.workers=8"
+  ],
+  "client": [
+    "/usr/bin/python3",
+    "/mnt/d/coding/DanmakuLab/docs/results/2026-10-30/linux-io-01/tools/slow-consumer.py",
+    "--mode",
+    "normal",
+    "--url",
+    "ws://127.0.0.1:18081/ws",
+    "--seconds",
+    "90",
+    "--rate",
+    "40",
+    "--viewers",
+    "10",
+    "--output",
+    "/mnt/d/coding/DanmakuLab/docs/results/2026-10-30/linux-io-01/buffered-normal/client"
+  ],
+  "ss": [
+    "ss",
+    "-tinmp",
+    "( sport = :18081 or dport = :18081 )"
+  ]
+}

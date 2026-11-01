@@ -1,0 +1,33 @@
+{
+  "passed": true,
+  "sourceFilesFrozen": 87,
+  "indexedFilesVerified": 299,
+  "compressedProofsVerified": 30,
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "cases": 7,
+  "shortOrder": [
+    1,
+    5,
+    5,
+    1
+  ],
+  "shortOutcomes": [
+    false,
+    true,
+    true,
+    false
+  ],
+  "formalExecuted": 0,
+  "formalNotExecuted": [
+    "formal-1-direct",
+    "formal-2-fair",
+    "formal-3-fair",
+    "formal-4-direct",
+    "formal-5-direct",
+    "formal-6-fair"
+  ],
+  "allTwelveGaugesZero": true,
+  "allOwnedJvmsStopped": true,
+  "awakeReleased": true,
+  "note": "False/True/True/False short outcomes retained. Batch exit 0 means prerequisites passed, not that failed baselines passed."
+}

@@ -1,0 +1,6 @@
+Exception: D:\coding\DanmakuLab\scripts\run\hotspot.ps1:184
+Line |
+ 184 |  ��  foreach ($job in $jobs) { $null=Receive-Job $job -ErrorAction Stop }
+     |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | �ӽ����˳���Ϊ 107��
+

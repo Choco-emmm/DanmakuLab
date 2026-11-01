@@ -1,0 +1,15 @@
+{
+  "rate": 20,
+  "warmupSeconds": 2,
+  "slowConnections": 10,
+  "outboundMode": "buffered",
+  "evidenceSchemaVersion": 2,
+  "inputBytes": 256,
+  "connections": 20,
+  "dispatchMode": "fair",
+  "sampleSeconds": 5,
+  "slowBytesPerSecond": 1024,
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "scenario": "T3",
+  "seconds": 10
+}

@@ -1,0 +1,19 @@
+{
+  "normalConnections": 5,
+  "startDelaySeconds": 10,
+  "normalRooms": 2,
+  "note": "Fresh JVM per run; sequential; same-host loopback; alternating pair order is recorded, not a claim of fully balanced randomization.",
+  "jar": "D:\\coding\\DanmakuLab\\target\\danmaku-lab-release.jar",
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "hotConnections": 10,
+  "sourceStatus": [
+    " M scripts/run/hotspot.ps1",
+    "?? scripts/run/repeat-hotspot.ps1"
+  ],
+  "sourceCommit": "2f06090fe7ee287760e1b7a20df875c0d2e53916",
+  "port": 8085,
+  "phaseSeconds": 2,
+  "latencySampleEvery": 1,
+  "rounds": 1,
+  "formal": false
+}

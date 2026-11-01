@@ -1,0 +1,13 @@
+{
+  "processIds": {
+    "hot-0": 30348,
+    "normal": 45196
+  },
+  "error": null,
+  "collectorErrors": 0,
+  "allReadyBeforeStart": true,
+  "readiness": {
+    "hot-0": 1793109135340,
+    "normal": 1793109135294
+  }
+}

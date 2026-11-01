@@ -1,0 +1,15 @@
+{
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65",
+  "dispatchMode": "fair",
+  "scenario": "T3",
+  "sampleSeconds": 5,
+  "warmupSeconds": 60,
+  "connections": 1000,
+  "inputBytes": 256,
+  "seconds": 900,
+  "outboundMode": "buffered",
+  "slowBytesPerSecond": 1024,
+  "rate": 20,
+  "evidenceSchemaVersion": 2,
+  "slowConnections": 10
+}

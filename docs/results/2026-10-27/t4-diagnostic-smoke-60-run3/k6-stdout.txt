@@ -1,0 +1,5 @@
+T4 joined=60/60; errors=0, missingAccepted=0, isolation=0
+normal-0: normal-only input=2.00/s accepted=6 rejected=0 received=60/60 p99=8ms | hot-2-0 input=1.99/s accepted=6 rejected=0 received=60/60 p99=5.710000000000001ms | hot-10-1 input=2.00/s accepted=6 rejected=0 received=60/60 p99=7ms | hot-20-2 input=2.00/s accepted=6 rejected=0 received=60/60 p99=6ms
+normal-1: normal-only input=2.00/s accepted=6 rejected=0 received=60/60 p99=6ms | hot-2-0 input=1.99/s accepted=6 rejected=0 received=60/60 p99=5.710000000000001ms | hot-10-1 input=2.00/s accepted=6 rejected=0 received=60/60 p99=5.710000000000001ms | hot-20-2 input=2.00/s accepted=6 rejected=0 received=60/60 p99=6ms
+hot: normal-only input=0.00/s accepted=0 rejected=0 received=0/0 p99=n/ams | hot-2-0 input=1.99/s accepted=6 rejected=0 received=240/240 p99=6ms | hot-10-1 input=9.99/s accepted=30 rejected=0 received=1200/1200 p99=7ms | hot-20-2 input=20.00/s accepted=60 rejected=0 received=2400/2400 p99=8ms
+

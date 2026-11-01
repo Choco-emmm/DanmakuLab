@@ -56,6 +56,12 @@ class ScriptedSocket:
     def connect(self, _target):
         pass
 
+    def getsockname(self):
+        return ('127.0.0.1', 42000)
+
+    def getpeername(self):
+        return ('127.0.0.1', 8081)
+
     def sendall(self, _payload):
         pass
 
@@ -111,6 +117,8 @@ class ClientInitializationTest(unittest.TestCase):
         self.assertIsNone(client.initialization_deadline)
         self.assertFalse(fake.closed)
         self.assertEqual(fake.timeout, 3)
+        self.assertEqual(client.local_endpoint, ('127.0.0.1', 42000))
+        self.assertEqual(client.peer_endpoint, ('127.0.0.1', 8081))
 
 
 class InputAccountingTest(unittest.TestCase):
@@ -162,6 +170,82 @@ class InputAccountingTest(unittest.TestCase):
         self.assertTrue(result['inputScheduleCompleted'])
         self.assertEqual(result['normalReceived'], 1)
         self.assertEqual(result['failures'], [])
+
+
+class SchedulingAccountingTest(unittest.TestCase):
+    """用确定的慢发送与时钟复现计划落后，验证工具能暴露自己的输入瓶颈。"""
+
+    def run_experiment(self, *, first_send_delay=0, rate=4):
+        clock = Clock()
+        input_calls = [0]
+
+        class FakeClient:
+            def __init__(self, _url, name, _room, _callback, _failures, **_kwargs):
+                self.name = name
+                self.receive_buffer = 1024
+                self.local_endpoint = ('127.0.0.1', 42000 + len(name))
+                self.peer_endpoint = ('127.0.0.1', 8081)
+                if name == 'probe':
+                    # 建连花5秒；实际提交速率的分母必须从全部 joined 后重新开始。
+                    clock.now += 5
+
+            def start_reading(self):
+                pass
+
+            def send(self, message):
+                if message['type'] == 'send':
+                    input_calls[0] += 1
+                    if input_calls[0] == 1:
+                        # 模拟首条sendall阻塞。后续调度落后应被记录，即便最终输入全提交。
+                        clock.now += first_send_delay
+
+            def close(self):
+                pass
+
+        def sleep(seconds):
+            clock.now += seconds
+
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary) / 'result'
+            argv = ['slow-consumer.py', '--mode', 'paused', '--seconds', '1',
+                    '--rate', str(rate), '--output', str(output)]
+            with patch.object(slow, 'Client', FakeClient), \
+                    patch.object(slow.time, 'monotonic', clock), \
+                    patch.object(slow.time, 'time', side_effect=lambda: 1000 + clock.now), \
+                    patch.object(slow.time, 'time_ns', side_effect=lambda: int((1000 + clock.now) * 10**9)), \
+                    patch.object(slow.time, 'sleep', side_effect=sleep), \
+                    patch('sys.argv', argv), redirect_stdout(io.StringIO()):
+                slow.main()
+            return json.loads((output / 'summary.json').read_text(encoding='utf-8'))
+
+    def test_blocked_send_exposes_next_input_lag_without_changing_denominator(self):
+        """首条阻塞1.5秒，第二条计划在0.25秒：应记录1250ms滞后，并保留全员计划分母。"""
+        result = self.run_experiment(first_send_delay=1.5)
+        self.assertAlmostEqual(result['maxSendLagMs'], 1250)
+        self.assertEqual(result['submittedInputMessages'], 4)
+        self.assertTrue(result['inputScheduleCompleted'])
+        self.assertEqual(result['normalExpected'], 40)
+        # 假服务没有回复accepted，提交速率仍只按sendall成功数/实际输入循环秒数计算。
+        self.assertEqual(result['accepted'], 0)
+        self.assertAlmostEqual(result['sendElapsedSeconds'], 1.5)
+        self.assertAlmostEqual(result['submittedInputRatePerSecond'], 4 / 1.5)
+        self.assertAlmostEqual(result['samples'][0]['atEpochSeconds'], 1006.5)
+        self.assertAlmostEqual(result['samples'][0]['seconds'], 1.5)
+        self.assertEqual(result['clientEndpoints']['probe']['local'], ['127.0.0.1', 42005])
+
+    def test_on_time_input_has_zero_plan_lag(self):
+        """假时钟准确按计划醒来：正常调度不能凭空报告发送滞后。"""
+        result = self.run_experiment()
+        self.assertEqual(result['maxSendLagMs'], 0)
+        self.assertAlmostEqual(result['sendElapsedSeconds'], .75)
+        self.assertAlmostEqual(result['submittedInputRatePerSecond'], 4 / .75)
+
+    def test_zero_duration_window_has_unknown_rate_instead_of_division_error(self):
+        """只有一条立即完成的输入且时钟没有推进时，实际速率应为null。"""
+        result = self.run_experiment(rate=1)
+        self.assertEqual(result['submittedInputMessages'], 1)
+        self.assertEqual(result['sendElapsedSeconds'], 0)
+        self.assertIsNone(result['submittedInputRatePerSecond'])
 
 
 if __name__ == '__main__':

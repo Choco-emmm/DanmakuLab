@@ -1,0 +1,23 @@
+{
+  "requestJsonBytes": 256,
+  "normalInputPerRoom": 2,
+  "hotRates": "2,10,20",
+  "dispatchMode": "direct",
+  "diagnosticNote": "Client demand minus receipts is an observed difference, not exact server backlog; snapshots are sequential.",
+  "limitNote": "Effective limits must be read together from application.yml and server-command.txt; this script does not change limits.",
+  "normalRooms": 2,
+  "splitProcesses": false,
+  "formalEligible": false,
+  "hotConnections": 40,
+  "diagnosticCloseBatchIntervalMs": 100,
+  "mode": "buffered",
+  "phaseSeconds": 3,
+  "normalConnections": 10,
+  "scenario": "T4-initial",
+  "drainSeconds": 2,
+  "latencySampleEvery": 2,
+  "startDelaySeconds": 0,
+  "diagnostic": true,
+  "diagnosticCloseBatchSize": 0,
+  "resourceSampleSeconds": 1
+}

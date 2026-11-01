@@ -1,0 +1,14 @@
+{
+  "pythonTests": 51,
+  "nodeTests": 12,
+  "metricChecks": 5,
+  "processScenarios": 5,
+  "diagnosticCompareReceipts": 2658000,
+  "defaultRegressionReceipts": 29170,
+  "injectedLoadPassed": false,
+  "formalThreePairsCompleted": false,
+  "runtimeFilesMatched": 27,
+  "jarSha256": "bc5652880ad8fa34b903b7f6350e292d090fa914c85456879243082a38f43f65",
+  "missingLinks": [],
+  "note": "Late-callback cutoff fix followed the fixed four trials; their original tool hashes were preserved. Final default-path real regression and targeted callback tests passed. No Java/config/JAR edits; no commit or push."
+}

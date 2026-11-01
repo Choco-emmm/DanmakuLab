@@ -1,0 +1,39 @@
+{
+  "files": [
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-28\\longrun-repeat-02\\notes.md",
+      "bytes": 5862,
+      "sha256": "4CDAB552596CD6250CBA34D7AF0D5520FC619E64DA1D210A3DBFC577D67EC6E1"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-28\\longrun-repeat-02\\finalize.py.txt",
+      "bytes": 7374,
+      "sha256": "78D87AD5917C5E31A573028DFBB1355B568DABC2F8B50E39D4CB98D5A11EE5BB"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-28\\longrun-repeat-02\\final-verification.json",
+      "bytes": 12817,
+      "sha256": "01C514FA03C9F3B08AA926B6C7DEC479261BD7EB6B97B0738EBB97882AFCD6C0"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-28\\longrun-repeat-02\\resources.py.txt",
+      "bytes": 3504,
+      "sha256": "D7EA771702131A1F34F2EC26F7801FA69E8581395D07F15894C24826335BB906"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-28\\longrun-repeat-02\\resources.png",
+      "bytes": 255393,
+      "sha256": "01C1227129D572FE74C59325128B200455027E1E00B8E5B3AFCAC42083C3D528"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\results\\2026-10-28\\longrun-repeat-02\\resource-summary.json",
+      "bytes": 2428,
+      "sha256": "5E7E38421B228483C6341EAFF529B1C1CCC79013D8EEDF085BBEF528247457EB"
+    },
+    {
+      "path": "D:\\coding\\DanmakuLab\\docs\\demo-and-resume.md",
+      "bytes": 8005,
+      "sha256": "9760EF169037DE1B4597B088745024A716E4C35BE80B7CDDE0DC1BC1A8454021"
+    }
+  ]
+}

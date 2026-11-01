@@ -1,0 +1,18 @@
+{
+  "dispatch": "fair",
+  "normalConnections": 5,
+  "runKey": "9924b9aebbd242649f541d28c23df607",
+  "diagnostic": true,
+  "startAtMs": 1793106610204,
+  "sampleSeconds": 1,
+  "requestBytes": 256,
+  "schemaVersion": 1,
+  "hotWorkers": 5,
+  "phaseSeconds": 3,
+  "hotConnections": 50,
+  "drainSeconds": 5,
+  "stallMs": 0,
+  "formalEligible": false,
+  "normalRooms": 2,
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65"
+}

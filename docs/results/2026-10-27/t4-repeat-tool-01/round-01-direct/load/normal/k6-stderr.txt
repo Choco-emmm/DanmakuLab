@@ -1,0 +1,2 @@
+time="2026-10-27T11:25:06+08:00" level=error msg="Error: Use more HOT_CONNECTIONS: each sender must target <=4/s\n\tat file:///D:/coding/DanmakuLab/scripts/load/hotspot.js:38:55(160)\n" hint="script exception"
+

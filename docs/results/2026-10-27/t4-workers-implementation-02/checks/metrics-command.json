@@ -1,0 +1,8 @@
+{
+  "arguments": [
+    "-NoProfile",
+    "-File",
+    "scripts/tests/metrics.test.ps1"
+  ],
+  "executable": "C:\\Users\\renpe\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\pwsh.exe"
+}

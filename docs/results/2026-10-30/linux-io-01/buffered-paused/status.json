@@ -1,0 +1,65 @@
+{
+  "case": "buffered-paused",
+  "startedAtEpochSeconds": 1793343986.540909,
+  "collectionErrors": [],
+  "completed": true,
+  "serverPid": 3377,
+  "clientPid": 3525,
+  "clientExitCode": 0,
+  "clientSummary": {
+    "normalReceived": 36000,
+    "normalExpected": 36000,
+    "accepted": 3600,
+    "inputScheduleCompleted": true,
+    "maxSendLagMs": 2.757796999958373,
+    "normalLatencyMs": {
+      "samples": 36000,
+      "p50": 5,
+      "p95": 6,
+      "p99": 7,
+      "max": 22
+    },
+    "duplicates": 0,
+    "orderViolations": 0,
+    "failures": [
+      {
+        "client": "probe",
+        "operation": "heartbeat",
+        "error": "[Errno 104] Connection reset by peer",
+        "seconds": 50.00568190700005
+      }
+    ],
+    "rejections": []
+  },
+  "normalDeliveryComplete": true,
+  "cleanupGauges": {
+    "lab.connections": 0.0,
+    "lab.rooms": 0.0,
+    "lab.outbound.bytes": 0.0,
+    "lab.outbound.messages": 0.0,
+    "lab.outbound.slots": 0.0,
+    "lab.outbound.writes.inflight": 0.0,
+    "lab.outbound.tasks": 0.0,
+    "lab.outbound.writers.active": 0.0,
+    "lab.dispatch.bytes": 0.0,
+    "lab.dispatch.messages": 0.0,
+    "lab.dispatch.rooms": 0.0,
+    "lab.dispatch.ready": 0.0
+  },
+  "cleanupPassed": true,
+  "clientFinalExitCode": 0,
+  "serverFinalExitCode": 143,
+  "endedAtEpochSeconds": 1793344096.1530466,
+  "serverStillRunning": false,
+  "clientStillRunning": false,
+  "ssAfterStop": {
+    "arguments": [
+      "ss",
+      "-ltn",
+      "sport = :18081"
+    ],
+    "exitCode": 0,
+    "stdout": "State Recv-Q Send-Q Local Address:Port Peer Address:Port\n",
+    "stderr": ""
+  }
+}

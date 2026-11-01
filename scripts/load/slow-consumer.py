@@ -68,6 +68,10 @@ class Client:
             self.ready.set()
             self.initialization_deadline = None
             self.sock.settimeout(3)
+            # 在连接仍有效时保存两端地址。ss 会把所有观众列成不同的临时端口；
+            # 通过 probe 的本地端口可以精确找出对应服务端 socket，避免只凭最大 Send-Q 猜测。
+            self.local_endpoint = self.sock.getsockname()
+            self.peer_endpoint = self.sock.getpeername()
         except Exception:
             # 构造失败时对象尚未加入 clients，外层 finally 无法替它回收 socket。
             self.sock.close()
@@ -189,6 +193,10 @@ def main():
     # attempted 是调用过发送的条数；submitted 只统计 sendall 正常返回的条数。
     # submitted 仍不等于后端 accepted，更不等于观众实际收到。
     submitted = 0
+    # 记录输入计划是否被压测器自身拖慢，单位毫秒。它从“计划发送时刻”量到
+    # sleep 返回后、构造/提交本条输入前；与 send 前到收到广播的延迟分别统计。
+    # 例如前一条 sendall 阻塞1秒，下一条已经错过计划，这个滞后不能归因服务器处理耗时。
+    max_send_lag_ms = 0.0
 
     def on_event(name, event):
         with state_lock:
@@ -229,6 +237,8 @@ def main():
         for index in range(count):
             target = started + index / args.rate
             time.sleep(max(0, target - time.monotonic()))
+            max_send_lag_ms = max(max_send_lag_ms,
+                                  max(0.0, (time.monotonic() - target) * 1000))
             timestamp = time.time_ns() // 1000000
             # 200 个 BMP 汉字=600 UTF-8 字节，仍在正文和完整输入帧上限内。
             # 较 T1 增大负载，两组模板一致，不能直接把两组结果与 T1 混作同负载比较。
@@ -248,7 +258,10 @@ def main():
             submitted += 1
             if index % (args.rate * 5) == 0:
                 with state_lock:
-                    sample = {'seconds': time.monotonic() - started, 'sent': submitted,
+                    # 绝对 Unix 秒用于与 ss、线程转储及服务端指标对齐；seconds 保留
+                    # 单调时钟的相对时间。各采集步骤并非同时发生，不把它们当原子快照。
+                    sample = {'seconds': time.monotonic() - started,
+                              'atEpochSeconds': time.time(), 'sent': submitted,
                               'accepted': len(accepted), 'normalReceived': sum(len(seen[c.name]) for c in clients[1:]),
                               'probeReceived': len(seen['probe'])}
                 samples.append(sample)
@@ -278,12 +291,23 @@ def main():
                       'accepted': len(accepted), 'normalExpected': count * args.viewers,
                       'normalReceived': sum(len(seen[c.name]) for c in clients[1:]),
                       'perViewerReceived': {name: len(ids) for name, ids in seen.items()},
+                      # 地址在JSON中写成[IP, 端口]；测试替身没有真实socket时保留null，
+                      # 不能拿一个虚构端口充当网络采集的关联证据。
+                      'clientEndpoints': {client.name: {
+                          'local': getattr(client, 'local_endpoint', None),
+                          'peer': getattr(client, 'peer_endpoint', None)} for client in clients},
                       'probeReceiveBufferBytes': probe.receive_buffer,
                       'normalLatencyMs': {'samples': len(ordered), 'p50': percentile(.5),
                                           'p95': percentile(.95), 'p99': percentile(.99), 'max': max(ordered, default=None)},
                       'duplicates': duplicate[0], 'orderViolations': order_errors[0],
                       'rejections': rejections, 'failures': list(failures),
                       'sendElapsedSeconds': elapsed, 'samples': samples,
+                      'maxSendLagMs': max_send_lag_ms,
+                      # 分子只含 sendall 正常返回的输入；分母是实际输入循环耗时，
+                      # 包含循环内心跳和发送阻塞，不含建连及后续7秒排空。
+                      # 极短/假时钟窗口可能为0，此时保留未知值，不能伪造无穷吞吐。
+                      'submittedInputRatePerSecond': submitted / elapsed if elapsed > 0 else None,
+                      'submittedInputRateNote': 'submittedInputMessages / sendElapsedSeconds; excludes connection setup and seven-second drain; includes heartbeat work and send blocking; not server accepted throughput.',
                       'inputScheduleCompleted': submitted == count,
                       'note': 'Paused probe never calls recv after joined. Missing probe deliveries are intentional; normal viewers stay in denominator. No claim of reproduced backpressure without server evidence.'}
             (output / 'summary.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')

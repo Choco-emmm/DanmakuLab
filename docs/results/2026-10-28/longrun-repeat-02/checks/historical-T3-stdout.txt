@@ -1,0 +1,2 @@
+PASS FORMAL: docs\results\2026-10-26\writer-fix-formal-t3-8writers-01; normal=17820000/17820000; p99=35ms
+

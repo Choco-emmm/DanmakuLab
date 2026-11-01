@@ -1,0 +1,18 @@
+{
+  "hotRates": "20,100,200",
+  "drainSeconds": 5,
+  "mode": "buffered",
+  "startDelaySeconds": 30,
+  "requestJsonBytes": 256,
+  "dispatchMode": "fair",
+  "hotConnections": 500,
+  "limitNote": "Effective limits must be read together from application.yml and server-command.txt; this script does not change limits.",
+  "phaseSeconds": 180,
+  "normalConnections": 50,
+  "normalRooms": 10,
+  "normalInputPerRoom": 2,
+  "splitProcesses": true,
+  "latencySampleEvery": 10,
+  "scenario": "T4-initial",
+  "resourceSampleSeconds": 5
+}

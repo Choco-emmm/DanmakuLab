@@ -1,0 +1,33 @@
+{
+  "closeMode": "all",
+  "formal": [
+    "direct",
+    "fair",
+    "fair",
+    "direct",
+    "direct",
+    "fair"
+  ],
+  "startDelaySeconds": 30,
+  "formalInputMinutes": 72,
+  "injection": {
+    "phase": 1,
+    "worker": 0,
+    "stallMs": 1500,
+    "workers": 5
+  },
+  "short": [
+    1,
+    5,
+    5,
+    1
+  ],
+  "drainSeconds": 5,
+  "smoke": [
+    1,
+    5
+  ],
+  "hotConnections": 500,
+  "formalPhaseSeconds": 180,
+  "normal": "10x50"
+}

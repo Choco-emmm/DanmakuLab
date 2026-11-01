@@ -1,0 +1,11 @@
+{
+  "round": 2,
+  "mode": "fair",
+  "directory": "round-02-fair",
+  "startedAt": "2026-10-27T07:09:52.9504672+00:00",
+  "processId": 59512,
+  "passed": false,
+  "stopped": true,
+  "error": "子进程退出码为 1。",
+  "endedAt": "2026-10-27T07:22:41.1938624+00:00"
+}

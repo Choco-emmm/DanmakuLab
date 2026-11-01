@@ -1,0 +1,15 @@
+{
+  "arguments": [
+    "-X",
+    "utf8",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_*.py",
+    "-v"
+  ],
+  "executable": "C:\\Python314\\python.exe"
+}

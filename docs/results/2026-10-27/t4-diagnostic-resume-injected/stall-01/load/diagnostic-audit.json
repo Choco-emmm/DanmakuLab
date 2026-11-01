@@ -1,0 +1,82 @@
+{
+  "evidenceComplete": true,
+  "passed": false,
+  "formalEligible": false,
+  "roles": [
+    {
+      "role": "normal",
+      "exitCode": 0,
+      "failedThresholds": [],
+      "eventCount": 39,
+      "inputStoppedAtMs": 1793101802475,
+      "closingAtMs": 1793101807476,
+      "settledAtMs": 1793101807477,
+      "closeDurationMs": 1,
+      "firstFailure": null,
+      "closeRequested": 10,
+      "closeCompleted": 10,
+      "maxSendLagMs": 610,
+      "maxTickDriftMs": 1095,
+      "maxObservedDemandMinusReceipts": 0,
+      "demandMinusReceiptsAtClose": 0,
+      "injectionObserved": true
+    },
+    {
+      "role": "hot",
+      "exitCode": 99,
+      "failedThresholds": [
+        {
+          "metric": "t4_r0_p1_send_lag_ms",
+          "threshold": "max<1000",
+          "observed": {
+            "avg": 199.21666666666667,
+            "min": 0,
+            "med": 7.5,
+            "p(95)": 912.4999999999999,
+            "p(99)": 1030.4999999999998,
+            "max": 1060
+          }
+        }
+      ],
+      "eventCount": 39,
+      "inputStoppedAtMs": 1793101802478,
+      "closingAtMs": 1793101807479,
+      "settledAtMs": 1793101807483,
+      "closeDurationMs": 4,
+      "firstFailure": null,
+      "closeRequested": 50,
+      "closeCompleted": 50,
+      "maxSendLagMs": 1060,
+      "maxTickDriftMs": 1096,
+      "maxObservedDemandMinusReceipts": 100,
+      "demandMinusReceiptsAtClose": 0,
+      "injectionObserved": true
+    }
+  ],
+  "client": {
+    "sent": 1008,
+    "accepted": 456,
+    "rejected": 552,
+    "acceptedDeliveryDemand": 20640,
+    "received": 20640
+  },
+  "cleanupGauges": {
+    "lab.connections": 0.0,
+    "lab.dispatch.bytes": 0.0,
+    "lab.dispatch.messages": 0.0,
+    "lab.outbound.tasks": 0.0,
+    "lab.outbound.bytes": 0.0,
+    "lab.outbound.writes.inflight": 0.0,
+    "lab.outbound.writers.active": 0.0,
+    "lab.dispatch.rooms": 0.0,
+    "lab.outbound.slots": 0.0,
+    "lab.rooms": 0.0,
+    "lab.dispatch.ready": 0.0,
+    "lab.outbound.messages": 0.0
+  },
+  "errors": [
+    "hot: process/threshold failure",
+    "processesPassed"
+  ],
+  "note": "Diagnostic only. Demand minus receipts is observed difference, not exact server backlog."
+}

@@ -1,0 +1,15 @@
+{
+  "directory": "D:\\coding\\DanmakuLab\\.lab-artifacts\\hw-dev-smoke-02",
+  "workers": 5,
+  "phaseSeconds": 3,
+  "dispatch": "fair",
+  "diagnostic": true,
+  "stallMs": 0,
+  "startedAt": "2026-10-27T13:09:33.1502221+00:00",
+  "pid": 35744,
+  "stopped": true,
+  "passed": true,
+  "evidenceComplete": true,
+  "error": null,
+  "endedAt": "2026-10-27T13:10:30.5622843+00:00"
+}

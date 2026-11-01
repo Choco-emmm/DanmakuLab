@@ -1,0 +1,6 @@
+{
+  "TimeCreated": "2026-10-27T11:43:35.3742832+08:00",
+  "ProviderName": "Microsoft-Windows-Kernel-Power",
+  "Id": 42,
+  "Message": "系统正在进入睡眠状态。\r\n\r\n睡眠原因: Application API"
+}

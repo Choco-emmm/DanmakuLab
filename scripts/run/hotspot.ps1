@@ -13,12 +13,19 @@ param(
     [ValidateRange(2,180)][int]$PhaseSeconds = 30,
     [ValidateRange(1,30)][int]$DrainSeconds = 5,
     [ValidateRange(1,100)][int]$LatencySampleEvery = 10,
+    [switch]$Diagnostic,
+    [ValidateRange(0,1500)][int]$DiagnosticCloseBatchSize = 0,
+    [ValidateRange(10,5000)][int]$DiagnosticCloseBatchIntervalMs = 100,
+    # 非零值只供短诊断注入一次VU停顿；结果必须按故障注入轮单独报告。
+    [ValidateRange(0,2000)][int]$DiagnosticStallMs = 0,
     [string]$HotRates = '20,100,200',
     [ValidateSet('direct','buffered')][string]$Mode = 'buffered',
     [ValidateSet('direct','fair')][string]$DispatchMode = 'direct',
     [string]$HttpUrl = 'http://127.0.0.1:8082',
     [switch]$SplitProcesses,
     [ValidateRange(10,120)][int]$StartDelaySeconds = 30,
+    # 默认兼容早期单机制品；复测已归档版本时必须显式指定真实运行的JAR，不能记成旧文件的哈希。
+    [string]$JarPath = 'target/danmaku-lab-0.1.0-SNAPSHOT.jar',
     [string]$OutputDirectory
 )
 $ErrorActionPreference = 'Stop'
@@ -26,7 +33,19 @@ Import-Module (Join-Path $PSScriptRoot 'ProcessEvidence.psm1') -Force
 $root = (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
 Push-Location $root
 try {
+    if ($Diagnostic -and $PhaseSeconds -gt 10) { throw 'Diagnostic仅允许每阶段最多10秒的短轮。' }
+    if (-not $Diagnostic -and ($DiagnosticCloseBatchSize -ne 0 -or $DiagnosticCloseBatchIntervalMs -ne 100 -or $DiagnosticStallMs -ne 0)) {
+        throw '诊断关闭参数必须显式启用Diagnostic。'
+    }
+    $closeScheduleMs = 0
+    if ($DiagnosticCloseBatchSize -gt 0) {
+        $largestRole = if ($SplitProcesses) { [Math]::Max($NormalRooms*$NormalConnections,$HotConnections) } else { $NormalRooms*$NormalConnections+$HotConnections }
+        $closeScheduleMs = ([Math]::Ceiling($largestRole / $DiagnosticCloseBatchSize)-1)*$DiagnosticCloseBatchIntervalMs
+        if ($closeScheduleMs -gt 10000) { throw '诊断关闭batch schedule超过10秒预算。' }
+    }
+    $sampleSeconds = if ($Diagnostic) { 1 } else { 5 }
     $url = $HttpUrl.TrimEnd('/')
+    $artifactPath = (Resolve-Path -LiteralPath $JarPath).Path
     $uri = [Uri]$url
     if (-not $uri.IsLoopback) { throw '当前入口只采集同机回环实验，远端资源需要另行采集。' }
     # 整轮采样共享一个HTTP会话，复用连接；例如60次GET不再为每次请求新建TCP连接。
@@ -92,19 +111,24 @@ try {
     @{ scenario='T4-initial'; mode=$Mode; dispatchMode=$DispatchMode; normalRooms=$NormalRooms; normalConnections=$NormalConnections;
        splitProcesses=[bool]$SplitProcesses; startDelaySeconds=$(if ($SplitProcesses) { $StartDelaySeconds } else { 0 });
        hotConnections=$HotConnections; normalInputPerRoom=2; hotRates=$HotRates; phaseSeconds=$PhaseSeconds;
-       drainSeconds=$DrainSeconds; latencySampleEvery=$LatencySampleEvery; resourceSampleSeconds=5; requestJsonBytes=256;
+       drainSeconds=$DrainSeconds; latencySampleEvery=$LatencySampleEvery; resourceSampleSeconds=$sampleSeconds; requestJsonBytes=256;
+       diagnostic=[bool]$Diagnostic; diagnosticCloseBatchSize=$DiagnosticCloseBatchSize; diagnosticCloseBatchIntervalMs=$DiagnosticCloseBatchIntervalMs;
+       diagnosticStallMs=$DiagnosticStallMs;
+       formalEligible=(-not $Diagnostic); diagnosticNote='Client demand minus receipts is an observed difference, not exact server backlog; snapshots are sequential.';
        limitNote='Effective limits must be read together from application.yml and server-command.txt; this script does not change limits.' } |
         ConvertTo-Json | Set-Content (Join-Path $output 'config.json') -Encoding utf8
     $manifest = @(Get-Item pom.xml) + @(Get-ChildItem src,scripts -Recurse -File | Where-Object FullName -notmatch '__pycache__')
     @($manifest | Sort-Object FullName | ForEach-Object {
         @{ path=[IO.Path]::GetRelativePath($root,$_.FullName); sha256=(Get-FileHash -LiteralPath $_.FullName).Hash }
     }) | ConvertTo-Json -Depth 4 | Set-Content (Join-Path $output 'source-sha256.json') -Encoding utf8
-    Get-FileHash target/danmaku-lab-0.1.0-SNAPSHOT.jar | ConvertTo-Json | Set-Content (Join-Path $output 'jar-sha256.json') -Encoding utf8
+    Get-FileHash -LiteralPath $artifactPath | ConvertTo-Json | Set-Content (Join-Path $output 'jar-sha256.json') -Encoding utf8
 
     $k6Path = (Get-Command k6).Source
     $commonArguments = @('run','--quiet','-e',"NORMAL_ROOMS=$NormalRooms",'-e',"NORMAL_CONNECTIONS=$NormalConnections",
         '-e',"HOT_CONNECTIONS=$HotConnections",'-e',"PHASE_SECONDS=$PhaseSeconds",'-e',"DRAIN_SECONDS=$DrainSeconds",
-        '-e',"HOT_RATES=$HotRates",'-e',"LATENCY_SAMPLE_EVERY=$LatencySampleEvery",'-e',"WS_URL=$(($url -replace '^http','ws')+'/ws')")
+        '-e',"HOT_RATES=$HotRates",'-e',"LATENCY_SAMPLE_EVERY=$LatencySampleEvery",'-e',"WS_URL=$(($url -replace '^http','ws')+'/ws')",
+        '-e',"DIAGNOSTIC=$($Diagnostic.IsPresent.ToString().ToLowerInvariant())",'-e',"DIAGNOSTIC_CLOSE_BATCH_SIZE=$DiagnosticCloseBatchSize",
+        '-e',"DIAGNOSTIC_CLOSE_BATCH_INTERVAL_MS=$DiagnosticCloseBatchIntervalMs",'-e',"DIAGNOSTIC_STALL_MS=$DiagnosticStallMs")
     # 先完成环境/源码归档，再约定共同起点，避免采集本身消耗客户端的加入预算。
     # 30 秒是连接准备窗口，不计入四个输入阶段。迟到会失败，不能擅自平移一边的起点。
     $startAt = if ($SplitProcesses) { [DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds() + $StartDelaySeconds * 1000L } else { 0L }
@@ -131,6 +155,7 @@ try {
     $timeout = [Math]::Max(60, $StartDelaySeconds) + 4*$PhaseSeconds + $DrainSeconds + 30
     $sampling = [pscustomobject]@{ Next=0.0; NextProgress=0.0; Errors=0 }
     $runError = $null
+    $after = $null
     $status = [ordered]@{ collectorErrors=0; cleanupReturnedToZero=$false; serverCountersMatch=$false;
         processesPassed=$false; phaseAlignmentPassed=$false; processIds=@{} }
     Write-Output "T4 started: $($NormalRooms * $NormalConnections + $HotConnections) connections; $($roles.Count) k6 process(es); evidence: $output"
@@ -170,10 +195,11 @@ try {
                         $clients[$role]=if ($item) { Process-Sample $item } else { $null }
                     }
                 }
-                $sample=@{ elapsedSeconds=$elapsed; clients=$clients; server=Process-Sample $server }
+                $sample=@{ elapsedSeconds=$elapsed; atMs=[DateTimeOffset]::UtcNow.ToUnixTimeMilliseconds(); clients=$clients; server=Process-Sample $server }
+                if ($Diagnostic -and -not $sample.server) { $sample.processError='Server process sample unavailable'; $sampling.Errors++ }
                 try { $sample.snapshot=Snapshot } catch { $sample.error=$_.Exception.Message; $sampling.Errors++ }
                 $sample | ConvertTo-Json -Compress -Depth 14 | Add-Content (Join-Path $output 'samples.jsonl') -Encoding utf8
-                $sampling.Next=$elapsed+5
+                $sampling.Next=$elapsed+$sampleSeconds
             }
             Start-Sleep -Milliseconds 100
         }
@@ -208,12 +234,32 @@ try {
                 $required = $DispatchMode -eq 'fair'
                 if ((Metric $after $name -Required:$required) -ne 0) { $status.cleanupReturnedToZero=$false }
             }
-        } catch { $status.cleanupError=$_.Exception.Message; if (-not $runError) { $runError=$_ } }
+            if ($Diagnostic) {
+                # 诊断还需单独核对正在写、活动提交者和任务队列，不能只看连接数归零。
+                # 先把所有值设为null，缺失或读取失败保持未知，不伪造为0；原默认路径不变。
+                $cleanup=@{}
+                foreach($name in 'lab.connections','lab.rooms','lab.outbound.bytes','lab.outbound.messages',
+                        'lab.outbound.slots','lab.outbound.tasks','lab.outbound.writers.active',
+                        'lab.outbound.writes.inflight','lab.dispatch.bytes','lab.dispatch.messages',
+                        'lab.dispatch.rooms','lab.dispatch.ready') { $cleanup[$name]=$null }
+                try {
+                    foreach($name in @($cleanup.Keys)) {
+                        $cleanup[$name]=Metric $after $name -Required
+                        if($cleanup[$name] -ne 0){$status.cleanupReturnedToZero=$false}
+                    }
+                } finally {
+                    $cleanup | ConvertTo-Json | Set-Content (Join-Path $output 'cleanup-gauges.json') -Encoding utf8
+                }
+            }
+        } catch { $status.cleanupReturnedToZero=$false; $status.cleanupError=$_.Exception.Message; if (-not $runError) { $runError=$_ } }
         $status.collectorErrors = $sampling.Errors
         if ($runError) { $status.error=$runError.Exception.Message }
         $status | ConvertTo-Json -Depth 6 | Set-Content (Join-Path $output 'run-status.json') -Encoding utf8
     }
-    if ($runError) { throw $runError }
+    # 子进程失败后也尽力对账。不能在这里提前throw，让最需要诊断的失败轮缺少计数差值。
+    # 任一汇总缺失会独立记录summaryError，不改写先前的退出/采样错误，也不补造缺失数据。
+    try {
+    if ($null -eq $after) { throw '没有服务端最终快照，无法对账。' }
     $reports=@($specs | ForEach-Object { (Get-Content (Join-Path $_.Directory 'k6-summary.json') -Raw | ConvertFrom-Json).report })
     # 两个 PID 必须不同，且两个报告都在共同起点前就绪、按约定时间开始。
     # 报告保留各自分位数；不能把两份 P99 做平均，伪造为整体 P99。
@@ -237,7 +283,13 @@ try {
     @{ client=$clientTotals; server=$delta } | ConvertTo-Json -Depth 5 | Set-Content (Join-Path $output 'counter-delta.json') -Encoding utf8
     @{ reports=$reports; client=$clientTotals; note='Per-room quantiles remain separate; same-host processes still share CPU/RAM.' } |
         ConvertTo-Json -Depth 16 | Set-Content (Join-Path $output 'comparison.json') -Encoding utf8
+    } catch {
+        $status.summaryError=$_.Exception.Message
+        if(-not $runError){$runError=$_}
+    }
+    if($runError){$status.error=$runError.Exception.Message}
     $status | ConvertTo-Json | Set-Content (Join-Path $output 'run-status.json') -Encoding utf8
+    if ($runError) { throw $runError }
     if ($status.collectorErrors -or -not $status.cleanupReturnedToZero -or -not $status.serverCountersMatch -or
         -not $status.phaseAlignmentPassed -or -not $status.processesPassed) { throw "T4 采集、对齐、计数或清理不通过：$output" }
     foreach ($spec in $specs) { Get-Content (Join-Path $spec.Directory 'k6-stdout.txt') }

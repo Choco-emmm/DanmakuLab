@@ -1,0 +1,16 @@
+{
+  "name": "smoke-T3",
+  "scenario": "T3",
+  "connections": 20,
+  "slowConnections": 10,
+  "seconds": 10,
+  "warmupSeconds": 2,
+  "formal": false,
+  "directory": "D:\\coding\\DanmakuLab\\.lab-artifacts\\longrun-edcb4c5e014a4856b95497849218c8e7\\smoke-T3",
+  "pid": 52096,
+  "startedAt": "2026-10-28T00:49:06.7108395+00:00",
+  "passed": true,
+  "stopped": true,
+  "error": null,
+  "endedAt": "2026-10-28T00:49:35.4449347+00:00"
+}

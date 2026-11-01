@@ -1,0 +1,160 @@
+{
+  "directory": "D:\\coding\\DanmakuLab\\.lab-artifacts\\longrun-edcb4c5e014a4856b95497849218c8e7\\smoke-T3",
+  "files": [
+    {
+      "path": "audit-output.txt",
+      "bytes": 136,
+      "sha256": "EFC8FE0C7A367D166A4269211A5C3F4A2C618F18DBD0379A547FFFB28BC9C0FB"
+    },
+    {
+      "path": "case-status.json",
+      "bytes": 446,
+      "sha256": "B76772FC3E2E63E3E3BE14ABA8BC5CB483BBB28C1B7E73904E7FA31732327AC7"
+    },
+    {
+      "path": "command.json",
+      "bytes": 836,
+      "sha256": "421C93A183ECF38069B05472A23820D45C2584CC77416581FE53A026DFBF97F1"
+    },
+    {
+      "path": "load/application.yml",
+      "bytes": 2950,
+      "sha256": "7C9B01F481EBFB0D873B021003C608BC92296501FC42679E74EB4F33CEF19E93"
+    },
+    {
+      "path": "load/artifact-identity.json",
+      "bytes": 200,
+      "sha256": "AAC889F3106A0D79DA6F7C87B459A950BC728A8AD4153AAE9AA711A0BFAF7287"
+    },
+    {
+      "path": "load/cleanup-gauges.json",
+      "bytes": 378,
+      "sha256": "56912CE391A51408FBF999646173280DE852BCE4125D3B38F73CC38A455D1A45"
+    },
+    {
+      "path": "load/client/config.json",
+      "bytes": 375,
+      "sha256": "ED080B970777F5969669F2F7F8E743A47A4E32F64200D70C1D85F1473FCBE2C5"
+    },
+    {
+      "path": "load/client/progress.jsonl",
+      "bytes": 691,
+      "sha256": "42335BA6DB3391559C28425AF887E0DFEFF62363B1394F2CB0FDC1B1A24C618E"
+    },
+    {
+      "path": "load/client/summary.json",
+      "bytes": 3652,
+      "sha256": "F7E2BC2C07501445D4946C1EA1D30E13DC4734FBE1DBC351FC70BACA6D066E89"
+    },
+    {
+      "path": "load/client/timing.json",
+      "bytes": 63,
+      "sha256": "82B45F661D19F4D3F43F75DAE828AC7AD8D4D35A59342405AC6350DC8A2BEB20"
+    },
+    {
+      "path": "load/command.json",
+      "bytes": 517,
+      "sha256": "BC0372CC8CD6854BCFE10B75277AE2D1FA257810087F555E4A3FA43595AFB163"
+    },
+    {
+      "path": "load/config.json",
+      "bytes": 379,
+      "sha256": "84B0AF528095F468CF364AAFFD11B8E66B6AEB253EC72F00D1800AE28888A498"
+    },
+    {
+      "path": "load/counter-delta.json",
+      "bytes": 4417,
+      "sha256": "86C8E35B6C94B8673ED999D7D3DA7634DC90EDED12065F5139F2A62743C475DC"
+    },
+    {
+      "path": "load/environment.json",
+      "bytes": 3591,
+      "sha256": "05DE67AEAE19E1556B2DA3DF417127E5F3398C9A0C985DA19E542AB5D32A35D4"
+    },
+    {
+      "path": "load/jar-sha256.json",
+      "bytes": 180,
+      "sha256": "20A5498CF08349935BE15A00BC8CD515F54F03C52B9CCB18DE4D4D21FC08769C"
+    },
+    {
+      "path": "load/python-status.json",
+      "bytes": 215,
+      "sha256": "0F47F03BC74D76C78456A1624BFCC8D4059F1035E29CD9F1A65ABA1CC9AAC84D"
+    },
+    {
+      "path": "load/python-stderr.txt",
+      "bytes": 2,
+      "sha256": "7EB70257593DA06F682A3DDDA54A9D260D4FC514F645237F5CA74B08F8DA61A6"
+    },
+    {
+      "path": "load/python-stdout.txt",
+      "bytes": 1376,
+      "sha256": "A860A807B8BD3CAAA6925CB8F2DF73EEE41AD0AEF813B21DE43AF78D8556D9BD"
+    },
+    {
+      "path": "load/run-status.json",
+      "bytes": 192,
+      "sha256": "73F3D02CD2F6DA82F6484F52EC7F28BBA5763613EFF72B1FFE76B294D77A37AA"
+    },
+    {
+      "path": "load/samples.jsonl",
+      "bytes": 14244,
+      "sha256": "08ED1EB1BF0D231ED07A28B9A2DF3FE435BEB4CB5DC6D9FBE5B57DC5F797DC79"
+    },
+    {
+      "path": "load/server-after.json",
+      "bytes": 7054,
+      "sha256": "C7FA5FA00386F8AD5CB42201E2E3A4643FF765996B5B05F12C890927F15B1EF4"
+    },
+    {
+      "path": "load/server-before.json",
+      "bytes": 4341,
+      "sha256": "306887008AEC90A66099C89E8D310EF7F14CE1FDC52072531042E4D9CB781780"
+    },
+    {
+      "path": "load/server-command.txt",
+      "bytes": 228,
+      "sha256": "0FC700832389FE1FF6FF5096129727D52A246E772A993F4E3540AFF0AE17BBEC"
+    },
+    {
+      "path": "load/source-sha256.json",
+      "bytes": 15163,
+      "sha256": "E7B5724DCF43ABA61BD5499A835B5FEF792057BC95BA5C084026283950B975AC"
+    },
+    {
+      "path": "outer-cleanup.json",
+      "bytes": 378,
+      "sha256": "79EAE845EFEEDA7A30C18F41B29C26CDCCD286469080910914DB3F51EF6A5933"
+    },
+    {
+      "path": "runner-status.json",
+      "bytes": 215,
+      "sha256": "8FF37544D88EB043A2FC83E345E834B6E979171F426B5B7AE5DE696D395E0075"
+    },
+    {
+      "path": "runner-stderr.txt",
+      "bytes": 2,
+      "sha256": "7EB70257593DA06F682A3DDDA54A9D260D4FC514F645237F5CA74B08F8DA61A6"
+    },
+    {
+      "path": "runner-stdout.txt",
+      "bytes": 465,
+      "sha256": "630294912794DD2A3299A068B0C24D600CCB9FB04055F657A460E7DABF668E86"
+    },
+    {
+      "path": "server-launch.json",
+      "bytes": 454,
+      "sha256": "24B902403203DE78F6036BDB91699E4A76699591D2D2D5189E7F307550874265"
+    },
+    {
+      "path": "server-stderr.txt",
+      "bytes": 2,
+      "sha256": "7EB70257593DA06F682A3DDDA54A9D260D4FC514F645237F5CA74B08F8DA61A6"
+    },
+    {
+      "path": "server-stdout.txt",
+      "bytes": 2858,
+      "sha256": "53CCA593E4310D7BE814981BDE17F65CB73AA83B746C59BBBD0410422A560CA3"
+    }
+  ]
+}

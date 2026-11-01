@@ -1,0 +1,12 @@
+{
+  "collectorErrors": 0,
+  "cleanupReturnedToZero": true,
+  "serverCountersMatch": false,
+  "processesPassed": false,
+  "phaseAlignmentPassed": false,
+  "processIds": {
+    "hot": 43212,
+    "normal": 51552
+  },
+  "error": "子进程退出码为 107。"
+}

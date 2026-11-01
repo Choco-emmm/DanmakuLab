@@ -1,0 +1,21 @@
+{
+  "processIds": {
+    "hot-3": 29664,
+    "hot-0": 45672,
+    "hot-1": 27608,
+    "normal": 14460,
+    "hot-4": 29484,
+    "hot-2": 56880
+  },
+  "error": null,
+  "collectorErrors": 0,
+  "allReadyBeforeStart": true,
+  "readiness": {
+    "hot-3": 1793112536084,
+    "hot-0": 1793112535868,
+    "hot-1": 1793112535930,
+    "normal": 1793112537779,
+    "hot-4": 1793112536162,
+    "hot-2": 1793112535992
+  }
+}

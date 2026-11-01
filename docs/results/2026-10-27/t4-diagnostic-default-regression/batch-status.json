@@ -1,0 +1,29 @@
+{
+  "completed": 2,
+  "runs": [
+    {
+      "round": 1,
+      "mode": "direct",
+      "directory": "round-01-direct",
+      "startedAt": "2026-10-27T11:59:42.4044490+00:00",
+      "processId": 23224,
+      "passed": true,
+      "stopped": true,
+      "error": null,
+      "endedAt": "2026-10-27T12:00:18.2870606+00:00"
+    },
+    {
+      "round": 1,
+      "mode": "fair",
+      "directory": "round-01-fair",
+      "startedAt": "2026-10-27T12:00:18.8184435+00:00",
+      "processId": 43144,
+      "passed": true,
+      "stopped": true,
+      "error": null,
+      "endedAt": "2026-10-27T12:00:54.3268237+00:00"
+    }
+  ],
+  "error": null,
+  "passed": true
+}

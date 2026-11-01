@@ -1,0 +1,72 @@
+"""只读派生统计：读取发送台账/位图审计结果与原始采样，不重跑或挑选实验。
+
+运行：python docs/results/2026-10-27/analyze-hotspot-workers.py.txt <批次摘要目录>
+"""
+from pathlib import Path
+import json
+import sys
+
+root=Path(__file__).resolve().parents[3]
+sys.path.insert(0,str(root/'scripts/tests'))
+from hotspot_workers_audit import tagged
+
+
+def read(path): return json.loads(path.read_text(encoding='utf-8-sig'))
+
+
+def main(out):
+    state=read(out/'batch-status.json');rows=[];references=[]
+    for row in state['rows']:
+        raw=Path(row['directory']);cfg=read(raw/'config.json');a=read(raw/'audit.json')
+        if not a.get('evidenceComplete'): continue
+        n=read(raw/'normal/k6-summary.json')['report']
+        workers=[tagged(raw/f'hot-{w}/k6-stderr.txt','HW_RAW')[0] for w in range(cfg['hotWorkers'])]
+        phases=[]
+        for p in range(4):
+            counts=[w['phaseCounts'][p] for w in workers]
+            # 这是各工作进程实际窗口速率之和；不把未完成阶段的缺测值填成目标速率。
+            values=[c['sent']*1000/c['durationMs'] if c['durationMs'] else None for c in counts]
+            phases.append(dict(targetHotRate=[0,20,100,200][p],sent=sum(c['sent'] for c in counts),
+                accepted=sum(c['accepted'] for c in counts),rejected=sum(c['rejected'] for c in counts),
+                workerActualRates=values,aggregateActualRate=sum(values) if all(v is not None for v in values) else None,
+                hotLatency=a['hotLatency'][p],normalActualRates=[r['phases'][p]['actualInputPerSecond'] for r in n['rooms']],
+                normalP99=a['normalP99ByPhase'][p]))
+        normal_lag=max(p['maxSendLagMs'] for r in n['rooms'] for p in r['phases'])
+        normal_events=tagged(raw/'normal/k6-stderr.txt','T4_DIAGNOSTIC') if cfg['diagnostic'] else []
+        normal_drift=max((e['maxTickDriftMs'] for e in normal_events),default=None)
+        source={x['path']:x['sha256'] for x in read(raw/'source-sha256.json')}
+        if row['name'].startswith('short-'): references.append(source)
+        rows.append(dict(name=row['name'],passed=row['passed'],evidenceComplete=row['evidenceComplete'],
+            jvmPid=row['pid'],jarHash=cfg['jarSha256'],hotWorkers=cfg['hotWorkers'],phaseSeconds=cfg['phaseSeconds'],
+            client=a['client'],hot=a['hot'],phases=phases,
+            maxSendLagMs=max(normal_lag,max(w['maxSendLagMs'] for w in a['workers'])),
+            maxHotLagMs=max(w['maxSendLagMs'] for w in a['workers']),
+            # 正式模式的旧普通客户端没有导出定时器漂移，保留未知，不补0冒充全体最大值。
+            normalTimerDriftMs=normal_drift,
+            maxHotTimerDriftMs=max(w['maxTickDriftMs'] for w in a['workers']),
+            maxTimerDriftMs=max(normal_drift,max(w['maxTickDriftMs'] for w in a['workers'])) if normal_drift is not None else None,
+            resources=read(out/row['name']/'resources.json'),cleanupAllZero=all(v==0 for v in a['cleanup'].values()),
+            errors=a['errors']))
+    value=dict(rows=rows,shortSourceIdentical=bool(references) and all(x==references[0] for x in references),
+        freshJvmPidsUnique=len({r['jvmPid'] for r in rows})==len(rows),formalExecuted=sum(r['name'].startswith('formal-') for r in rows),
+        scope='New client 1/5 process comparison; different instrumentation from historical client, no service optimization or old root cause claim.')
+    (out/'analysis.json').write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+    lines=['# 固定短对照分析','',
+        f"短轮源码相同：{value['shortSourceIdentical']}；独立JVM PID无重复：{value['freshJvmPidsUnique']}；正式轮执行数：{value['formalExecuted']}。",'',
+        '| 轮次 | 通过 | 热点20/100/200实际输入每秒 | 全客户端实收/应收 | 最大发送滞后ms | 最大定时器漂移ms | 客户端合计输入期CPU采样峰值（核） | 客户端合计输入期工作集采样峰值MiB |',
+        '|---|---|---|---:|---:|---:|---:|---:|']
+    for r in rows:
+        if not r['name'].startswith('short-'): continue
+        rates='/'.join('缺测' if p['aggregateActualRate'] is None else f"{p['aggregateActualRate']:.3f}" for p in r['phases'][1:])
+        cpu=r['resources']['input']['clientCpuPeakCores'];mem=r['resources']['input']['clientWorkingSetPeakBytes']
+        lines.append(f"| {r['name']} | {r['passed']} | {rates} | {r['client']['received']}/{r['client']['acceptedDeliveryDemand']} | "
+            f"{r['maxSendLagMs']} | {r['maxTimerDriftMs']} | {cpu:.2f} | {mem/1048576:.1f} |")
+    lines+=['','普通房间逐房间P99、热点合并分位数与服务端队列/在途写采样见analysis.json和每轮resources.json。',
+        'CPU峰值并非全程平均，失败轮与通过轮实际完成负载不同，不把CPU或延迟直接相除称为性能收益。',
+        '采样按请求开始时间分段，快照跨阶段边界的内容不能精确归因于某一阶段；保留原始起止时间供复核。',
+        '新客户端增加跨进程身份和独立接收证明，1/5双方使用相同新实现；与历史客户端的计时/校验开销有差异，不能仅靠本次结果确认旧1033ms问题的根因。','']
+    (out/'analysis.md').write_text('\n'.join(lines),encoding='utf-8')
+
+
+if __name__=='__main__': main(Path(sys.argv[1]))
+

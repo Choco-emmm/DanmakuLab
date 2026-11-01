@@ -1,0 +1,11 @@
+T4 started: 1000 connections; 2 k6 process(es); evidence: D:\coding\DanmakuLab\docs\results\2026-10-27\t4-counter-before\round-01-direct\load
+T4 running: 0s; preparation=30s; input windows=40s plus drain
+T4 running: 10s; preparation=30s; input windows=40s plus drain
+T4 running: 20s; preparation=30s; input windows=40s plus drain
+T4 running: 30s; preparation=30s; input windows=40s plus drain
+T4 running: 40s; preparation=30s; input windows=40s plus drain
+T4 running: 50s; preparation=30s; input windows=40s plus drain
+T4 running: 60s; preparation=30s; input windows=40s plus drain
+T4 running: 70s; preparation=30s; input windows=40s plus drain
+T4 running: 80s; preparation=30s; input windows=40s plus drain
+

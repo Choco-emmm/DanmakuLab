@@ -1,0 +1,15 @@
+{
+  "pid": 63040,
+  "arguments": [
+    "-Xms128m",
+    "-Xmx256m",
+    "-jar",
+    "D:\\coding\\DanmakuLab\\target\\danmaku-lab-release.jar",
+    "--server.port=8085",
+    "--lab.cluster.mode=local",
+    "--lab.outbound.mode=buffered",
+    "--lab.dispatch.mode=fair"
+  ],
+  "executable": "D:\\coding\\jdk\\bin\\java.exe",
+  "jarSha256": "BC5652880AD8FA34B903B7F6350E292D090FA914C85456879243082A38F43F65"
+}

@@ -1,0 +1,129 @@
+{
+  "passed": true,
+  "source": "User ran mvn -B -ntp test; agent inspected resulting Surefire XML without rerunning tests.",
+  "userReportedFinishedAt": "2026-10-28T13:42:45+08:00",
+  "tests": 82,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "suites": [
+    {
+      "name": "io.github.chocoemmm.danmakulab.BufferedWebSocketIntegrationTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "22B3FC937C2F3692DF88F6873267CDD0C605948DC8445FA52A65AE8ED99B9575",
+      "modifiedAt": "2026-10-28T13:42:34.973243+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.cluster.RedisBroadcastIngressTest",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "EAB79F939FB3872B02AF3F153012E3729CD99EFFDD6A91C812B72B8A14A15426",
+      "modifiedAt": "2026-10-28T13:42:38.586294+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.core.ClientConnectionTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "19546D8FA3E1EBA9950828610486536A92260F469527AB92A613E9E920703BBA",
+      "modifiedAt": "2026-10-28T13:42:38.666059+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.core.ConnectionRegistryTest",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "8504659E358A46E2BAABCAEF68D5E762D26D8C116BF67B0FEEA90596012D9EF8",
+      "modifiedAt": "2026-10-28T13:42:38.675416+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.core.FairRoomDispatcherTest",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "75BAAAA5A810BF544C8BEF7EB75820B078FCEEB2E62A236B4C0DC8FE16CC40C9",
+      "modifiedAt": "2026-10-28T13:42:38.763072+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.core.OutboundAsyncTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "B84B68DC70DB232A0EE199186971C704AF99E219BC8A27BF01B71FB2F493A10C",
+      "modifiedAt": "2026-10-28T13:42:40.012893+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.core.OutboundMailboxTest",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "E3BE1FB600BA77ECEB937B8915F4A6FDAFD148E0C5635F1282E97CA5AB1EFEF7",
+      "modifiedAt": "2026-10-28T13:42:40.962339+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.core.OutboundShutdownTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "566188ABB9F1DE60E6F9E0383877D25EA086F871204190098E9FD30EE5C207DC",
+      "modifiedAt": "2026-10-28T13:42:41.068373+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.core.TokenBucketTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "B2C24CF41B29D32499767B370E79E955E19B3B7FDDABA65E810A77758945F683",
+      "modifiedAt": "2026-10-28T13:42:41.077330+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.FairWebSocketIntegrationTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "9576906A77250D17DBB3B0A04A5427470F41189563607262CFA519ACF8E59D69",
+      "modifiedAt": "2026-10-28T13:42:43.658546+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.protocol.RoomAdmissionTest",
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "A68512D31F67B522688414EFC72C1705661C624FA0DB5610E392CEF8D3277894",
+      "modifiedAt": "2026-10-28T13:42:43.675850+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.protocol.SendTimeoutTest",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "189517B224E9462C342AD7735A67F64E996B6EACE6B22EDBA8309D12E26C5B04",
+      "modifiedAt": "2026-10-28T13:42:43.685386+08:00"
+    },
+    {
+      "name": "io.github.chocoemmm.danmakulab.WebSocketIntegrationTest",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "sha256": "1888D38EF802680191FA0BF1AE85824573D312E5C2184A48CE922BB0CEF1D7B5",
+      "modifiedAt": "2026-10-28T13:42:45.327045+08:00"
+    }
+  ],
+  "note": "82 ordinary Java tests, including WebSocket integration. Real Redis integration is a separate profile, not rerun here."
+}

@@ -1,0 +1,20 @@
+✔ default path preserves delivery and simultaneous close without diagnostics (252.8939ms)
+✔ diagnostics reject long phases and batching without opt-in (1.7657ms)
+✔ diagnostics reject a batch schedule exceeding its bounded budget (0.6539ms)
+✔ diagnostics emit periodic samples, drain before close and preserve terminal evidence (193.7091ms)
+✔ drain counts delayed receipts before requesting close (6106.9504ms)
+✔ batch close respects configured size and interval (172.3661ms)
+✔ early failure preserves first reason and closes created sockets (2.226ms)
+✔ socket creation failure preserves bounded diagnostic settlement (0.9687ms)
+✔ connecting sockets are included in bounded close settlement (1.2313ms)
+✔ missing close callbacks retain timeout evidence and stop diagnostic timers (179.9736ms)
+✔ explicit short diagnostic stall makes the original send-lag gate red-capable (202.4779ms)
+✔ late close callbacks cannot append events after the terminal cutoff (178.4083ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7680.0993

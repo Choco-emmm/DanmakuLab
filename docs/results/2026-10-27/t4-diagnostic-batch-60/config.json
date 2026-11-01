@@ -1,0 +1,23 @@
+{
+  "scenario": "T4-initial",
+  "dispatchMode": "direct",
+  "hotRates": "2,10,20",
+  "formalEligible": false,
+  "phaseSeconds": 3,
+  "splitProcesses": false,
+  "requestJsonBytes": 256,
+  "diagnosticCloseBatchIntervalMs": 100,
+  "diagnostic": true,
+  "normalConnections": 10,
+  "normalRooms": 2,
+  "hotConnections": 40,
+  "latencySampleEvery": 2,
+  "resourceSampleSeconds": 1,
+  "normalInputPerRoom": 2,
+  "diagnosticNote": "Client demand minus receipts is an observed difference, not exact server backlog; snapshots are sequential.",
+  "mode": "buffered",
+  "limitNote": "Effective limits must be read together from application.yml and server-command.txt; this script does not change limits.",
+  "diagnosticCloseBatchSize": 10,
+  "startDelaySeconds": 0,
+  "drainSeconds": 2
+}

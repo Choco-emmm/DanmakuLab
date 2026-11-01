@@ -1,0 +1,11 @@
+{
+  "round": 1,
+  "mode": "fair",
+  "directory": "round-01-fair",
+  "startedAt": "2026-10-27T03:26:21.4913432+00:00",
+  "processId": 58684,
+  "passed": true,
+  "stopped": true,
+  "error": null,
+  "endedAt": "2026-10-27T03:27:00.4228304+00:00"
+}

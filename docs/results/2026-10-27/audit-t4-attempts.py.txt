@@ -1,0 +1,91 @@
+"""复核已完成输入的三次T4尝试，保留失败门槛；不把收齐消息冒充压测通过。
+
+本文件只读取原始记录，输出派生表，不能修改run-status或k6退出码。
+"""
+import json
+from pathlib import Path
+
+BASE = Path(__file__).parent / 't4-repeats-formal-02'
+
+
+def read(path):
+    return json.loads(path.read_text(encoding='utf-8-sig'))
+
+
+def metrics(snapshot):
+    return {item['name']: item['measurements'][0]['value'] for item in snapshot['metrics']}
+
+
+results = []
+for name in ('round-01-direct', 'round-01-fair', 'round-02-fair'):
+    folder = BASE / name
+    load = folder / 'load'
+    reports = {role: read(load / role / 'k6-summary.json') for role in ('normal', 'hot')}
+    totals = dict(sent=0, accepted=0, rejected=0, received=0, acceptedDeliveryDemand=0)
+    failed = []
+    for role, summary in reports.items():
+        report = summary['report']
+        assert report['joined'] == 500
+        for key in ('errors', 'duplicates', 'orderViolations', 'isolationFailures', 'unexpectedCloses', 'missingAccepted', 'missingResults'):
+            assert report[key] == 0, (name, role, key)
+        for room in report['rooms']:
+            for phase in room['phases']:
+                assert phase['sent'] == phase['plannedInputMessages'] == phase['accepted'] + phase['rejected']
+                assert phase['received'] == phase['acceptedDeliveryDemand'] == phase['accepted'] * room['connections']
+                assert phase['rejectionReasons']['connection_rate_limit'] == phase['rejectionReasons']['other'] == 0
+                assert phase['rejected'] == phase['rejectionReasons']['room_rate_limit']
+                for key in totals:
+                    totals[key] += phase[key]
+        # 自定义汇总把原始k6 data放在metrics字段，内部才是真正的metrics名称索引。
+        for metric, details in summary['metrics']['metrics'].items():
+            for threshold, value in details.get('thresholds', {}).items():
+                if not value['ok']:
+                    failed.append(dict(role=role, metric=metric, threshold=threshold,
+                                       observed=details.get('values')))
+    before, after = (metrics(read(load / file)) for file in ('server-before.json', 'server-after.json'))
+    for server, client in (('lab.messages.input', 'sent'), ('lab.messages.accepted', 'accepted'),
+                           ('lab.messages.rejected', 'rejected'), ('lab.deliveries.expected', 'acceptedDeliveryDemand'),
+                           ('lab.deliveries.enqueued', 'acceptedDeliveryDemand'), ('lab.deliveries.submitted', 'received')):
+        assert after.get(server, 0) - before.get(server, 0) == totals[client]
+    gauges = ('lab.connections', 'lab.rooms', 'lab.outbound.bytes', 'lab.outbound.messages', 'lab.outbound.slots',
+              'lab.outbound.tasks', 'lab.outbound.writers.active', 'lab.outbound.writes.inflight',
+              'lab.dispatch.bytes', 'lab.dispatch.messages', 'lab.dispatch.rooms', 'lab.dispatch.ready')
+    assert all(after[key] == 0 for key in gauges)
+    normal = reports['normal']['report']['rooms']
+    hot = reports['hot']['report']['rooms'][0]['phases']
+    results.append(dict(name=name, loadValid=not failed, actual=totals, failedThresholds=failed,
+        normalWorstRoomP99Ms=[max(room['phases'][i]['latencyMs']['p(99)'] for room in normal) for i in range(4)],
+        hotP99Ms=[phase['latencyMs']['p(99)'] if phase['latencyMs'] else None for phase in hot],
+        hotMaxSendLagMs=[phase['maxSendLagMs'] for phase in hot], cleanupGauges=12))
+
+result = dict(threePairsCompleted=False, allAttemptsPassed=False, attempts=results,
+              note='Two valid runs and one load-generator gate failure; all three receipt/counter audits agree. This is not a passing batch.')
+(BASE / 'attempt-audit.json').write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
+print(json.dumps(result, indent=2))
+
+# 图包含失败尝试并明确标红，不能只展示好看的两轮；不把三条曲线称为三组通过。
+import matplotlib
+matplotlib.use('Agg')
+import matplotlib.pyplot as plt
+fig, axes = plt.subplots(2, 1, figsize=(10, 7), sharex=True)
+for row, color in zip(results, ('#c96a24', '#176b99', '#b53f3f')):
+    label = row['name'] + (' [INVALID load timing]' if not row['loadValid'] else '')
+    style = '--' if not row['loadValid'] else '-'
+    axes[0].plot(range(4), row['normalWorstRoomP99Ms'], marker='o', linestyle=style, color=color, label=label)
+    axes[1].plot(range(4), row['hotMaxSendLagMs'], marker='o', linestyle=style, color=color)
+axes[0].set_title('Ordinary rooms: worst individual-room P99 (not pooled P99)')
+axes[0].set_ylabel('Send-to-callback P99 (ms)')
+axes[0].legend(fontsize=9)
+axes[1].set_title('Hot generator: maximum planned-send delay; gate stays max < 1,000 ms')
+axes[1].axhline(1000, color='#777777', linestyle=':', label='1,000 ms gate')
+axes[1].set_ylabel('Maximum send delay (ms)')
+axes[1].legend(fontsize=9)
+axes[1].set_xticks(range(4), ('normal only', 'hot input 20/s', 'hot input 100/s', 'hot input 200/s'))
+for ax in axes:
+    ax.set_ylim(bottom=0)
+    ax.grid(alpha=.2)
+fig.suptitle('T4 attempts: 2 valid runs + 1 invalid timing run | Three pairs NOT completed')
+fig.tight_layout()
+fig.savefig(BASE / 'attempt-comparison.png', dpi=170)
+fig.savefig(BASE / 'attempt-comparison.svg')
+plt.close(fig)

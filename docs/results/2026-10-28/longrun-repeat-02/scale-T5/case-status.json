@@ -1,0 +1,16 @@
+{
+  "name": "scale-T5",
+  "scenario": "T5",
+  "connections": 1000,
+  "slowConnections": 0,
+  "seconds": 20,
+  "warmupSeconds": 5,
+  "formal": false,
+  "directory": "D:\\coding\\DanmakuLab\\.lab-artifacts\\longrun-b6afd81b9d9640bc809e045228dd2bc1\\scale-T5",
+  "pid": 45664,
+  "startedAt": "2026-10-28T00:54:24.5367509+00:00",
+  "passed": true,
+  "stopped": true,
+  "error": null,
+  "endedAt": "2026-10-28T00:55:06.6906033+00:00"
+}

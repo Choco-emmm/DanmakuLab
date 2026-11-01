@@ -1,0 +1,98 @@
+"""一次性离线整理：核对冻结源码/制品、全部正式轮、索引和回收，生成可追溯汇总。
+
+不启动服务或负载，不改原始文件。常规Java测试从用户执行后生成的Surefire XML读取，
+与用户粘贴的82项成功结果互相核对；不把真实Redis集成测试算在本次82项中。
+"""
+from pathlib import Path
+from datetime import datetime, timezone
+from zipfile import ZipFile
+import hashlib
+import json
+import xml.etree.ElementTree as ET
+
+OUT=Path(__file__).resolve().parent
+ROOT=OUT.parents[3]
+read=lambda path:json.loads(path.read_text(encoding='utf-8-sig'))
+def put(path,value):path.write_text(json.dumps(value,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+def sha(path):
+    with path.open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest().upper()
+
+state=read(OUT/'batch-status.json');frozen=read(OUT/'frozen-source.json');snapshot=read(OUT/'source-archive.json')
+assert state['formalPassed']==6 and state['preflightPassed'] and state['testsPassed'] and not state['notExecuted']
+assert state['error'] is None and state['awakeReleased'] and len(state['rows'])==10
+assert sha(Path(snapshot['path']))==snapshot['sha256']
+with ZipFile(snapshot['path']) as archive:
+    for entry in frozen:
+        relative=Path(entry['path']).as_posix()
+        assert hashlib.sha256(archive.read(relative)).hexdigest().upper()==entry['sha256']
+        assert sha(ROOT/entry['path'])==entry['sha256']
+assert sha(ROOT/'target/danmaku-lab-release.jar')==state['jarSha256']
+gauge_names={'lab.connections','lab.rooms','lab.outbound.bytes','lab.outbound.messages','lab.outbound.slots',
+    'lab.outbound.tasks','lab.outbound.writers.active','lab.outbound.writes.inflight',
+    'lab.dispatch.bytes','lab.dispatch.messages','lab.dispatch.rooms','lab.dispatch.ready'}
+rows=[];files=0;previous=None;pids=set()
+for case in state['rows']:
+    raw=Path(case['directory']);load=raw/'load';target=OUT/case['name']
+    assert case['passed'] and case['stopped'] and case['error'] is None
+    assert case['pid'] not in pids;pids.add(case['pid'])
+    began,ended=(datetime.fromisoformat(case[k]) for k in ('startedAt','endedAt'))
+    assert began<ended and (previous is None or previous<=began);previous=ended
+    for entry in read(target/'evidence-index.json')['files']:
+        path=raw/entry['path'];assert path.stat().st_size==entry['bytes'] and sha(path)==entry['sha256'];files+=1
+    for path in (raw/'outer-cleanup.json',load/'cleanup-gauges.json'):
+        gauges=read(path);assert set(gauges)==gauge_names and all(v==0 for v in gauges.values())
+    assert {x['path']:x['sha256'] for x in read(load/'source-sha256.json')}=={x['path']:x['sha256'] for x in frozen}
+    identity=read(load/'artifact-identity.json');assert identity['verified'] and identity['serverPid']==case['pid']
+    assert identity['sha256']==state['jarSha256']==read(load/'jar-sha256.json')['Hash']
+    r=read(load/'client/summary.json');cfg=read(load/'config.json');status=read(load/'run-status.json')
+    assert r['passed'] and all(r['checks'].values()) and status['collectorErrors']==0 and status['serverCountersMatch']
+    assert read(load/'python-status.json')['exitCode']==read(raw/'runner-status.json')['exitCode']==0
+    if not case['formal']:continue
+    seconds=900 if case['scenario']=='T3' else 1800;slow=10 if case['scenario']=='T3' else 0
+    assert cfg['seconds']==seconds and cfg['connections']==1000 and cfg['rate']==20 and cfg['warmupSeconds']==60
+    assert cfg['slowConnections']==slow and r['formalDurationSatisfied'] and r['joined']==1000
+    assert all(n==seconds*20 for n in r['perViewerMeasured'][slow:])
+    assert r['normalReceived']==r['normalExpected']==(1000-slow)*seconds*20
+    assert r['normalWarmupReceived']==(1000-slow)*60*20
+    delta=read(load/'counter-delta.json')['server']
+    if slow:assert status['backpressureObserved'] and delta['lab.writes.failed']+delta['lab.outbound.dropped']>0
+    else:
+        for key in ('lab.deliveries.expected','lab.deliveries.enqueued','lab.deliveries.submitted'):
+            assert delta[key]==37200000
+        assert delta['lab.writes.failed']==delta['lab.outbound.dropped']==delta['lab.dispatch.discarded']==0
+    rows.append(dict(name=case['name'],scenario=case['scenario'],normalReceived=r['normalReceived'],normalExpected=r['normalExpected'],
+        normalWarmupReceived=r['normalWarmupReceived'],normalLatencyMs=r['normalLatencyMs'],maxSendLagMs=r['maxSendLagMs'],
+        actualInputPerSecond=r['actualInputPerSecond'],actualMeasureSeconds=r['actualMeasureSeconds'],
+        slowReceived=r['slowReceived'],slowPotentialDemand=r['slowPotentialDemandAtInitialMembership'],
+        failures=r['failures'],server=delta,slowPerViewer=r['slowPerViewer']))
+assert [r['scenario'] for r in rows]==['T3']*3+['T5']*3
+
+# 用独立的发布源归档核对运行文件，工具可演进，业务源与本批JAR仍须对应。
+runtime=[]
+with ZipFile(ROOT/'.lab-artifacts/ship-20261027/source.zip') as archive:
+    for path in [ROOT/'pom.xml',*(ROOT/'src/main').rglob('*')]:
+        if path.is_file():
+            relative=path.relative_to(ROOT).as_posix();assert archive.read(relative)==path.read_bytes();runtime.append(relative)
+assert len(runtime)==27
+put(OUT/'final-verification.json',dict(passed=True,verifiedAtUtc=datetime.now(timezone.utc).isoformat(),formalPassed=6,
+    t3MeasuredNormal=sum(r['normalReceived'] for r in rows if r['scenario']=='T3'),
+    t5MeasuredNormal=sum(r['normalReceived'] for r in rows if r['scenario']=='T5'),
+    totalMeasuredNormal=sum(r['normalReceived'] for r in rows),frozenFiles=len(frozen),indexedFiles=files,
+    sourceArchive=snapshot,jarSha256=state['jarSha256'],runtimeFilesIdentical=27,
+    allTwelveGaugesZero=True,allOwnedJvmsStopped=True,noOverlappingCases=True,awakeReleased=True,rows=rows))
+
+regression=ROOT/'docs/results/2026-10-28/final-regression';regression.mkdir(exist_ok=True)
+suites=[]
+for path in sorted((ROOT/'target/surefire-reports').glob('TEST-*.xml')):
+    suite=ET.parse(path).getroot()
+    suites.append(dict(name=suite.attrib['name'],tests=int(suite.attrib['tests']),failures=int(suite.attrib['failures']),
+        errors=int(suite.attrib['errors']),skipped=int(suite.attrib.get('skipped',0)),sha256=sha(path),
+        modifiedAt=datetime.fromtimestamp(path.stat().st_mtime).astimezone().isoformat()))
+totals={k:sum(s[k] for s in suites) for k in ('tests','failures','errors','skipped')}
+assert totals==dict(tests=82,failures=0,errors=0,skipped=0)
+assert next(s for s in suites if s['name'].endswith('.WebSocketIntegrationTest'))['tests']==7
+put(regression/'java-test-verification.json',dict(passed=True,source='User ran mvn -B -ntp test; agent inspected resulting Surefire XML without rerunning tests.',
+    userReportedFinishedAt='2026-10-28T13:42:45+08:00',**totals,suites=suites,
+    note='82 ordinary Java tests, including WebSocket integration. Real Redis integration is a separate profile, not rerun here.'))
+(regression/'user-maven-test.txt').write_text('用户提供的终端摘要：\nTests run: 82, Failures: 0, Errors: 0, Skipped: 0\nBUILD SUCCESS\nTotal time: 23.801 s\nFinished at: 2026-10-28T13:42:45+08:00\n',encoding='utf-8')
+print(json.dumps(dict(formalPassed=6,measuredNormal=sum(r['normalReceived'] for r in rows),frozenFiles=len(frozen),indexedFiles=files,javaTests=totals),ensure_ascii=False))

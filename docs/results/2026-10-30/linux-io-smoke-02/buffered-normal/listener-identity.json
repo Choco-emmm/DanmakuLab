@@ -1,0 +1,10 @@
+{
+  "arguments": [
+    "ss",
+    "-ltnp",
+    "sport = :18081"
+  ],
+  "exitCode": 0,
+  "stdout": "State  Recv-Q Send-Q      Local Address:Port  Peer Address:PortProcess                        \nLISTEN 0      100    [::ffff:127.0.0.1]:18081            *:*    users:((\"java\",pid=3928,fd=9))\n",
+  "stderr": ""
+}

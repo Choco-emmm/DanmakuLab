@@ -1,0 +1,96 @@
+"""正式完成后的只读复核：解压/哈希、逐观众位图与跨进程发送台账重新合并。
+
+只写本目录final-verification.json，不改动原始日志、审计或历史实验。
+"""
+from pathlib import Path
+from datetime import datetime, timezone
+from zipfile import ZipFile
+import gzip
+import hashlib
+import json
+import sys
+
+out=Path(__file__).resolve().parent
+root=out.parents[3]
+sys.path.insert(0,str(root/'scripts/tests'))
+from hotspot_workers_audit import tagged, receipt_matrix, GAUGES, RATES
+
+read=lambda p:json.loads(p.read_text(encoding='utf-8-sig'))
+def sha(path):
+    with path.open('rb') as stream: return hashlib.file_digest(stream,'sha256').hexdigest().upper()
+
+state=read(out/'batch-status.json')
+assert state['formalCompleted']==6 and state['prerequisitesPassed'] and state['testsPassed']
+assert state['notExecuted']==[] and state['error'] is None and state['awakeReleased']
+assert len(state['rows'])==13
+formal=[r for r in state['rows'] if r['name'].startswith('formal-')]
+assert [r['dispatch'] for r in formal]==['direct','fair','fair','direct','direct','fair']
+frozen={x['path']:x['sha256'] for x in read(out/'frozen-source.json')}
+assert all(sha(root/path)==value for path,value in frozen.items())
+assert sha(root/'target/danmaku-lab-release.jar')==state['jarSha256']
+previous=None;files=compressed=0;rows=[];pids=set()
+for row in state['rows']:
+    raw=Path(row['directory']);cfg=read(raw/'config.json');a=read(raw/'audit.json')
+    assert row['stopped'] and row['evidenceComplete']
+    assert row['pid'] not in pids;pids.add(row['pid'])
+    began=datetime.fromisoformat(row['startedAt']);ended=datetime.fromisoformat(row['endedAt'])
+    assert began<ended and (previous is None or previous<=began);previous=ended
+    assert set(a['cleanup'])==set(GAUGES) and all(v==0 for v in a['cleanup'].values())
+    assert a['hot']['unknown']==a['hot']['missing']==a['hot']['unexpected']==0
+    assert a['client']['received']==a['client']['acceptedDeliveryDemand']
+    index=read(out/row['name']/'evidence-index.json')
+    for entry in index['files']:
+        path=raw/entry['path']
+        assert path.stat().st_size==entry['bytes'] and sha(path)==entry['sha256'];files+=1
+        if path.suffix=='.gz':
+            with gzip.open(path,'rb') as stream: digest=hashlib.file_digest(stream,'sha256').hexdigest().upper()
+            assert digest==sha(path.with_suffix(''));compressed+=1
+    assert {x['path']:x['sha256'] for x in read(raw/'source-sha256.json')}==frozen
+    if row not in formal: continue
+    assert row['passed'] and not row['diagnostic'] and row['stallMs']==0 and row['phaseSeconds']==180
+    assert cfg['hotWorkers']==5 and cfg['hotConnections']==500 and cfg['normalRooms']==10 and cfg['normalConnections']==50
+    assert cfg['drainSeconds']==5 and cfg['sampleSeconds']==5 and cfg['requestBytes']==256
+    assert cfg['jarSha256']==state['jarSha256'] and a['errors']==[]
+    children=['normal']+[f'hot-{w}' for w in range(5)]
+    child_pids=[]
+    for role in children:
+        child=read(raw/role/'k6-status.json');child_pids.append(child['processId'])
+        assert child['exitCode']==0 and child['captureComplete'] and not child['timedOut']
+        assert not child['captureErrors'] and not child['cleanupErrors']
+    assert len(set(child_pids))==6
+    raws=[tagged(raw/f'hot-{w}/k6-stderr.txt','HW_RAW')[0] for w in range(5)]
+    accepted={};attempted=set()
+    for w,worker in enumerate(raws):
+        assert worker['readyAt']<cfg['startAtMs'] and worker['closeRequested']==worker['closeCompleted']==100
+        assert all(v==0 for v in worker['errors'].values()) and worker['pending']==0
+        for g,at,ok,result,seq,reason,v in worker['ledger']:
+            assert g%5==w and g not in attempted and ok==1 and result in (1,2);attempted.add(g)
+            if result==1: accepted[g]=(at,seq,worker['connectionIds'][v])
+            else: assert reason=='room_rate_limit'
+    assert attempted==set(range(sum(RATES)*180))
+    matrix=receipt_matrix(raws,accepted,500,57600)
+    assert matrix['missing']==matrix['unexpected']==0
+    assert matrix['received']==matrix['demand']==a['hot']['received']
+    for worker in raws:
+        for g,at,seq,sender in worker['observations']:
+            assert accepted[g]==(at,seq,worker['senderIds'][sender])
+    assert a['client']['sent']==72000 and a['client']['received']==11544500
+    rows.append(dict(name=row['name'],pid=row['pid'],mode=row['dispatch'],received=a['client']['received'],
+        demand=a['client']['acceptedDeliveryDemand'],hotAccepted=len(accepted),hotViewerRows=500,
+        hotBitmapReceipts=matrix['received'],maxHotLagMs=max(w['maxSendLagMs'] for w in a['workers'])))
+
+runtime=[]
+with ZipFile(root/'.lab-artifacts/ship-20261027/source.zip') as archive:
+    for path in [root/'pom.xml',*(root/'src/main').rglob('*')]:
+        if path.is_file():
+            relative=path.relative_to(root).as_posix()
+            assert archive.read(relative)==path.read_bytes();runtime.append(relative)
+assert len(runtime)==27
+result=dict(passed=True,verifiedAtUtc=datetime.now(timezone.utc).isoformat(),formalCompleted=6,pairs=3,
+    actualDeliveries=sum(r['received'] for r in rows),expectedDeliveries=sum(r['demand'] for r in rows),
+    indexedFilesVerified=files,compressedProofsVerified=compressed,frozenSourceFiles=len(frozen),runtimeFilesIdentical=27,
+    jarSha256=state['jarSha256'],allCases=13,allOwnedJvmsStopped=True,freshJvmPidsUnique=True,
+    noOverlappingCases=True,allTwelveGaugesZero=True,awakeReleased=True,formal=rows,
+    note='Raw evidence is read-only. Baseline failures from earlier batches are retained separately; no retries selected into these six formal runs.')
+(out/'final-verification.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+print(json.dumps({k:v for k,v in result.items() if k!='formal'},ensure_ascii=False))

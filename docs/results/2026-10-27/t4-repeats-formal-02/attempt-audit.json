@@ -1,0 +1,114 @@
+{
+  "threePairsCompleted": false,
+  "allAttemptsPassed": false,
+  "attempts": [
+    {
+      "name": "round-01-direct",
+      "loadValid": true,
+      "actual": {
+        "sent": 72000,
+        "accepted": 36053,
+        "rejected": 35947,
+        "received": 11546500,
+        "acceptedDeliveryDemand": 11546500
+      },
+      "failedThresholds": [],
+      "normalWorstRoomP99Ms": [
+        33.00999999999999,
+        39.00999999999999,
+        48,
+        56
+      ],
+      "hotP99Ms": [
+        null,
+        29,
+        571,
+        529
+      ],
+      "hotMaxSendLagMs": [
+        0,
+        14,
+        664,
+        459
+      ],
+      "cleanupGauges": 12
+    },
+    {
+      "name": "round-01-fair",
+      "loadValid": true,
+      "actual": {
+        "sent": 72000,
+        "accepted": 36049,
+        "rejected": 35951,
+        "received": 11544500,
+        "acceptedDeliveryDemand": 11544500
+      },
+      "failedThresholds": [],
+      "normalWorstRoomP99Ms": [
+        29.00999999999999,
+        53,
+        58.01999999999998,
+        47
+      ],
+      "hotP99Ms": [
+        null,
+        27,
+        485,
+        252
+      ],
+      "hotMaxSendLagMs": [
+        0,
+        48,
+        507,
+        309
+      ],
+      "cleanupGauges": 12
+    },
+    {
+      "name": "round-02-fair",
+      "loadValid": false,
+      "actual": {
+        "sent": 72000,
+        "accepted": 36049,
+        "rejected": 35951,
+        "received": 11544500,
+        "acceptedDeliveryDemand": 11544500
+      },
+      "failedThresholds": [
+        {
+          "role": "hot",
+          "metric": "t4_r0_p1_send_lag_ms",
+          "threshold": "max<1000",
+          "observed": {
+            "avg": 9.129166666666666,
+            "min": 0,
+            "med": 5,
+            "p(95)": 10,
+            "p(99)": 112.00999999999976,
+            "max": 1033
+          }
+        }
+      ],
+      "normalWorstRoomP99Ms": [
+        33,
+        63.00999999999999,
+        23,
+        24
+      ],
+      "hotP99Ms": [
+        null,
+        381.0100000000093,
+        269,
+        39
+      ],
+      "hotMaxSendLagMs": [
+        0,
+        1033,
+        300,
+        262
+      ],
+      "cleanupGauges": 12
+    }
+  ],
+  "note": "Two valid runs and one load-generator gate failure; all three receipt/counter audits agree. This is not a passing batch."
+}

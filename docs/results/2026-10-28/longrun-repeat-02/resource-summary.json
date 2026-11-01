@@ -1,0 +1,74 @@
+[
+  {
+    "name": "formal-1-T3",
+    "samples": 192,
+    "measureCpuWindowSeconds": 893.6527879238129,
+    "javaAverageCores": 0.6689014269051458,
+    "pythonAverageCores": 0.4240671042726143,
+    "javaWorkingSetPeakMiB": 347.125,
+    "pythonWorkingSetPeakMiB": 131.9453125,
+    "heapPeakMiB": 130.06365966796875,
+    "outboundBytesSamplePeak": 419628.0,
+    "inflightSamplePeak": 16.0
+  },
+  {
+    "name": "formal-2-T3",
+    "samples": 192,
+    "measureCpuWindowSeconds": 894.6545670032501,
+    "javaAverageCores": 0.682945152838839,
+    "pythonAverageCores": 0.41995957306574067,
+    "javaWorkingSetPeakMiB": 345.1875,
+    "pythonWorkingSetPeakMiB": 119.265625,
+    "heapPeakMiB": 130.35342407226562,
+    "outboundBytesSamplePeak": 413820.0,
+    "inflightSamplePeak": 10.0
+  },
+  {
+    "name": "formal-3-T3",
+    "samples": 192,
+    "measureCpuWindowSeconds": 894.5433928966522,
+    "javaAverageCores": 0.7060340839977196,
+    "pythonAverageCores": 0.4134441693235205,
+    "javaWorkingSetPeakMiB": 370.5703125,
+    "pythonWorkingSetPeakMiB": 124.6953125,
+    "heapPeakMiB": 130.81210327148438,
+    "outboundBytesSamplePeak": 398185.0,
+    "inflightSamplePeak": 16.0
+  },
+  {
+    "name": "formal-4-T5",
+    "samples": 370,
+    "measureCpuWindowSeconds": 1791.2440040111542,
+    "javaAverageCores": 0.6955012813498536,
+    "pythonAverageCores": 0.4922731063023333,
+    "javaWorkingSetPeakMiB": 362.6328125,
+    "pythonWorkingSetPeakMiB": 156.08203125,
+    "heapPeakMiB": 130.95944213867188,
+    "outboundBytesSamplePeak": 432212.0,
+    "inflightSamplePeak": 14.0
+  },
+  {
+    "name": "formal-5-T5",
+    "samples": 370,
+    "measureCpuWindowSeconds": 1796.999489068985,
+    "javaAverageCores": 0.7360794385563799,
+    "pythonAverageCores": 0.564899993669965,
+    "javaWorkingSetPeakMiB": 362.39453125,
+    "pythonWorkingSetPeakMiB": 159.01953125,
+    "heapPeakMiB": 131.37810516357422,
+    "outboundBytesSamplePeak": 422532.0,
+    "inflightSamplePeak": 20.0
+  },
+  {
+    "name": "formal-6-T5",
+    "samples": 370,
+    "measureCpuWindowSeconds": 1791.7233381271362,
+    "javaAverageCores": 0.7150936602406893,
+    "pythonAverageCores": 0.5529505331083095,
+    "javaWorkingSetPeakMiB": 354.7421875,
+    "pythonWorkingSetPeakMiB": 157.8203125,
+    "heapPeakMiB": 130.86376953125,
+    "outboundBytesSamplePeak": 427770.0,
+    "inflightSamplePeak": 15.0
+  }
+]

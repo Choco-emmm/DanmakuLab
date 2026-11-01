@@ -36,24 +36,33 @@ $result = Invoke-ProcessWithEvidence -StartInfo (Child-Info 'import sys; print("
 $status = Assert-Archived $prefix 'success-out' 'success-err'
 if ($result.exitCode -ne 0 -or $status.error -or -not $status.captureComplete) { throw '正常子进程被误判为失败。' }
 
-# 真正运行 30 秒休眠进程，但入口 1 秒超时就杀掉它；因此本回归无需长时间等待。
+# 真正运行 30 秒休眠进程，但入口 5 秒超时就杀掉它；因此本回归无需等待完整休眠。
+# 本机实测 Python 首次输出约需 1.35～1.76 秒，原 1 秒截止可能在输出标记前就终止进程。
+# 此处只调整测试预算，仍验证真实超时、两路日志和进程回收；不改变生产模块的超时语义。
 $prefix = Join-Path $directory 'timeout'
 $caught = $null
 $watch = [Diagnostics.Stopwatch]::StartNew()
 try {
-    Invoke-ProcessWithEvidence -StartInfo (Child-Info 'import sys,time; print("timeout-out", flush=True); print("timeout-err", file=sys.stderr, flush=True); time.sleep(30)') -Prefix $prefix -TimeoutSeconds 1 -CleanupTimeoutSeconds 2 | Out-Null
+    Invoke-ProcessWithEvidence -StartInfo (Child-Info 'import sys,time; print("timeout-out", flush=True); print("timeout-err", file=sys.stderr, flush=True); time.sleep(30)') -Prefix $prefix -TimeoutSeconds 5 -CleanupTimeoutSeconds 2 | Out-Null
 } catch { $caught = $_ }
 $status = Assert-Archived $prefix 'timeout-out' 'timeout-err'
 if (-not $caught -or -not $status.timedOut -or $caught.Exception.Message -notmatch '截止时间') { throw '截止超时未保留原错误。' }
-if ($watch.Elapsed.TotalSeconds -gt 5) { throw '超时收尾超过有限等待预算。' }
+# 5 秒运行截止 + 2 秒清理预算，再留 2 秒给轮询、文件归档和系统调度。
+if ($watch.Elapsed.TotalSeconds -gt 9) { throw '超时收尾超过有限等待预算。' }
 
-# 采样回调自身出错也必须终止进程、保留日志；让回调等半秒以保证 Python 已输出诊断。
+# 采样回调自身出错也必须终止进程、保留日志。不能假定半秒后Python一定已启动：
+# 忙机上可能在第一行print之前就被故障注入杀掉，那不是“已输出的日志被丢失”。
+# 让真实子进程先flush两路诊断，再写就绪文件；回调只在观察到该信号后抛错。
+# 文件是本测试独有的本地同步信号，5秒仍是整体截止，不修改生产模块的超时语义。
 $prefix = Join-Path $directory 'callback'
+$callbackReady = Join-Path $directory 'callback.ready'
+$callbackInfo = Child-Info 'import os,pathlib,sys,time; print("callback-out", flush=True); print("callback-err", file=sys.stderr, flush=True); pathlib.Path(os.environ["LAB_TEST_READY"]).write_text("ready"); time.sleep(30)'
+$callbackInfo.Environment['LAB_TEST_READY'] = $callbackReady
 $caught = $null
 try {
-    Invoke-ProcessWithEvidence -StartInfo (Child-Info 'import sys,time; print("callback-out", flush=True); print("callback-err", file=sys.stderr, flush=True); time.sleep(30)') -Prefix $prefix -TimeoutSeconds 3 -OnTick {
+    Invoke-ProcessWithEvidence -StartInfo $callbackInfo -Prefix $prefix -TimeoutSeconds 5 -OnTick {
         param($child, $elapsed)
-        if ($elapsed -gt 0.5) { throw 'deliberate-collector-failure' }
+        if (Test-Path -LiteralPath $callbackReady) { throw 'deliberate-collector-failure' }
     } | Out-Null
 } catch { $caught = $_ }
 $status = Assert-Archived $prefix 'callback-out' 'callback-err'
