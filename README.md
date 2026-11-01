@@ -1,5 +1,12 @@
 # DanmakuLab
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+[![Java 21](https://img.shields.io/badge/Java-21-orange.svg?style=flat-square)](https://openjdk.org/projects/jdk/21/)
+[![Spring Boot 3.5.16](https://img.shields.io/badge/Spring%20Boot-3.5.16-brightgreen.svg?style=flat-square)](pom.xml)
+[![WebSocket](https://img.shields.io/badge/WebSocket-native-blue.svg?style=flat-square)](docs/PROTOCOL.md)
+[![Redis Pub/Sub](https://img.shields.io/badge/Redis-Pub%2FSub-red.svg?style=flat-square)](docs/CLUSTER.md)
+[![k6](https://img.shields.io/badge/k6-v2.0.0--rc1-7D64FF.svg?style=flat-square)](docs/BENCHMARK.md)
+
 一个用来“看见”消息怎么流动的实时弹幕实验项目：从 WebSocket 接入、房间广播、两层队列，到慢消费者隔离和客户端实收验证。
 
 简单说，它研究一件事：**一条消息要发给很多人时，怎样不让慢的人拖垮快的人。**
@@ -395,9 +402,9 @@ pwsh -NoProfile -File scripts/tests/process-evidence.test.ps1
 ## 版本、证据与下一步
 
 - 当前归档版本为 `0.3.0.0`（见 [VERSION](VERSION)）；Maven 工件仍为 `0.1.0-SNAPSHOT`，两者用途不同。发布候选 JAR 的 SHA-256 以 `BC565288…` 开头，完整哈希见 [性能报告](docs/performance-report.md) 和 [发布检查](docs/results/2026-10-27/ship-verification/README.md)。
-- `v0.3.0.0` 已提交并推送到 `codex/hotspot-baseline`，尚未合入 `main`。
-- 2026-10-28 已完成 T3/T5 各三轮、T4 三对正式重复；2026-10-30 完成 Linux/JDK 21 小规模诊断。当前工作区仍有本次工具与文档改动未提交，正式归档版本以 `VERSION`、`CHANGELOG.md` 和各结果目录中的制品哈希为准。
-- 仍需完成：用户亲手演示与讲解、发布前检查、当前改动的提交/合并；可选的后续验证包括千连接 Linux、Redis 30 分钟双节点稳态、异机/公网条件和完整 P0 交付清单核对。
+- `v0.3.0.0` 已合入 `main`，并创建 annotated tag `v0.3.0.0`；原 `codex/hotspot-baseline` 分支已清理。
+- 2026-10-28 已完成 T3/T5 各三轮、T4 三对正式重复；2026-10-30 完成 Linux/JDK 21 小规模诊断；2026-11-01 完成 README 审计、MIT 许可证、演示截图与一键演示脚本，并合入 main。工作区已提交推送，正式归档版本以 `VERSION`、`CHANGELOG.md` 和各结果目录中的制品哈希为准。
+- 仍需完成：用户亲手演示与讲解、发布前检查；可选的后续验证包括千连接 Linux、Redis 30 分钟双节点稳态、异机/公网条件和完整 P0 交付清单核对。
 - 本项目的目标是“把做过的实验讲清楚”，不是宣称已经覆盖所有生产场景。面试或简历中引用数据时，请同时带上 [性能报告](docs/performance-report.md) 中的条件与限制。
 
 ## License
